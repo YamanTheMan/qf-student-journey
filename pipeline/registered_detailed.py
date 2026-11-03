@@ -7,6 +7,9 @@ The sheet exists from 2021-22. Programs get their standard names from data/refer
 Run from the project folder:
     .venv/bin/python -m pipeline.registered_detailed
 """
+import pandas as pd
+
+from pipeline import vcu_2021_22
 from pipeline.headers import detailed_header
 from pipeline.inventory import ROOT
 from pipeline.lists import extract_list_sheet
@@ -41,6 +44,8 @@ def standard_value(raw, mapping):
 def extract_all():
     table, problems = extract_list_sheet("registered students detailed", KEYS, detailed_header, TEMPLATES, REQUIRED,
                                          missing_ok=True)
+    table = pd.concat([table, pd.DataFrame(vcu_2021_22.detailed_records())], ignore_index=True)
+    table["count"] = table["count"].astype("Int64")
     # A line without a program is the university's single total (GU-Q 2021-22 filled in only that)
     table.insert(2, "row_type", table["program"].notna().map({True: "program", False: "all_programs"}))
     table["attendance_std"] = standard_value(table["attendance"], ATTENDANCE)

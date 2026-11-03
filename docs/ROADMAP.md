@@ -8,7 +8,7 @@ How we work each phase: explain the goal → build it in small steps → check t
 |---|---|---|
 | 0. Setup | Project folder, Git, private GitHub repo, Python environment | ✅ |
 | 1. Data map | Document every sheet: columns, years, universities, quirks | ✅ |
-| 2. Extraction | Read every yearly template version into one tidy format | 🔄 |
+| 2. Extraction | Read every yearly template version into one tidy format | ✅ |
 | 3. Validation | Automatic checks that run on every upload | ⬜ |
 | 4. Metrics | Define and compute the story numbers | ⬜ |
 | 5. Dashboard | The story in chapters, running locally | ⬜ |
@@ -43,7 +43,7 @@ Goal: know exactly what is in every file before writing any extraction code.
 
 **Carried into Phase 2:** timing rules for graduates (P-07), repeated graduation-rate classes (P-08) and repeated outcome classes (P-09).
 
-## Phase 2 — Extraction 🔄
+## Phase 2 — Extraction ✅
 
 Goal: every raw sheet becomes rows in one long, consistent table.
 
@@ -60,8 +60,8 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [x] Nationalities reader: 32,353 numbers from 42 files; country names standardised; totals match Student Data in 34 of 41 years
 - [x] Registered Students Detailed reader: 2,249 numbers from 24 files; totals match Student Data in 19 of 24 years (D-018)
 - [x] Ages, Graduate Nationalities, Internships and Funding readers (`pipeline/student_life.py`), each checked where an independent source exists
-- [ ] Reader for VCU-Q's 2021–22 alternative form (P-04)
-- [ ] One command builds every table (`pipeline/build.py`)
+- [x] Reader for VCU-Q's 2021–22 alternative form (`pipeline/vcu_2021_22.py`, D-019): matches QF exactly in every nationality × gender group
+- [x] One command builds every table: `.venv/bin/python -m pipeline.build` (10 tables from all 60 files in about 30 seconds; writes nothing if a person is needed; runs the tests)
 
 ## Phase 3 — Validation ⬜
 

@@ -115,3 +115,13 @@ A spelling not in the table stops the build and is listed, so nothing unmapped r
 **Date:** 2026-11-03
 **Decision:** This one sheet in this one file is not read. It's listed in the new `data/reference/sheet_exclusions.csv`, which works like `file_decisions.csv` but for a single sheet.
 **Why:** It isn't a detailed list. GU-Q's own remark says it was not able to provide the detail and could give a summary instead, and the sheet holds two summary tables (class year U1–U4 × nationality × gender) whose columns don't line up with the sheet's headers. Reading it as a list doubled GU-Q's 2022–23 total (940 vs 464). Its Student Data and Nationalities sheets still cover that year.
+
+### D-019 · VCU-Q 2021–22's different form: Fall 2021 snapshot, computed totals (P-04)
+**Date:** 2026-11-03
+**Decision:** `pipeline/vcu_2021_22.py` turns VCU-Q's alternative form into rows of the standard tables (Student Data, Registered Students Detailed, Nationalities, Ages):
+- **Registered students come from the Fall 2021 rows only** (302). The Spring 2022 rows (288) are a second snapshot and are not read.
+- The Admission sheet's "Registered" column is **not** read as newly enrolled: it adds up to all 302 registered students, while only 139 were admitted. So VCU-Q has no newly-enrolled figure for 2021–22.
+- The form has no totals, so program totals are **computed from their nationality × gender parts**. They say so in `remarks` and list every source cell (e.g. `O3+O5+O9`).
+- The Alumni sheet, "Gradautes - 2021-2022", is the class of 2021–22.
+
+**Why:** Fall is the census date the form asks for (data as of September 30), and it's the snapshot QF's consolidated file used. Our numbers match QF's exactly in all four nationality × gender groups (190 / 5 / 96 / 11). The 68 graduates match the 69 that the next year's Outcomes sheet tracks for that class.

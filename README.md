@@ -2,7 +2,7 @@
 
 A live dashboard that tells the story of Education City students, from application to career, using Qatar Foundation's yearly Student Data Collection submissions (AY2011–2025).
 
-> **Status:** Phase 2 (extraction) in progress: the Student Data table is built and checked. See [docs/ROADMAP.md](docs/ROADMAP.md) and [docs/data_dictionary.md](docs/data_dictionary.md).
+> **Status:** Phase 2 (extraction) complete: all 60 files become 10 checked tables with one command. See [docs/ROADMAP.md](docs/ROADMAP.md) and [docs/data_dictionary.md](docs/data_dictionary.md).
 
 ## The story
 
@@ -54,8 +54,11 @@ Requires Python 3.11.
 ```bash
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements-dev.txt
+.venv/bin/python -m pipeline.build        # Excel files -> data/processed/*.csv, then the tests
 .venv/bin/python -m streamlit run app.py
 ```
+
+`pipeline.build` stops without writing anything if a file needs a person (an unknown program spelling, a new template, numbers without a name, …) and says exactly what and where.
 
 ## Data
 

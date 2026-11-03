@@ -32352,3 +32352,241 @@ file_year,university,country_raw,country,stage,gender,breakdown,count,value_text
 2024-2025,WCM-Q,Non-Qatari,Non-Qatari (country not given),admitted,All,total,0,,v2022,AY24-25/AY24-25 WCM-Q Student Data - Spring 2025_final.xlsx,Student Nationalities,I204,used
 2024-2025,WCM-Q,Non-Qatari,Non-Qatari (country not given),newly_enrolled,All,total,0,,v2022,AY24-25/AY24-25 WCM-Q Student Data - Spring 2025_final.xlsx,Student Nationalities,L204,used
 2024-2025,WCM-Q,Non-Qatari,Non-Qatari (country not given),registered,All,total,0,,v2022,AY24-25/AY24-25 WCM-Q Student Data - Spring 2025_final.xlsx,Student Nationalities,O204,used
+2021-2022,VCU-Q,Afghanistan,Afghanistan,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T3,used
+2021-2022,VCU-Q,Albania,Albania,registered,Female,gender,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S4,used
+2021-2022,VCU-Q,Albania,Albania,registered,All,total,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T4,used
+2021-2022,VCU-Q,Algeria,Algeria,registered,Female,gender,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S5,used
+2021-2022,VCU-Q,Algeria,Algeria,registered,All,total,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T5,used
+2021-2022,VCU-Q,Andorra,Andorra,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T6,used
+2021-2022,VCU-Q,Angola,Angola,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T7,used
+2021-2022,VCU-Q,Antigua and Barbuda,Antigua and Barbuda,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T8,used
+2021-2022,VCU-Q,Argentina,Argentina,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T9,used
+2021-2022,VCU-Q,Armenia,Armenia,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T10,used
+2021-2022,VCU-Q,Australia,Australia,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T11,used
+2021-2022,VCU-Q,Austria,Austria,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T12,used
+2021-2022,VCU-Q,Azerbaijan,Azerbaijan,registered,Female,gender,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S13,used
+2021-2022,VCU-Q,Azerbaijan,Azerbaijan,registered,All,total,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T13,used
+2021-2022,VCU-Q,"Bahamas, The",Bahamas,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T14,used
+2021-2022,VCU-Q,Bahrain,Bahrain,registered,Female,gender,3,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S15,used
+2021-2022,VCU-Q,Bahrain,Bahrain,registered,All,total,3,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T15,used
+2021-2022,VCU-Q,Bangladesh,Bangladesh,registered,Male,gender,2,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,R16,used
+2021-2022,VCU-Q,Bangladesh,Bangladesh,registered,All,total,2,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T16,used
+2021-2022,VCU-Q,Barbados,Barbados,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T17,used
+2021-2022,VCU-Q,Belarus,Belarus,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T18,used
+2021-2022,VCU-Q,Belgium,Belgium,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T19,used
+2021-2022,VCU-Q,Belize,Belize,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T20,used
+2021-2022,VCU-Q,Benin,Benin,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T21,used
+2021-2022,VCU-Q,Bhutan,Bhutan,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T22,used
+2021-2022,VCU-Q,Bolivia,Bolivia,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T23,used
+2021-2022,VCU-Q,Bosnia and Herzegovina,Bosnia and Herzegovina,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T24,used
+2021-2022,VCU-Q,Botswana,Botswana,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T25,used
+2021-2022,VCU-Q,Brazil,Brazil,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T26,used
+2021-2022,VCU-Q,Brunei,Brunei,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T27,used
+2021-2022,VCU-Q,Bulgaria,Bulgaria,registered,Female,gender,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S28,used
+2021-2022,VCU-Q,Bulgaria,Bulgaria,registered,All,total,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T28,used
+2021-2022,VCU-Q,Burkina Faso,Burkina Faso,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T29,used
+2021-2022,VCU-Q,Burundi,Burundi,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T30,used
+2021-2022,VCU-Q,Cabo Verde,Cabo Verde,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T31,used
+2021-2022,VCU-Q,Cambodia,Cambodia,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T32,used
+2021-2022,VCU-Q,Cameroon,Cameroon,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T33,used
+2021-2022,VCU-Q,Canada,Canada,registered,Female,gender,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S34,used
+2021-2022,VCU-Q,Canada,Canada,registered,All,total,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T34,used
+2021-2022,VCU-Q,Central African Republic,Central African Republic,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T35,used
+2021-2022,VCU-Q,Chad,Chad,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T36,used
+2021-2022,VCU-Q,Chile,Chile,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T37,used
+2021-2022,VCU-Q,China,China,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T38,used
+2021-2022,VCU-Q,Colombia,Colombia,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T39,used
+2021-2022,VCU-Q,Comoros,Comoros,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T40,used
+2021-2022,VCU-Q,"Congo, Democratic Republic of the","Congo, Democratic Republic of the",registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T41,used
+2021-2022,VCU-Q,"Congo, Republic of the","Congo, Republic of the",registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T42,used
+2021-2022,VCU-Q,Costa Rica,Costa Rica,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T43,used
+2021-2022,VCU-Q,Côte d’Ivoire,Côte d’Ivoire,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T44,used
+2021-2022,VCU-Q,Croatia,Croatia,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T45,used
+2021-2022,VCU-Q,Cuba,Cuba,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T46,used
+2021-2022,VCU-Q,Cyprus,Cyprus,registered,Female,gender,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S47,used
+2021-2022,VCU-Q,Cyprus,Cyprus,registered,All,total,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T47,used
+2021-2022,VCU-Q,Czechia (Czech Republic),Czechia (Czech Republic),registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T48,used
+2021-2022,VCU-Q,Denmark,Denmark,registered,Female,gender,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S49,used
+2021-2022,VCU-Q,Denmark,Denmark,registered,All,total,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T49,used
+2021-2022,VCU-Q,Djibouti,Djibouti,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T50,used
+2021-2022,VCU-Q,Dominica,Dominica,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T51,used
+2021-2022,VCU-Q,Dominican Republic,Dominican Republic,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T52,used
+2021-2022,VCU-Q,Ecuador,Ecuador,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T53,used
+2021-2022,VCU-Q,Egypt,Egypt,registered,Female,gender,13,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S54,used
+2021-2022,VCU-Q,Egypt,Egypt,registered,All,total,13,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T54,used
+2021-2022,VCU-Q,El Salvador,El Salvador,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T55,used
+2021-2022,VCU-Q,Equatorial Guinea,Equatorial Guinea,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T56,used
+2021-2022,VCU-Q,Eritrea,Eritrea,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T57,used
+2021-2022,VCU-Q,Estonia,Estonia,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T58,used
+2021-2022,VCU-Q,Eswatini,Eswatini,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T59,used
+2021-2022,VCU-Q,Ethiopia,Ethiopia,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T60,used
+2021-2022,VCU-Q,Fiji,Fiji,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T61,used
+2021-2022,VCU-Q,Finland,Finland,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T62,used
+2021-2022,VCU-Q,France,France,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T63,used
+2021-2022,VCU-Q,Gabon,Gabon,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T64,used
+2021-2022,VCU-Q,"Gabia, The","Gabia, The",registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T65,used
+2021-2022,VCU-Q,Georgia,Georgia,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T66,used
+2021-2022,VCU-Q,Germany,Germany,registered,Female,gender,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S67,used
+2021-2022,VCU-Q,Germany,Germany,registered,All,total,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T67,used
+2021-2022,VCU-Q,Ghana,Ghana,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T68,used
+2021-2022,VCU-Q,Greece,Greece,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T69,used
+2021-2022,VCU-Q,Grenada,Grenada,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T70,used
+2021-2022,VCU-Q,Guatemala,Guatemala,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T71,used
+2021-2022,VCU-Q,Guinea,Guinea,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T72,used
+2021-2022,VCU-Q,Guinea-Bissau,Guinea-Bissau,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T73,used
+2021-2022,VCU-Q,Guyana,Guyana,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T74,used
+2021-2022,VCU-Q,Haiti,Haiti,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T75,used
+2021-2022,VCU-Q,Holy See,Holy See,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T76,used
+2021-2022,VCU-Q,Honduras,Honduras,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T77,used
+2021-2022,VCU-Q,Hong Kong (China),Hong Kong (China),registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T78,used
+2021-2022,VCU-Q,Hungary,Hungary,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T79,used
+2021-2022,VCU-Q,Iceland,Iceland,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T80,used
+2021-2022,VCU-Q,India,India,registered,Male,gender,3,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,R81,used
+2021-2022,VCU-Q,India,India,registered,Female,gender,9,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S81,used
+2021-2022,VCU-Q,India,India,registered,All,total,12,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T81,used
+2021-2022,VCU-Q,Indonesia,Indonesia,registered,Female,gender,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S82,used
+2021-2022,VCU-Q,Indonesia,Indonesia,registered,All,total,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T82,used
+2021-2022,VCU-Q,Iran,Iran,registered,Female,gender,3,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S83,used
+2021-2022,VCU-Q,Iran,Iran,registered,All,total,3,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T83,used
+2021-2022,VCU-Q,Iraq,Iraq,registered,Female,gender,2,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S84,used
+2021-2022,VCU-Q,Iraq,Iraq,registered,All,total,2,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T84,used
+2021-2022,VCU-Q,Ireland,Ireland,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T85,used
+2021-2022,VCU-Q,Israel,Israel,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T86,used
+2021-2022,VCU-Q,Italy,Italy,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T87,used
+2021-2022,VCU-Q,Jamaica,Jamaica,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T88,used
+2021-2022,VCU-Q,Japan,Japan,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T89,used
+2021-2022,VCU-Q,Jordan,Jordan,registered,Female,gender,6,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S90,used
+2021-2022,VCU-Q,Jordan,Jordan,registered,All,total,6,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T90,used
+2021-2022,VCU-Q,Kazakhstan,Kazakhstan,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T91,used
+2021-2022,VCU-Q,Kenya,Kenya,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T92,used
+2021-2022,VCU-Q,Kiribati,Kiribati,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T93,used
+2021-2022,VCU-Q,"Korea, North","Korea, North",registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T94,used
+2021-2022,VCU-Q,"Korea, South","Korea, South",registered,Female,gender,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S95,used
+2021-2022,VCU-Q,"Korea, South","Korea, South",registered,All,total,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T95,used
+2021-2022,VCU-Q,Kosovo,Kosovo,registered,Female,gender,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S96,used
+2021-2022,VCU-Q,Kosovo,Kosovo,registered,All,total,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T96,used
+2021-2022,VCU-Q,Kuwait,Kuwait,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T97,used
+2021-2022,VCU-Q,Kyrgyzstan,Kyrgyzstan,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T98,used
+2021-2022,VCU-Q,Laos,Laos,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T99,used
+2021-2022,VCU-Q,Latvia,Latvia,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T100,used
+2021-2022,VCU-Q,Lebanon,Lebanon,registered,Female,gender,3,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S101,used
+2021-2022,VCU-Q,Lebanon,Lebanon,registered,All,total,3,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T101,used
+2021-2022,VCU-Q,Lesotho,Lesotho,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T102,used
+2021-2022,VCU-Q,Liberia,Liberia,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T103,used
+2021-2022,VCU-Q,Libya,Libya,registered,Female,gender,2,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S104,used
+2021-2022,VCU-Q,Libya,Libya,registered,All,total,2,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T104,used
+2021-2022,VCU-Q,Liechtenstein,Liechtenstein,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T105,used
+2021-2022,VCU-Q,Lithuania,Lithuania,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T106,used
+2021-2022,VCU-Q,Luxembourg,Luxembourg,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T107,used
+2021-2022,VCU-Q,Madagascar,Madagascar,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T108,used
+2021-2022,VCU-Q,Malawi,Malawi,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T109,used
+2021-2022,VCU-Q,Malaysia,Malaysia,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T110,used
+2021-2022,VCU-Q,Maldives,Maldives,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T111,used
+2021-2022,VCU-Q,Mali,Mali,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T112,used
+2021-2022,VCU-Q,Malta,Malta,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T113,used
+2021-2022,VCU-Q,Marshall Islands,Marshall Islands,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T114,used
+2021-2022,VCU-Q,Mauritania,Mauritania,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T115,used
+2021-2022,VCU-Q,Mauritius,Mauritius,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T116,used
+2021-2022,VCU-Q,Mexico,Mexico,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T117,used
+2021-2022,VCU-Q,"Micronesia, Federated States of","Micronesia, Federated States of",registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T118,used
+2021-2022,VCU-Q,Moldova,Moldova,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T119,used
+2021-2022,VCU-Q,Monaco,Monaco,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T120,used
+2021-2022,VCU-Q,Mongolia,Mongolia,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T121,used
+2021-2022,VCU-Q,Montenegro,Montenegro,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T122,used
+2021-2022,VCU-Q,Morocco,Morocco,registered,Female,gender,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S123,used
+2021-2022,VCU-Q,Morocco,Morocco,registered,All,total,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T123,used
+2021-2022,VCU-Q,Mozambique,Mozambique,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T124,used
+2021-2022,VCU-Q,Myanmar (Burma),Myanmar (Burma),registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T125,used
+2021-2022,VCU-Q,Namibia,Namibia,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T126,used
+2021-2022,VCU-Q,Nauru,Nauru,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T127,used
+2021-2022,VCU-Q,Nepal,Nepal,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T128,used
+2021-2022,VCU-Q,Netherlands,Netherlands,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T129,used
+2021-2022,VCU-Q,New Zealand,New Zealand,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T130,used
+2021-2022,VCU-Q,Nicaragua,Nicaragua,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T131,used
+2021-2022,VCU-Q,Niger,Niger,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T132,used
+2021-2022,VCU-Q,Nigeria,Nigeria,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T133,used
+2021-2022,VCU-Q,North Macedonia,North Macedonia,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T134,used
+2021-2022,VCU-Q,Norway,Norway,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T135,used
+2021-2022,VCU-Q,Oman,Oman,registered,Female,gender,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S136,used
+2021-2022,VCU-Q,Oman,Oman,registered,All,total,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T136,used
+2021-2022,VCU-Q,Pakistan,Pakistan,registered,Male,gender,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,R137,used
+2021-2022,VCU-Q,Pakistan,Pakistan,registered,Female,gender,12,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S137,used
+2021-2022,VCU-Q,Pakistan,Pakistan,registered,All,total,13,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T137,used
+2021-2022,VCU-Q,Palau,Palau,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T138,used
+2021-2022,VCU-Q,Palestine,Palestine,registered,Female,gender,5,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S139,used
+2021-2022,VCU-Q,Palestine,Palestine,registered,All,total,5,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T139,used
+2021-2022,VCU-Q,Panama,Panama,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T140,used
+2021-2022,VCU-Q,Papua New Guinea,Papua New Guinea,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T141,used
+2021-2022,VCU-Q,Paraguay,Paraguay,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T142,used
+2021-2022,VCU-Q,Peru,Peru,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T143,used
+2021-2022,VCU-Q,Philippines,Philippines,registered,Male,gender,2,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,R144,used
+2021-2022,VCU-Q,Philippines,Philippines,registered,All,total,2,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T144,used
+2021-2022,VCU-Q,Poland,Poland,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T145,used
+2021-2022,VCU-Q,Portugal,Portugal,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T146,used
+2021-2022,VCU-Q,Qatar,Qatar,registered,Male,gender,5,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,R147,used
+2021-2022,VCU-Q,Qatar,Qatar,registered,Female,gender,190,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S147,used
+2021-2022,VCU-Q,Qatar,Qatar,registered,All,total,195,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T147,used
+2021-2022,VCU-Q,Romania,Romania,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T148,used
+2021-2022,VCU-Q,Russia,Russia,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T149,used
+2021-2022,VCU-Q,Rwanda,Rwanda,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T150,used
+2021-2022,VCU-Q,Saint Kitts and Nevis,Saint Kitts and Nevis,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T151,used
+2021-2022,VCU-Q,Saint Lucia,Saint Lucia,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T152,used
+2021-2022,VCU-Q,Saint Vincent and the Grenadines,Saint Vincent and the Grenadines,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T153,used
+2021-2022,VCU-Q,Samoa,Samoa,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T154,used
+2021-2022,VCU-Q,San Marino,San Marino,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T155,used
+2021-2022,VCU-Q,Sao Tome and Principe,Sao Tome and Principe,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T156,used
+2021-2022,VCU-Q,Saudi Arabia,Saudi Arabia,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T157,used
+2021-2022,VCU-Q,Senegal,Senegal,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T158,used
+2021-2022,VCU-Q,Serbia,Serbia,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T159,used
+2021-2022,VCU-Q,Seychelles,Seychelles,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T160,used
+2021-2022,VCU-Q,Sierra Leone,Sierra Leone,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T161,used
+2021-2022,VCU-Q,Singapore,Singapore,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T162,used
+2021-2022,VCU-Q,Slovakia,Slovakia,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T163,used
+2021-2022,VCU-Q,Slovenia,Slovenia,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T164,used
+2021-2022,VCU-Q,Solomon Islands,Solomon Islands,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T165,used
+2021-2022,VCU-Q,Somalia,Somalia,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T166,used
+2021-2022,VCU-Q,South Africa,South Africa,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T167,used
+2021-2022,VCU-Q,South Sudan,South Sudan,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T168,used
+2021-2022,VCU-Q,Spain,Spain,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T169,used
+2021-2022,VCU-Q,Sri Lanka,Sri Lanka,registered,Female,gender,2,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S170,used
+2021-2022,VCU-Q,Sri Lanka,Sri Lanka,registered,All,total,2,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T170,used
+2021-2022,VCU-Q,Sudan,Sudan,registered,Female,gender,7,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S171,used
+2021-2022,VCU-Q,Sudan,Sudan,registered,All,total,7,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T171,used
+2021-2022,VCU-Q,Suriname,Suriname,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T172,used
+2021-2022,VCU-Q,Sweden,Sweden,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T173,used
+2021-2022,VCU-Q,Switzerland,Switzerland,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T174,used
+2021-2022,VCU-Q,Syria,Syria,registered,Male,gender,2,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,R175,used
+2021-2022,VCU-Q,Syria,Syria,registered,Female,gender,3,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S175,used
+2021-2022,VCU-Q,Syria,Syria,registered,All,total,5,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T175,used
+2021-2022,VCU-Q,Taiwan,Taiwan,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T176,used
+2021-2022,VCU-Q,Tajikistan,Tajikistan,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T177,used
+2021-2022,VCU-Q,Tanzania,Tanzania,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T178,used
+2021-2022,VCU-Q,Thailand,Thailand,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T179,used
+2021-2022,VCU-Q,Timor-Leste,Timor-Leste,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T180,used
+2021-2022,VCU-Q,Togo,Togo,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T181,used
+2021-2022,VCU-Q,Tonga,Tonga,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T182,used
+2021-2022,VCU-Q,Trinidad and Tobago,Trinidad and Tobago,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T183,used
+2021-2022,VCU-Q,Tunisia,Tunisia,registered,Female,gender,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S184,used
+2021-2022,VCU-Q,Tunisia,Tunisia,registered,All,total,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T184,used
+2021-2022,VCU-Q,Turkey,Turkey,registered,Female,gender,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S185,used
+2021-2022,VCU-Q,Turkey,Turkey,registered,All,total,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T185,used
+2021-2022,VCU-Q,Turkmenistan,Turkmenistan,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T186,used
+2021-2022,VCU-Q,Tuvalu,Tuvalu,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T187,used
+2021-2022,VCU-Q,Uganda,Uganda,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T188,used
+2021-2022,VCU-Q,Ukraine,Ukraine,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T189,used
+2021-2022,VCU-Q,United Arab Emirates,United Arab Emirates,registered,Female,gender,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S190,used
+2021-2022,VCU-Q,United Arab Emirates,United Arab Emirates,registered,All,total,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T190,used
+2021-2022,VCU-Q,United Kingdom,United Kingdom,registered,Female,gender,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S191,used
+2021-2022,VCU-Q,United Kingdom,United Kingdom,registered,All,total,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T191,used
+2021-2022,VCU-Q,United States,United States,registered,Male,gender,1,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,R192,used
+2021-2022,VCU-Q,United States,United States,registered,Female,gender,9,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,S192,used
+2021-2022,VCU-Q,United States,United States,registered,All,total,10,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T192,used
+2021-2022,VCU-Q,Uruguay,Uruguay,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T193,used
+2021-2022,VCU-Q,Uzbekistan,Uzbekistan,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T194,used
+2021-2022,VCU-Q,Vanuatu,Vanuatu,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T195,used
+2021-2022,VCU-Q,Venezuela,Venezuela,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T196,used
+2021-2022,VCU-Q,Vietnam,Vietnam,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T197,used
+2021-2022,VCU-Q,Yemen,Yemen,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T198,used
+2021-2022,VCU-Q,Zambia,Zambia,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T199,used
+2021-2022,VCU-Q,Zimbabwe,Zimbabwe,registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T200,used
+2021-2022,VCU-Q,Non-Qatari,Non-Qatari (country not given),registered,All,total,0,,v2021-alt,AY21-22/Copy of Higher Education Data Template 2022_VCU.xlsx,Student Statistics,T201,used

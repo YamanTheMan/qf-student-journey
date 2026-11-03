@@ -13,6 +13,7 @@ Run from the project folder:
 """
 import pandas as pd
 
+from pipeline import vcu_2021_22
 from pipeline.headers import nationalities_header
 from pipeline.inventory import REFERENCE_DIR, ROOT
 from pipeline.lists import extract_list_sheet
@@ -52,6 +53,8 @@ def mark_duplicates(table, extra_keys=()):
 
 def extract_all():
     table, problems = extract_list_sheet("student nationalities", KEYS, nationalities_header, TEMPLATES)
+    table = pd.concat([table, pd.DataFrame(vcu_2021_22.nationality_records())], ignore_index=True)
+    table["count"] = table["count"].astype("Int64")
     table, duplicate_problems = mark_duplicates(standardise_countries(table))
     return table, problems + duplicate_problems
 

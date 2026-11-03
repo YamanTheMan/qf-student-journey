@@ -12,6 +12,7 @@ import re
 
 import pandas as pd
 
+from pipeline import vcu_2021_22
 from pipeline.graduates import year_from_label
 from pipeline.headers import MONTHS, ages_header, funding_header, single_count_header
 from pipeline.inventory import ROOT
@@ -28,13 +29,22 @@ EMPLOYER_TYPES = [("QF", r"^qf\b|qatar foundation"), ("Public", r"^public|govern
 
 def ages():
     keys = {"age": lambda t: t == "age"}
-    return extract_list_sheet("student ages", keys, ages_header, ALL_TEMPLATES)
+    table, problems = extract_list_sheet("student ages", keys, ages_header, ALL_TEMPLATES)
+    table = pd.concat([table, pd.DataFrame(vcu_2021_22.age_records())], ignore_index=True)
+    table["count"] = table["count"].astype("Int64")
+    return table, problems
 
 
-def file_classes():
-    """The graduating class(es) each file's graduate counts were given in student_data.csv (D-011)."""
-    sd = pd.read_csv(PROCESSED / "student_data.csv", usecols=["source_file", "row_type", "stage", "graduating_year"],
-                     keep_default_na=False, dtype=str)
+def file_classes(student_data=None):
+    """The graduating class(es) each file's graduate counts were given in Student Data (D-011).
+
+    pipeline.build passes the table it just built; run on its own, this reads student_data.csv.
+    """
+    if student_data is None:
+        sd = pd.read_csv(PROCESSED / "student_data.csv", usecols=["source_file", "row_type", "stage", "graduating_year"],
+                         keep_default_na=False, dtype=str)
+    else:
+        sd = student_data[["source_file", "row_type", "stage", "graduating_year"]].astype("string").fillna("")
     # program rows only: footers have no class label above them and would add a second, default class
     graduated = sd[(sd["stage"] == "graduated") & (sd["graduating_year"] != "")
                    & sd["row_type"].isin(["program", "all_programs"])]
@@ -54,14 +64,14 @@ def graduating_class(remarks, source_file, file_year, classes):
     return file_year, "form_default"
 
 
-def graduate_nationalities():
+def graduate_nationalities(student_data=None):
     keys = {"country_raw": lambda t: t.startswith("list of graduate nationalities"),
             "remarks": lambda t: t.startswith("remarks")}
     table, problems = extract_list_sheet("graduate nationalities", keys,
                                          single_count_header(r"(#|total) graduates", "graduated"),
                                          ("v2021", "v2022"), required=("country_raw",), missing_ok=True)
-    classes = file_classes()
-    dated = [graduating_class(r, f, y, classes) for r, f, y in zip(table["remarks"], table["source_file"], table["file_year"])]
+    classes = file_classes(student_data)
+    dated =[graduating_class(r, f, y, classes) for r, f, y in zip(table["remarks"], table["source_file"], table["file_year"])]
     table.insert(table.columns.get_loc("remarks") + 1, "graduating_year", [d[0] for d in dated])
     table.insert(table.columns.get_loc("graduating_year") + 1, "timing_evidence", [d[1] for d in dated])
     table, duplicate_problems = mark_duplicates(standardise_countries(table), extra_keys=("graduating_year",))
