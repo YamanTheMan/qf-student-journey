@@ -128,6 +128,41 @@ GRADUATION_STAGES = [
 ]
 
 
+def nationalities_header(header):
+    """Count columns of the Student Nationalities sheet: stage and gender.
+
+    2019-22 templates have only '# Male', '# Female', 'Total': registered students (their totals
+    equal Student Data's registered students). In the 2022 template the registered block ends
+    with 'Total Enrolled', which there means total registered, not newly enrolled.
+    """
+    if not isinstance(header, str):
+        return None
+    text = re.sub(r"\s+", " ", header).strip().lower()
+    gender = "Female" if re.search(r"\bfemales?\b", text) else "Male" if re.search(r"\bmales?\b", text) else "All"
+    if not (text.startswith("#") or text.startswith("total") or gender != "All"):
+        return None
+    if re.search(r"\bappl(ied|icants?)\b", text):
+        stage = "applied"
+    elif re.search(r"\b(admitted|accepted)\b", text):
+        stage = "admitted"
+    elif re.search(r"\bnewly enrolled\b", text) or (re.search(r"\benrolled\b", text) and gender != "All"):
+        stage = "newly_enrolled"
+    elif re.search(r"\bregistered\b|^total enrolled$|^# (fe)?males?( students?)?$|^total$", text):
+        stage = "registered"
+    else:
+        return None
+    return {"stage": stage, "gender": gender, "breakdown": "gender" if gender != "All" else "total"}
+
+
+def detailed_header(header):
+    """The one count column of Registered Students Detailed."""
+    if not isinstance(header, str):
+        return None
+    text = re.sub(r"\s+", " ", header).strip().lower()
+    # 'Total Registered Students' in the header, '# Registered Students' in the footer
+    return {"stage": "registered"} if re.match(r"(total|#) registered", text) else None
+
+
 # Student Outcomes after 1 Yr. Checked in order: 'self-employed' before 'employed'.
 OUTCOME_STAGES = [
     ("graduates", r"graduates from previous academic year"),

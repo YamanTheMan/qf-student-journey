@@ -24,6 +24,13 @@ def test_decision_values_are_valid():
     assert stages <= {"applied", "admitted", "newly_enrolled", "registered", "graduated"}
 
 
+def test_every_sheet_exclusion_points_to_a_real_file():
+    exclusions = pd.read_csv(REFERENCE / "sheet_exclusions.csv")
+    assert all((ROOT / "data" / "raw" / p).exists() for p in exclusions["path"])
+    assert exclusions["decision"].str.fullmatch(r"D-\d{3}").all()
+    assert exclusions["note"].str.len().gt(10).all()
+
+
 def test_graduate_timing_table_is_valid():
     timing = pd.read_csv(REFERENCE / "graduate_timing.csv")
     codes = set(pd.read_csv(REFERENCE / "universities.csv")["code"])
@@ -54,6 +61,11 @@ def test_program_table_is_valid():
     assert set(programs["level"]) <= LEVELS
     assert set(programs["qualification"]) <= QUALIFICATIONS
     assert set(programs["field"]) <= FIELDS
+    # spellings that match each other (ignoring capitals and spaces) must say the same thing
+    from pipeline.programs import match_key
+    keyed = programs.assign(d=match_key(programs["degree_raw"]), p=match_key(programs["program_raw"]))
+    disagree = keyed.groupby(["university", "d", "p"])[["program", "level"]].nunique().max(axis=1)
+    assert (disagree <= 1).all(), f"spellings differing only in capitals disagree: {list(disagree[disagree > 1].index)}"
     # one group never mixes levels, except where a program spans them on purpose (D-015)
     mixed = programs[programs["level"] != "non_degree"].groupby(["university", "program_group"])["level"].nunique()
     assert set(mixed[mixed > 1].index) <= {("WCM-Q", "Medicine")}

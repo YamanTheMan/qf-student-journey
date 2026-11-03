@@ -63,6 +63,8 @@ def extract_table(src, sheet_name, parse_header, issues=None, row_fields=None):
     parse_header(text) returns a dict describing a count column (it must include 'stage'),
     or None for any other column. Rows that look wrong are described in `issues`.
     """
+    if sheet_name in src.skip_sheets:
+        return []  # excluded by a decision in data/reference/sheet_exclusions.csv
     sheet, rows = read_sheet(src.path, sheet_name)
     if sheet is None:
         raise ValueError(f"no '{sheet_name}' sheet")

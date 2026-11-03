@@ -6,6 +6,8 @@ What is in `data/raw/`, what each number means, and what's wrong with it. This i
 - **University names:** [`data/reference/universities.csv`](../data/reference/universities.csv) maps every spelling found in the files to one code.
 - **Which files to use:** [`data/reference/file_decisions.csv`](../data/reference/file_decisions.csv) lists the exceptions. Every other file is used as-is. `use` is one of: `no` (skip the file), `only` (use only the listed `programs` × `stages`), `except` (use everything but the listed `programs` × `stages`), or `yes`. `academic_year` overrides the year implied by the folder.
 - **Program names:** [`data/reference/programs.csv`](../data/reference/programs.csv) has one row per program spelling found in the files (145 so far), giving its standard name, stable group, level, qualification and field (D-015). A new spelling in a future upload stops the build until a row is added.
+- **Sheets to skip:** [`data/reference/sheet_exclusions.csv`](../data/reference/sheet_exclusions.csv) lists single sheets that aren't read, each with its decision (D-018).
+- **Country names:** [`data/reference/country_aliases.csv`](../data/reference/country_aliases.csv) maps variant spellings to one country name.
 - **When graduates graduated:** [`data/reference/graduate_timing.csv`](../data/reference/graduate_timing.csv) lists, per university and file, which class its graduates belong to when a remark or the Outcomes sheet shows it, each with its evidence (D-011). Files without an entry use labels in the sheet, or else the form's definition.
 
 ---
@@ -197,6 +199,21 @@ Built by `.venv/bin/python -m pipeline.outcomes` from the 28 files with a Studen
 
 **Checks:** each class is used from exactly one file. Class sizes match our dated graduates (`student_data.csv`) wherever both exist: CMU-Q 87 = 87, 120 = 120; NU-Q 112 = 112; WCM-Q 41 = 41, 42 = 42, 50 = 50. The small gaps are explained (P-27). Outcomes fill the class size for classes Student Data doesn't report (e.g. TAMU-Q 2021–22: 110, NU-Q 2021–22: 108).
 
+### `nationalities.csv`: students by country of nationality
+
+Built by `.venv/bin/python -m pipeline.nationalities` from 42 files (all years from 2019–20). Columns: `country_raw` (as written), `country` (standardised), `stage`, `gender`, `breakdown`, `count`, `row_status`, plus year, university, template and source columns. 2019–22 files give registered students only; from 2022–23 also applied, admitted and newly enrolled.
+
+- **Country names:** capitals are ignored ("QATAR" = "Qatar"), and `data/reference/country_aliases.csv` handles real variants ("Viet Nam" → "Vietnam"). "Non-Qatari" is not a country: it becomes "Non-Qatari (country not given)" (P-30).
+- **`row_status`:** `used` or `duplicate` (the same country listed twice in one file with identical numbers, P-31). Different numbers for the same country stop the build.
+- **Blank cells are left out:** every country is printed in the template, so a blank says nothing a missing row doesn't.
+- **Check:** registered totals equal Student Data in 34 of 41 university-years (38 within 2%), and the "Qatar" row equals Qatari students in 32 of 39. Gaps: P-33.
+
+### `registered_detailed.csv`: registered students in detail
+
+Built by `.venv/bin/python -m pipeline.registered_detailed` from 24 files (2021–22 onwards; two 2021–22 files don't have the sheet, and GU-Q 2022–23 is skipped by D-018). One count per program × `nationality` × `gender` × `attendance` × `scholarship` × `sponsorship` × `language` × `year_class`, plus `attendance_std`, `scholarship_std`, `sponsorship_std` (Full-time / Part-time / Yes / No / Mixed) and the standard program columns.
+
+**Check:** totals equal Student Data's registered students in 19 of 24 university-years (21 within 2%). VCU-Q 2022–23 gives 294 students where Student Data left registered blank (P-05). Gaps: P-33.
+
 ## 7. Known problems
 
 | ID | Problem | Evidence | Status |
@@ -230,3 +247,7 @@ Built by `.venv/bin/python -m pipeline.outcomes` from the 28 files with a Studen
 | **P-27** | **Outcomes and class sizes don't always fit.** CMU-Q 2022–23 and VCU-Q 2022–23 report outcomes with a class size of 0 (left blank or a formula zero); TAMU-Q 2023–24 reports 157 outcomes for 156 graduates. Class size vs dated graduates: TAMU-Q 2023–24 156 vs 143 (the 143 was provisional), VCU-Q 2023–24 65 vs 72, GU-Q 2023–24 119 vs 120. | Outcomes check in §6 | Phase 3: take class sizes from dated graduates where Outcomes has 0 |
 | **P-28** | **Outcomes not collected for some classes.** GU-Q 2020–21 and 2022–23, HBKU 2022–23 and HEC-Q 2020–21 give a class size but every outcome is 0. | Outcomes sheets | Marked `empty`; the dashboard shows "not reported" |
 | **P-29** | **CMU-Q's 2023–24 Outcomes sheet lists its programs without names**, and the 2024–25 sheet repeats the same class with names. | Same five numbers in both sheets | Solved: D-013 compares a whole class at a university, so the class is counted once |
+| **P-30** | **"Non-Qatari" used as a country.** NU-Q reports most non-Qatari students as one lump (430–534 a year), so NU-Q has no country detail for them; HBKU, CMU-Q and VCU-Q have small lumps. | Nationalities sheets | Solved: standardised to "Non-Qatari (country not given)" |
+| **P-31** | **NU-Q 2019–20 lists Qatar and Non-Qatari twice:** summary rows at the top repeat the alphabetical rows. | Identical numbers (174, 205) | Solved: identical duplicates are used once |
+| **P-32** | **GU-Q 2022–23 Registered Students Detailed holds summary tables, not the detailed list.** | GU-Q's remark; columns don't line up with the headers | Solved: sheet skipped (D-018) |
+| **P-33** | **Secondary sheets don't always add up to Student Data.** HEC-Q 2022–23 Nationalities is empty (0 vs 238); TAMU-Q 2023–24 Nationalities 609 and Detailed 556 vs 672; VCU-Q 2023–24 Nationalities 197 vs 311 and 2024–25 Detailed 279 vs 323 (small numbers redacted). | Checks in §6 | Phase 3: show these sheets as partial for those years |

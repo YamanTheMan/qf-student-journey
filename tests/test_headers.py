@@ -1,4 +1,5 @@
-from pipeline.headers import graduation_rate_header, outcomes_header, parse_measure, student_pipeline_header
+from pipeline.headers import (detailed_header, graduation_rate_header, nationalities_header, outcomes_header,
+                              parse_measure, student_pipeline_header)
 
 
 def m(text):
@@ -89,6 +90,28 @@ def test_outcomes_headers():
 def test_vcuq_names_the_class_inside_the_header():
     assert o("# Non-Qatari Graduates from AY 2021-22 in Grad School outside of Qatar") == \
         ("grad_school", "Non-Qatari", "Outside Qatar", "nationality_location", "AY 2021-22")
+
+
+def n(text):
+    h = nationalities_header(text)
+    return None if h is None else (h["stage"], h["gender"])
+
+
+def test_nationalities_headers():
+    assert n("# Male") == ("registered", "Male")          # 2019-22 templates: registered students
+    assert n("Total") == ("registered", "All")
+    assert n("# Applied Female") == ("applied", "Female")
+    assert n("Total Newly Enrolled") == ("newly_enrolled", "All")
+    assert n("Total Enrolled") == ("registered", "All")    # 2022 template: ends the registered block
+    assert n("# Male Students") == ("registered", "Male")  # older footers, so the reader knows where to stop
+    for text in ("Nationality", "Malta", "Remarks ", "Column1"):
+        assert n(text) is None
+
+
+def test_detailed_headers():
+    assert detailed_header("Total Registered\nStudents") == {"stage": "registered"}
+    assert detailed_header("# Registered Students") == {"stage": "registered"}  # its footer
+    assert detailed_header("Year Classification") is None
 
 
 def test_non_count_columns_are_ignored():

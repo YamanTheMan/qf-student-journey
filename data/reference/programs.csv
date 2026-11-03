@@ -7,6 +7,7 @@ CMU-Q,BS,Computer Science,Computer Science,Computer Science,undergraduate,Bachel
 CMU-Q,BS,General Studies,General Studies,General Studies,undergraduate,Bachelor's,General & Foundation,
 CMU-Q,BS,Information Systems,Information Systems,Information Systems,undergraduate,Bachelor's,Computing & Data,
 GU-Q,,,All programs,All programs,undergraduate,Bachelor's,International Affairs,Graduation Rate 2023-24 reports one unnamed row per entering class for the whole university.
+GU-Q,,CULP,Culture and Politics,Culture and Politics,undergraduate,Bachelor's,International Affairs,Program code (CULP). Registered Students Detailed spelling.
 GU-Q,,International Economics,International Economics,International Economics,undergraduate,Bachelor's,International Affairs,Degree left blank.
 GU-Q,BS,Culture and Politics,Culture and Politics,Culture and Politics,undergraduate,Bachelor's,International Affairs,
 GU-Q,BS,International Economics,International Economics,International Economics,undergraduate,Bachelor's,International Affairs,
@@ -14,11 +15,19 @@ GU-Q,BS,International History,International History,International History,underg
 GU-Q,BS,International Politics,International Politics,International Politics,undergraduate,Bachelor's,International Affairs,
 GU-Q,BS,Undeclared Major,International Affairs (undeclared),International Affairs (undeclared),undergraduate,Bachelor's,International Affairs,Students who have not yet declared a major. GU-Q: all students apply as International Affairs (INAF) majors; named 'International Affairs' in 2024-25.
 GU-Q,BSFS,,All programs,All programs,undergraduate,Bachelor's,International Affairs,GU-Q 2023-24 reported one line for the whole university (P-17).
+GU-Q,BSFS,BSFS in Culture and Politics,Culture and Politics,Culture and Politics,undergraduate,Bachelor's,International Affairs,Registered Students Detailed spelling.
+GU-Q,BSFS,BSFS in Int'l Economics,International Economics,International Economics,undergraduate,Bachelor's,International Affairs,Registered Students Detailed spelling.
+GU-Q,BSFS,BSFS in International Affairs,International Affairs (undeclared),International Affairs (undeclared),undergraduate,Bachelor's,International Affairs,Students not yet in a major (D-015). Registered Students Detailed spelling.
+GU-Q,BSFS,BSFS in International History,International History,International History,undergraduate,Bachelor's,International Affairs,Registered Students Detailed spelling.
+GU-Q,BSFS,BSFS in International Politics,International Politics,International Politics,undergraduate,Bachelor's,International Affairs,Registered Students Detailed spelling.
+GU-Q,BSFS,Culture & Politics,Culture and Politics,Culture and Politics,undergraduate,Bachelor's,International Affairs,Registered Students Detailed spelling.
 GU-Q,BSFS,Culture and Politics,Culture and Politics,Culture and Politics,undergraduate,Bachelor's,International Affairs,
 GU-Q,BSFS,International Affairs,International Affairs (undeclared),International Affairs (undeclared),undergraduate,Bachelor's,International Affairs,Students who have not yet declared a major. GU-Q: all students apply as International Affairs (INAF) majors; named 'International Affairs' in 2024-25.
 GU-Q,BSFS,International Economics,International Economics,International Economics,undergraduate,Bachelor's,International Affairs,
 GU-Q,BSFS,International History,International History,International History,undergraduate,Bachelor's,International Affairs,
 GU-Q,BSFS,International Politics,International Politics,International Politics,undergraduate,Bachelor's,International Affairs,
+GU-Q,BSFS,SFS-Q/International History,International History,International History,undergraduate,Bachelor's,International Affairs,Registered Students Detailed spelling.
+GU-Q,BSFS,Undeclared,International Affairs (undeclared),International Affairs (undeclared),undergraduate,Bachelor's,International Affairs,Students not yet in a major (D-015). Registered Students Detailed spelling.
 GU-Q,BSFS,Undeclared (International Affairs),International Affairs (undeclared),International Affairs (undeclared),undergraduate,Bachelor's,International Affairs,Students who have not yet declared a major. GU-Q: all students apply as International Affairs (INAF) majors; named 'International Affairs' in 2024-25.
 GU-Q,BSFS,Undeclared Major,International Affairs (undeclared),International Affairs (undeclared),undergraduate,Bachelor's,International Affairs,Students who have not yet declared a major. GU-Q: all students apply as International Affairs (INAF) majors; named 'International Affairs' in 2024-25.
 GU-Q,Undeclared,Undeclared Major,International Affairs (undeclared),International Affairs (undeclared),undergraduate,Bachelor's,International Affairs,Students who have not yet declared a major. GU-Q: all students apply as International Affairs (INAF) majors; named 'International Affairs' in 2024-25.
@@ -41,6 +50,11 @@ HBKU,MA,Islamic Finance,Islamic Finance,Islamic Finance,graduate,Master's,Busine
 HBKU,MA,Islamic Studies,Islamic Studies (master's),Islamic Studies (master's),graduate,Master's,Islamic Studies,
 HBKU,MA,Islamic Studies in Contemporary Fiqh,Islamic Studies in Contemporary Fiqh,Islamic Studies in Contemporary Fiqh,graduate,Master's,Islamic Studies,"Listed in the 2022-23 Student Pipeline only, with no applicants."
 HBKU,MA,M.A. in Counseling Psychology,Counseling Psychology,Counseling Psychology,graduate,Master's,Humanities & Social Sciences,
+HBKU,MA,MA in Audiovisual Translation,Audiovisual Translation,Audiovisual Translation,graduate,Master's,Humanities & Social Sciences,Registered Students Detailed spelling.
+HBKU,MA,MA in Digital Humanities and Societies,Digital Humanities and Societies,Digital Humanities and Societies,graduate,Master's,Humanities & Social Sciences,Registered Students Detailed spelling.
+HBKU,MA,MA in Intercultural Communication,Intercultural Communication,Intercultural Communication,graduate,Master's,Humanities & Social Sciences,Registered Students Detailed spelling.
+HBKU,MA,MA in Translation Studies,Translation Studies,Translation Studies,graduate,Master's,Humanities & Social Sciences,Registered Students Detailed spelling.
+HBKU,MA,"MA in Women, Society and Development","Women, Society and Development","Women, Society and Development",graduate,Master's,Humanities & Social Sciences,Registered Students Detailed spelling.
 HBKU,MA,Public Policy in Islam,Public Policy in Islam,Public Policy in Islam,graduate,Master's,Islamic Studies,"Listed in the 2022-23 Student Pipeline only, with no applicants."
 HBKU,MA,Translation Studies,Translation Studies,Translation Studies,graduate,Master's,Humanities & Social Sciences,
 HBKU,MA,"Women, Society & Development","Women, Society and Development","Women, Society and Development",graduate,Master's,Humanities & Social Sciences,
@@ -62,8 +76,10 @@ HBKU,MS,Logistics and Supply Chain Management,Logistics and Supply Chain Managem
 HBKU,MS,Sports and Entertainment Management,Sports and Entertainment Management,Sports and Entertainment Management,graduate,Master's,Business & Management,
 HBKU,MS,Sustainable Energy,Sustainable Energy (master's),Sustainable Energy (master's),graduate,Master's,Energy & Environment,
 HBKU,MS,Sustainable Environment,Sustainable Environment (master's),Sustainable Environment (master's),graduate,Master's,Energy & Environment,
+HBKU,MSPPE,Public Policy,Social Policy and Program Evaluation,Social Policy and Program Evaluation,graduate,Master's,Humanities & Social Sciences,The degree code MSPPE wins over the name: 10 students here vs 9 in Social Policy and Program Evaluation and 35 in Public Policy (Student Data 2022-23).
 HBKU,MSPPE,Social Policy and Program Eval,Social Policy and Program Evaluation,Social Policy and Program Evaluation,graduate,Master's,Humanities & Social Sciences,
 HBKU,Non-Degree,Non-Degree,Non-degree / conditional admits,Non-degree / conditional admits,non_degree,Non-degree,General & Foundation,Not degree-seeking; outside the form's scope (P-19).
+HBKU,PHD,PhD in Humanities and Social Sciences,Humanities and Social Sciences (PhD),Humanities and Social Sciences (PhD),graduate,Doctorate,Humanities & Social Sciences,Registered Students Detailed spelling.
 HBKU,Ph.D.,Computer Science and Engineering,Computer Science and Engineering (PhD),Computer Science and Engineering (PhD),graduate,Doctorate,Computing & Data,
 HBKU,Ph.D.,Logistics and Supply Chain Management,Logistics and Supply Chain Management (PhD),Logistics and Supply Chain Management (PhD),graduate,Doctorate,Business & Management,
 HBKU,Ph.D.,Sustainable Energy,Sustainable Energy (PhD),Sustainable Energy (PhD),graduate,Doctorate,Energy & Environment,
@@ -111,7 +127,9 @@ HEC-Q,SBUM 2021,Specialized Master in Strategic Business Unit Management - Jan 2
 HEC-Q,SBUM 2022,Specialized Master in Strategic Business Unit Management - Jan 2021 start,Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
 HEC-Q,SBUM 2023,Specialized Master in Strategic Business Unit Management - Nov 2021 start,Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
 HEC-Q,SBUM 2024,Specialized Master in Strategic Business Unit Management - Oct 2022 start,Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+HEC-Q,SBUM 2024 C1,Specialized Master in Strategic Business Unit Management - Oct 2022 start,Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
 HEC-Q,SBUM 2025,Specialized Master in Strategic Business Unit Management - Oct 2023 start,Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+HEC-Q,SBUM 2025 C1,Specialized Master in Strategic Business Unit Management - Oct 2023 start,Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
 NU-Q,BS,,All programs,All programs,undergraduate,Bachelor's,Media & Communication,NU-Q's 2024-25 Student Pipeline reports one line for the whole university.
 NU-Q,BS,Communication,Communication,Communication,undergraduate,Bachelor's,Media & Communication,
 NU-Q,BS,Journalism,Journalism,Journalism,undergraduate,Bachelor's,Media & Communication,
@@ -123,14 +141,21 @@ NU-Q,MA,Sports Administration,Sports Administration,Sports Administration,gradua
 NU-Q,Other,Exchange student from home campus,Exchange students,Exchange students,non_degree,Non-degree,General & Foundation,Exchange students are not degree-seeking at NU-Q.
 NU-Q,PG Certificate,Sports Administration,Sports Administration (certificate),Sports Administration,non_degree,Certificate,Business & Management,Certificates are outside the form's scope (degree-seeking students only).
 NU-Q,Undeclared,Undeclared Major,Undeclared,Undeclared,undergraduate,Bachelor's,Media & Communication,Students who have not yet chosen Communication or Journalism.
+TAMU-Q,,GTWY,Gateway Program,Gateway Program,foundation,Foundation,General & Foundation,Program code (GTWY). Registered Students Detailed spelling.
 TAMU-Q,Aggie Gateway Program,Undergraduate,Gateway Program,Gateway Program,foundation,Foundation,General & Foundation,Foundation year before admission (NDS = non-degree-seeking). Columns swapped in 2023-24 (P-18).
+TAMU-Q,BS,CHEN,Chemical Engineering,Chemical Engineering,undergraduate,Bachelor's,Engineering,Program code. Registered Students Detailed spelling.
 TAMU-Q,BS,Chemical Engineering,Chemical Engineering,Chemical Engineering,undergraduate,Bachelor's,Engineering,
+TAMU-Q,BS,ELEN,Electrical Engineering,Electrical Engineering,undergraduate,Bachelor's,Engineering,Program code. Registered Students Detailed spelling.
 TAMU-Q,BS,Electrical Engineering,Electrical Engineering,Electrical Engineering,undergraduate,Bachelor's,Engineering,
+TAMU-Q,BS,MEEN,Mechanical Engineering,Mechanical Engineering,undergraduate,Bachelor's,Engineering,Program code. Registered Students Detailed spelling.
 TAMU-Q,BS,Mechanical Engineering,Mechanical Engineering,Mechanical Engineering,undergraduate,Bachelor's,Engineering,
+TAMU-Q,BS,PETE,Petroleum Engineering,Petroleum Engineering,undergraduate,Bachelor's,Engineering,Program code. Registered Students Detailed spelling.
 TAMU-Q,BS,Petroleum Engineering,Petroleum Engineering,Petroleum Engineering,undergraduate,Bachelor's,Engineering,
 TAMU-Q,Chemical Engineering,Undergraduate,Chemical Engineering,Chemical Engineering,undergraduate,Bachelor's,Engineering,Degree and Program columns swapped in 2023-24 (P-18).
 TAMU-Q,Electrical Engineering,Undergraduate,Electrical Engineering,Electrical Engineering,undergraduate,Bachelor's,Engineering,Degree and Program columns swapped in 2023-24 (P-18).
 TAMU-Q,Foundation,Gateway Program,Gateway Program,Gateway Program,foundation,Foundation,General & Foundation,Foundation year before admission.
+TAMU-Q,MEN,CHEN,Chemical Engineering (graduate),Chemical Engineering (graduate),graduate,Master's,Engineering,Program code; MEN = Master of Engineering. Registered Students Detailed spelling.
+TAMU-Q,MS,CHEN,Chemical Engineering (graduate),Chemical Engineering (graduate),graduate,Master's,Engineering,Program code. Registered Students Detailed spelling.
 TAMU-Q,MS-CHEN,Graduate,Chemical Engineering (graduate),Chemical Engineering (graduate),graduate,Master's,Engineering,Degree and Program columns swapped in 2023-24 (P-18); MS-CHEN = MS in Chemical Engineering.
 TAMU-Q,MS/ME,Chemical Engineering,Chemical Engineering (graduate),Chemical Engineering (graduate),graduate,Master's,Engineering,
 TAMU-Q,MS/MEng,Chemical Engineering,Chemical Engineering (graduate),Chemical Engineering (graduate),graduate,Master's,Engineering,
@@ -140,9 +165,12 @@ TAMU-Q,Petroleum Engineering,Undergraduate,Petroleum Engineering,Petroleum Engin
 VCU-Q,,,All programs,All programs,undergraduate,Bachelor's,Art & Design,Unnamed university-wide row in a Graduation Rate sheet.
 VCU-Q,,Art Foundation,Art Foundation,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,First year of the BFA; students choose their major afterwards.
 VCU-Q,,Art Foundation-FYI,Art Foundation,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,First year of the BFA; students choose their major afterwards.
+VCU-Q,,Pre-Art Foundation,Pre-Art Foundation,Pre-Art Foundation,foundation,Foundation,Art & Design,Preparation year for Qatari students before the BFA.
+VCU-Q,(BFA),Art Foundation,Art Foundation,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,First year of the BFA; students choose their major afterwards.
 VCU-Q,(Foundation),"Bachelor of Fine Arts (Pre-Art Foundation, for Qatari students only)",Pre-Art Foundation,Pre-Art Foundation,foundation,Foundation,Art & Design,Preparation year for Qatari students before the BFA.
 VCU-Q,BA,Art Foundation-FYI,Art History,Art History,undergraduate,Bachelor's,Art & Design,"Student Pipeline 2022-23: the program column doesn't line up with the degree column; program inferred from the degree (BA = Art History, VCU-Q's only BA)."
 VCU-Q,BA,Art History,Art History,Art History,undergraduate,Bachelor's,Art & Design,
+VCU-Q,BA,Interior Design,Interior Design,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,Interior Design is a BFA major; the BA label is a slip in the source.
 VCU-Q,BFA,Art Foundation,Art Foundation,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,First year of the BFA; students choose their major afterwards.
 VCU-Q,BFA,Art Foundation / Graphic Design / Interior Design / Fashion Design / Painting & Printmaking,Fine Arts (all majors combined),Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,All BFA majors reported as one line.
 VCU-Q,BFA,Fashion,Fashion Design,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,
@@ -150,6 +178,7 @@ VCU-Q,BFA,Fashion Design,Fashion Design,Fine Arts (BFA),undergraduate,Bachelor's
 VCU-Q,BFA,Fasion Design,Fashion Design,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,Typo in the source.
 VCU-Q,BFA,Graphic Design,Graphic Design,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,
 VCU-Q,BFA,Interior Design,Interior Design,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,
+VCU-Q,BFA,Kinetic Imaging,Kinetic Imaging,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,A BFA major that appears only in Registered Students Detailed.
 VCU-Q,BFA,Painting & Printmaking,Painting & Printmaking,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,
 VCU-Q,BFA,Painting and Print Making,Painting & Printmaking,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,
 VCU-Q,BFA,Painting and Printmaking,Painting & Printmaking,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,

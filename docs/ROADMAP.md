@@ -56,7 +56,10 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [x] Student Pipeline reader (`pipeline/student_pipeline.py`): 5,064 numbers from 28 files; matches Student Data exactly in 37 of 65 checks, within 10% in 56 (D-017)
 - [x] Graduation Rate reader (`pipeline/graduation_rate.py`): 5,875 numbers from 22 files; latest real report per class wins (D-012); GU-Q classes back to 2005; class sizes checked against Student Data
 - [x] Outcomes reader (`pipeline/outcomes.py`): 4,956 numbers from 28 files; earliest real report per class wins (D-013, clarified); class sizes match dated graduates
-- [ ] Readers: Nationalities, Ages, Registered Students Detailed, Funding, Internships, Graduate Nationalities
+- [x] List-sheet reader (`pipeline/lists.py`) for sheets with one row per item instead of per program
+- [x] Nationalities reader: 32,353 numbers from 42 files; country names standardised; totals match Student Data in 34 of 41 years
+- [x] Registered Students Detailed reader: 2,249 numbers from 24 files; totals match Student Data in 19 of 24 years (D-018)
+- [ ] Readers: Ages, Graduate Nationalities, Internships, Funding
 - [ ] Reader for VCU-Q's 2021–22 alternative form (P-04)
 - [ ] One command builds every table (`pipeline/build.py`)
 
@@ -67,6 +70,7 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [ ] Registered counts match the QF consolidated files
 - [ ] Investigate the 9 Pipeline vs Student Data differences (P-22) and decide which source wins in each
 - [ ] Outcomes class sizes of 0 and outcomes exceeding class size (P-27)
+- [ ] Mark secondary sheets as partial where they don't add up to Student Data (P-33)
 - [ ] Quality report listing every issue found
 - [ ] Automated tests in `tests/`
 
@@ -76,6 +80,7 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [ ] `pipeline/metrics.py` computes them
 - [ ] Small-count suppression rule decided and applied
 - [ ] Leave `non_degree` rows out of all student totals (D-016)
+- [ ] Group countries into regions (e.g. GCC, other Arab states, South Asia) for the "where students come from" view
 - [ ] Decide how to compute a comparable "graduated within 150%" rate, given TAMU-Q's different convention (P-24); show HBKU graduates without a rate (P-25)
 - [ ] Decide whether to fill missing graduating classes from the next year's Outcomes sheet (class size only): NU-Q 2021–22 (108), TAMU-Q 2021–22 (110) and 2022–23 (113), WCM-Q 2020–21 (41)
 

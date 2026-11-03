@@ -19,6 +19,7 @@ class SourceFile:
     use: str = "yes"       # yes / only / except
     programs: frozenset = frozenset()
     stages: frozenset = frozenset()
+    skip_sheets: frozenset = frozenset()  # from sheet_exclusions.csv
 
     def keeps(self, program, stage):
         """Apply this file's decision to one number."""
@@ -38,6 +39,7 @@ def submissions(templates=None):
     """University submission files to extract, skipping those marked 'no'."""
     inventory = pd.read_csv(REFERENCE_DIR / "file_inventory.csv")
     decisions = pd.read_csv(REFERENCE_DIR / "file_decisions.csv").set_index("path")
+    exclusions = pd.read_csv(REFERENCE_DIR / "sheet_exclusions.csv").groupby("path")["sheet"].agg(frozenset)
     files = []
     for row in inventory[inventory["file_kind"] == "submission"].itertuples():
         if templates and row.template not in templates:
@@ -57,5 +59,6 @@ def submissions(templates=None):
             use=use,
             programs=_split(decision["programs"]) if decision is not None else frozenset(),
             stages=_split(decision["stages"]) if decision is not None else frozenset(),
+            skip_sheets=exclusions.get(row.path, frozenset()),
         ))
     return files

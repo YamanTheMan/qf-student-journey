@@ -19,6 +19,11 @@ def load_program_map(path=PROGRAMS):
     return pd.read_csv(path, dtype=str, keep_default_na=False)
 
 
+def match_key(values):
+    """Spellings are matched ignoring capitals and extra spaces ('PHD' = 'PhD')."""
+    return values.fillna(BLANK).astype(str).str.strip().str.lower().str.replace(r"\s+", " ", regex=True)
+
+
 def apply_program_map(table, mapping=None):
     """Rename the raw columns to degree_raw / program_raw and add the standard columns.
 
@@ -32,8 +37,11 @@ def apply_program_map(table, mapping=None):
         "degree_raw": out["degree_raw"].fillna(BLANK),
         "program_raw": out["program_raw"].fillna(BLANK),
     })
-    lookup = mapping.set_index(["university", "degree_raw", "program_raw"])[STANDARD]
-    matched = lookup.reindex(pd.MultiIndex.from_frame(keys))
+    lookup = (mapping.assign(d=match_key(mapping["degree_raw"]), p=match_key(mapping["program_raw"]))
+              .drop_duplicates(["university", "d", "p"])  # spellings differing only in capitals agree (tested)
+              .set_index(["university", "d", "p"])[STANDARD])
+    wanted = pd.MultiIndex.from_arrays([keys["university"], match_key(keys["degree_raw"]), match_key(keys["program_raw"])])
+    matched = lookup.reindex(wanted)
     matched.index = out.index
 
     eligible = out["row_type"].isin(MAPPED_ROWS)

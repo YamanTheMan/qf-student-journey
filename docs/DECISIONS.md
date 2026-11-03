@@ -110,3 +110,8 @@ A spelling not in the table stops the build and is listed, so nothing unmapped r
 **Date:** 2026-11-03
 **Decision:** In this one sheet the program column doesn't line up with the degree column. The rows are mapped by degree: BA → Art History, MFA → Design (MFA), Foundation and Pre-BFA → Pre-Art Foundation. Each row's note in `programs.csv` says the program was inferred.
 **Why:** VCU-Q's own remark says it admits new students only into Art Foundation, BA Art History and MFA Design, and the degree column lists exactly those routes, while the program column lists BFA majors nobody can apply to. The numbers agree: the "BA" row has 42 applicants / 19 admitted against 53 / 26 for Art History in Student Data. The "Foundation" row has 0 applicants but 15 admitted, the same pattern Pre-Art Foundation shows in other years. This affects 153 numbers in one file.
+
+### D-018 · Skip GU-Q 2022–23's Registered Students Detailed sheet (data dictionary P-32)
+**Date:** 2026-11-03
+**Decision:** This one sheet in this one file is not read. It's listed in the new `data/reference/sheet_exclusions.csv`, which works like `file_decisions.csv` but for a single sheet.
+**Why:** It isn't a detailed list. GU-Q's own remark says it was not able to provide the detail and could give a summary instead, and the sheet holds two summary tables (class year U1–U4 × nationality × gender) whose columns don't line up with the sheet's headers. Reading it as a list doubled GU-Q's 2022–23 total (940 vs 464). Its Student Data and Nationalities sheets still cover that year.
