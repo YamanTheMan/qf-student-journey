@@ -1,4 +1,4 @@
-from pipeline.headers import graduation_rate_header, parse_measure, student_pipeline_header
+from pipeline.headers import graduation_rate_header, outcomes_header, parse_measure, student_pipeline_header
 
 
 def m(text):
@@ -72,6 +72,23 @@ def test_graduation_rate_headers():
 def test_graduation_rate_reader_skips_percentages_and_row_fields():
     for text in ("% Overall Graduation Rate (AY20/21)", "# Normal Time to Completion (Years)", "Cohort Year"):
         assert graduation_rate_header(text) is None
+
+
+def o(text):
+    h = outcomes_header(text)
+    return None if h is None else (h["stage"], h["nationality"], h["location"], h["breakdown"], h["period_label"])
+
+
+def test_outcomes_headers():
+    assert o("# Qatari Graduates Employed outside of Qatar") == ("employed", "Qatari", "Outside Qatar", "nationality_location", None)
+    assert o("# Non-Qatari Graduates Self-Employed in Qatar") == ("self_employed", "Non-Qatari", "In Qatar", "nationality_location", None)
+    assert o("Total Graduates from Previous Academic Year") == ("graduates", "All", "All", "total", None)
+    assert o("Total Graduates Not Seeking") == ("not_seeking", "All", "All", "total", None)
+
+
+def test_vcuq_names_the_class_inside_the_header():
+    assert o("# Non-Qatari Graduates from AY 2021-22 in Grad School outside of Qatar") == \
+        ("grad_school", "Non-Qatari", "Outside Qatar", "nationality_location", "AY 2021-22")
 
 
 def test_non_count_columns_are_ignored():

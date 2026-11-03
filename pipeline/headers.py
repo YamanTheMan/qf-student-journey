@@ -128,6 +128,45 @@ GRADUATION_STAGES = [
 ]
 
 
+# Student Outcomes after 1 Yr. Checked in order: 'self-employed' before 'employed'.
+OUTCOME_STAGES = [
+    ("graduates", r"graduates from previous academic year"),
+    ("self_employed", r"self[\s-]*employed"),
+    ("employed", r"\bemployed\b"),
+    ("grad_school", r"\bgrad(uate)? school\b"),
+    ("still_searching", r"\bstill searching\b"),
+    ("not_seeking", r"\bnot seeking\b"),
+]
+CLASS_IN_HEADER = re.compile(r"\bay\s?(20\d\d)\s?[-/]\s?(\d{2,4})\b")
+
+
+def outcomes_header(header):
+    """'# Qatari Graduates Employed outside of Qatar' -> stage, nationality, location, breakdown, period.
+
+    VCU-Q names the class inside the header ('graduates from AY 2021-22 ...'); that becomes period_label.
+    """
+    if not isinstance(header, str):
+        return None
+    text = re.sub(r"\s+", " ", header).strip().lower()
+    if not (text.startswith("#") or text.startswith("total")):
+        return None
+    stage = next((name for name, pattern in OUTCOME_STAGES if re.search(pattern, text)), None)
+    if stage is None:
+        return None
+    nationality, _, _ = student_groups(text)
+    if re.search(r"\boutside (of )?qatar\b", text):
+        location = "Outside Qatar"
+    elif re.search(r"\bin qatar\b", text):
+        location = "In Qatar"
+    else:
+        location = "All"
+    parts = [name for name, value in (("nationality", nationality), ("location", location)) if value != "All"]
+    m = CLASS_IN_HEADER.search(text)
+    return {"stage": stage, "nationality": nationality, "location": location,
+            "breakdown": "_".join(parts) or "total",
+            "period_label": f"AY {m.group(1)}-{m.group(2)[-2:]}" if m else None}
+
+
 def graduation_rate_header(header):
     """'# Non-Qatari Females Graduated within 150% of Normal Time' -> stage, nationality, gender, breakdown.
 

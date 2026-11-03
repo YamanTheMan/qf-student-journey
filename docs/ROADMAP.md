@@ -55,7 +55,8 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [x] Shared sheet reader (`pipeline/tables.py`): each sheet only needs its own header reader. Proven identical on Student Data. Excel errors are never names, and a nameless row holding numbers stops the build.
 - [x] Student Pipeline reader (`pipeline/student_pipeline.py`): 5,064 numbers from 28 files; matches Student Data exactly in 37 of 65 checks, within 10% in 56 (D-017)
 - [x] Graduation Rate reader (`pipeline/graduation_rate.py`): 5,875 numbers from 22 files; latest real report per class wins (D-012); GU-Q classes back to 2005; class sizes checked against Student Data
-- [ ] Readers: Outcomes (D-013), Nationalities, Ages, Registered Students Detailed, Funding, Internships, Graduate Nationalities
+- [x] Outcomes reader (`pipeline/outcomes.py`): 4,956 numbers from 28 files; earliest real report per class wins (D-013, clarified); class sizes match dated graduates
+- [ ] Readers: Nationalities, Ages, Registered Students Detailed, Funding, Internships, Graduate Nationalities
 - [ ] Reader for VCU-Q's 2021–22 alternative form (P-04)
 - [ ] One command builds every table (`pipeline/build.py`)
 
@@ -65,6 +66,7 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [ ] No negative or non-numeric counts; blanks stay "unknown", never zero
 - [ ] Registered counts match the QF consolidated files
 - [ ] Investigate the 9 Pipeline vs Student Data differences (P-22) and decide which source wins in each
+- [ ] Outcomes class sizes of 0 and outcomes exceeding class size (P-27)
 - [ ] Quality report listing every issue found
 - [ ] Automated tests in `tests/`
 

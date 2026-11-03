@@ -51,6 +51,13 @@ def test_cmuq_class_sizes_match_newly_enrolled_students():
     assert class_sizes(read(), "CMU-Q")["2020-2021"] == 124
 
 
+def test_no_class_is_counted_both_university_wide_and_by_program():
+    # The trap found in Outcomes (CMU-Q unnamed rows): guard it here too
+    used = read().query("report_status == 'used'")
+    kinds = used.groupby(["university", "cohort"]).row_type.agg(set)
+    assert not kinds.apply(lambda s: {"all_programs", "program"} <= s).any()
+
+
 def test_every_program_row_is_mapped():
     t = read()
     assert t[t.row_type.isin(["program", "all_programs"])].level.notna().all()

@@ -1,4 +1,5 @@
 university,degree_raw,program_raw,program,program_group,level,qualification,field,note
+CMU-Q,,,All programs,All programs,undergraduate,Bachelor's,General & Foundation,Unnamed university-wide line in an Outcomes sheet.
 CMU-Q,BS,Biological Sciences,Biological Sciences,Biological Sciences,undergraduate,Bachelor's,Sciences,
 CMU-Q,BS,Business Administration,Business Administration,Business Administration,undergraduate,Bachelor's,Business & Management,
 CMU-Q,BS,Computational Biology,Computational Biology,Computational Biology,undergraduate,Bachelor's,Sciences,
@@ -35,6 +36,7 @@ HBKU,MA,Contemporary Islamic Studies,Contemporary Islamic Studies,Contemporary I
 HBKU,MA,Digital Humanities & Societies,Digital Humanities and Societies,Digital Humanities and Societies,graduate,Master's,Humanities & Social Sciences,
 HBKU,MA,Intercultural Communication,Intercultural Communication,Intercultural Communication,graduate,Master's,Humanities & Social Sciences,
 HBKU,MA,Islam and Global Affairs,Islam and Global Affairs,Islam and Global Affairs,graduate,Master's,Islamic Studies,
+HBKU,MA,"Islamic Art, Architecture and Urbanism","Islamic Art, Architecture and Urbanism","Islamic Art, Architecture and Urbanism",graduate,Master's,Islamic Studies,Labelled MA in an Outcomes sheet; MS elsewhere.
 HBKU,MA,Islamic Finance,Islamic Finance,Islamic Finance,graduate,Master's,Business & Management,Labelled MA in Graduation Rate 2022-23; the same 2-year Islamic Finance master's labelled MS elsewhere.
 HBKU,MA,Islamic Studies,Islamic Studies (master's),Islamic Studies (master's),graduate,Master's,Islamic Studies,
 HBKU,MA,Islamic Studies in Contemporary Fiqh,Islamic Studies in Contemporary Fiqh,Islamic Studies in Contemporary Fiqh,graduate,Master's,Islamic Studies,"Listed in the 2022-23 Student Pipeline only, with no applicants."
@@ -72,6 +74,7 @@ HBKU,PhD,Computer Engineering,Computer Science and Engineering (PhD),Computer Sc
 HBKU,PhD,Computer Science & Engineering,Computer Science and Engineering (PhD),Computer Science and Engineering (PhD),graduate,Doctorate,Computing & Data,
 HBKU,PhD,Genomics and Precision Medicine,Genomics and Precision Medicine (PhD),Genomics and Precision Medicine (PhD),graduate,Doctorate,Sciences,
 HBKU,PhD,Humanities and Social Science,Humanities and Social Sciences (PhD),Humanities and Social Sciences (PhD),graduate,Doctorate,Humanities & Social Sciences,
+HBKU,PhD,Islamic Finance,Islamic Finance and Economy (PhD),Islamic Finance and Economy (PhD),graduate,Doctorate,Business & Management,Short name for the PhD in Islamic Finance and Economy.
 HBKU,PhD,Islamic Finance and Economy,Islamic Finance and Economy (PhD),Islamic Finance and Economy (PhD),graduate,Doctorate,Business & Management,
 HBKU,PhD,Islamic Studies,Islamic Studies (PhD),Islamic Studies (PhD),graduate,Doctorate,Islamic Studies,
 HBKU,PhD,Logistics and Supply Chain Management,Logistics and Supply Chain Management (PhD),Logistics and Supply Chain Management (PhD),graduate,Doctorate,Business & Management,

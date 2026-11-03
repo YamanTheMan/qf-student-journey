@@ -181,6 +181,22 @@ Built by `.venv/bin/python -m pipeline.graduation_rate` from the 2022–23 to 20
 
 **Check against Student Data:** each class is never larger than the newly enrolled students of its starting year. That's expected, since first-time students exclude transfers and foundation students. CMU-Q matches exactly (112 vs 113, 124 vs 124); WCM-Q 0.77–1.00; TAMU-Q 0.74–0.86; HEC-Q 0.31–0.47 (executive cohorts start mid-year).
 
+### `outcomes.csv`: where graduates are a year later
+
+Built by `.venv/bin/python -m pipeline.outcomes` from the 28 files with a Student Outcomes after 1 Yr sheet (2021–22 onwards). Same identity and source columns as `student_data.csv`, plus:
+
+| Column | Meaning |
+|---|---|
+| `stage` | `graduates` (the class size) · `employed` · `self_employed` · `grad_school` · `still_searching` · `not_seeking` |
+| `nationality` / `location` | `Qatari`, `Non-Qatari` / `In Qatar`, `Outside Qatar`; `All` when not split |
+| `breakdown` | `total`, `nationality`, `location`, `nationality_location`. Only add numbers that share the same breakdown. |
+| `period_label` | The class written inside the header (VCU-Q: "AY 2021-22") |
+| `graduating_year`, `class_evidence` | The class these graduates belong to: from the header or a block label like "Class of 2023" (`label`), otherwise the form's definition, the previous academic year (`form_default`) |
+| `years_after_graduation` | When the outcomes were measured, e.g. 1 for the class of 2022–23 in the 2023–24 file |
+| `report_status` | `used` · `later_report` (the same class at the same university was reported earlier, D-013) · `empty` (no non-zero outcome: not collected yet). **Use only `used` rows.** |
+
+**Checks:** each class is used from exactly one file. Class sizes match our dated graduates (`student_data.csv`) wherever both exist: CMU-Q 87 = 87, 120 = 120; NU-Q 112 = 112; WCM-Q 41 = 41, 42 = 42, 50 = 50. The small gaps are explained (P-27). Outcomes fill the class size for classes Student Data doesn't report (e.g. TAMU-Q 2021–22: 110, NU-Q 2021–22: 108).
+
 ## 7. Known problems
 
 | ID | Problem | Evidence | Status |
@@ -211,3 +227,6 @@ Built by `.venv/bin/python -m pipeline.graduation_rate` from the 2022–23 to 20
 | **P-24** | **"Graduated within 150%" means different things.** TAMU-Q counts *all* graduates within 150% (including the 100% ones); WCM-Q and HEC-Q count only the *extra* graduates after normal time. | Which way each class adds up to its entrants: TAMU-Q 12 of 12 classes one way, WCM-Q 5 of 5 and HEC-Q 3 of 6 the other | Phase 4: decide how to compute a comparable 150% rate |
 | **P-25** | **HBKU reports 0 entrants for classes that have graduates** (42 classes), so its graduation *rate* can't be computed. | Graduation Rate sheets | Phase 3/4: show HBKU graduate counts without a rate |
 | **P-26** | **HBKU 2022–23 Graduation Rate swaps the program names of its BS and PhD rows.** | Degree and normal time vs the 2023–24 sheet | Solved: mapped by degree in `programs.csv` |
+| **P-27** | **Outcomes and class sizes don't always fit.** CMU-Q 2022–23 and VCU-Q 2022–23 report outcomes with a class size of 0 (left blank or a formula zero); TAMU-Q 2023–24 reports 157 outcomes for 156 graduates. Class size vs dated graduates: TAMU-Q 2023–24 156 vs 143 (the 143 was provisional), VCU-Q 2023–24 65 vs 72, GU-Q 2023–24 119 vs 120. | Outcomes check in §6 | Phase 3: take class sizes from dated graduates where Outcomes has 0 |
+| **P-28** | **Outcomes not collected for some classes.** GU-Q 2020–21 and 2022–23, HBKU 2022–23 and HEC-Q 2020–21 give a class size but every outcome is 0. | Outcomes sheets | Marked `empty`; the dashboard shows "not reported" |
+| **P-29** | **CMU-Q's 2023–24 Outcomes sheet lists its programs without names**, and the 2024–25 sheet repeats the same class with names. | Same five numbers in both sheets | Solved: D-013 compares a whole class at a university, so the class is counted once |

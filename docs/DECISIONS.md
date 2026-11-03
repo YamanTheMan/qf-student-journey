@@ -81,6 +81,7 @@ A university-wide total of 0 graduates means **not reported**, not zero. If two 
 **Date:** 2026-11-03
 **Decision:** When outcomes for the same graduating class appear in several files, use the earliest report that isn't all zeros. Each record stores how many years after graduation it was measured.
 **Why:** It's the closest to the intended "one year after graduation". Storing the gap keeps a late report (e.g. CMU-Q's class of 2023, first reported two years later) visible instead of hidden.
+**Clarified when built (2026-11-03):** "the same class" means one university's graduating year, compared as a whole across files, not program by program. CMU-Q's 2023–24 sheet lists its programs without names and the 2024–25 sheet repeats the class with names; a program-by-program comparison counted that class twice (P-29). A report counts only if at least one outcome is non-zero. *Correction to the example above:* CMU-Q's class of 2023 was first reported one year after graduation (in 2023–24, without program names), not two.
 
 ### D-014 · Totals keep every reported part; QF's blanking rule is not used
 **Date:** 2026-11-03
