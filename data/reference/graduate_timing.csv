@@ -1,0 +1,13 @@
+university,file_year,graduating_year,status,evidence_type,evidence
+GU-Q,2019-2020,2019-2020,reported,remark,"Remark: 'Graduates for graduation year 2020 includes August 2019, December 2019, and May 2020 graduates'"
+NU-Q,2019-2020,2019-2020,reported,remark,"Remark: 'graduate data are based on Fall 2019, Spring 2020, and Summer 2020'"
+TAMU-Q,2019-2020,2019-2020,reported,remark,"Remark: 'Fall 2019; Spring/Summer 2020 graduations'"
+GU-Q,2020-2021,2020-2021,reported,remark,"Remark: '2021 graduation year. Includes graduates from May 2021, Dec 2020 and Aug 2020'"
+TAMU-Q,2020-2021,2020-2021,reported,remark,"Remark: 'Graduation information includes fall 2020 and spring 2021'"
+GU-Q,2021-2022,2021-2022,reported,remark,"Remark: '2022 graduation year includes students who graduated in August 21, December 21, and ...'"
+CMU-Q,2022-2023,2021-2022,reported,outcomes,"The Outcomes sheet in this file (which always covers the previous academic year's graduates) tracks the same 87 graduates, so they are the class of 2021-22. CMU-Q's later files label their graduates the same way ('Graduating Class May 2023' in 2023-24)."
+TAMU-Q,2022-2023,2022-2023,not_reported,outcomes,"Only Chemical Engineering reports graduates (8); every other program shows 0. The next year's Outcomes sheet tracks 113 graduates of this class, so the 8 is an incomplete early count."
+NU-Q,2023-2024,2022-2023,reported,remark,"Remark: 'Graduate data for AY 2022-23'"
+TAMU-Q,2023-2024,2023-2024,reported,remark,"Remark: 'The exact number will be confirmed after August 31, 2024'"
+VCU-Q,2023-2024,2023-2024,reported,remark,"Remark: 'Graduation data as of September 2024'"
+GU-Q,2024-2025,2024-2025,reported,remark,"Remark: 'Two graduates are expected in Summer 2025. They have been included here'"

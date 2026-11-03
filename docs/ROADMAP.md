@@ -50,7 +50,7 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [x] Tidy format agreed: one row per number, with the exact source cell (data dictionary §6)
 - [x] Student Data reader for templates v2019–v2022 (`pipeline/student_data.py`): 9,253 numbers from 43 files; matches QF on 34/40 university-years, and the other 6 are explained (P-15)
 - [x] Timing rules decided: graduates (D-011), graduation rate (D-012), outcomes (D-013)
-- [ ] Apply the graduates rule (D-011): graduating class + evidence for every graduated number
+- [x] Apply the graduates rule (D-011): graduating class + evidence for every graduated number (`pipeline/graduates.py`, `data/reference/graduate_timing.csv`); confirmed against the next year's Outcomes sheets
 - [ ] Program mapping table in `data/reference/` (standard names, degree level, fixes for P-18 and P-19)
 - [ ] Readers: Student Pipeline, Graduation Rate (D-012), Outcomes (D-013), Nationalities, Ages, Registered Students Detailed, Funding, Internships, Graduate Nationalities
 - [ ] Reader for VCU-Q's 2021–22 alternative form (P-04)
@@ -69,6 +69,7 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [ ] Metric definitions written down (acceptance rate, yield, Qatari share, on-time graduation, employment in Qatar, ...)
 - [ ] `pipeline/metrics.py` computes them
 - [ ] Small-count suppression rule decided and applied
+- [ ] Decide whether to fill missing graduating classes from the next year's Outcomes sheet (class size only): NU-Q 2021–22 (108), TAMU-Q 2021–22 (110) and 2022–23 (113), WCM-Q 2020–21 (41)
 
 ## Phase 5 — Dashboard ⬜
 

@@ -9,6 +9,7 @@ Run from the project folder:
 """
 import pandas as pd
 
+from pipeline.graduates import assign_graduating_class
 from pipeline.headers import parse_measure
 from pipeline.inventory import ROOT
 from pipeline.sources import submissions
@@ -133,7 +134,7 @@ def extract_all():
             problems.append(f"{src.path}: {err}")
     table = pd.DataFrame(records)
     table["count"] = table["count"].astype("Int64")
-    return table, problems
+    return assign_graduating_class(table), problems
 
 
 def main():
@@ -147,6 +148,9 @@ def main():
     print("Rows per breakdown:", table["breakdown"].value_counts().to_dict())
     print("Row types:", table["row_type"].value_counts().to_dict())
     print(f"Blank cells: {table['count'].isna().sum():,}   non-numeric text cells: {table['value_text'].notna().sum():,}")
+    grad = table[table["stage"] == "graduated"]
+    print("Graduated numbers by status:", grad["graduates_status"].value_counts().to_dict())
+    print("...and by timing evidence:", grad["timing_evidence"].value_counts().to_dict())
     if problems:
         print(f"\nFiles that could not be read ({len(problems)}):")
         for p in problems:

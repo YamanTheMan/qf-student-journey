@@ -24,6 +24,18 @@ def test_decision_values_are_valid():
     assert stages <= {"applied", "admitted", "newly_enrolled", "registered", "graduated"}
 
 
+def test_graduate_timing_table_is_valid():
+    timing = pd.read_csv(REFERENCE / "graduate_timing.csv")
+    codes = set(pd.read_csv(REFERENCE / "universities.csv")["code"])
+    assert set(timing["university"]) <= codes
+    assert not timing.duplicated(["university", "file_year"]).any()
+    for col in ("file_year", "graduating_year"):
+        assert timing[col].str.fullmatch(r"20\d\d-20\d\d").all()
+    assert set(timing["status"]) <= {"reported", "not_reported"}
+    assert set(timing["evidence_type"]) <= {"remark", "outcomes"}
+    assert timing["evidence"].str.len().gt(10).all()
+
+
 def test_university_aliases_are_unique():
     universities = pd.read_csv(REFERENCE / "universities.csv")
     aliases = [a.upper() for row in universities["aliases"] for a in row.split("|")]

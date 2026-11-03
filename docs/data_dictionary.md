@@ -5,6 +5,7 @@ What is in `data/raw/`, what each number means, and what's wrong with it. This i
 - **File-by-file list:** [`data/reference/file_inventory.csv`](../data/reference/file_inventory.csv), regenerated with `.venv/bin/python -m pipeline.inventory`.
 - **University names:** [`data/reference/universities.csv`](../data/reference/universities.csv) maps every spelling found in the files to one code.
 - **Which files to use:** [`data/reference/file_decisions.csv`](../data/reference/file_decisions.csv) lists the exceptions. Every other file is used as-is. `use` is one of: `no` (skip the file), `only` (use only the listed `programs` × `stages`), `except` (use everything but the listed `programs` × `stages`), or `yes`. `academic_year` overrides the year implied by the folder.
+- **When graduates graduated:** [`data/reference/graduate_timing.csv`](../data/reference/graduate_timing.csv) lists, per university and file, which class its graduates belong to when a remark or the Outcomes sheet shows it, each with its evidence (D-011). Files without an entry use labels in the sheet, or else the form's definition.
 
 ---
 
@@ -137,6 +138,12 @@ Built by `.venv/bin/python -m pipeline.student_data` from the 43 files using tem
 | `value_text` | The original cell text when it wasn't a clean number (e.g. "N/A") |
 | `remarks` | The row's Remarks cell |
 | `source_file`, `source_sheet`, `source_cell` | Exactly where the number came from, e.g. `F8` |
+| `graduating_year` | *Graduated rows only.* The class these graduates belong to (D-011) |
+| `timing_evidence` | *Graduated rows only.* How the class was dated: `label` (a date in or above the header), `remark` or `outcomes` (an entry in `graduate_timing.csv`), or `form_default` (the file's own year, as the form defines it) |
+| `timing_note` | *Graduated rows only.* The label text or the evidence sentence |
+| `graduates_status` | *Graduated rows only.* `used` · `not_reported` (the file gave no graduates for that class: not collected yet) · `superseded` (a later file reports the same class). **Use only `used` rows.** |
+
+**Graduates check:** each class size agrees with the number of that class's graduates tracked in the following year's Outcomes sheet. CMU-Q: 87 = 87, 103 = 103, 120 = 120. NU-Q: 112 = 112. WCM-Q: 41 = 41, 42 = 42, 50 = 50. GU-Q: 97 vs 96, 120 vs 119.
 
 **Check against QF consolidated (registered students):** exact match for 34 of 40 university-years. QF's number for each of the other 6 is reproduced exactly (5) or within 13 (1) by applying QF's blanking rule (P-15).
 
@@ -150,7 +157,7 @@ Built by `.venv/bin/python -m pipeline.student_data` from the 43 files using tem
 | **P-04** | **VCU-Q 2021–22 uses a different form** (v2021-alt): long tables with Fall 2021 and Spring 2022 snapshots, and no Pipeline, Graduation Rate or Outcomes. | Sheet list; QF Issues log | Handle in Phase 2 (separate reader) |
 | **P-05** | **VCU-Q registered data missing:** blank in 2022–23; in 2023–24, counts below 10 were blanked by VCU-Q as personally identifiable. | QF Issues log | Accepted: keep blank, never zero |
 | **P-06** | **HBKU is different:** reports by **college** (CSE, CIS, CHSS…) not as one university, offers mostly graduate programs, and has files only for 2022–23 and 2023–24. | Entity names inside the files | Decided: D-010 (include, with undergraduate/graduate filter) |
-| **P-07** | **"Graduated" doesn't mean the same year everywhere.** The form collects graduates in the Spring round, but Fall-round files report the previous year's graduates (CMU-Q 2023–24: "Graduating Class May 2023"), while others report the current year (VCU-Q 2023–24: "as of September 2024"). CMU-Q 2024–25 reports both May 2024 and May 2025. Several files show 0 graduates because they weren't collected yet (NU-Q 2022–23: "can be confirmed end of August 2023"). | Period labels, remarks, and Outcomes sheets of the following year | Decided: D-011 (date by evidence) |
+| **P-07** | **"Graduated" doesn't mean the same year everywhere.** The form collects graduates in the Spring round, but Fall-round files report the previous year's graduates (CMU-Q 2023–24: "Graduating Class May 2023"), while others report the current year (VCU-Q 2023–24: "as of September 2024"). CMU-Q 2024–25 reports both May 2024 and May 2025. Several files show 0 graduates because they weren't collected yet (NU-Q 2022–23: "can be confirmed end of August 2023"). | Period labels, remarks, and Outcomes sheets of the following year | Solved: D-011, applied in `pipeline/graduates.py`. TAMU-Q 2022–23 (8 graduates, next year's Outcomes tracks 113) is marked not reported. |
 | **P-08** | **Graduation-rate classes repeat across years** (e.g. WCM-Q's 2016–17 entering class appears in three files) and class labels are inconsistent (e.g. HEC-Q "AY2022/2024"). | Cohort values per file | Decided: D-012 (latest report wins) |
 | **P-09** | **Outcomes can repeat across years:** CMU-Q 2024–25 contains both Class of 2023 and Class of 2024. | Period labels | Decided: D-013 (earliest real report wins) |
 | **P-10** | **Breakdowns change over time** (no gender for applications before v2021; resident/international only from v2022). | Template comparison | Accepted: trends use the common level (§4) |
