@@ -1,0 +1,15 @@
+# Python environment and caches
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Excel temporary lock files (created while a workbook is open)
+~$*
+
+# Local editor / tool settings
+.DS_Store
+.vscode/
+.idea/
+.claude/
