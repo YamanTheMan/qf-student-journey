@@ -54,7 +54,8 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [x] Program mapping table (`data/reference/programs.csv`, `pipeline/programs.py`): 145 spellings → 80 programs in 73 stable groups, with level, qualification and field; fixes P-18 and P-19 (D-015, D-016). A new spelling stops the build.
 - [x] Shared sheet reader (`pipeline/tables.py`): each sheet only needs its own header reader. Proven identical on Student Data. Excel errors are never names, and a nameless row holding numbers stops the build.
 - [x] Student Pipeline reader (`pipeline/student_pipeline.py`): 5,064 numbers from 28 files; matches Student Data exactly in 37 of 65 checks, within 10% in 56 (D-017)
-- [ ] Readers: Graduation Rate (D-012), Outcomes (D-013), Nationalities, Ages, Registered Students Detailed, Funding, Internships, Graduate Nationalities
+- [x] Graduation Rate reader (`pipeline/graduation_rate.py`): 5,875 numbers from 22 files; latest real report per class wins (D-012); GU-Q classes back to 2005; class sizes checked against Student Data
+- [ ] Readers: Outcomes (D-013), Nationalities, Ages, Registered Students Detailed, Funding, Internships, Graduate Nationalities
 - [ ] Reader for VCU-Q's 2021–22 alternative form (P-04)
 - [ ] One command builds every table (`pipeline/build.py`)
 
@@ -73,6 +74,7 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [ ] `pipeline/metrics.py` computes them
 - [ ] Small-count suppression rule decided and applied
 - [ ] Leave `non_degree` rows out of all student totals (D-016)
+- [ ] Decide how to compute a comparable "graduated within 150%" rate, given TAMU-Q's different convention (P-24); show HBKU graduates without a rate (P-25)
 - [ ] Decide whether to fill missing graduating classes from the next year's Outcomes sheet (class size only): NU-Q 2021–22 (108), TAMU-Q 2021–22 (110) and 2022–23 (113), WCM-Q 2020–21 (41)
 
 ## Phase 5 — Dashboard ⬜

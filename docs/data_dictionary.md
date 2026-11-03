@@ -166,6 +166,21 @@ Built by `.venv/bin/python -m pipeline.student_pipeline` from the 28 files with 
 
 **Check against Student Data** (undergraduate and foundation programs; WCM-Q admitted excluded because Student Data includes internal promotions, per its remark): exact match in 37 of 65 university-year-stage comparisons, within 5% in 51, within 10% in 56. The 9 larger differences are listed in P-22 for Phase 3.
 
+### `graduation_rate.csv`: each entering class followed to completion
+
+Built by `.venv/bin/python -m pipeline.graduation_rate` from the 2022–23 to 2024–25 files (template v2022). 2021–22 is not read (P-23). Same columns as `student_data.csv`, except that `residency`, `period_label` and the graduate timing columns are replaced by:
+
+| Column | Meaning |
+|---|---|
+| `cohort_raw` / `cohort` | Entering class as written (`AY2018/2019`, `2005-2006`, `2019-20`, `AY2022/2024`, …) / the academic year it started, e.g. `2018-2019` |
+| `normal_years` | Normal time to completion in years, as reported |
+| `stage` | `entered` (first-time degree-seeking students in the class) · `non_completers` · `dropouts` · `graduated_100` (within normal time) · `graduated_150` (within 150% of normal time, **see P-24**) |
+| `report_status` | `used` · `superseded` (a later file reports the same class, D-012) · `empty` (the class is listed with no numbers). **Use only `used` rows.** |
+
+**Coverage (used reports):** GU-Q 2005–2020 (16 classes, university-wide), HBKU 2015–2022, WCM-Q 2016–2021, TAMU-Q 2017–2021, NU-Q 2019–2022, CMU-Q 2018–2020, HEC-Q 2020–2024. VCU-Q's sheets contain only `#REF!` errors.
+
+**Check against Student Data:** each class is never larger than the newly enrolled students of its starting year. That's expected, since first-time students exclude transfers and foundation students. CMU-Q matches exactly (112 vs 113, 124 vs 124); WCM-Q 0.77–1.00; TAMU-Q 0.74–0.86; HEC-Q 0.31–0.47 (executive cohorts start mid-year).
+
 ## 7. Known problems
 
 | ID | Problem | Evidence | Status |
@@ -192,3 +207,7 @@ Built by `.venv/bin/python -m pipeline.student_pipeline` from the 28 files with 
 | **P-20** | **`#REF!` instead of program names.** The Pipeline sheet copies names from the Student Data tab by formula; in GU-Q, HEC-Q, TAMU-Q and VCU-Q files those formulas broke. All such rows are empty. | 96 `#REF!` cells | Solved: Excel errors are never treated as names. A row without a name that holds non-zero numbers stops the build. |
 | **P-21** | **VCU-Q 2022–23 Pipeline: degree and program columns don't line up.** | VCU-Q's remark on admission routes; numbers compared with Student Data | Solved: mapped by degree (D-017) |
 | **P-22** | **Pipeline and Student Data disagree by more than 10% in 9 cases.** TAMU-Q 2021–22 newly enrolled 495 vs 140; NU-Q admitted 2023–24 268 vs 409 and 2024–25 307 vs 354; NU-Q newly enrolled 2021–22 110 vs 131 and 2024–25 123 vs 97; VCU-Q 2022–23 admitted 143 vs 165 and newly enrolled 73 vs 0 (Student Data's 0 is a formula over missing data); VCU-Q 2023–24 admitted 175 vs 157 and newly enrolled 120 vs 91. | Comparison in §6 | Phase 3: investigate and decide which source wins |
+| **P-23** | **2021–22 Graduation Rate is percentages only** ("% Overall Graduation Rate (AY20/21)"), with no class sizes and no clear entering class. | Header survey: 5 files | Not read. Rates come from class counts in the 2022–25 files. |
+| **P-24** | **"Graduated within 150%" means different things.** TAMU-Q counts *all* graduates within 150% (including the 100% ones); WCM-Q and HEC-Q count only the *extra* graduates after normal time. | Which way each class adds up to its entrants: TAMU-Q 12 of 12 classes one way, WCM-Q 5 of 5 and HEC-Q 3 of 6 the other | Phase 4: decide how to compute a comparable 150% rate |
+| **P-25** | **HBKU reports 0 entrants for classes that have graduates** (42 classes), so its graduation *rate* can't be computed. | Graduation Rate sheets | Phase 3/4: show HBKU graduate counts without a rate |
+| **P-26** | **HBKU 2022–23 Graduation Rate swaps the program names of its BS and PhD rows.** | Degree and normal time vs the 2023–24 sheet | Solved: mapped by degree in `programs.csv` |

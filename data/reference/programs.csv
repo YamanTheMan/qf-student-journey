@@ -5,6 +5,8 @@ CMU-Q,BS,Computational Biology,Computational Biology,Computational Biology,under
 CMU-Q,BS,Computer Science,Computer Science,Computer Science,undergraduate,Bachelor's,Computing & Data,
 CMU-Q,BS,General Studies,General Studies,General Studies,undergraduate,Bachelor's,General & Foundation,
 CMU-Q,BS,Information Systems,Information Systems,Information Systems,undergraduate,Bachelor's,Computing & Data,
+GU-Q,,,All programs,All programs,undergraduate,Bachelor's,International Affairs,Graduation Rate 2023-24 reports one unnamed row per entering class for the whole university.
+GU-Q,,International Economics,International Economics,International Economics,undergraduate,Bachelor's,International Affairs,Degree left blank.
 GU-Q,BS,Culture and Politics,Culture and Politics,Culture and Politics,undergraduate,Bachelor's,International Affairs,
 GU-Q,BS,International Economics,International Economics,International Economics,undergraduate,Bachelor's,International Affairs,
 GU-Q,BS,International History,International History,International History,undergraduate,Bachelor's,International Affairs,
@@ -21,6 +23,7 @@ GU-Q,BSFS,Undeclared Major,International Affairs (undeclared),International Affa
 GU-Q,Undeclared,Undeclared Major,International Affairs (undeclared),International Affairs (undeclared),undergraduate,Bachelor's,International Affairs,Students who have not yet declared a major. GU-Q: all students apply as International Affairs (INAF) majors; named 'International Affairs' in 2024-25.
 HBKU,,Non-Degree/Conditional Admits,Non-degree / conditional admits,Non-degree / conditional admits,non_degree,Non-degree,General & Foundation,Not degree-seeking; outside the form's scope (P-19).
 HBKU,BS,Computer Engineering,Computer Engineering,Computer Engineering,undergraduate,Bachelor's,Engineering,
+HBKU,BS,Computer Science & Engineering,Computer Engineering,Computer Engineering,undergraduate,Bachelor's,Engineering,Graduation Rate 2022-23 swaps the program names of the BS and PhD rows; the degree and normal time identify the program.
 HBKU,JD,Law,Law (JD),Law (JD),graduate,Juris Doctor (JD),Law,"Professional law degree, not a research doctorate."
 HBKU,LL.M.,International Economic and Business Law,International Economic and Business Law,International Economic and Business Law,graduate,Master's,Law,
 HBKU,LL.M.,International Law and Foreign Affairs,International Law and Foreign Affairs,International Law and Foreign Affairs,graduate,Master's,Law,
@@ -32,6 +35,7 @@ HBKU,MA,Contemporary Islamic Studies,Contemporary Islamic Studies,Contemporary I
 HBKU,MA,Digital Humanities & Societies,Digital Humanities and Societies,Digital Humanities and Societies,graduate,Master's,Humanities & Social Sciences,
 HBKU,MA,Intercultural Communication,Intercultural Communication,Intercultural Communication,graduate,Master's,Humanities & Social Sciences,
 HBKU,MA,Islam and Global Affairs,Islam and Global Affairs,Islam and Global Affairs,graduate,Master's,Islamic Studies,
+HBKU,MA,Islamic Finance,Islamic Finance,Islamic Finance,graduate,Master's,Business & Management,Labelled MA in Graduation Rate 2022-23; the same 2-year Islamic Finance master's labelled MS elsewhere.
 HBKU,MA,Islamic Studies,Islamic Studies (master's),Islamic Studies (master's),graduate,Master's,Islamic Studies,
 HBKU,MA,Islamic Studies in Contemporary Fiqh,Islamic Studies in Contemporary Fiqh,Islamic Studies in Contemporary Fiqh,graduate,Master's,Islamic Studies,"Listed in the 2022-23 Student Pipeline only, with no applicants."
 HBKU,MA,M.A. in Counseling Psychology,Counseling Psychology,Counseling Psychology,graduate,Master's,Humanities & Social Sciences,
@@ -64,6 +68,7 @@ HBKU,Ph.D.,Sustainable Energy,Sustainable Energy (PhD),Sustainable Energy (PhD),
 HBKU,Ph.D.,Sustainable Environment,Sustainable Environment (PhD),Sustainable Environment (PhD),graduate,Doctorate,Energy & Environment,
 HBKU,PhD,Biological and Biomedical Sciences,Biological and Biomedical Sciences (PhD),Biological and Biomedical Sciences (PhD),graduate,Doctorate,Sciences,
 HBKU,PhD,Biopsychology and Neuroscience,Biopsychology and Neuroscience (PhD),Biopsychology and Neuroscience (PhD),graduate,Doctorate,Sciences,
+HBKU,PhD,Computer Engineering,Computer Science and Engineering (PhD),Computer Science and Engineering (PhD),graduate,Doctorate,Computing & Data,Graduation Rate 2022-23 swaps the program names of the BS and PhD rows; the degree and normal time identify the program.
 HBKU,PhD,Computer Science & Engineering,Computer Science and Engineering (PhD),Computer Science and Engineering (PhD),graduate,Doctorate,Computing & Data,
 HBKU,PhD,Genomics and Precision Medicine,Genomics and Precision Medicine (PhD),Genomics and Precision Medicine (PhD),graduate,Doctorate,Sciences,
 HBKU,PhD,Humanities and Social Science,Humanities and Social Sciences (PhD),Humanities and Social Sciences (PhD),graduate,Doctorate,Humanities & Social Sciences,
@@ -86,6 +91,7 @@ HEC-Q,EMBA,Executive MBA 2019 (2018),Executive MBA,Executive MBA,graduate,Master
 HEC-Q,EMBA,Executive MBA 2020 (Feb 2019),Executive MBA,Executive MBA,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
 HEC-Q,EMBA,Executive MBA New Cohort,Executive MBA,Executive MBA,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
 HEC-Q,EMBA 2022,Executive MBA - Apr 2021 Start,Executive MBA,Executive MBA,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+HEC-Q,EMBA 2022,Executive MBA - Feb 2021 Start,Executive MBA,Executive MBA,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
 HEC-Q,EMBA 2022 Feb Cohort 1,Executive MBA - Feb 2022 Start,Executive MBA,Executive MBA,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
 HEC-Q,EMBA 2022 Feb Cohort 2,Executive MBA - Feb 2022 Start in KSA,Executive MBA,Executive MBA,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
 HEC-Q,EMBA 2023,Executive MBA - Feb 2022 Start,Executive MBA,Executive MBA,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
@@ -98,6 +104,7 @@ HEC-Q,SBUM,SBUM 2019 Cohort 1 (2018),Specialized Master in Strategic Business Un
 HEC-Q,SBUM,SBUM 2020 Cohort 1 (Jan 2019),Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
 HEC-Q,SBUM,Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
 HEC-Q,SBUM,Specialized Master in Strategic Business Unit Management New Cohort,Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+HEC-Q,SBUM 2021,Specialized Master in Strategic Business Unit Management - Jan 2020 start,Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
 HEC-Q,SBUM 2022,Specialized Master in Strategic Business Unit Management - Jan 2021 start,Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
 HEC-Q,SBUM 2023,Specialized Master in Strategic Business Unit Management - Nov 2021 start,Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
 HEC-Q,SBUM 2024,Specialized Master in Strategic Business Unit Management - Oct 2022 start,Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
@@ -127,6 +134,7 @@ TAMU-Q,MS/MEng,Chemical Engineering,Chemical Engineering (graduate),Chemical Eng
 TAMU-Q,Mechanical Engineering,Undergraduate,Mechanical Engineering,Mechanical Engineering,undergraduate,Bachelor's,Engineering,Degree and Program columns swapped in 2023-24 (P-18).
 TAMU-Q,NDS,Gateway Progam,Gateway Program,Gateway Program,foundation,Foundation,General & Foundation,Foundation year before admission (NDS = non-degree-seeking). Columns swapped in 2023-24 (P-18).
 TAMU-Q,Petroleum Engineering,Undergraduate,Petroleum Engineering,Petroleum Engineering,undergraduate,Bachelor's,Engineering,Degree and Program columns swapped in 2023-24 (P-18).
+VCU-Q,,,All programs,All programs,undergraduate,Bachelor's,Art & Design,Unnamed university-wide row in a Graduation Rate sheet.
 VCU-Q,,Art Foundation,Art Foundation,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,First year of the BFA; students choose their major afterwards.
 VCU-Q,,Art Foundation-FYI,Art Foundation,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,First year of the BFA; students choose their major afterwards.
 VCU-Q,(Foundation),"Bachelor of Fine Arts (Pre-Art Foundation, for Qatari students only)",Pre-Art Foundation,Pre-Art Foundation,foundation,Foundation,Art & Design,Preparation year for Qatari students before the BFA.
@@ -134,10 +142,13 @@ VCU-Q,BA,Art Foundation-FYI,Art History,Art History,undergraduate,Bachelor's,Art
 VCU-Q,BA,Art History,Art History,Art History,undergraduate,Bachelor's,Art & Design,
 VCU-Q,BFA,Art Foundation,Art Foundation,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,First year of the BFA; students choose their major afterwards.
 VCU-Q,BFA,Art Foundation / Graphic Design / Interior Design / Fashion Design / Painting & Printmaking,Fine Arts (all majors combined),Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,All BFA majors reported as one line.
+VCU-Q,BFA,Fashion,Fashion Design,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,
 VCU-Q,BFA,Fashion Design,Fashion Design,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,
+VCU-Q,BFA,Fasion Design,Fashion Design,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,Typo in the source.
 VCU-Q,BFA,Graphic Design,Graphic Design,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,
 VCU-Q,BFA,Interior Design,Interior Design,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,
 VCU-Q,BFA,Painting & Printmaking,Painting & Printmaking,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,
+VCU-Q,BFA,Painting and Print Making,Painting & Printmaking,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,
 VCU-Q,BFA,Painting and Printmaking,Painting & Printmaking,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,
 VCU-Q,Bachelor,Bachelor of Arts,Art History,Art History,undergraduate,Bachelor's,Art & Design,VCU-Q's only BA is Art History (2023-24 label).
 VCU-Q,Bachelor,Bachelor of Fine Arts,Fine Arts (all majors combined),Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,All BFA majors reported as one line (2023-24).

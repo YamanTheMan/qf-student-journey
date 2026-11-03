@@ -1,4 +1,4 @@
-from pipeline.headers import parse_measure, student_pipeline_header
+from pipeline.headers import graduation_rate_header, parse_measure, student_pipeline_header
 
 
 def m(text):
@@ -54,6 +54,24 @@ def test_recommended_for_abp_belongs_to_the_school_after_from():
 def test_pipeline_reader_ignores_other_headers():
     for text in ("# Applied Qatari Male", "#REF!", "Program", None):
         assert student_pipeline_header(text) is None
+
+
+def g(text):
+    h = graduation_rate_header(text)
+    return None if h is None else (h["stage"], h["nationality"], h["gender"], h["breakdown"])
+
+
+def test_graduation_rate_headers():
+    assert g("# Non-Qatari Females Graduated within 150% of Normal Time") == ("graduated_150", "Non-Qatari", "Female", "nationality_gender")
+    assert g("# Qatari Males Graduated within 100% of Normal Time") == ("graduated_100", "Qatari", "Male", "nationality_gender")
+    assert g("# Total First-time Degree Seeking Enrolled Students") == ("entered", "All", "All", "total")
+    assert g("# Drop-outs Qatari Males") == ("dropouts", "Qatari", "Male", "nationality_gender")
+    assert g("# Total Non-Completers") == ("non_completers", "All", "All", "total")
+
+
+def test_graduation_rate_reader_skips_percentages_and_row_fields():
+    for text in ("% Overall Graduation Rate (AY20/21)", "# Normal Time to Completion (Years)", "Cohort Year"):
+        assert graduation_rate_header(text) is None
 
 
 def test_non_count_columns_are_ignored():

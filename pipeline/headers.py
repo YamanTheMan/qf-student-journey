@@ -88,7 +88,13 @@ def parse_measure(header):
     stage = next((name for name, pattern in STAGES if re.search(pattern, text)), None)
     if stage is None:
         return None
+    nationality, residency, gender = student_groups(text)
+    period = PERIOD.search(text)
+    return Measure(stage, nationality, residency, gender, period.group(1).title() if period else None)
 
+
+def student_groups(text):
+    """(nationality, residency, gender) named in a lower-case header; 'All' when not split."""
     if re.search(r"non[\s-]*qatari", text):
         nationality = "Non-Qatari"
     elif re.search(r"\bqatari\b", text):
@@ -109,6 +115,32 @@ def parse_measure(header):
         gender = "Male"
     else:
         gender = "All"
+    return nationality, residency, gender
 
-    period = PERIOD.search(text)
-    return Measure(stage, nationality, residency, gender, period.group(1).title() if period else None)
+
+# Graduation Rate: one entering class (cohort) followed to completion.
+GRADUATION_STAGES = [
+    ("entered", r"first[\s-]*time degree seeking enrolled"),
+    ("non_completers", r"non[\s-]*completers"),
+    ("dropouts", r"drop[\s-]*outs?"),
+    ("graduated_100", r"within 100\s*%"),
+    ("graduated_150", r"within 150\s*%"),
+]
+
+
+def graduation_rate_header(header):
+    """'# Non-Qatari Females Graduated within 150% of Normal Time' -> stage, nationality, gender, breakdown.
+
+    Only '#' count columns: the 2021-22 template's '%' rate columns are not read (data dictionary P-23).
+    """
+    if not isinstance(header, str):
+        return None
+    text = re.sub(r"\s+", " ", header).strip().lower()
+    if not text.startswith("#"):
+        return None
+    stage = next((name for name, pattern in GRADUATION_STAGES if re.search(pattern, text)), None)
+    if stage is None:
+        return None
+    nationality, _, gender = student_groups(text)
+    parts = [name for name, value in (("nationality", nationality), ("gender", gender)) if value != "All"]
+    return {"stage": stage, "nationality": nationality, "gender": gender, "breakdown": "_".join(parts) or "total"}

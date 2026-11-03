@@ -17,8 +17,13 @@ MAX_BAND_LENGTH = 60   # longer text above the table is instructions, not a peri
 ID_LABELS = ("entity name", "degree", "program", "remarks")
 
 
-def find_header_rows(rows, parse_header):
-    """[(row index, {column: header attributes}, {label: column})] for every header row."""
+def find_header_rows(rows, parse_header, row_fields=None):
+    """[(row index, {column: header attributes}, {label: column})] for every header row.
+
+    row_fields maps an extra output column to a test on the header text, for sheets with more
+    than names per row (e.g. Graduation Rate's cohort year).
+    """
+    row_fields = row_fields or {}
     headers = []
     for i, row in enumerate(rows):
         parsed = {c: attrs for c, v in enumerate(row) if (attrs := parse_header(v))}
@@ -29,6 +34,9 @@ def find_header_rows(rows, parse_header):
                 for label in ID_LABELS:
                     if text == label or (label == "remarks" and text.startswith("remarks")):
                         labels.setdefault(label, c)
+                for field, matches in row_fields.items():
+                    if text and matches(text):
+                        labels.setdefault(field, c)
             headers.append((i, parsed, labels))
     return headers
 
@@ -49,7 +57,7 @@ def band_labels(rows, header_idx, first_col):
     return by_column
 
 
-def extract_table(src, sheet_name, parse_header, issues=None):
+def extract_table(src, sheet_name, parse_header, issues=None, row_fields=None):
     """Every number in one file's sheet, as a list of row dicts.
 
     parse_header(text) returns a dict describing a count column (it must include 'stage'),
@@ -58,7 +66,8 @@ def extract_table(src, sheet_name, parse_header, issues=None):
     sheet, rows = read_sheet(src.path, sheet_name)
     if sheet is None:
         raise ValueError(f"no '{sheet_name}' sheet")
-    headers = find_header_rows(rows, parse_header)
+    row_fields = row_fields or {}
+    headers = find_header_rows(rows, parse_header, row_fields)
     if not any("program" in labels for _, _, labels in headers):
         raise ValueError(f"'{sheet_name}': no header row with a Program column")
 
@@ -71,7 +80,9 @@ def extract_table(src, sheet_name, parse_header, issues=None):
             # A data row names a program, an entity or a degree; empty placeholder rows are skipped.
             # (Never test the text against header words: real programs are called things like
             # 'Applied Islamic Ethics'.)
-            id_cols = [labels[k] for k in ("entity name", "degree", "program") if k in labels]
+            # Extra row fields (e.g. a cohort year) also mark a data row: GU-Q 2023-24 reports one
+            # unnamed row per entering class for the whole university.
+            id_cols = [labels[k] for k in ("entity name", "degree", "program", *row_fields) if k in labels]
             named = {r: any(clean_name(cell(rows[r], c)) for c in id_cols) for r in range(hdr_idx + 1, end)}
             data_rows = [r for r, has_name in named.items() if has_name]
             has_named_programs = any(clean_name(cell(rows[r], labels["program"])) for r in data_rows)
@@ -114,6 +125,7 @@ def extract_table(src, sheet_name, parse_header, issues=None):
                     "entity_reported": clean_name(cell(row, labels["entity name"])) if "entity name" in labels else None,
                     "degree": clean_name(cell(row, labels["degree"])) if "degree" in labels else None,
                     "program": program,
+                    **{f: _field_value(cell(row, labels[f])) if f in labels else None for f in row_fields},
                     **attrs,
                     "band_label": bands.get(col),
                     "count": count,
@@ -127,7 +139,13 @@ def extract_table(src, sheet_name, parse_header, issues=None):
     return records
 
 
-def extract_sheet(sheet_name, parse_header, templates):
+def _field_value(value):
+    """An extra row field as text ('AY2018/2019', '4'), so mixed text and numbers stay comparable."""
+    count, text = to_count(value)
+    return str(count) if count is not None else clean_name(text)
+
+
+def extract_sheet(sheet_name, parse_header, templates, row_fields=None):
     """Extract one sheet from every submission using these templates.
 
     Returns (table, problems). Problems are files that couldn't be read and program
@@ -136,7 +154,7 @@ def extract_sheet(sheet_name, parse_header, templates):
     records, problems = [], []
     for src in submissions(templates):
         try:
-            records.extend(extract_table(src, sheet_name, parse_header, problems))
+            records.extend(extract_table(src, sheet_name, parse_header, problems, row_fields))
         except ValueError as err:
             problems.append(f"{src.path}: {err}")
     table = pd.DataFrame(records)
