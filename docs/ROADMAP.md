@@ -7,7 +7,7 @@ How we work each phase: explain the goal → build it in small steps → check t
 | Phase | Goal | Status |
 |---|---|---|
 | 0. Setup | Project folder, Git, private GitHub repo, Python environment | ✅ |
-| 1. Data map | Document every sheet: columns, years, universities, quirks | ⬜ |
+| 1. Data map | Document every sheet: columns, years, universities, quirks | ✅ |
 | 2. Extraction | Read every yearly template version into one tidy format | ⬜ |
 | 3. Validation | Automatic checks that run on every upload | ⬜ |
 | 4. Metrics | Define and compute the story numbers | ⬜ |
@@ -26,18 +26,22 @@ How we work each phase: explain the goal → build it in small steps → check t
 - [x] README, roadmap, decision log
 - [x] Git repository with first commit
 - [x] Private GitHub repository, code pushed
-- [ ] Reinstall packages from `requirements.txt` once PyPI is reachable (see D-005)
+- [x] Reinstall packages from `requirements.txt` once PyPI is reachable (done: D-007)
 
-## Phase 1 — Data map ⬜
+## Phase 1 — Data map ✅
 
 Goal: know exactly what is in every file before writing any extraction code.
 
-- [ ] Inventory: one row per file → university, academic year, template version, sheets present
-- [ ] For each sheet type, the columns it contains in each template version
-- [ ] List of known problems (wrong year inside a file, duplicate versions, different templates, missing universities)
-- [ ] Decide which file wins when a university has two files for the same year
-- [ ] Reference table of university names (e.g. `WCM-Q` / `WCMC-Q` / `WCMQ` → one code)
-- [ ] Output: `docs/data_dictionary.md` and `data/reference/file_inventory.csv`
+- [x] Inventory: one row per file → university, academic year, template version, submission round, sheets (`pipeline/inventory.py`)
+- [x] For each sheet type, the columns it contains in each template version
+- [x] List of known problems: 14 found, P-01 to P-14 in the data dictionary
+- [x] Decide which file wins when a university has two files for the same year (D-008, D-009)
+- [x] Reference table of university names (`data/reference/universities.csv`)
+- [x] Scope decision for HBKU (D-010)
+- [x] Output: `docs/data_dictionary.md`, `data/reference/file_inventory.csv`, `data/reference/file_decisions.csv`
+- [x] Tests for the inventory helpers and reference tables (9 passing)
+
+**Carried into Phase 2:** timing rules for graduates (P-07), repeated graduation-rate classes (P-08) and repeated outcome classes (P-09).
 
 ## Phase 2 — Extraction ⬜
 

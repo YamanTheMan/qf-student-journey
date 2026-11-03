@@ -2,7 +2,7 @@
 
 A live dashboard that tells the story of Education City students, from application to career, using Qatar Foundation's yearly Student Data Collection submissions (AY2011–2025).
 
-> **Status:** Phase 0 (setup) complete. See [docs/ROADMAP.md](docs/ROADMAP.md).
+> **Status:** Phase 1 (data map) complete. See [docs/ROADMAP.md](docs/ROADMAP.md) and [docs/data_dictionary.md](docs/data_dictionary.md).
 
 ## The story
 
@@ -42,7 +42,8 @@ qf-student-journey/
 ├── docs/
 │   ├── ROADMAP.md       Phases and progress checklist
 │   └── DECISIONS.md     Every important choice and why
-├── requirements.txt     Exact library versions
+├── requirements.txt     Exact library versions (app + pipeline)
+├── requirements-dev.txt Adds test tools for local work and GitHub Actions
 └── .streamlit/          Dashboard theme
 ```
 
@@ -52,7 +53,7 @@ Requires Python 3.11.
 
 ```bash
 python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m pip install -r requirements-dev.txt
 .venv/bin/python -m streamlit run app.py
 ```
 
