@@ -1,0 +1,426 @@
+file_year,university,country_raw,country,remarks,graduating_year,timing_evidence,stage,count,value_text,template,source_file,source_sheet,source_cell,row_status
+2021-2022,GU-Q,Bangladesh,Bangladesh,,2021-2022,student_data,graduated,1,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C6,used
+2021-2022,GU-Q,Brazil,Brazil,,2021-2022,student_data,graduated,1,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C7,used
+2021-2022,GU-Q,Canada,Canada,,2021-2022,student_data,graduated,1,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C8,used
+2021-2022,GU-Q,China,China,,2021-2022,student_data,graduated,2,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C9,used
+2021-2022,GU-Q,Egypt,Egypt,,2021-2022,student_data,graduated,4,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C10,used
+2021-2022,GU-Q,Ethiopia,Ethiopia,,2021-2022,student_data,graduated,1,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C11,used
+2021-2022,GU-Q,France,France,,2021-2022,student_data,graduated,1,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C12,used
+2021-2022,GU-Q,Germany,Germany,,2021-2022,student_data,graduated,1,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C13,used
+2021-2022,GU-Q,India,India,,2021-2022,student_data,graduated,5,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C14,used
+2021-2022,GU-Q,Iran,Iran,,2021-2022,student_data,graduated,1,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C15,used
+2021-2022,GU-Q,Iraq,Iraq,,2021-2022,student_data,graduated,1,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C16,used
+2021-2022,GU-Q,Jordan,Jordan,,2021-2022,student_data,graduated,2,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C17,used
+2021-2022,GU-Q,Kenya,Kenya,,2021-2022,student_data,graduated,1,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C18,used
+2021-2022,GU-Q,Lebanon,Lebanon,,2021-2022,student_data,graduated,1,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C19,used
+2021-2022,GU-Q,Malaysia,Malaysia,,2021-2022,student_data,graduated,1,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C20,used
+2021-2022,GU-Q,Morocco,Morocco,,2021-2022,student_data,graduated,2,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C21,used
+2021-2022,GU-Q,Nepal,Nepal,,2021-2022,student_data,graduated,1,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C22,used
+2021-2022,GU-Q,Nigeria,Nigeria,,2021-2022,student_data,graduated,1,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C23,used
+2021-2022,GU-Q,Oman,Oman,,2021-2022,student_data,graduated,1,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C24,used
+2021-2022,GU-Q,Pakistan,Pakistan,,2021-2022,student_data,graduated,8,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C25,used
+2021-2022,GU-Q,Qatar,Qatar,,2021-2022,student_data,graduated,41,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C26,used
+2021-2022,GU-Q,Russia,Russia,,2021-2022,student_data,graduated,1,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C27,used
+2021-2022,GU-Q,"Korea, South","Korea, South",,2021-2022,student_data,graduated,1,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C28,used
+2021-2022,GU-Q,Syria,Syria,,2021-2022,student_data,graduated,1,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C29,used
+2021-2022,GU-Q,Sudan,Sudan,,2021-2022,student_data,graduated,1,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C30,used
+2021-2022,GU-Q,United Arab Emirates,United Arab Emirates,,2021-2022,student_data,graduated,1,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C31,used
+2021-2022,GU-Q,United States,United States,,2021-2022,student_data,graduated,2,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C32,used
+2021-2022,GU-Q,Non-Qatari,Non-Qatari (country not given),West Bank,2021-2022,student_data,graduated,1,,v2021,AY21-22/GU-Q Student Data Collection AY2021-2022v2.xlsx,Graduate Nationalities,C33,used
+2021-2022,HEC-Q,Armenia,Armenia,,2021-2022,student_data,graduated,1,,v2021,AY21-22/HEC-Q Student Data Collection AY2021-2022- Due July 20th.xlsx,Graduate Nationalities,C6,used
+2021-2022,HEC-Q,France,France,,2021-2022,student_data,graduated,5,,v2021,AY21-22/HEC-Q Student Data Collection AY2021-2022- Due July 20th.xlsx,Graduate Nationalities,C7,used
+2021-2022,HEC-Q,Germany,Germany,,2021-2022,student_data,graduated,3,,v2021,AY21-22/HEC-Q Student Data Collection AY2021-2022- Due July 20th.xlsx,Graduate Nationalities,C8,used
+2021-2022,HEC-Q,Greece,Greece,,2021-2022,student_data,graduated,1,,v2021,AY21-22/HEC-Q Student Data Collection AY2021-2022- Due July 20th.xlsx,Graduate Nationalities,C9,used
+2021-2022,HEC-Q,India,India,,2021-2022,student_data,graduated,8,,v2021,AY21-22/HEC-Q Student Data Collection AY2021-2022- Due July 20th.xlsx,Graduate Nationalities,C10,used
+2021-2022,HEC-Q,United Kingdom,United Kingdom,,2021-2022,student_data,graduated,1,,v2021,AY21-22/HEC-Q Student Data Collection AY2021-2022- Due July 20th.xlsx,Graduate Nationalities,C11,used
+2021-2022,HEC-Q,Qatar,Qatar,,2021-2022,student_data,graduated,88,,v2021,AY21-22/HEC-Q Student Data Collection AY2021-2022- Due July 20th.xlsx,Graduate Nationalities,C12,used
+2021-2022,HEC-Q,Canada,Canada,,2021-2022,student_data,graduated,1,,v2021,AY21-22/HEC-Q Student Data Collection AY2021-2022- Due July 20th.xlsx,Graduate Nationalities,C13,used
+2021-2022,HEC-Q,Egypt,Egypt,,2021-2022,student_data,graduated,3,,v2021,AY21-22/HEC-Q Student Data Collection AY2021-2022- Due July 20th.xlsx,Graduate Nationalities,C14,used
+2021-2022,HEC-Q,Iran,Iran,,2021-2022,student_data,graduated,1,,v2021,AY21-22/HEC-Q Student Data Collection AY2021-2022- Due July 20th.xlsx,Graduate Nationalities,C15,used
+2021-2022,HEC-Q,Jordan,Jordan,,2021-2022,student_data,graduated,5,,v2021,AY21-22/HEC-Q Student Data Collection AY2021-2022- Due July 20th.xlsx,Graduate Nationalities,C16,used
+2021-2022,HEC-Q,Kazakhstan,Kazakhstan,,2021-2022,student_data,graduated,1,,v2021,AY21-22/HEC-Q Student Data Collection AY2021-2022- Due July 20th.xlsx,Graduate Nationalities,C17,used
+2021-2022,HEC-Q,Lebanon,Lebanon,,2021-2022,student_data,graduated,3,,v2021,AY21-22/HEC-Q Student Data Collection AY2021-2022- Due July 20th.xlsx,Graduate Nationalities,C18,used
+2021-2022,HEC-Q,Serbia,Serbia,,2021-2022,student_data,graduated,1,,v2021,AY21-22/HEC-Q Student Data Collection AY2021-2022- Due July 20th.xlsx,Graduate Nationalities,C19,used
+2021-2022,HEC-Q,China,China,,2021-2022,student_data,graduated,1,,v2021,AY21-22/HEC-Q Student Data Collection AY2021-2022- Due July 20th.xlsx,Graduate Nationalities,C20,used
+2021-2022,HEC-Q,United States,United States,,2021-2022,student_data,graduated,1,,v2021,AY21-22/HEC-Q Student Data Collection AY2021-2022- Due July 20th.xlsx,Graduate Nationalities,C21,used
+2021-2022,HEC-Q,Pakistan,Pakistan,,2021-2022,student_data,graduated,1,,v2021,AY21-22/HEC-Q Student Data Collection AY2021-2022- Due July 20th.xlsx,Graduate Nationalities,C22,used
+2021-2022,HEC-Q,Tunisia,Tunisia,,2021-2022,student_data,graduated,1,,v2021,AY21-22/HEC-Q Student Data Collection AY2021-2022- Due July 20th.xlsx,Graduate Nationalities,C23,used
+2021-2022,HEC-Q,Oman,Oman,,2021-2022,student_data,graduated,1,,v2021,AY21-22/HEC-Q Student Data Collection AY2021-2022- Due July 20th.xlsx,Graduate Nationalities,C24,used
+2021-2022,HEC-Q,South Africa,South Africa,,2021-2022,student_data,graduated,1,,v2021,AY21-22/HEC-Q Student Data Collection AY2021-2022- Due July 20th.xlsx,Graduate Nationalities,C25,used
+2021-2022,WCM-Q,Algeria,Algeria,,2021-2022,student_data,graduated,1,,v2021,AY21-22/WCM-Q Student Data Collection AY2021-2022 Final.xlsx,Graduate Nationalities,C6,used
+2021-2022,WCM-Q,Bangladesh,Bangladesh,,2021-2022,student_data,graduated,1,,v2021,AY21-22/WCM-Q Student Data Collection AY2021-2022 Final.xlsx,Graduate Nationalities,C7,used
+2021-2022,WCM-Q,Egypt,Egypt,,2021-2022,student_data,graduated,4,,v2021,AY21-22/WCM-Q Student Data Collection AY2021-2022 Final.xlsx,Graduate Nationalities,C8,used
+2021-2022,WCM-Q,Germany,Germany,,2021-2022,student_data,graduated,1,,v2021,AY21-22/WCM-Q Student Data Collection AY2021-2022 Final.xlsx,Graduate Nationalities,C9,used
+2021-2022,WCM-Q,India,India,,2021-2022,student_data,graduated,6,,v2021,AY21-22/WCM-Q Student Data Collection AY2021-2022 Final.xlsx,Graduate Nationalities,C10,used
+2021-2022,WCM-Q,Jordan,Jordan,,2021-2022,student_data,graduated,2,,v2021,AY21-22/WCM-Q Student Data Collection AY2021-2022 Final.xlsx,Graduate Nationalities,C11,used
+2021-2022,WCM-Q,Morocco,Morocco,,2021-2022,student_data,graduated,1,,v2021,AY21-22/WCM-Q Student Data Collection AY2021-2022 Final.xlsx,Graduate Nationalities,C12,used
+2021-2022,WCM-Q,Nigeria,Nigeria,,2021-2022,student_data,graduated,1,,v2021,AY21-22/WCM-Q Student Data Collection AY2021-2022 Final.xlsx,Graduate Nationalities,C13,used
+2021-2022,WCM-Q,Pakistan,Pakistan,,2021-2022,student_data,graduated,2,,v2021,AY21-22/WCM-Q Student Data Collection AY2021-2022 Final.xlsx,Graduate Nationalities,C14,used
+2021-2022,WCM-Q,Qatar,Qatar,,2021-2022,student_data,graduated,12,,v2021,AY21-22/WCM-Q Student Data Collection AY2021-2022 Final.xlsx,Graduate Nationalities,C15,used
+2021-2022,WCM-Q,Singapore,Singapore,,2021-2022,student_data,graduated,1,,v2021,AY21-22/WCM-Q Student Data Collection AY2021-2022 Final.xlsx,Graduate Nationalities,C16,used
+2021-2022,WCM-Q,Spain,Spain,,2021-2022,student_data,graduated,1,,v2021,AY21-22/WCM-Q Student Data Collection AY2021-2022 Final.xlsx,Graduate Nationalities,C17,used
+2021-2022,WCM-Q,Sri Lanka,Sri Lanka,,2021-2022,student_data,graduated,1,,v2021,AY21-22/WCM-Q Student Data Collection AY2021-2022 Final.xlsx,Graduate Nationalities,C18,used
+2021-2022,WCM-Q,Sudan,Sudan,,2021-2022,student_data,graduated,1,,v2021,AY21-22/WCM-Q Student Data Collection AY2021-2022 Final.xlsx,Graduate Nationalities,C19,used
+2021-2022,WCM-Q,Syria,Syria,,2021-2022,student_data,graduated,1,,v2021,AY21-22/WCM-Q Student Data Collection AY2021-2022 Final.xlsx,Graduate Nationalities,C20,used
+2021-2022,WCM-Q,United States,United States,,2021-2022,student_data,graduated,5,,v2021,AY21-22/WCM-Q Student Data Collection AY2021-2022 Final.xlsx,Graduate Nationalities,C21,used
+2022-2023,CMU-Q,Australia,Australia,,2021-2022,student_data,graduated,2,,v2022,AY22-23/AY22-23 CMU-Q Student Data Collection.xlsx,Graduate Nationalities,C6,used
+2022-2023,CMU-Q,Bahrain,Bahrain,,2021-2022,student_data,graduated,1,,v2022,AY22-23/AY22-23 CMU-Q Student Data Collection.xlsx,Graduate Nationalities,C7,used
+2022-2023,CMU-Q,Bangladesh,Bangladesh,,2021-2022,student_data,graduated,3,,v2022,AY22-23/AY22-23 CMU-Q Student Data Collection.xlsx,Graduate Nationalities,C8,used
+2022-2023,CMU-Q,China,China,,2021-2022,student_data,graduated,1,,v2022,AY22-23/AY22-23 CMU-Q Student Data Collection.xlsx,Graduate Nationalities,C9,used
+2022-2023,CMU-Q,Egypt,Egypt,,2021-2022,student_data,graduated,4,,v2022,AY22-23/AY22-23 CMU-Q Student Data Collection.xlsx,Graduate Nationalities,C10,used
+2022-2023,CMU-Q,India,India,,2021-2022,student_data,graduated,6,,v2022,AY22-23/AY22-23 CMU-Q Student Data Collection.xlsx,Graduate Nationalities,C11,used
+2022-2023,CMU-Q,Jordan,Jordan,,2021-2022,student_data,graduated,2,,v2022,AY22-23/AY22-23 CMU-Q Student Data Collection.xlsx,Graduate Nationalities,C12,used
+2022-2023,CMU-Q,Korea,Korea,,2021-2022,student_data,graduated,1,,v2022,AY22-23/AY22-23 CMU-Q Student Data Collection.xlsx,Graduate Nationalities,C13,used
+2022-2023,CMU-Q,Kuwait,Kuwait,,2021-2022,student_data,graduated,1,,v2022,AY22-23/AY22-23 CMU-Q Student Data Collection.xlsx,Graduate Nationalities,C14,used
+2022-2023,CMU-Q,Lebanon,Lebanon,,2021-2022,student_data,graduated,2,,v2022,AY22-23/AY22-23 CMU-Q Student Data Collection.xlsx,Graduate Nationalities,C15,used
+2022-2023,CMU-Q,Nepal,Nepal,,2021-2022,student_data,graduated,1,,v2022,AY22-23/AY22-23 CMU-Q Student Data Collection.xlsx,Graduate Nationalities,C16,used
+2022-2023,CMU-Q,Pakistan,Pakistan,,2021-2022,student_data,graduated,6,,v2022,AY22-23/AY22-23 CMU-Q Student Data Collection.xlsx,Graduate Nationalities,C17,used
+2022-2023,CMU-Q,Palestine,Palestine,,2021-2022,student_data,graduated,3,,v2022,AY22-23/AY22-23 CMU-Q Student Data Collection.xlsx,Graduate Nationalities,C18,used
+2022-2023,CMU-Q,Qatar,Qatar,,2021-2022,student_data,graduated,39,,v2022,AY22-23/AY22-23 CMU-Q Student Data Collection.xlsx,Graduate Nationalities,C19,used
+2022-2023,CMU-Q,Romania,Romania,,2021-2022,student_data,graduated,1,,v2022,AY22-23/AY22-23 CMU-Q Student Data Collection.xlsx,Graduate Nationalities,C20,used
+2022-2023,CMU-Q,Saudi Arabia,Saudi Arabia,,2021-2022,student_data,graduated,1,,v2022,AY22-23/AY22-23 CMU-Q Student Data Collection.xlsx,Graduate Nationalities,C21,used
+2022-2023,CMU-Q,Serbia,Serbia,,2021-2022,student_data,graduated,1,,v2022,AY22-23/AY22-23 CMU-Q Student Data Collection.xlsx,Graduate Nationalities,C22,used
+2022-2023,CMU-Q,Sudan,Sudan,,2021-2022,student_data,graduated,2,,v2022,AY22-23/AY22-23 CMU-Q Student Data Collection.xlsx,Graduate Nationalities,C23,used
+2022-2023,CMU-Q,Syria,Syria,,2021-2022,student_data,graduated,1,,v2022,AY22-23/AY22-23 CMU-Q Student Data Collection.xlsx,Graduate Nationalities,C24,used
+2022-2023,CMU-Q,Tanzania,Tanzania,,2021-2022,student_data,graduated,1,,v2022,AY22-23/AY22-23 CMU-Q Student Data Collection.xlsx,Graduate Nationalities,C25,used
+2022-2023,CMU-Q,Tunisia,Tunisia,,2021-2022,student_data,graduated,1,,v2022,AY22-23/AY22-23 CMU-Q Student Data Collection.xlsx,Graduate Nationalities,C26,used
+2022-2023,CMU-Q,United States,United States,,2021-2022,student_data,graduated,7,,v2022,AY22-23/AY22-23 CMU-Q Student Data Collection.xlsx,Graduate Nationalities,C27,used
+2022-2023,TAMU-Q,Egypt,Egypt,,2022-2023,student_data,graduated,7,,v2022,AY22-23/AY22-23 TAMU-Q Student Data Collection_071123.xlsx,Graduate Nationalities,C6,used
+2022-2023,TAMU-Q,India,India,,2022-2023,student_data,graduated,5,,v2022,AY22-23/AY22-23 TAMU-Q Student Data Collection_071123.xlsx,Graduate Nationalities,C7,used
+2022-2023,TAMU-Q,Iran,Iran,,2022-2023,student_data,graduated,0,,v2022,AY22-23/AY22-23 TAMU-Q Student Data Collection_071123.xlsx,Graduate Nationalities,C8,used
+2022-2023,TAMU-Q,Qatar,Qatar,,2022-2023,student_data,graduated,16,,v2022,AY22-23/AY22-23 TAMU-Q Student Data Collection_071123.xlsx,Graduate Nationalities,C9,used
+2022-2023,TAMU-Q,Tunisia,Tunisia,,2022-2023,student_data,graduated,0,,v2022,AY22-23/AY22-23 TAMU-Q Student Data Collection_071123.xlsx,Graduate Nationalities,C11,used
+2022-2023,TAMU-Q,Pakistan,Pakistan,,2022-2023,student_data,graduated,7,,v2022,AY22-23/AY22-23 TAMU-Q Student Data Collection_071123.xlsx,Graduate Nationalities,C21,used
+2022-2023,TAMU-Q,United States,United States,,2022-2023,student_data,graduated,5,,v2022,AY22-23/AY22-23 TAMU-Q Student Data Collection_071123.xlsx,Graduate Nationalities,C24,used
+2022-2023,WCM-Q,Canada,Canada,,2022-2023,student_data,graduated,2,,v2022,AY22-23/AY22-23 WCMC-Q Student Data Collection[10].xlsx,Graduate Nationalities,C6,used
+2022-2023,WCM-Q,Egypt,Egypt,,2022-2023,student_data,graduated,2,,v2022,AY22-23/AY22-23 WCMC-Q Student Data Collection[10].xlsx,Graduate Nationalities,C7,used
+2022-2023,WCM-Q,India,India,,2022-2023,student_data,graduated,3,,v2022,AY22-23/AY22-23 WCMC-Q Student Data Collection[10].xlsx,Graduate Nationalities,C8,used
+2022-2023,WCM-Q,Iran,Iran,,2022-2023,student_data,graduated,1,,v2022,AY22-23/AY22-23 WCMC-Q Student Data Collection[10].xlsx,Graduate Nationalities,C9,used
+2022-2023,WCM-Q,Jordan,Jordan,,2022-2023,student_data,graduated,1,,v2022,AY22-23/AY22-23 WCMC-Q Student Data Collection[10].xlsx,Graduate Nationalities,C10,used
+2022-2023,WCM-Q,Korea,Korea,,2022-2023,student_data,graduated,4,,v2022,AY22-23/AY22-23 WCMC-Q Student Data Collection[10].xlsx,Graduate Nationalities,C11,used
+2022-2023,WCM-Q,Lebanon,Lebanon,,2022-2023,student_data,graduated,1,,v2022,AY22-23/AY22-23 WCMC-Q Student Data Collection[10].xlsx,Graduate Nationalities,C12,used
+2022-2023,WCM-Q,Pakistan,Pakistan,,2022-2023,student_data,graduated,5,,v2022,AY22-23/AY22-23 WCMC-Q Student Data Collection[10].xlsx,Graduate Nationalities,C13,used
+2022-2023,WCM-Q,Palisrine,Palisrine,,2022-2023,student_data,graduated,1,,v2022,AY22-23/AY22-23 WCMC-Q Student Data Collection[10].xlsx,Graduate Nationalities,C14,used
+2022-2023,WCM-Q,Qatar,Qatar,,2022-2023,student_data,graduated,12,,v2022,AY22-23/AY22-23 WCMC-Q Student Data Collection[10].xlsx,Graduate Nationalities,C15,used
+2022-2023,WCM-Q,Syria,Syria,,2022-2023,student_data,graduated,1,,v2022,AY22-23/AY22-23 WCMC-Q Student Data Collection[10].xlsx,Graduate Nationalities,C16,used
+2022-2023,WCM-Q,UK,UK,,2022-2023,student_data,graduated,1,,v2022,AY22-23/AY22-23 WCMC-Q Student Data Collection[10].xlsx,Graduate Nationalities,C17,used
+2022-2023,WCM-Q,USA,USA,,2022-2023,student_data,graduated,8,,v2022,AY22-23/AY22-23 WCMC-Q Student Data Collection[10].xlsx,Graduate Nationalities,C18,used
+2022-2023,HBKU,Algeria,Algeria,,2022-2023,student_data,graduated,3,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C6,used
+2022-2023,HBKU,Azerbaijan,Azerbaijan,,2022-2023,student_data,graduated,1,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C7,used
+2022-2023,HBKU,Bahrain,Bahrain,,2022-2023,student_data,graduated,1,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C8,used
+2022-2023,HBKU,Bangladesh,Bangladesh,,2022-2023,student_data,graduated,11,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C9,used
+2022-2023,HBKU,Bosnia and Herzegovina,Bosnia and Herzegovina,,2022-2023,student_data,graduated,1,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C10,used
+2022-2023,HBKU,Bulgaria,Bulgaria,,2022-2023,student_data,graduated,1,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C11,used
+2022-2023,HBKU,Cambodia,Cambodia,,2022-2023,student_data,graduated,1,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C12,used
+2022-2023,HBKU,Canada,Canada,,2022-2023,student_data,graduated,2,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C13,used
+2022-2023,HBKU,Egypt,Egypt,,2022-2023,student_data,graduated,16,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C14,used
+2022-2023,HBKU,Eritrea,Eritrea,,2022-2023,student_data,graduated,1,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C15,used
+2022-2023,HBKU,Ethiopia,Ethiopia,,2022-2023,student_data,graduated,2,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C16,used
+2022-2023,HBKU,India,India,,2022-2023,student_data,graduated,12,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C17,used
+2022-2023,HBKU,Indonesia,Indonesia,,2022-2023,student_data,graduated,1,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C18,used
+2022-2023,HBKU,Iran (Islamic Republic Of),Iran (Islamic Republic Of),,2022-2023,student_data,graduated,2,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C19,used
+2022-2023,HBKU,Iraq,Iraq,,2022-2023,student_data,graduated,3,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C20,used
+2022-2023,HBKU,Italy,Italy,,2022-2023,student_data,graduated,1,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C21,used
+2022-2023,HBKU,Jordan,Jordan,,2022-2023,student_data,graduated,23,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C22,used
+2022-2023,HBKU,Kenya,Kenya,,2022-2023,student_data,graduated,2,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C23,used
+2022-2023,HBKU,Kuwait,Kuwait,,2022-2023,student_data,graduated,1,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C24,used
+2022-2023,HBKU,Lebanon,Lebanon,,2022-2023,student_data,graduated,2,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C25,used
+2022-2023,HBKU,Libyan Arab Jamahiriya,Libyan Arab Jamahiriya,,2022-2023,student_data,graduated,2,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C26,used
+2022-2023,HBKU,Mauritania,Mauritania,,2022-2023,student_data,graduated,1,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C27,used
+2022-2023,HBKU,Morocco,Morocco,,2022-2023,student_data,graduated,6,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C28,used
+2022-2023,HBKU,Nepal,Nepal,,2022-2023,student_data,graduated,2,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C29,used
+2022-2023,HBKU,Nigeria,Nigeria,,2022-2023,student_data,graduated,5,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C30,used
+2022-2023,HBKU,Pakistan,Pakistan,,2022-2023,student_data,graduated,25,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C31,used
+2022-2023,HBKU,Palestine,Palestine,,2022-2023,student_data,graduated,13,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C32,used
+2022-2023,HBKU,Philippines,Philippines,,2022-2023,student_data,graduated,3,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C33,used
+2022-2023,HBKU,Qatar,Qatar,,2022-2023,student_data,graduated,58,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C34,used
+2022-2023,HBKU,Romania,Romania,,2022-2023,student_data,graduated,1,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C35,used
+2022-2023,HBKU,Somalia,Somalia,,2022-2023,student_data,graduated,2,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C36,used
+2022-2023,HBKU,Spain,Spain,,2022-2023,student_data,graduated,1,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C37,used
+2022-2023,HBKU,Sri Lanka,Sri Lanka,,2022-2023,student_data,graduated,2,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C38,used
+2022-2023,HBKU,Sudan,Sudan,,2022-2023,student_data,graduated,8,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C39,used
+2022-2023,HBKU,Switzerland,Switzerland,,2022-2023,student_data,graduated,1,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C40,used
+2022-2023,HBKU,Syrian Arab Republic,Syrian Arab Republic,,2022-2023,student_data,graduated,8,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C41,used
+2022-2023,HBKU,"Tanzania, United Republic of","Tanzania, United Republic of",,2022-2023,student_data,graduated,1,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C42,used
+2022-2023,HBKU,Tunisia,Tunisia,,2022-2023,student_data,graduated,3,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C43,used
+2022-2023,HBKU,Turkey,Turkey,,2022-2023,student_data,graduated,2,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C44,used
+2022-2023,HBKU,Uganda,Uganda,,2022-2023,student_data,graduated,1,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C45,used
+2022-2023,HBKU,United Kingdom,United Kingdom,,2022-2023,student_data,graduated,1,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C46,used
+2022-2023,HBKU,United States,United States,,2022-2023,student_data,graduated,6,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C47,used
+2022-2023,HBKU,Yemen,Yemen,,2022-2023,student_data,graduated,15,,v2022,AY22-23/HBKU Student Data Collection AY2022-2023 updated 7.17.23.xlsx,Graduate Nationalities,C48,used
+2023-2024,CMU-Q,Albania,Albania,,2022-2023,student_data,graduated,2,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C6,used
+2023-2024,CMU-Q,Bahrain,Bahrain,,2022-2023,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C7,used
+2023-2024,CMU-Q,Bangladesh,Bangladesh,,2022-2023,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C8,used
+2023-2024,CMU-Q,Canada,Canada,,2022-2023,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C9,used
+2023-2024,CMU-Q,China,China,,2022-2023,student_data,graduated,6,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C10,used
+2023-2024,CMU-Q,Egypt,Egypt,,2022-2023,student_data,graduated,6,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C11,used
+2023-2024,CMU-Q,Ethiopia,Ethiopia,,2022-2023,student_data,graduated,2,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C12,used
+2023-2024,CMU-Q,Georgia,Georgia,,2022-2023,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C13,used
+2023-2024,CMU-Q,Germany,Germany,,2022-2023,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C14,used
+2023-2024,CMU-Q,India,India,,2022-2023,student_data,graduated,8,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C15,used
+2023-2024,CMU-Q,Iran,Iran,,2022-2023,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C16,used
+2023-2024,CMU-Q,Iraq,Iraq,,2022-2023,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C17,used
+2023-2024,CMU-Q,Jordan,Jordan,,2022-2023,student_data,graduated,5,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C18,used
+2023-2024,CMU-Q,Kazakhstan,Kazakhstan,,2022-2023,student_data,graduated,4,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C19,used
+2023-2024,CMU-Q,Kenya,Kenya,,2022-2023,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C20,used
+2023-2024,CMU-Q,Kuwait,Kuwait,,2022-2023,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C21,used
+2023-2024,CMU-Q,Lebanon,Lebanon,,2022-2023,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C22,used
+2023-2024,CMU-Q,Lesotho,Lesotho,,2022-2023,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C23,used
+2023-2024,CMU-Q,Mongolia,Mongolia,,2022-2023,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C24,used
+2023-2024,CMU-Q,Morocco,Morocco,,2022-2023,student_data,graduated,4,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C25,used
+2023-2024,CMU-Q,Pakistan,Pakistan,,2022-2023,student_data,graduated,10,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C26,used
+2023-2024,CMU-Q,Palestine,Palestine,,2022-2023,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C27,used
+2023-2024,CMU-Q,Qatar,Qatar,,2022-2023,student_data,graduated,31,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C28,used
+2023-2024,CMU-Q,Russia,Russia,,2022-2023,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C29,used
+2023-2024,CMU-Q,Rwanda,Rwanda,,2022-2023,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C30,used
+2023-2024,CMU-Q,Sudan,Sudan,,2022-2023,student_data,graduated,2,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C31,used
+2023-2024,CMU-Q,Swaziland,Swaziland,,2022-2023,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C32,used
+2023-2024,CMU-Q,Syria,Syria,,2022-2023,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C33,used
+2023-2024,CMU-Q,United Kingdom,United Kingdom,,2022-2023,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C34,used
+2023-2024,CMU-Q,USA,USA,,2022-2023,student_data,graduated,3,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C35,used
+2023-2024,CMU-Q,Uzbekistan,Uzbekistan,,2022-2023,student_data,graduated,2,,v2022,AY23-24/AY23-24 Fall Student Data Collection Final_CMU-Q.xlsx,Graduate Nationalities,C36,used
+2023-2024,NU-Q,Non-Qatari,Non-Qatari (country not given),"NU-Q graduates from 2022-23 include from Countries: Algeria, Australia, Bahrain, Bangladesh, Bosnia and Herzegovina, Brazil, Bulgaria, Canada, China, Egypt, Ethiopia, France, Gambia, Germany, Honduras, India, Indonesia, Iran, Iraq, Italy, Jordan, Kenya, Korea, Lebanon, Lithuania, Mexico, Moldova, Morocco, Nepal, New Zealand, Nigeria, Oman, Pakistan, Palestine, Palestinian, Philippines, Poland, Russia, Rwanda, Saudi Arabia, Singapore, Spain, Sri Lanka, Sudan, Sweden, Syria, Taiwan, Tanzania, Tunisia, Uganda, Ukraine, United Kingdom, United States, Venezuela, Yemen, and Zambia",2022-2023,student_data,graduated,388,,v2022,AY23-24/AY23-24 Fall Student Data Collection_NU-Q.xlsx,Graduate Nationalities,C8,used
+2023-2024,NU-Q,Qatar,Qatar,,2022-2023,student_data,graduated,332,,v2022,AY23-24/AY23-24 Fall Student Data Collection_NU-Q.xlsx,Graduate Nationalities,C9,used
+2023-2024,HEC-Q,France,France,,2023-2024,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall_Student Data Collection_HEC-Q.xlsx,Graduate Nationalities,C6,used
+2023-2024,HEC-Q,Greece,Greece,,2023-2024,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall_Student Data Collection_HEC-Q.xlsx,Graduate Nationalities,C7,used
+2023-2024,HEC-Q,India,India,,2023-2024,student_data,graduated,5,,v2022,AY23-24/AY23-24 Fall_Student Data Collection_HEC-Q.xlsx,Graduate Nationalities,C8,used
+2023-2024,HEC-Q,Jordan,Jordan,,2023-2024,student_data,graduated,2,,v2022,AY23-24/AY23-24 Fall_Student Data Collection_HEC-Q.xlsx,Graduate Nationalities,C9,used
+2023-2024,HEC-Q,Kuwait,Kuwait,,2023-2024,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall_Student Data Collection_HEC-Q.xlsx,Graduate Nationalities,C10,used
+2023-2024,HEC-Q,Lebanon,Lebanon,,2023-2024,student_data,graduated,3,,v2022,AY23-24/AY23-24 Fall_Student Data Collection_HEC-Q.xlsx,Graduate Nationalities,C11,used
+2023-2024,HEC-Q,Pakistan,Pakistan,,2023-2024,student_data,graduated,2,,v2022,AY23-24/AY23-24 Fall_Student Data Collection_HEC-Q.xlsx,Graduate Nationalities,C12,used
+2023-2024,HEC-Q,Philippines,Philippines,,2023-2024,student_data,graduated,2,,v2022,AY23-24/AY23-24 Fall_Student Data Collection_HEC-Q.xlsx,Graduate Nationalities,C13,used
+2023-2024,HEC-Q,Qatar,Qatar,,2023-2024,student_data,graduated,41,,v2022,AY23-24/AY23-24 Fall_Student Data Collection_HEC-Q.xlsx,Graduate Nationalities,C14,used
+2023-2024,HEC-Q,Romania,Romania,,2023-2024,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall_Student Data Collection_HEC-Q.xlsx,Graduate Nationalities,C15,used
+2023-2024,HEC-Q,Russia,Russia,,2023-2024,student_data,graduated,2,,v2022,AY23-24/AY23-24 Fall_Student Data Collection_HEC-Q.xlsx,Graduate Nationalities,C16,used
+2023-2024,HEC-Q,Saudi Arabia,Saudi Arabia,,2023-2024,student_data,graduated,30,,v2022,AY23-24/AY23-24 Fall_Student Data Collection_HEC-Q.xlsx,Graduate Nationalities,C17,used
+2023-2024,HEC-Q,Somalia,Somalia,,2023-2024,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall_Student Data Collection_HEC-Q.xlsx,Graduate Nationalities,C18,used
+2023-2024,HEC-Q,Tunisia,Tunisia,,2023-2024,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall_Student Data Collection_HEC-Q.xlsx,Graduate Nationalities,C19,used
+2023-2024,HEC-Q,Turkey,Turkey,,2023-2024,student_data,graduated,1,,v2022,AY23-24/AY23-24 Fall_Student Data Collection_HEC-Q.xlsx,Graduate Nationalities,C20,used
+2023-2024,HEC-Q,United States,United States,,2023-2024,student_data,graduated,2,,v2022,AY23-24/AY23-24 Fall_Student Data Collection_HEC-Q.xlsx,Graduate Nationalities,C21,used
+2023-2024,TAMU-Q,Egypt,Egypt,,2023-2024,student_data,graduated,14,,v2022,AY23-24/AY23-24 TAMU-Q Student Data Collection_071824.xlsx,Graduate Nationalities,C10,used
+2023-2024,TAMU-Q,India,India,,2023-2024,student_data,graduated,7,,v2022,AY23-24/AY23-24 TAMU-Q Student Data Collection_071824.xlsx,Graduate Nationalities,C13,used
+2023-2024,TAMU-Q,Lebanon,Lebanon,,2023-2024,student_data,graduated,9,,v2022,AY23-24/AY23-24 TAMU-Q Student Data Collection_071824.xlsx,Graduate Nationalities,C16,used
+2023-2024,TAMU-Q,Pakistan,Pakistan,,2023-2024,student_data,graduated,5,,v2022,AY23-24/AY23-24 TAMU-Q Student Data Collection_071824.xlsx,Graduate Nationalities,C19,used
+2023-2024,TAMU-Q,Qatar,Qatar,,2023-2024,student_data,graduated,69,,v2022,AY23-24/AY23-24 TAMU-Q Student Data Collection_071824.xlsx,Graduate Nationalities,C22,used
+2023-2024,TAMU-Q,Sudan,Sudan,,2023-2024,student_data,graduated,5,,v2022,AY23-24/AY23-24 TAMU-Q Student Data Collection_071824.xlsx,Graduate Nationalities,C26,used
+2023-2024,GU-Q,Algeria,Algeria,,2023-2024,student_data,graduated,1,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C6,used
+2023-2024,GU-Q,Australia,Australia,,2023-2024,student_data,graduated,2,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C7,used
+2023-2024,GU-Q,Azerbaijan,Azerbaijan,,2023-2024,student_data,graduated,1,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C8,used
+2023-2024,GU-Q,Canada,Canada,,2023-2024,student_data,graduated,1,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C9,used
+2023-2024,GU-Q,China,China,,2023-2024,student_data,graduated,1,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C10,used
+2023-2024,GU-Q,Costa Rica,Costa Rica,,2023-2024,student_data,graduated,1,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C11,used
+2023-2024,GU-Q,Denmark,Denmark,,2023-2024,student_data,graduated,1,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C12,used
+2023-2024,GU-Q,Egypt,Egypt,,2023-2024,student_data,graduated,4,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C13,used
+2023-2024,GU-Q,El Salvador,El Salvador,,2023-2024,student_data,graduated,1,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C14,used
+2023-2024,GU-Q,Ethiopia,Ethiopia,,2023-2024,student_data,graduated,1,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C15,used
+2023-2024,GU-Q,Georgia,Georgia,,2023-2024,student_data,graduated,1,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C16,used
+2023-2024,GU-Q,India,India,,2023-2024,student_data,graduated,7,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C17,used
+2023-2024,GU-Q,Iraq,Iraq,,2023-2024,student_data,graduated,2,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C18,used
+2023-2024,GU-Q,Jordan,Jordan,,2023-2024,student_data,graduated,1,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C19,used
+2023-2024,GU-Q,Kazakhstan,Kazakhstan,,2023-2024,student_data,graduated,2,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C20,used
+2023-2024,GU-Q,Lebanon,Lebanon,,2023-2024,student_data,graduated,4,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C21,used
+2023-2024,GU-Q,Montenegro,Montenegro,,2023-2024,student_data,graduated,1,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C22,used
+2023-2024,GU-Q,Morocco,Morocco,,2023-2024,student_data,graduated,1,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C23,used
+2023-2024,GU-Q,Mozambique,Mozambique,,2023-2024,student_data,graduated,1,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C24,used
+2023-2024,GU-Q,Nepal,Nepal,,2023-2024,student_data,graduated,4,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C25,used
+2023-2024,GU-Q,Nigeria,Nigeria,,2023-2024,student_data,graduated,3,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C26,used
+2023-2024,GU-Q,Pakistan,Pakistan,,2023-2024,student_data,graduated,9,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C27,used
+2023-2024,GU-Q,Philippines,Philippines,,2023-2024,student_data,graduated,2,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C28,used
+2023-2024,GU-Q,Qatar,Qatar,,2023-2024,student_data,graduated,45,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C29,used
+2023-2024,GU-Q,Russia,Russia,,2023-2024,student_data,graduated,1,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C30,used
+2023-2024,GU-Q,Rwanda,Rwanda,,2023-2024,student_data,graduated,2,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C31,used
+2023-2024,GU-Q,Somalia,Somalia,,2023-2024,student_data,graduated,2,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C32,used
+2023-2024,GU-Q,Syria,Syria,,2023-2024,student_data,graduated,2,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C33,used
+2023-2024,GU-Q,Taiwan,Taiwan,,2023-2024,student_data,graduated,1,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C34,used
+2023-2024,GU-Q,Tunisia,Tunisia,,2023-2024,student_data,graduated,1,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C35,used
+2023-2024,GU-Q,Turkey,Turkey,,2023-2024,student_data,graduated,1,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C36,used
+2023-2024,GU-Q,Uganda,Uganda,,2023-2024,student_data,graduated,2,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C37,used
+2023-2024,GU-Q,Ukraine,Ukraine,,2023-2024,student_data,graduated,2,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C38,used
+2023-2024,GU-Q,United States of America,United States of America,,2023-2024,student_data,graduated,4,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C39,used
+2023-2024,GU-Q,Uzbekistan,Uzbekistan,,2023-2024,student_data,graduated,2,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C40,used
+2023-2024,GU-Q,West Bank,West Bank,,2023-2024,student_data,graduated,1,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C41,used
+2023-2024,GU-Q,Yemen,Yemen,,2023-2024,student_data,graduated,1,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C42,used
+2023-2024,GU-Q,Zimbabwe,Zimbabwe,,2023-2024,student_data,graduated,1,,v2022,AY23-24/GUQ_Fall Student Data Collection AY2023-2024 final.xlsx,Graduate Nationalities,C43,used
+2023-2024,HBKU,Afghanistan,Afghanistan,,2023-2024,student_data,graduated,2,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C6,used
+2023-2024,HBKU,Albania,Albania,,2023-2024,student_data,graduated,1,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C7,used
+2023-2024,HBKU,Algeria,Algeria,,2023-2024,student_data,graduated,5,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C8,used
+2023-2024,HBKU,Australia,Australia,,2023-2024,student_data,graduated,1,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C9,used
+2023-2024,HBKU,Bahrain,Bahrain,,2023-2024,student_data,graduated,3,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C10,used
+2023-2024,HBKU,Bangladesh,Bangladesh,,2023-2024,student_data,graduated,4,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C11,used
+2023-2024,HBKU,Canada,Canada,,2023-2024,student_data,graduated,2,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C12,used
+2023-2024,HBKU,Chad,Chad,,2023-2024,student_data,graduated,1,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C13,used
+2023-2024,HBKU,Cote D'Ivoire,Cote D'Ivoire,,2023-2024,student_data,graduated,1,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C14,used
+2023-2024,HBKU,Egypt,Egypt,,2023-2024,student_data,graduated,18,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C15,used
+2023-2024,HBKU,Ethiopia,Ethiopia,,2023-2024,student_data,graduated,2,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C16,used
+2023-2024,HBKU,France,France,,2023-2024,student_data,graduated,1,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C17,used
+2023-2024,HBKU,Gambia,Gambia,,2023-2024,student_data,graduated,1,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C18,used
+2023-2024,HBKU,Germany,Germany,,2023-2024,student_data,graduated,1,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C19,used
+2023-2024,HBKU,Ghana,Ghana,,2023-2024,student_data,graduated,1,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C20,used
+2023-2024,HBKU,India,India,,2023-2024,student_data,graduated,16,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C21,used
+2023-2024,HBKU,Indonesia,Indonesia,,2023-2024,student_data,graduated,2,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C22,used
+2023-2024,HBKU,Iran (Islamic Republic Of),Iran (Islamic Republic Of),,2023-2024,student_data,graduated,2,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C23,used
+2023-2024,HBKU,Iraq,Iraq,,2023-2024,student_data,graduated,3,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C24,used
+2023-2024,HBKU,Jordan,Jordan,,2023-2024,student_data,graduated,13,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C25,used
+2023-2024,HBKU,Kazakhstan,Kazakhstan,,2023-2024,student_data,graduated,2,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C26,used
+2023-2024,HBKU,Kenya,Kenya,,2023-2024,student_data,graduated,2,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C27,used
+2023-2024,HBKU,Kyrgyzstan,Kyrgyzstan,,2023-2024,student_data,graduated,1,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C28,used
+2023-2024,HBKU,Lebanon,Lebanon,,2023-2024,student_data,graduated,5,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C29,used
+2023-2024,HBKU,Libyan Arab Jamahiriya,Libyan Arab Jamahiriya,,2023-2024,student_data,graduated,2,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C30,used
+2023-2024,HBKU,Mauritius,Mauritius,,2023-2024,student_data,graduated,1,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C31,used
+2023-2024,HBKU,Morocco,Morocco,,2023-2024,student_data,graduated,2,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C32,used
+2023-2024,HBKU,Nepal,Nepal,,2023-2024,student_data,graduated,1,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C33,used
+2023-2024,HBKU,Nigeria,Nigeria,,2023-2024,student_data,graduated,9,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C34,used
+2023-2024,HBKU,Oman,Oman,,2023-2024,student_data,graduated,2,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C35,used
+2023-2024,HBKU,Pakistan,Pakistan,,2023-2024,student_data,graduated,23,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C36,used
+2023-2024,HBKU,Palestine,Palestine,,2023-2024,student_data,graduated,10,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C37,used
+2023-2024,HBKU,Philippines,Philippines,,2023-2024,student_data,graduated,1,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C38,used
+2023-2024,HBKU,Qatar,Qatar,,2023-2024,student_data,graduated,64,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C39,used
+2023-2024,HBKU,Saudi Arabia,Saudi Arabia,,2023-2024,student_data,graduated,1,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C40,used
+2023-2024,HBKU,Somalia,Somalia,,2023-2024,student_data,graduated,6,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C41,used
+2023-2024,HBKU,Sri Lanka,Sri Lanka,,2023-2024,student_data,graduated,3,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C42,used
+2023-2024,HBKU,Sudan,Sudan,,2023-2024,student_data,graduated,5,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C43,used
+2023-2024,HBKU,Sweden,Sweden,,2023-2024,student_data,graduated,1,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C44,used
+2023-2024,HBKU,Syrian Arab Republic,Syrian Arab Republic,,2023-2024,student_data,graduated,8,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C45,used
+2023-2024,HBKU,Togo,Togo,,2023-2024,student_data,graduated,1,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C46,used
+2023-2024,HBKU,Tunisia,Tunisia,,2023-2024,student_data,graduated,3,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C47,used
+2023-2024,HBKU,Turkey,Turkey,,2023-2024,student_data,graduated,2,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C48,used
+2023-2024,HBKU,United Kingdom,United Kingdom,,2023-2024,student_data,graduated,2,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C49,used
+2023-2024,HBKU,United States,United States,,2023-2024,student_data,graduated,5,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C50,used
+2023-2024,HBKU,Yemen,Yemen,,2023-2024,student_data,graduated,9,,v2022,AY23-24/HBKU Student Data Collection 2023 - 2024 (003).xlsx,Graduate Nationalities,C51,used
+2023-2024,VCU-Q,Qatar,Qatar,The number of graduates by citizenship is not included to protect the privacy of students.,2023-2024,student_data,graduated,46,,v2022,AY23-24/VCU_Q Fall Student Data Collection AY2023-2024 (updated).xlsx,Graduate Nationalities,C6,used
+2023-2024,WCM-Q,Australia,Australia,,2023-2024,student_data,graduated,1,,v2022,AY23-24/WCMQ_Student Data Collection AY2023-2024.xlsx,Graduate Nationalities,C6,used
+2023-2024,WCM-Q,Bangladesh,Bangladesh,,2023-2024,student_data,graduated,1,,v2022,AY23-24/WCMQ_Student Data Collection AY2023-2024.xlsx,Graduate Nationalities,C7,used
+2023-2024,WCM-Q,Canada,Canada,,2023-2024,student_data,graduated,6,,v2022,AY23-24/WCMQ_Student Data Collection AY2023-2024.xlsx,Graduate Nationalities,C8,used
+2023-2024,WCM-Q,Egypt,Egypt,,2023-2024,student_data,graduated,2,,v2022,AY23-24/WCMQ_Student Data Collection AY2023-2024.xlsx,Graduate Nationalities,C9,used
+2023-2024,WCM-Q,India,India,,2023-2024,student_data,graduated,6,,v2022,AY23-24/WCMQ_Student Data Collection AY2023-2024.xlsx,Graduate Nationalities,C10,used
+2023-2024,WCM-Q,Jordan,Jordan,,2023-2024,student_data,graduated,3,,v2022,AY23-24/WCMQ_Student Data Collection AY2023-2024.xlsx,Graduate Nationalities,C11,used
+2023-2024,WCM-Q,Kuwait,Kuwait,,2023-2024,student_data,graduated,1,,v2022,AY23-24/WCMQ_Student Data Collection AY2023-2024.xlsx,Graduate Nationalities,C12,used
+2023-2024,WCM-Q,Pakistan,Pakistan,,2023-2024,student_data,graduated,3,,v2022,AY23-24/WCMQ_Student Data Collection AY2023-2024.xlsx,Graduate Nationalities,C13,used
+2023-2024,WCM-Q,Qatar,Qatar,,2023-2024,student_data,graduated,18,,v2022,AY23-24/WCMQ_Student Data Collection AY2023-2024.xlsx,Graduate Nationalities,C14,used
+2023-2024,WCM-Q,Sweden,Sweden,,2023-2024,student_data,graduated,1,,v2022,AY23-24/WCMQ_Student Data Collection AY2023-2024.xlsx,Graduate Nationalities,C15,used
+2023-2024,WCM-Q,Syria,Syria,,2023-2024,student_data,graduated,1,,v2022,AY23-24/WCMQ_Student Data Collection AY2023-2024.xlsx,Graduate Nationalities,C16,used
+2023-2024,WCM-Q,Taiwan,Taiwan,,2023-2024,student_data,graduated,1,,v2022,AY23-24/WCMQ_Student Data Collection AY2023-2024.xlsx,Graduate Nationalities,C17,used
+2023-2024,WCM-Q,United States,United States,,2023-2024,student_data,graduated,6,,v2022,AY23-24/WCMQ_Student Data Collection AY2023-2024.xlsx,Graduate Nationalities,C18,used
+2024-2025,CMU-Q,Algeria,Algeria,2024-05-01,2023-2024,label,graduated,1,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C6,used
+2024-2025,CMU-Q,Bangladesh,Bangladesh,2024-05-01,2023-2024,label,graduated,1,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C7,used
+2024-2025,CMU-Q,Canada,Canada,2024-05-01,2023-2024,label,graduated,2,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C8,used
+2024-2025,CMU-Q,China,China,2024-05-01,2023-2024,label,graduated,3,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C9,used
+2024-2025,CMU-Q,Côte d’Ivoire,Côte d’Ivoire,2024-05-01,2023-2024,label,graduated,1,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C10,used
+2024-2025,CMU-Q,Egypt,Egypt,2024-05-01,2023-2024,label,graduated,2,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C11,used
+2024-2025,CMU-Q,Georgia,Georgia,2024-05-01,2023-2024,label,graduated,3,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C12,used
+2024-2025,CMU-Q,India,India,2024-05-01,2023-2024,label,graduated,7,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C13,used
+2024-2025,CMU-Q,Jordan,Jordan,2024-05-01,2023-2024,label,graduated,3,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C14,used
+2024-2025,CMU-Q,Kazakhstan,Kazakhstan,2024-05-01,2023-2024,label,graduated,5,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C15,used
+2024-2025,CMU-Q,Kenya,Kenya,2024-05-01,2023-2024,label,graduated,1,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C16,used
+2024-2025,CMU-Q,"Korea, South","Korea, South",2024-05-01,2023-2024,label,graduated,1,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C17,used
+2024-2025,CMU-Q,Kuwait,Kuwait,2024-05-01,2023-2024,label,graduated,2,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C18,used
+2024-2025,CMU-Q,Lebanon,Lebanon,2024-05-01,2023-2024,label,graduated,2,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C19,used
+2024-2025,CMU-Q,Malaysia,Malaysia,2024-05-01,2023-2024,label,graduated,2,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C20,used
+2024-2025,CMU-Q,Myanmar (Burma),Myanmar (Burma),2024-05-01,2023-2024,label,graduated,1,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C21,used
+2024-2025,CMU-Q,Oman,Oman,2024-05-01,2023-2024,label,graduated,1,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C22,used
+2024-2025,CMU-Q,Pakistan,Pakistan,2024-05-01,2023-2024,label,graduated,8,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C23,used
+2024-2025,CMU-Q,Palestine,Palestine,2024-05-01,2023-2024,label,graduated,1,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C24,used
+2024-2025,CMU-Q,Philippines,Philippines,2024-05-01,2023-2024,label,graduated,4,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C25,used
+2024-2025,CMU-Q,Qatar,Qatar,2024-05-01,2023-2024,label,graduated,44,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C26,used
+2024-2025,CMU-Q,Romania,Romania,2024-05-01,2023-2024,label,graduated,2,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C27,used
+2024-2025,CMU-Q,Russia,Russia,2024-05-01,2023-2024,label,graduated,1,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C28,used
+2024-2025,CMU-Q,Rwanda,Rwanda,2024-05-01,2023-2024,label,graduated,1,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C29,used
+2024-2025,CMU-Q,Somalia,Somalia,2024-05-01,2023-2024,label,graduated,1,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C30,used
+2024-2025,CMU-Q,Saint Kitts and Nevis,Saint Kitts and Nevis,2024-05-01,2023-2024,label,graduated,1,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C31,used
+2024-2025,CMU-Q,Sudan,Sudan,2024-05-01,2023-2024,label,graduated,2,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C32,used
+2024-2025,CMU-Q,Syria,Syria,2024-05-01,2023-2024,label,graduated,3,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C33,used
+2024-2025,CMU-Q,Netherlands,Netherlands,2024-05-01,2023-2024,label,graduated,1,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C34,used
+2024-2025,CMU-Q,Tunisia,Tunisia,2024-05-01,2023-2024,label,graduated,2,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C35,used
+2024-2025,CMU-Q,United Kingdom,United Kingdom,2024-05-01,2023-2024,label,graduated,1,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C36,used
+2024-2025,CMU-Q,United States,United States,2024-05-01,2023-2024,label,graduated,5,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C37,used
+2024-2025,CMU-Q,Uzbekistan,Uzbekistan,2024-05-01,2023-2024,label,graduated,4,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C38,used
+2024-2025,CMU-Q,Vietnam,Vietnam,2024-05-01,2023-2024,label,graduated,1,,v2022,AY24-25/AY24-25 CMU-Q Student Data v1.xlsx,Graduate Nationalities,C39,used
+2024-2025,GU-Q,Afghanistan,Afghanistan,"Four students in this cohort are expected to graduate this summer. They have been included here, but their degrees have not yet been formally awarded.",2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C6,used
+2024-2025,GU-Q,Armenia,Armenia,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C7,used
+2024-2025,GU-Q,Canada,Canada,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C8,used
+2024-2025,GU-Q,China,China,,2024-2025,student_data,graduated,2,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C9,used
+2024-2025,GU-Q,Colombia,Colombia,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C10,used
+2024-2025,GU-Q,Ecuador,Ecuador,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C11,used
+2024-2025,GU-Q,Egypt,Egypt,,2024-2025,student_data,graduated,2,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C12,used
+2024-2025,GU-Q,Ethiopia,Ethiopia,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C13,used
+2024-2025,GU-Q,Georgia,Georgia,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C14,used
+2024-2025,GU-Q,Ghana,Ghana,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C15,used
+2024-2025,GU-Q,India,India,,2024-2025,student_data,graduated,6,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C16,used
+2024-2025,GU-Q,Indonesia,Indonesia,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C17,used
+2024-2025,GU-Q,Iran,Iran,,2024-2025,student_data,graduated,2,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C18,used
+2024-2025,GU-Q,Jordan,Jordan,,2024-2025,student_data,graduated,4,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C19,used
+2024-2025,GU-Q,Kazakhstan,Kazakhstan,,2024-2025,student_data,graduated,2,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C20,used
+2024-2025,GU-Q,Kenya,Kenya,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C21,used
+2024-2025,GU-Q,Lebanon,Lebanon,,2024-2025,student_data,graduated,2,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C22,used
+2024-2025,GU-Q,Morocco,Morocco,,2024-2025,student_data,graduated,2,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C23,used
+2024-2025,GU-Q,Nepal,Nepal,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C24,used
+2024-2025,GU-Q,Nigeria,Nigeria,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C25,used
+2024-2025,GU-Q,Pakistan,Pakistan,,2024-2025,student_data,graduated,9,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C26,used
+2024-2025,GU-Q,Philippines,Philippines,,2024-2025,student_data,graduated,5,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C27,used
+2024-2025,GU-Q,Qatar,Qatar,,2024-2025,student_data,graduated,35,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C28,used
+2024-2025,GU-Q,Russia,Russia,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C29,used
+2024-2025,GU-Q,Rwanda,Rwanda,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C30,used
+2024-2025,GU-Q,Somalia,Somalia,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C31,used
+2024-2025,GU-Q,South Africa,South Africa,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C32,used
+2024-2025,GU-Q,"Korea, South","Korea, South",,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C33,used
+2024-2025,GU-Q,Sudan,Sudan,,2024-2025,student_data,graduated,2,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C34,used
+2024-2025,GU-Q,Syria,Syria,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C35,used
+2024-2025,GU-Q,Taiwan,Taiwan,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C36,used
+2024-2025,GU-Q,Tajikistan,Tajikistan,,2024-2025,student_data,graduated,3,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C37,used
+2024-2025,GU-Q,Turkey,Turkey,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C38,used
+2024-2025,GU-Q,United States,United States,,2024-2025,student_data,graduated,10,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C39,used
+2024-2025,GU-Q,Uzbekistan,Uzbekistan,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C40,used
+2024-2025,GU-Q,Palestine,Palestine,,2024-2025,student_data,graduated,2,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C41,used
+2024-2025,GU-Q,Yemen,Yemen,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C42,used
+2024-2025,GU-Q,Oman,Oman,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 GU-Q Student Data - Spring 2025 - Final 20250801.xlsx,Graduate Nationalities,C43,used
+2024-2025,HEC-Q,Egypt,Egypt,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 HEC-Doha Student Data - Spring 2025_20July2025.xlsx,Graduate Nationalities,C6,used
+2024-2025,HEC-Q,France,France,,2024-2025,student_data,graduated,4,,v2022,AY24-25/AY24-25 HEC-Doha Student Data - Spring 2025_20July2025.xlsx,Graduate Nationalities,C7,used
+2024-2025,HEC-Q,Germany,Germany,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 HEC-Doha Student Data - Spring 2025_20July2025.xlsx,Graduate Nationalities,C8,used
+2024-2025,HEC-Q,India,India,,2024-2025,student_data,graduated,2,,v2022,AY24-25/AY24-25 HEC-Doha Student Data - Spring 2025_20July2025.xlsx,Graduate Nationalities,C9,used
+2024-2025,HEC-Q,Iran,Iran,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 HEC-Doha Student Data - Spring 2025_20July2025.xlsx,Graduate Nationalities,C10,used
+2024-2025,HEC-Q,Jordan,Jordan,,2024-2025,student_data,graduated,4,,v2022,AY24-25/AY24-25 HEC-Doha Student Data - Spring 2025_20July2025.xlsx,Graduate Nationalities,C11,used
+2024-2025,HEC-Q,Kuwait,Kuwait,,2024-2025,student_data,graduated,2,,v2022,AY24-25/AY24-25 HEC-Doha Student Data - Spring 2025_20July2025.xlsx,Graduate Nationalities,C12,used
+2024-2025,HEC-Q,Lebanon,Lebanon,,2024-2025,student_data,graduated,3,,v2022,AY24-25/AY24-25 HEC-Doha Student Data - Spring 2025_20July2025.xlsx,Graduate Nationalities,C13,used
+2024-2025,HEC-Q,Netherlands,Netherlands,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 HEC-Doha Student Data - Spring 2025_20July2025.xlsx,Graduate Nationalities,C14,used
+2024-2025,HEC-Q,Qatar,Qatar,,2024-2025,student_data,graduated,50,,v2022,AY24-25/AY24-25 HEC-Doha Student Data - Spring 2025_20July2025.xlsx,Graduate Nationalities,C15,used
+2024-2025,HEC-Q,Russia,Russia,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 HEC-Doha Student Data - Spring 2025_20July2025.xlsx,Graduate Nationalities,C16,used
+2024-2025,HEC-Q,Saudi Arabia,Saudi Arabia,,2024-2025,student_data,graduated,63,,v2022,AY24-25/AY24-25 HEC-Doha Student Data - Spring 2025_20July2025.xlsx,Graduate Nationalities,C17,used
+2024-2025,HEC-Q,United Kingdom,United Kingdom,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 HEC-Doha Student Data - Spring 2025_20July2025.xlsx,Graduate Nationalities,C18,used
+2024-2025,NU-Q,Qatar,Qatar,,2024-2025,student_data,graduated,61,,v2022,AY24-25/AY24-25 NU-Q Student Data - Spring 2025.xlsx,Graduate Nationalities,C6,used
+2024-2025,NU-Q,Non-Qatari,Non-Qatari (country not given),"Countries represented include Bahrain, Bangladesh, Brazil, China, Colombia, France, India, Jordan, Kazakhstan, Kenya, Kuwait, Morocco. Nepal, Oman, Pakistan Russian Federation, Rwanda, Sri Lanka, Sudan, UK, USA and Zambia",2024-2025,student_data,graduated,57,,v2022,AY24-25/AY24-25 NU-Q Student Data - Spring 2025.xlsx,Graduate Nationalities,C7,used
+2024-2025,TAMU-Q,Bangladesh,Bangladesh,,2024-2025,student_data,graduated,2,,v2022,AY24-25/AY24-25 TAMU-Q Student Data Template - Spring 2025_072225_v2.xlsx,Graduate Nationalities,C6,used
+2024-2025,TAMU-Q,Canada,Canada,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 TAMU-Q Student Data Template - Spring 2025_072225_v2.xlsx,Graduate Nationalities,C7,used
+2024-2025,TAMU-Q,Egypt,Egypt,,2024-2025,student_data,graduated,9,,v2022,AY24-25/AY24-25 TAMU-Q Student Data Template - Spring 2025_072225_v2.xlsx,Graduate Nationalities,C8,used
+2024-2025,TAMU-Q,Greece,Greece,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 TAMU-Q Student Data Template - Spring 2025_072225_v2.xlsx,Graduate Nationalities,C9,used
+2024-2025,TAMU-Q,India,India,,2024-2025,student_data,graduated,7,,v2022,AY24-25/AY24-25 TAMU-Q Student Data Template - Spring 2025_072225_v2.xlsx,Graduate Nationalities,C10,used
+2024-2025,TAMU-Q,Indonesia,Indonesia,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 TAMU-Q Student Data Template - Spring 2025_072225_v2.xlsx,Graduate Nationalities,C11,used
+2024-2025,TAMU-Q,Iraq,Iraq,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 TAMU-Q Student Data Template - Spring 2025_072225_v2.xlsx,Graduate Nationalities,C12,used
+2024-2025,TAMU-Q,Jordan,Jordan,,2024-2025,student_data,graduated,6,,v2022,AY24-25/AY24-25 TAMU-Q Student Data Template - Spring 2025_072225_v2.xlsx,Graduate Nationalities,C13,used
+2024-2025,TAMU-Q,Lebanon,Lebanon,,2024-2025,student_data,graduated,4,,v2022,AY24-25/AY24-25 TAMU-Q Student Data Template - Spring 2025_072225_v2.xlsx,Graduate Nationalities,C14,used
+2024-2025,TAMU-Q,Libya,Libya,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 TAMU-Q Student Data Template - Spring 2025_072225_v2.xlsx,Graduate Nationalities,C15,used
+2024-2025,TAMU-Q,Pakistan,Pakistan,,2024-2025,student_data,graduated,5,,v2022,AY24-25/AY24-25 TAMU-Q Student Data Template - Spring 2025_072225_v2.xlsx,Graduate Nationalities,C16,used
+2024-2025,TAMU-Q,Philippines,Philippines,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 TAMU-Q Student Data Template - Spring 2025_072225_v2.xlsx,Graduate Nationalities,C17,used
+2024-2025,TAMU-Q,Qatar,Qatar,,2024-2025,student_data,graduated,82,,v2022,AY24-25/AY24-25 TAMU-Q Student Data Template - Spring 2025_072225_v2.xlsx,Graduate Nationalities,C18,used
+2024-2025,TAMU-Q,Sri Lanka,Sri Lanka,,2024-2025,student_data,graduated,3,,v2022,AY24-25/AY24-25 TAMU-Q Student Data Template - Spring 2025_072225_v2.xlsx,Graduate Nationalities,C19,used
+2024-2025,TAMU-Q,Sudan,Sudan,,2024-2025,student_data,graduated,2,,v2022,AY24-25/AY24-25 TAMU-Q Student Data Template - Spring 2025_072225_v2.xlsx,Graduate Nationalities,C20,used
+2024-2025,TAMU-Q,Syria,Syria,,2024-2025,student_data,graduated,3,,v2022,AY24-25/AY24-25 TAMU-Q Student Data Template - Spring 2025_072225_v2.xlsx,Graduate Nationalities,C21,used
+2024-2025,TAMU-Q,United States,United States,,2024-2025,student_data,graduated,4,,v2022,AY24-25/AY24-25 TAMU-Q Student Data Template - Spring 2025_072225_v2.xlsx,Graduate Nationalities,C22,used
+2024-2025,WCM-Q,BAHRAIN,Bahrain,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 WCM-Q Student Data - Spring 2025_final.xlsx,Graduate Nationalities,C6,used
+2024-2025,WCM-Q,BANGLADESH,Bangladesh,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 WCM-Q Student Data - Spring 2025_final.xlsx,Graduate Nationalities,C7,used
+2024-2025,WCM-Q,BELGIUM,BELGIUM,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 WCM-Q Student Data - Spring 2025_final.xlsx,Graduate Nationalities,C8,used
+2024-2025,WCM-Q,CANADA,Canada,,2024-2025,student_data,graduated,2,,v2022,AY24-25/AY24-25 WCM-Q Student Data - Spring 2025_final.xlsx,Graduate Nationalities,C9,used
+2024-2025,WCM-Q,EGYPT,Egypt,,2024-2025,student_data,graduated,4,,v2022,AY24-25/AY24-25 WCM-Q Student Data - Spring 2025_final.xlsx,Graduate Nationalities,C10,used
+2024-2025,WCM-Q,INDIA,India,,2024-2025,student_data,graduated,3,,v2022,AY24-25/AY24-25 WCM-Q Student Data - Spring 2025_final.xlsx,Graduate Nationalities,C11,used
+2024-2025,WCM-Q,IRAN (ISLAMIC REPUBLIC OF),Iran (Islamic Republic Of),,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 WCM-Q Student Data - Spring 2025_final.xlsx,Graduate Nationalities,C12,used
+2024-2025,WCM-Q,IRAQ,Iraq,,2024-2025,student_data,graduated,3,,v2022,AY24-25/AY24-25 WCM-Q Student Data - Spring 2025_final.xlsx,Graduate Nationalities,C13,used
+2024-2025,WCM-Q,JORDAN,Jordan,,2024-2025,student_data,graduated,2,,v2022,AY24-25/AY24-25 WCM-Q Student Data - Spring 2025_final.xlsx,Graduate Nationalities,C14,used
+2024-2025,WCM-Q,LEBANON,Lebanon,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 WCM-Q Student Data - Spring 2025_final.xlsx,Graduate Nationalities,C15,used
+2024-2025,WCM-Q,PAKISTAN,Pakistan,,2024-2025,student_data,graduated,3,,v2022,AY24-25/AY24-25 WCM-Q Student Data - Spring 2025_final.xlsx,Graduate Nationalities,C16,used
+2024-2025,WCM-Q,QATAR,Qatar,,2024-2025,student_data,graduated,13,,v2022,AY24-25/AY24-25 WCM-Q Student Data - Spring 2025_final.xlsx,Graduate Nationalities,C17,used
+2024-2025,WCM-Q,SRI LANKA,Sri Lanka,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 WCM-Q Student Data - Spring 2025_final.xlsx,Graduate Nationalities,C18,used
+2024-2025,WCM-Q,SUDAN,Sudan,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 WCM-Q Student Data - Spring 2025_final.xlsx,Graduate Nationalities,C19,used
+2024-2025,WCM-Q,SYRIAN ARAB REPUBLIC,Syrian Arab Republic,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 WCM-Q Student Data - Spring 2025_final.xlsx,Graduate Nationalities,C20,used
+2024-2025,WCM-Q,TUNISIA,Tunisia,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 WCM-Q Student Data - Spring 2025_final.xlsx,Graduate Nationalities,C21,used
+2024-2025,WCM-Q,TURKEY,Turkey,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 WCM-Q Student Data - Spring 2025_final.xlsx,Graduate Nationalities,C22,used
+2024-2025,WCM-Q,UNITED KINGDOM OF GREAT BRITAIN AND NORTHERN IRELAND,UNITED KINGDOM OF GREAT BRITAIN AND NORTHERN IRELAND,,2024-2025,student_data,graduated,1,,v2022,AY24-25/AY24-25 WCM-Q Student Data - Spring 2025_final.xlsx,Graduate Nationalities,C23,used
+2024-2025,WCM-Q,UNITED STATES OF AMERICA,United States of America,,2024-2025,student_data,graduated,4,,v2022,AY24-25/AY24-25 WCM-Q Student Data - Spring 2025_final.xlsx,Graduate Nationalities,C24,used

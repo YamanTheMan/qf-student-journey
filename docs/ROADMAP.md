@@ -59,7 +59,7 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [x] List-sheet reader (`pipeline/lists.py`) for sheets with one row per item instead of per program
 - [x] Nationalities reader: 32,353 numbers from 42 files; country names standardised; totals match Student Data in 34 of 41 years
 - [x] Registered Students Detailed reader: 2,249 numbers from 24 files; totals match Student Data in 19 of 24 years (D-018)
-- [ ] Readers: Ages, Graduate Nationalities, Internships, Funding
+- [x] Ages, Graduate Nationalities, Internships and Funding readers (`pipeline/student_life.py`), each checked where an independent source exists
 - [ ] Reader for VCU-Q's 2021–22 alternative form (P-04)
 - [ ] One command builds every table (`pipeline/build.py`)
 
@@ -71,6 +71,7 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [ ] Investigate the 9 Pipeline vs Student Data differences (P-22) and decide which source wins in each
 - [ ] Outcomes class sizes of 0 and outcomes exceeding class size (P-27)
 - [ ] Mark secondary sheets as partial where they don't add up to Student Data (P-33)
+- [ ] Funding sponsor-detail rows (P-34) and graduate-nationality lists that aren't one class (P-36)
 - [ ] Quality report listing every issue found
 - [ ] Automated tests in `tests/`
 
@@ -81,6 +82,7 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [ ] Small-count suppression rule decided and applied
 - [ ] Leave `non_degree` rows out of all student totals (D-016)
 - [ ] Group countries into regions (e.g. GCC, other Arab states, South Asia) for the "where students come from" view
+- [ ] Show funding types separately, never stacked (P-35); sort older internship employers into types (P-37)
 - [ ] Decide how to compute a comparable "graduated within 150%" rate, given TAMU-Q's different convention (P-24); show HBKU graduates without a rate (P-25)
 - [ ] Decide whether to fill missing graduating classes from the next year's Outcomes sheet (class size only): NU-Q 2021–22 (108), TAMU-Q 2021–22 (110) and 2022–23 (113), WCM-Q 2020–21 (41)
 

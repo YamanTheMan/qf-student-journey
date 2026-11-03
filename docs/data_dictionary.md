@@ -214,6 +214,17 @@ Built by `.venv/bin/python -m pipeline.registered_detailed` from 24 files (2021�
 
 **Check:** totals equal Student Data's registered students in 19 of 24 university-years (21 within 2%). VCU-Q 2022–23 gives 294 students where Student Data left registered blank (P-05). Gaps: P-33.
 
+### `ages.csv`, `graduate_nationalities.csv`, `internships.csv`, `funding.csv`
+
+Built together by `.venv/bin/python -m pipeline.student_life`. Run `pipeline.student_data` first: graduate nationalities are dated from it.
+
+| Table | Files | Contents | Check |
+|---|---|---|---|
+| `ages.csv` | 40 (all years) | `age` (as written: `<15`, `17`, `35-39`, `Age unknown`), `stage` = `registered` or `new_entrants` (students entering their *first* university degree), `gender` | Registered students equal Student Data in 29 of 39 university-years (35 within 5%). New entrants are smaller than newly enrolled by definition: no graduate students or transfers. |
+| `graduate_nationalities.csv` | 21 (2021–22 on) | `country_raw` / `country` (standardised as in nationalities.csv), `graduating_year` and `timing_evidence`: dated **exactly like the same file's graduate counts** (D-011), or by a graduation date in the row's remarks; `row_status` | Equal to our dated graduates in 14 of 20 classes. Gaps: P-36. "Less than 5" is kept as text, never a number. |
+| `internships.csv` | 22 (all years) | `employer_raw`, `employer_type` (`QF`, `Public`, `Private`, `Abroad`, `Other`, or `Named employer` when older files name the employer, P-37), `count` | No independent source |
+| `funding.csv` | 23 (2022–23 on) | `stage` = funding type (`self_funded`, `qf_scholarship`, `university_scholarship`, `financial_aid`, `government_sponsored`, `company_sponsored`, `multiple_sources`), `measure` = `students` (in `count`) or `average_amount_qar` (in `amount_qar`), `nationality`, the three sponsor-detail text columns, standard program columns | Funding types overlap (P-35): never add them up. `row_type = sponsor_detail` rows (P-34) are never added to totals. |
+
 ## 7. Known problems
 
 | ID | Problem | Evidence | Status |
@@ -251,3 +262,7 @@ Built by `.venv/bin/python -m pipeline.registered_detailed` from 24 files (2021�
 | **P-31** | **NU-Q 2019–20 lists Qatar and Non-Qatari twice:** summary rows at the top repeat the alphabetical rows. | Identical numbers (174, 205) | Solved: identical duplicates are used once |
 | **P-32** | **GU-Q 2022–23 Registered Students Detailed holds summary tables, not the detailed list.** | GU-Q's remark; columns don't line up with the headers | Solved: sheet skipped (D-018) |
 | **P-33** | **Secondary sheets don't always add up to Student Data.** HEC-Q 2022–23 Nationalities is empty (0 vs 238); TAMU-Q 2023–24 Nationalities 609 and Detailed 556 vs 672; VCU-Q 2023–24 Nationalities 197 vs 311 and 2024–25 Detailed 279 vs 323 (small numbers redacted). | Checks in §6 | Phase 3: show these sheets as partial for those years |
+| **P-34** | **Funding broken down by sponsor in unnamed rows.** GU-Q 2023–24 ("GU-Q Grant" 256, "QF Scholarship" 12, company sponsors…) and VCU-Q 2022–24 ("Qatar Airways", "Qatar Armed Forces"…) add rows with the sponsor's name and no program. For GU-Q they appear to extend the main line, for VCU-Q they don't add up to it (11 vs 126). | Funding sheets | Kept as `sponsor_detail`, never summed. Phase 3: decide per university. |
+| **P-35** | **Funding types overlap.** Adding them up gives more students than are registered (e.g. TAMU-Q 2023–24: 797 vs 672), even though a "multiple funding sources" type exists. | Funding check in §6 | Phase 4: show each funding type separately, never stacked |
+| **P-36** | **Some graduate-nationality lists are not one class.** NU-Q 2023–24 has 720 (Qatar 332 + Non-Qatari 388) against 112 graduates, likely cumulative. HEC-Q graduates by cohort, so its lists don't match academic years (2021–22: 128 vs 53). | Check in §6 | Phase 3: mark these lists as not comparable |
+| **P-37** | **Older internship lists name the employer** (Qatar Museums, QAPCO, Brookings Doha Center, …) instead of its type: 390 internships in 2019–21. | Internship sheets | Kept as "Named employer". Phase 4: sort the employers into types. |

@@ -10,7 +10,7 @@ import pandas as pd
 
 from pipeline.programs import apply_program_map
 from pipeline.sources import submissions
-from pipeline.workbook import cell, cell_ref, clean_name, clean_text, read_sheet, to_count
+from pipeline.workbook import cell, cell_ref, cell_text, clean_name, clean_text, read_sheet, to_count
 
 MIN_HEADERS = 3        # a row with at least this many count headers is a header row
 MAX_BAND_LENGTH = 60   # longer text above the table is instructions, not a period label
@@ -143,8 +143,7 @@ def extract_table(src, sheet_name, parse_header, issues=None, row_fields=None):
 
 def _field_value(value):
     """An extra row field as text ('AY2018/2019', '4'), so mixed text and numbers stay comparable."""
-    count, text = to_count(value)
-    return str(count) if count is not None else clean_name(text)
+    return cell_text(value)
 
 
 def extract_sheet(sheet_name, parse_header, templates, row_fields=None):

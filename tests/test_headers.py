@@ -1,5 +1,6 @@
-from pipeline.headers import (detailed_header, graduation_rate_header, nationalities_header, outcomes_header,
-                              parse_measure, student_pipeline_header)
+from pipeline.headers import (ages_header, detailed_header, funding_header, graduation_rate_header,
+                              nationalities_header, outcomes_header, parse_measure, single_count_header,
+                              student_pipeline_header)
 
 
 def m(text):
@@ -112,6 +113,27 @@ def test_detailed_headers():
     assert detailed_header("Total Registered\nStudents") == {"stage": "registered"}
     assert detailed_header("# Registered Students") == {"stage": "registered"}  # its footer
     assert detailed_header("Year Classification") is None
+
+
+def test_ages_headers():
+    assert ages_header("# Male Students") == {"stage": "registered", "gender": "Male", "breakdown": "gender"}
+    assert ages_header("# New Enrollment to First Tertiary Programs Female")["stage"] == "new_entrants"
+    assert ages_header("Age group") is None and ages_header("Count") is None
+
+
+def test_single_count_headers_include_their_footer_wording():
+    graduates = single_count_header(r"(#|total) graduates", "graduated")
+    assert graduates("# Graduates") == graduates("Total Graduates") == {"stage": "graduated"}
+    assert graduates("List of Graduate Nationalities") is None
+
+
+def test_funding_headers_keep_money_apart_from_students():
+    assert funding_header("# Qatari Students with QF Scholarship") == \
+        {"stage": "qf_scholarship", "measure": "students", "nationality": "Qatari", "breakdown": "nationality"}
+    assert funding_header("QAR Average Amount of Financial Aid received by Students")["measure"] == "average_amount_qar"
+    assert funding_header("# Students with Multiple Funding Sources")["stage"] == "multiple_sources"
+    assert funding_header("# Self-Funded Non-Qatari Students")["stage"] == "self_funded"
+    assert funding_header("Please provide details on company sponsors") is None
 
 
 def test_non_count_columns_are_ignored():

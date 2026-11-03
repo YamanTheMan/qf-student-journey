@@ -8,10 +8,12 @@ against Student Data instead). Every row with key text is read; a row inside the
 numbers but no key text is reported, so nothing is dropped silently. Blank cells are left out:
 in a list every item is printed in advance, so a blank says nothing that a missing row doesn't.
 """
+import re
+
 import pandas as pd
 
 from pipeline.sources import submissions
-from pipeline.workbook import cell, cell_ref, clean_name, clean_text, read_sheet, to_count
+from pipeline.workbook import cell, cell_ref, cell_text, clean_text, read_sheet, to_count
 
 
 def _header_row(row, keys, parse_value):
@@ -53,9 +55,12 @@ def extract_list(src, sheet_name, keys, parse_value, issues=None, required=None)
     records = []
     for r in range(start + 1, len(rows)):
         row = rows[r]
-        key_values = {k: clean_name(cell(row, key_cols[k])) if k in key_cols else None for k in keys}
+        # cell_text: ages and dates are often stored as numbers, not text
+        key_values = {k: cell_text(cell(row, key_cols[k])) if k in key_cols else None for k in keys}
         if not any(key_values.values()) and _header_row(row, {}, parse_value)[1]:
             break  # the footer
+        if re.match(r"(grand )?total\b", (key_values[next(iter(keys))] or "").lower()):
+            break  # a 'Total ...' row is the footer too, never an item called 'Total'
         if not any(key_values.values()):
             if issues is not None and any((to_count(cell(row, c))[0] or 0) != 0 for c in value_cols):
                 issues.append(f"{src.path} '{sheet}' row {r + 1}: has numbers but no {next(iter(keys))}")

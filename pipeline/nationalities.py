@@ -35,11 +35,12 @@ def standardise_countries(table, aliases=None):
     return out
 
 
-def mark_duplicates(table):
+def mark_duplicates(table, extra_keys=()):
     """A country listed twice in one file: identical numbers -> one copy is a 'duplicate';
-    different numbers -> a problem for a person (returned as text)."""
+    different numbers -> a problem for a person (returned as text). extra_keys separates
+    lists that legitimately repeat countries, e.g. two graduating classes in one sheet."""
     out = table.copy()
-    key = ["source_file", "country", "stage", "gender"]
+    key = ["source_file", "country", "stage", *[c for c in ("gender",) if c in out.columns], *extra_keys]
     groups = out.groupby(key)["count"]
     conflicting = groups.transform(lambda s: s.nunique(dropna=False) > 1)
     out["row_status"] = "used"

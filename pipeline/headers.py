@@ -163,6 +163,63 @@ def detailed_header(header):
     return {"stage": "registered"} if re.match(r"(total|#) registered", text) else None
 
 
+def ages_header(header):
+    """'# Male Students' (registered) or '# New Enrollment to First Tertiary Programs Female' (new entrants)."""
+    if not isinstance(header, str):
+        return None
+    text = re.sub(r"\s+", " ", header).strip().lower()
+    if not text.startswith("#"):
+        return None
+    gender = "Female" if re.search(r"\bfemales?\b", text) else "Male" if re.search(r"\bmales?\b", text) else "All"
+    if re.search(r"new enrollment", text):
+        stage = "new_entrants"
+    elif re.search(r"\bstudents?\b", text):
+        stage = "registered"
+    else:
+        return None
+    return {"stage": stage, "gender": gender, "breakdown": "gender" if gender != "All" else "total"}
+
+
+def single_count_header(pattern, stage):
+    """Header reader for a sheet with one count column, e.g. '# Graduates' or '# Internships'."""
+    def parse(header):
+        if not isinstance(header, str):
+            return None
+        return {"stage": stage} if re.fullmatch(pattern, re.sub(r"\s+", " ", header).strip().lower()) else None
+    return parse
+
+
+# Student Funding: student counts by funding type and nationality, and average amounts in QAR.
+FUNDING_TYPES = [
+    ("multiple_sources", r"multiple funding"),
+    ("self_funded", r"self[\s-]*funded"),
+    ("qf_scholarship", r"\bqf scholarship"),
+    ("university_scholarship", r"university scholarship"),
+    ("financial_aid", r"financial aid"),
+    ("government_sponsored", r"government funded"),
+    ("company_sponsored", r"company funded"),
+]
+
+
+def funding_header(header):
+    """'# Qatari Students with QF Scholarship' -> students; 'QAR Average Amount of ...' -> average_amount_qar."""
+    if not isinstance(header, str):
+        return None
+    text = re.sub(r"\s+", " ", header).strip().lower()
+    if text.startswith("qar average amount"):
+        measure = "average_amount_qar"
+    elif text.startswith("#"):
+        measure = "students"
+    else:
+        return None
+    funding = next((name for name, pattern in FUNDING_TYPES if re.search(pattern, text)), None)
+    if funding is None:
+        return None
+    nationality, _, _ = student_groups(text)
+    return {"stage": funding, "measure": measure, "nationality": nationality,
+            "breakdown": "nationality" if nationality != "All" else "total"}
+
+
 # Student Outcomes after 1 Yr. Checked in order: 'self-employed' before 'employed'.
 OUTCOME_STAGES = [
     ("graduates", r"graduates from previous academic year"),

@@ -60,6 +60,15 @@ def clean_name(value):
     return None if text in EXCEL_ERRORS else text
 
 
+def cell_text(value):
+    """A label cell as text, whatever Excel stored: text ('<15'), a number (17 -> '17') or a date
+    (2024-05-01 -> '2024-05-01'). Blank and Excel errors give None."""
+    if hasattr(value, "strftime"):
+        return value.strftime("%Y-%m-%d")
+    count, text = to_count(value)
+    return str(count) if count is not None else clean_name(text)
+
+
 def to_count(value):
     """Turn a cell into (count, text).
 

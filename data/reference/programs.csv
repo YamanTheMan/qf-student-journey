@@ -34,15 +34,21 @@ GU-Q,Undeclared,Undeclared Major,International Affairs (undeclared),Internationa
 HBKU,,Non-Degree/Conditional Admits,Non-degree / conditional admits,Non-degree / conditional admits,non_degree,Non-degree,General & Foundation,Not degree-seeking; outside the form's scope (P-19).
 HBKU,BS,Computer Engineering,Computer Engineering,Computer Engineering,undergraduate,Bachelor's,Engineering,
 HBKU,BS,Computer Science & Engineering,Computer Engineering,Computer Engineering,undergraduate,Bachelor's,Engineering,Graduation Rate 2022-23 swaps the program names of the BS and PhD rows; the degree and normal time identify the program.
+HBKU,JD,Juris Doctor,Law (JD),Law (JD),graduate,Juris Doctor (JD),Law,"Professional law degree, not a research doctorate."
 HBKU,JD,Law,Law (JD),Law (JD),graduate,Juris Doctor (JD),Law,"Professional law degree, not a research doctorate."
 HBKU,LL.M.,International Economic and Business Law,International Economic and Business Law,International Economic and Business Law,graduate,Master's,Law,
 HBKU,LL.M.,International Law and Foreign Affairs,International Law and Foreign Affairs,International Law and Foreign Affairs,graduate,Master's,Law,
+HBKU,LLM-IEBL,LLM-IEBL,International Economic and Business Law,International Economic and Business Law,graduate,Master's,Law,Program code used in the Student Funding sheet.
+HBKU,LLM-ILFA,LLM-ILFA,International Law and Foreign Affairs,International Law and Foreign Affairs,graduate,Master's,Law,Program code used in the Student Funding sheet.
 HBKU,M,Public Policy,Public Policy,Public Policy,graduate,Master's,Humanities & Social Sciences,
 HBKU,M,Social Policy and Program Evaluation,Social Policy and Program Evaluation,Social Policy and Program Evaluation,graduate,Master's,Humanities & Social Sciences,
+HBKU,MA,AIE,Applied Islamic Ethics,Applied Islamic Ethics,graduate,Master's,Islamic Studies,Program code used in the Student Funding sheet.
 HBKU,MA,Applied Islamic Ethics,Applied Islamic Ethics,Applied Islamic Ethics,graduate,Master's,Islamic Studies,
 HBKU,MA,Audiovisual Translation,Audiovisual Translation,Audiovisual Translation,graduate,Master's,Humanities & Social Sciences,
+HBKU,MA,CIS,Contemporary Islamic Studies,Contemporary Islamic Studies,graduate,Master's,Islamic Studies,Program code used in the Student Funding sheet.
 HBKU,MA,Contemporary Islamic Studies,Contemporary Islamic Studies,Contemporary Islamic Studies,graduate,Master's,Islamic Studies,
 HBKU,MA,Digital Humanities & Societies,Digital Humanities and Societies,Digital Humanities and Societies,graduate,Master's,Humanities & Social Sciences,
+HBKU,MA,IGA,Islam and Global Affairs,Islam and Global Affairs,graduate,Master's,Islamic Studies,Program code used in the Student Funding sheet.
 HBKU,MA,Intercultural Communication,Intercultural Communication,Intercultural Communication,graduate,Master's,Humanities & Social Sciences,
 HBKU,MA,Islam and Global Affairs,Islam and Global Affairs,Islam and Global Affairs,graduate,Master's,Islamic Studies,
 HBKU,MA,"Islamic Art, Architecture and Urbanism","Islamic Art, Architecture and Urbanism","Islamic Art, Architecture and Urbanism",graduate,Master's,Islamic Studies,Labelled MA in an Outcomes sheet; MS elsewhere.
@@ -78,6 +84,8 @@ HBKU,MS,Sustainable Energy,Sustainable Energy (master's),Sustainable Energy (mas
 HBKU,MS,Sustainable Environment,Sustainable Environment (master's),Sustainable Environment (master's),graduate,Master's,Energy & Environment,
 HBKU,MSPPE,Public Policy,Social Policy and Program Evaluation,Social Policy and Program Evaluation,graduate,Master's,Humanities & Social Sciences,The degree code MSPPE wins over the name: 10 students here vs 9 in Social Policy and Program Evaluation and 35 in Public Policy (Student Data 2022-23).
 HBKU,MSPPE,Social Policy and Program Eval,Social Policy and Program Evaluation,Social Policy and Program Evaluation,graduate,Master's,Humanities & Social Sciences,
+HBKU,MSc,IAAU,"Islamic Art, Architecture and Urbanism","Islamic Art, Architecture and Urbanism",graduate,Master's,Islamic Studies,Program code used in the Student Funding sheet.
+HBKU,MSc,IF,Islamic Finance,Islamic Finance,graduate,Master's,Business & Management,Program code used in the Student Funding sheet.
 HBKU,Non-Degree,Non-Degree,Non-degree / conditional admits,Non-degree / conditional admits,non_degree,Non-degree,General & Foundation,Not degree-seeking; outside the form's scope (P-19).
 HBKU,PHD,PhD in Humanities and Social Sciences,Humanities and Social Sciences (PhD),Humanities and Social Sciences (PhD),graduate,Doctorate,Humanities & Social Sciences,Registered Students Detailed spelling.
 HBKU,Ph.D.,Computer Science and Engineering,Computer Science and Engineering (PhD),Computer Science and Engineering (PhD),graduate,Doctorate,Computing & Data,
@@ -90,6 +98,7 @@ HBKU,PhD,Computer Engineering,Computer Science and Engineering (PhD),Computer Sc
 HBKU,PhD,Computer Science & Engineering,Computer Science and Engineering (PhD),Computer Science and Engineering (PhD),graduate,Doctorate,Computing & Data,
 HBKU,PhD,Genomics and Precision Medicine,Genomics and Precision Medicine (PhD),Genomics and Precision Medicine (PhD),graduate,Doctorate,Sciences,
 HBKU,PhD,Humanities and Social Science,Humanities and Social Sciences (PhD),Humanities and Social Sciences (PhD),graduate,Doctorate,Humanities & Social Sciences,
+HBKU,PhD,IFE,Islamic Finance and Economy (PhD),Islamic Finance and Economy (PhD),graduate,Doctorate,Business & Management,Program code used in the Student Funding sheet.
 HBKU,PhD,Islamic Finance,Islamic Finance and Economy (PhD),Islamic Finance and Economy (PhD),graduate,Doctorate,Business & Management,Short name for the PhD in Islamic Finance and Economy.
 HBKU,PhD,Islamic Finance and Economy,Islamic Finance and Economy (PhD),Islamic Finance and Economy (PhD),graduate,Doctorate,Business & Management,
 HBKU,PhD,Islamic Studies,Islamic Studies (PhD),Islamic Studies (PhD),graduate,Doctorate,Islamic Studies,
@@ -102,6 +111,7 @@ HBKU,Phd,Humanities and Social Sciences,Humanities and Social Sciences (PhD),Hum
 HBKU,Phd,Islamic Finance and Economy,Islamic Finance and Economy (PhD),Islamic Finance and Economy (PhD),graduate,Doctorate,Business & Management,
 HBKU,S.J.D.,Juridical Science,Juridical Science,Juridical Science,graduate,Doctorate,Law,
 HBKU,SJD,Doctor of Juridical Science,Juridical Science,Juridical Science,graduate,Doctorate,Law,
+HBKU,SJD,Juridical Science,Juridical Science,Juridical Science,graduate,Doctorate,Law,
 HBKU,UG,Computer Engineering,Computer Engineering,Computer Engineering,undergraduate,Bachelor's,Engineering,Degree written as 'UG' in 2022-23.
 HEC-Q,,,All programs,All programs,graduate,Master's,Business & Management,Empty university-wide line in the 2024-25 Student Pipeline.
 HEC-Q,ELT Oct 2024,Emerging Leaders Track Executive MBA - Oct 2024 Start,Executive MBA,Executive MBA,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
@@ -132,6 +142,7 @@ HEC-Q,SBUM 2025,Specialized Master in Strategic Business Unit Management - Oct 2
 HEC-Q,SBUM 2025 C1,Specialized Master in Strategic Business Unit Management - Oct 2023 start,Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
 NU-Q,BS,,All programs,All programs,undergraduate,Bachelor's,Media & Communication,NU-Q's 2024-25 Student Pipeline reports one line for the whole university.
 NU-Q,BS,Communication,Communication,Communication,undergraduate,Bachelor's,Media & Communication,
+NU-Q,BS,"Communication, Journalism and Undeclared Major",All programs,All programs,undergraduate,Bachelor's,Media & Communication,All of NU-Q's undergraduate programs reported as one line (Student Funding).
 NU-Q,BS,Journalism,Journalism,Journalism,undergraduate,Bachelor's,Media & Communication,
 NU-Q,BS,Undeclared Major,Undeclared,Undeclared,undergraduate,Bachelor's,Media & Communication,Students who have not yet chosen Communication or Journalism.
 NU-Q,BS,Undeclared major,Undeclared,Undeclared,undergraduate,Bachelor's,Media & Communication,Students who have not yet chosen Communication or Journalism.
@@ -140,6 +151,7 @@ NU-Q,MA,Journalism,Journalism (MA),Journalism (MA),graduate,Master's,Media & Com
 NU-Q,MA,Sports Administration,Sports Administration,Sports Administration,graduate,Master's,Business & Management,
 NU-Q,Other,Exchange student from home campus,Exchange students,Exchange students,non_degree,Non-degree,General & Foundation,Exchange students are not degree-seeking at NU-Q.
 NU-Q,PG Certificate,Sports Administration,Sports Administration (certificate),Sports Administration,non_degree,Certificate,Business & Management,Certificates are outside the form's scope (degree-seeking students only).
+NU-Q,Undeclared,Undecided,Undeclared,Undeclared,undergraduate,Bachelor's,Media & Communication,Students who have not yet chosen Communication or Journalism.
 NU-Q,Undeclared,Undeclared Major,Undeclared,Undeclared,undergraduate,Bachelor's,Media & Communication,Students who have not yet chosen Communication or Journalism.
 TAMU-Q,,GTWY,Gateway Program,Gateway Program,foundation,Foundation,General & Foundation,Program code (GTWY). Registered Students Detailed spelling.
 TAMU-Q,Aggie Gateway Program,Undergraduate,Gateway Program,Gateway Program,foundation,Foundation,General & Foundation,Foundation year before admission (NDS = non-degree-seeking). Columns swapped in 2023-24 (P-18).
@@ -153,6 +165,7 @@ TAMU-Q,BS,PETE,Petroleum Engineering,Petroleum Engineering,undergraduate,Bachelo
 TAMU-Q,BS,Petroleum Engineering,Petroleum Engineering,Petroleum Engineering,undergraduate,Bachelor's,Engineering,
 TAMU-Q,Chemical Engineering,Undergraduate,Chemical Engineering,Chemical Engineering,undergraduate,Bachelor's,Engineering,Degree and Program columns swapped in 2023-24 (P-18).
 TAMU-Q,Electrical Engineering,Undergraduate,Electrical Engineering,Electrical Engineering,undergraduate,Bachelor's,Engineering,Degree and Program columns swapped in 2023-24 (P-18).
+TAMU-Q,Foundation,GTWY,Gateway Program,Gateway Program,foundation,Foundation,General & Foundation,Program code (GTWY).
 TAMU-Q,Foundation,Gateway Program,Gateway Program,Gateway Program,foundation,Foundation,General & Foundation,Foundation year before admission.
 TAMU-Q,MEN,CHEN,Chemical Engineering (graduate),Chemical Engineering (graduate),graduate,Master's,Engineering,Program code; MEN = Master of Engineering. Registered Students Detailed spelling.
 TAMU-Q,MS,CHEN,Chemical Engineering (graduate),Chemical Engineering (graduate),graduate,Master's,Engineering,Program code. Registered Students Detailed spelling.
@@ -183,12 +196,14 @@ VCU-Q,BFA,Painting & Printmaking,Painting & Printmaking,Fine Arts (BFA),undergra
 VCU-Q,BFA,Painting and Print Making,Painting & Printmaking,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,
 VCU-Q,BFA,Painting and Printmaking,Painting & Printmaking,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,
 VCU-Q,Bachelor,Bachelor of Arts,Art History,Art History,undergraduate,Bachelor's,Art & Design,VCU-Q's only BA is Art History (2023-24 label).
+VCU-Q,Bachelor,Bachelor of Arts or Fine Arts,All bachelor's programs (combined),All bachelor's programs (combined),undergraduate,Bachelor's,Art & Design,BA and BFA reported as one line (Student Funding).
 VCU-Q,Bachelor,Bachelor of Fine Arts,Fine Arts (all majors combined),Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,All BFA majors reported as one line (2023-24).
 VCU-Q,Foundation,Fashion Design,Pre-Art Foundation,Pre-Art Foundation,foundation,Foundation,Art & Design,Student Pipeline 2022-23: the program column doesn't line up with the degree column; program inferred from the degree (0 applied but 15 admitted: the Pre-Art Foundation pattern).
 VCU-Q,Foundation,Pre-Art Foundation,Pre-Art Foundation,Pre-Art Foundation,foundation,Foundation,Art & Design,Preparation year for Qatari students before the BFA.
 VCU-Q,MFA,Design,Design (MFA),Design (MFA),graduate,Master's,Art & Design,
 VCU-Q,MFA,Graphic Design,Design (MFA),Design (MFA),graduate,Master's,Art & Design,"Student Pipeline 2022-23: the program column doesn't line up with the degree column; program inferred from the degree (MFA = Design, VCU-Q's only master's)."
 VCU-Q,Master,Master of Design,Design (MFA),Design (MFA),graduate,Master's,Art & Design,VCU-Q's only master's program (Student Pipeline label).
+VCU-Q,Master,Master of Fine Arts,Design (MFA),Design (MFA),graduate,Master's,Art & Design,VCU-Q's only master's program.
 VCU-Q,Masters,Master of Design,Design (MFA),Design (MFA),graduate,Master's,Art & Design,VCU-Q's only master's program (2023-24 label).
 VCU-Q,N/A,"Bachelor of Fine Arts (Pre-Art Foundation, for Qatari students only)",Pre-Art Foundation,Pre-Art Foundation,foundation,Foundation,Art & Design,Preparation year for Qatari students before the BFA.
 VCU-Q,Pre-BFA,Interior Design,Pre-Art Foundation,Pre-Art Foundation,foundation,Foundation,Art & Design,Student Pipeline 2022-23: the program column doesn't line up with the degree column; program inferred from the degree (Pre-BFA; all zeros).
