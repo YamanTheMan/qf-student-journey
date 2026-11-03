@@ -1,4 +1,4 @@
-path,use,academic_year,decision,note
-AY20-21/REVISED.CMU-Q Student Data Collection AY2020-2021.xlsx,partial,2020-2021,D-008,"Original 2020-21 file. Use only applied, admitted and newly enrolled for Computer Science and Computational Biology (correct here, swapped in the revision)."
-"AY21-22/REVISED.CMU-Q Student Data Collection AY2020-2021 qc Aug 25, 2022.xlsx",yes,2020-2021,D-008,"Quality-checked revision of 2020-21, stored in the 2021-22 folder. Main CMU-Q source for 2020-21. CMU-Q has no 2021-22 data."
-AY22-23/AY22-23 GU-Q Student Data Collection.completed.xlsx,no,2022-2023,D-009,"Duplicate of the .submitted file: identical data, plus a typo (CMU-Q written in a GU-Q cell)."
+path,use,academic_year,programs,stages,decision,note
+AY20-21/REVISED.CMU-Q Student Data Collection AY2020-2021.xlsx,only,2020-2021,Computer Science|Computational Biology,applied|admitted|newly_enrolled,D-008,"Original 2020-21 file. Only applied, admitted and newly enrolled for these two programs are used (correct here, swapped in the revision)."
+"AY21-22/REVISED.CMU-Q Student Data Collection AY2020-2021 qc Aug 25, 2022.xlsx",except,2020-2021,Computer Science|Computational Biology,applied|admitted|newly_enrolled,D-008,"Quality-checked revision of 2020-21, stored in the 2021-22 folder. Main CMU-Q source for 2020-21, except the applicant stages of these two programs. CMU-Q has no 2021-22 data."
+AY22-23/AY22-23 GU-Q Student Data Collection.completed.xlsx,no,2022-2023,,,D-009,"Duplicate of the .submitted file: identical data, plus a typo (CMU-Q written in a GU-Q cell)."

@@ -2,7 +2,7 @@
 
 A live dashboard that tells the story of Education City students, from application to career, using Qatar Foundation's yearly Student Data Collection submissions (AY2011–2025).
 
-> **Status:** Phase 1 (data map) complete. See [docs/ROADMAP.md](docs/ROADMAP.md) and [docs/data_dictionary.md](docs/data_dictionary.md).
+> **Status:** Phase 2 (extraction) in progress: the Student Data table is built and checked. See [docs/ROADMAP.md](docs/ROADMAP.md) and [docs/data_dictionary.md](docs/data_dictionary.md).
 
 ## The story
 

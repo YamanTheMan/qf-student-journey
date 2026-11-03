@@ -8,7 +8,7 @@ How we work each phase: explain the goal → build it in small steps → check t
 |---|---|---|
 | 0. Setup | Project folder, Git, private GitHub repo, Python environment | ✅ |
 | 1. Data map | Document every sheet: columns, years, universities, quirks | ✅ |
-| 2. Extraction | Read every yearly template version into one tidy format | ⬜ |
+| 2. Extraction | Read every yearly template version into one tidy format | 🔄 |
 | 3. Validation | Automatic checks that run on every upload | ⬜ |
 | 4. Metrics | Define and compute the story numbers | ⬜ |
 | 5. Dashboard | The story in chapters, running locally | ⬜ |
@@ -43,14 +43,18 @@ Goal: know exactly what is in every file before writing any extraction code.
 
 **Carried into Phase 2:** timing rules for graduates (P-07), repeated graduation-rate classes (P-08) and repeated outcome classes (P-09).
 
-## Phase 2 — Extraction ⬜
+## Phase 2 — Extraction 🔄
 
 Goal: every raw sheet becomes rows in one long, consistent table.
 
-- [ ] Agree on the tidy format (year, university, degree, program, stage, nationality, gender, count)
-- [ ] One reader per sheet type, handling all template versions
-- [ ] Program-name mapping table in `data/reference/`
-- [ ] Output: `data/processed/*.csv` produced by one command
+- [x] Tidy format agreed: one row per number, with the exact source cell (data dictionary §6)
+- [x] Student Data reader for templates v2019–v2022 (`pipeline/student_data.py`): 9,253 numbers from 43 files; matches QF on 34/40 university-years, and the other 6 are explained (P-15)
+- [x] Timing rules decided: graduates (D-011), graduation rate (D-012), outcomes (D-013)
+- [ ] Apply the graduates rule (D-011): graduating class + evidence for every graduated number
+- [ ] Program mapping table in `data/reference/` (standard names, degree level, fixes for P-18 and P-19)
+- [ ] Readers: Student Pipeline, Graduation Rate (D-012), Outcomes (D-013), Nationalities, Ages, Registered Students Detailed, Funding, Internships, Graduate Nationalities
+- [ ] Reader for VCU-Q's 2021–22 alternative form (P-04)
+- [ ] One command builds every table (`pipeline/build.py`)
 
 ## Phase 3 — Validation ⬜
 

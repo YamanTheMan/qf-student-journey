@@ -61,3 +61,28 @@ Recorded in `data/reference/file_decisions.csv`.
 **Date:** 2026-11-03
 **Decision:** HBKU is included wherever it has data: registered students for 2011–2019 and 2022–2024, and the other story chapters for 2022–23 and 2023–24. The dashboard gets an **undergraduate / graduate** filter so comparisons with the branch campuses stay fair. HBKU's colleges (CSE, CIS, CHSS, …) roll up to HBKU.
 **Why:** HBKU is a QF university, so leaving it out would understate Education City. But it is mostly graduate programs, so it shouldn't be compared directly with undergraduate-only campuses.
+
+### D-011 · Graduates are dated by evidence (data dictionary P-07)
+**Date:** 2026-11-03
+**Decision:** Each "graduated" number is assigned to the **graduating class** (the academic year students graduated in) using, in order:
+1. a label or remark in the file (e.g. "Graduating Class May 2023", "Graduate data for AY 2022-23", "Class of 2025");
+2. a small hand-checked exceptions table, where each entry states its evidence;
+3. otherwise the form's own definition: the file's current academic year.
+
+A university-wide total of 0 graduates means **not reported**, not zero. If two files give the same class, the later file wins. Every number records which kind of evidence dated it.
+**Why:** Universities followed different habits. Most report the current year (GU-Q, TAMU-Q, VCU-Q), while CMU-Q's Fall files report the previous class. Its Outcomes sheets prove it: the 87 graduates in its 2022–23 file are the class of 2022. With this rule CMU-Q gets a continuous series and its 2021–22 gap is filled.
+
+### D-012 · Graduation rate: the latest report of each entering class wins (P-08)
+**Date:** 2026-11-03
+**Decision:** When the same entering class (cohort) appears in several files, use the most recent report.
+**Why:** Later reports are more complete, because more students have had time to graduate within 150% of normal time.
+
+### D-013 · Outcomes: the earliest real report of each graduating class wins (P-09)
+**Date:** 2026-11-03
+**Decision:** When outcomes for the same graduating class appear in several files, use the earliest report that isn't all zeros. Each record stores how many years after graduation it was measured.
+**Why:** It's the closest to the intended "one year after graduation". Storing the gap keeps a late report (e.g. CMU-Q's class of 2023, first reported two years later) visible instead of hidden.
+
+### D-014 · Totals keep every reported part; QF's blanking rule is not used
+**Date:** 2026-11-03
+**Decision:** Each nationality × residency × gender cell is stored separately, and university totals use the universities' own reported totals. A blank part stays blank, but it does **not** blank the rest of its group.
+**Why:** QF's consolidated file blanks a whole Non-Qatari group when one part (resident or international) is missing. We reproduced QF's numbers exactly with that rule (5 of 6 cases), and it undercounts: NU-Q 2023–24 shows 260 instead of the 474 the university reported. Our totals match QF exactly in the 34 university-years where no part is missing.

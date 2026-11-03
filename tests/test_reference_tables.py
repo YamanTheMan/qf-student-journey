@@ -15,8 +15,13 @@ def test_every_decision_points_to_a_real_file():
 
 def test_decision_values_are_valid():
     decisions = pd.read_csv(REFERENCE / "file_decisions.csv")
-    assert set(decisions["use"]) <= {"yes", "no", "partial"}
+    assert set(decisions["use"]) <= {"yes", "no", "only", "except"}
     assert decisions["decision"].str.fullmatch(r"D-\d{3}").all()
+    # 'only' and 'except' need to say which programs and stages they mean
+    scoped = decisions[decisions["use"].isin(["only", "except"])]
+    assert scoped["programs"].notna().all() and scoped["stages"].notna().all()
+    stages = {s for row in scoped["stages"] for s in row.split("|")}
+    assert stages <= {"applied", "admitted", "newly_enrolled", "registered", "graduated"}
 
 
 def test_university_aliases_are_unique():
