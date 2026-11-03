@@ -181,7 +181,7 @@ Built by `.venv/bin/python -m pipeline.graduation_rate` from the 2022–23 to 20
 | `stage` | `entered` (first-time degree-seeking students in the class) · `non_completers` · `dropouts` · `graduated_100` (within normal time) · `graduated_150` (within 150% of normal time, **see P-24**) |
 | `report_status` | `used` · `superseded` (a later file reports the same class, D-012) · `empty` (the class is listed with no numbers). **Use only `used` rows.** |
 
-**Coverage (used reports):** GU-Q 2005–2020 (16 classes, university-wide), HBKU 2015–2022, WCM-Q 2016–2021, TAMU-Q 2017–2021, NU-Q 2019–2022, CMU-Q 2018–2020, HEC-Q 2020–2024. VCU-Q's sheets contain only `#REF!` errors.
+**Coverage (used reports):** WCM-Q 2016–2021, TAMU-Q 2017–2021, CMU-Q 2018–2020, HEC-Q 2020–2024 and NU-Q 2019–2022 report entering classes with their size, so graduation *rates* can be computed. **GU-Q 2005–2020 (16 classes, university-wide), HBKU 2015–2022 and NU-Q's 2024–25 report give graduates per class but no entrants**, so they show how many graduated, not what share (P-25; corrected in Phase 3). VCU-Q's sheets contain only `#REF!` errors.
 
 **Check against Student Data:** each class is never larger than the newly enrolled students of its starting year. That's expected, since first-time students exclude transfers and foundation students. CMU-Q matches exactly (112 vs 113, 124 vs 124); WCM-Q 0.77–1.00; TAMU-Q 0.74–0.86; HEC-Q 0.31–0.47 (executive cohorts start mid-year).
 
@@ -227,6 +227,19 @@ Built together by `.venv/bin/python -m pipeline.student_life`. Run `pipeline.stu
 | `internships.csv` | 22 (all years) | `employer_raw`, `employer_type` (`QF`, `Public`, `Private`, `Abroad`, `Other`, or `Named employer` when older files name the employer, P-37), `count` | No independent source |
 | `funding.csv` | 23 (2022–23 on) | `stage` = funding type (`self_funded`, `qf_scholarship`, `university_scholarship`, `financial_aid`, `government_sponsored`, `company_sponsored`, `multiple_sources`), `measure` = `students` (in `count`) or `average_amount_qar` (in `amount_qar`), `nationality`, the three sponsor-detail text columns, standard program columns | Funding types overlap (P-35): never add them up. `row_type = sponsor_detail` rows (P-34) are never added to totals. |
 
+### `quality_findings.csv` and `docs/quality_report.md`: automatic quality checks
+
+Written by every build (`pipeline/checks.py`). Each finding has `check`, `severity` (`error` stops the build, `warning` needs a look and will be shown on the dashboard, `info` is worth knowing), `status`, the table, university, year, program and stage it's about, `found` vs `expected`, a plain-language `message`, and the exact `source_file` and `source_cell`. [`docs/quality_report.md`](quality_report.md) is the readable summary.
+
+| Check | What it tests |
+|---|---|
+| C01 negative count | No count is below zero (error) |
+| C02 text in a count cell | 'N/A', 'less than 5', '#REF!' are kept as text (info) |
+| C03 breakdown adds up | Every reported total equals its nationality / gender / location parts. A total of 0 over blank parts is a formula over missing data, so **unknown, not zero** (P-13). |
+| C04 funnel narrows | Per university and year (not per program: some universities admit to "Undeclared"): admitted ≤ applied, newly enrolled ≤ admitted, also per school type |
+| C05 graduation within class | Graduates ≤ entrants; flags classes with graduates but no entrants (P-25) and the "150% includes 100%" convention (P-24) |
+| C06 outcomes within class | Outcomes ≤ class size; flags outcomes with a class size of 0 (P-27) |
+
 ## 7. Known problems
 
 | ID | Problem | Evidence | Status |
@@ -252,10 +265,10 @@ Built together by `.venv/bin/python -m pipeline.student_life`. Run `pipeline.stu
 | **P-19** | **Non-degree rows:** HBKU lists Non-Degree / Conditional Admit rows (24 students in 2022–23). The form says to include degree-seeking students only. | QF Issues log | Solved: `level = non_degree`, left out of totals (D-016) |
 | **P-20** | **`#REF!` instead of program names.** The Pipeline sheet copies names from the Student Data tab by formula; in GU-Q, HEC-Q, TAMU-Q and VCU-Q files those formulas broke. All such rows are empty. | 96 `#REF!` cells | Solved: Excel errors are never treated as names. A row without a name that holds non-zero numbers stops the build. |
 | **P-21** | **VCU-Q 2022–23 Pipeline: degree and program columns don't line up.** | VCU-Q's remark on admission routes; numbers compared with Student Data | Solved: mapped by degree (D-017) |
-| **P-22** | **Pipeline and Student Data disagree by more than 10% in 9 cases.** TAMU-Q 2021–22 newly enrolled 495 vs 140; NU-Q admitted 2023–24 268 vs 409 and 2024–25 307 vs 354; NU-Q newly enrolled 2021–22 110 vs 131 and 2024–25 123 vs 97; VCU-Q 2022–23 admitted 143 vs 165 and newly enrolled 73 vs 0 (Student Data's 0 is a formula over missing data); VCU-Q 2023–24 admitted 175 vs 157 and newly enrolled 120 vs 91. | Comparison in §6 | Phase 3: investigate and decide which source wins |
+| **P-22** | **Pipeline and Student Data disagree by more than 10% in 9 cases.** TAMU-Q 2021–22 newly enrolled 495 vs 140; NU-Q admitted 2023–24 268 vs 409 and 2024–25 307 vs 354; NU-Q newly enrolled 2021–22 110 vs 131 and 2024–25 123 vs 97; VCU-Q 2022–23 admitted 143 vs 165 and newly enrolled 73 vs 0 (Student Data's 0 is a formula over missing data); VCU-Q 2023–24 admitted 175 vs 157 and newly enrolled 120 vs 91. | Comparison in §6; quality check C04 confirms TAMU-Q 2021–22's Pipeline "enrolled" exceeds its admitted by school type (317 vs 183, …) | Phase 3: investigate and decide which source wins |
 | **P-23** | **2021–22 Graduation Rate is percentages only** ("% Overall Graduation Rate (AY20/21)"), with no class sizes and no clear entering class. | Header survey: 5 files | Not read. Rates come from class counts in the 2022–25 files. |
 | **P-24** | **"Graduated within 150%" means different things.** TAMU-Q counts *all* graduates within 150% (including the 100% ones); WCM-Q and HEC-Q count only the *extra* graduates after normal time. | Which way each class adds up to its entrants: TAMU-Q 12 of 12 classes one way, WCM-Q 5 of 5 and HEC-Q 3 of 6 the other | Phase 4: decide how to compute a comparable 150% rate |
-| **P-25** | **HBKU reports 0 entrants for classes that have graduates** (42 classes), so its graduation *rate* can't be computed. | Graduation Rate sheets | Phase 3/4: show HBKU graduate counts without a rate |
+| **P-25** | **Graduates reported without entrants:** HBKU (79 class reports), GU-Q's 2005–2020 history (16) and NU-Q 2024–25 (7) give graduates per entering class but 0 or no entrants, so no graduation *rate* can be computed for them. | Quality check C05 | Phase 4: show their graduate counts without a rate |
 | **P-26** | **HBKU 2022–23 Graduation Rate swaps the program names of its BS and PhD rows.** | Degree and normal time vs the 2023–24 sheet | Solved: mapped by degree in `programs.csv` |
 | **P-27** | **Outcomes and class sizes don't always fit.** CMU-Q 2022–23 and VCU-Q 2022–23 report outcomes with a class size of 0 (left blank or a formula zero); TAMU-Q 2023–24 reports 157 outcomes for 156 graduates. Class size vs dated graduates: TAMU-Q 2023–24 156 vs 143 (the 143 was provisional), VCU-Q 2023–24 65 vs 72, GU-Q 2023–24 119 vs 120. | Outcomes check in §6 | Phase 3: take class sizes from dated graduates where Outcomes has 0 |
 | **P-28** | **Outcomes not collected for some classes.** GU-Q 2020–21 and 2022–23, HBKU 2022–23 and HEC-Q 2020–21 give a class size but every outcome is 0. | Outcomes sheets | Marked `empty`; the dashboard shows "not reported" |

@@ -9,7 +9,7 @@ How we work each phase: explain the goal → build it in small steps → check t
 | 0. Setup | Project folder, Git, private GitHub repo, Python environment | ✅ |
 | 1. Data map | Document every sheet: columns, years, universities, quirks | ✅ |
 | 2. Extraction | Read every yearly template version into one tidy format | ✅ |
-| 3. Validation | Automatic checks that run on every upload | ⬜ |
+| 3. Validation | Automatic checks that run on every upload | 🔄 |
 | 4. Metrics | Define and compute the story numbers | ⬜ |
 | 5. Dashboard | The story in chapters, running locally | ⬜ |
 | 6. Go live | GitHub Action + Streamlit Cloud, push-to-update | ⬜ |
@@ -63,17 +63,26 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [x] Reader for VCU-Q's 2021–22 alternative form (`pipeline/vcu_2021_22.py`, D-019): matches QF exactly in every nationality × gender group
 - [x] One command builds every table: `.venv/bin/python -m pipeline.build` (10 tables from all 60 files in about 30 seconds; writes nothing if a person is needed; runs the tests)
 
-## Phase 3 — Validation ⬜
+## Phase 3 — Validation 🔄
 
-- [ ] Breakdowns add up to the reported totals
-- [ ] No negative or non-numeric counts; blanks stay "unknown", never zero
-- [ ] Registered counts match the QF consolidated files
-- [ ] Investigate the 9 Pipeline vs Student Data differences (P-22) and decide which source wins in each
+**Step 1: checks inside each table ✅**
+- [x] Checks module (`pipeline/checks.py`) run by every build; an error stops the build without writing
+- [x] Breakdowns add up to the reported totals (C03): 4 real mismatches; formula zeros recognised as unknown
+- [x] No negative counts (C01); text in count cells kept as text (C02)
+- [x] Admissions funnel narrows per university and year (C04); graduation and outcomes stay within their class (C05, C06)
+- [x] Quality report (`docs/quality_report.md`) and findings table (`data/processed/quality_findings.csv`)
+- [x] Automated tests for every check
+
+**Step 2: checks across tables and sources**
+- [ ] Registered counts match the QF consolidated files (automatic, with QF's blanking rule explained)
+- [ ] Secondary sheets vs Student Data (Nationalities, Detailed, Ages, Graduate Nationalities, Pipeline, Outcomes class sizes)
+- [ ] A quality flag for every table × university × year: complete / partial / not reported / not comparable
+
+**Step 3: decisions on the deferred problems**
+- [ ] Pipeline vs Student Data differences (P-22): which source wins in each
 - [ ] Outcomes class sizes of 0 and outcomes exceeding class size (P-27)
-- [ ] Mark secondary sheets as partial where they don't add up to Student Data (P-33)
+- [ ] Secondary sheets that are partial (P-33)
 - [ ] Funding sponsor-detail rows (P-34) and graduate-nationality lists that aren't one class (P-36)
-- [ ] Quality report listing every issue found
-- [ ] Automated tests in `tests/`
 
 ## Phase 4 — Metrics ⬜
 

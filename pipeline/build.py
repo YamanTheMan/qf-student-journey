@@ -6,10 +6,12 @@
 1. Refresh the file inventory. A new file with a flag that no decision covers (an unknown
    template, a second file for the same university and year, ...) needs a person.
 2. Build every table in memory, in order (Graduate Nationalities is dated from Student Data).
-3. If anything needs a person (an unreadable file, an unknown program spelling, numbers
-   without a name, ...), print it all and stop WITHOUT writing: data/processed/ never holds
-   a half-built mix of old and new tables.
-4. Otherwise write every table to data/processed/ and run the tests.
+3. Run the quality checks (pipeline.checks). An error (impossible data, e.g. a negative count)
+   needs a person too.
+4. If anything needs a person (an unreadable file, an unknown program spelling, numbers
+   without a name, a quality error, ...), print it all and stop WITHOUT writing:
+   data/processed/ never holds a half-built mix of old and new tables.
+5. Otherwise write every table, the findings and docs/quality_report.md, then run the tests.
 
 This is the command GitHub will run on every upload (Phase 6).
 """
@@ -18,8 +20,8 @@ import sys
 
 import pandas as pd
 
-from pipeline import (graduation_rate, inventory, nationalities, outcomes, registered_detailed, student_data,
-                      student_life, student_pipeline)
+from pipeline import (checks, graduation_rate, inventory, nationalities, outcomes, registered_detailed,
+                      student_data, student_life, student_pipeline)
 from pipeline.inventory import REFERENCE_DIR, ROOT
 
 PROCESSED = ROOT / "data" / "processed"
@@ -73,20 +75,30 @@ def main():
     tables, table_problems = build_tables()
     problems += table_problems
 
+    findings = None
+    if not problems:  # with problems the tables may be incomplete, so checking them would mislead
+        print("3. Quality checks")
+        findings = checks.run_checks(tables)
+        errors = findings[findings["severity"] == "error"]
+        problems += [f"{e['check']}: {e['message']} ({e['source_file']} {e['source_cell']})" for _, e in errors.iterrows()]
+        print("   " + ", ".join(f"{n} {s}" for s, n in findings["severity"].value_counts().items()))
+
     if problems:
         print(f"\nStopped: {len(problems)} problem(s) need a person. Nothing was written.")
         for p in problems:
             print("  ", p)
         sys.exit(1)
 
-    print("3. Writing data/processed/")
+    print("4. Writing data/processed/ and docs/quality_report.md")
     PROCESSED.mkdir(parents=True, exist_ok=True)
     for name, table in tables.items():
         table.to_csv(PROCESSED / f"{name}.csv", index=False)
         print(f"   {name + '.csv':28} {len(table):>7,} numbers from {table['source_file'].nunique():>2} files")
+    findings.to_csv(checks.FINDINGS, index=False)
+    checks.REPORT.write_text(checks.report(findings))
 
     if "--no-tests" not in sys.argv:
-        print("4. Tests")
+        print("5. Tests")
         result = subprocess.run([sys.executable, "-m", "pytest", "-q"], cwd=ROOT)
         sys.exit(result.returncode)
 

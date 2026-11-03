@@ -24,6 +24,21 @@ def test_known_flags_are_covered_by_their_decisions():
     assert build.unresolved_flags(inv) == []
 
 
+def test_a_quality_error_also_stops_the_build(monkeypatch, tmp_path):
+    from pipeline import checks
+    monkeypatch.setattr(build.inventory, "build_inventory", lambda: inventory([]).assign(file_kind="submission"))
+    monkeypatch.setattr(build.inventory, "OUTPUT", tmp_path / "file_inventory.csv")
+    monkeypatch.setattr(build, "build_tables", lambda: ({"student_data": pd.DataFrame({"source_file": ["f"]})}, []))
+    error = checks.finding("C01 negative count", "error", "negative", "ages",
+                           {"university": "U-1", "source_file": "f"}, "Negative count -1", source_cell="B2")
+    monkeypatch.setattr(build.checks, "run_checks", lambda tables: pd.DataFrame([error], columns=checks.COLUMNS))
+    monkeypatch.setattr(build, "PROCESSED", tmp_path / "processed")
+    monkeypatch.setattr(sys, "argv", ["build", "--no-tests"])
+    with pytest.raises(SystemExit) as stop:
+        build.main()
+    assert stop.value.code == 1 and not (tmp_path / "processed").exists()
+
+
 def test_build_writes_nothing_when_a_person_is_needed(monkeypatch, tmp_path):
     monkeypatch.setattr(build.inventory, "build_inventory", lambda: inventory([]).assign(file_kind="submission"))
     monkeypatch.setattr(build.inventory, "OUTPUT", tmp_path / "file_inventory.csv")

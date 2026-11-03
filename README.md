@@ -58,7 +58,7 @@ python3 -m venv .venv
 .venv/bin/python -m streamlit run app.py
 ```
 
-`pipeline.build` stops without writing anything if a file needs a person (an unknown program spelling, a new template, numbers without a name, …) and says exactly what and where.
+`pipeline.build` stops without writing anything if a file needs a person (an unknown program spelling, a new template, numbers without a name, impossible data, …) and says exactly what and where. Every build also writes a readable [data quality report](docs/quality_report.md).
 
 ## Data
 
