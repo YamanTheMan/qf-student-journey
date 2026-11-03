@@ -83,6 +83,15 @@ def test_outcomes_within_class():
     assert statuses(checks.outcomes_within_class({"outcomes": t})) == ["class_size_missing"]
 
 
+def test_funding_sponsor_rows_are_reported():
+    t = rows(university=["U-1"] * 3, file_year=["2023-2024"] * 3, row_type=["program", "sponsor_detail", "sponsor_detail"],
+             measure=["students"] * 3, count=[10, 256, 12], source_file=["f"] * 3, source_cell=["E8", "U18", "P19"],
+             company_sponsor_details=[None, "GU-Q Grant", "QF Scholarship"])
+    found = checks.funding_sponsor_rows({"funding": t})
+    assert statuses(found) == ["sponsor_rows"] and found[0]["found"] == 268
+    assert "2 sponsor row(s)" in found[0]["message"] and "GU-Q Grant" in found[0]["message"]
+
+
 def test_report_has_summary_warnings_and_information():
     findings = pd.DataFrame([checks.finding("C03 breakdown adds up", "warning", "mismatch", "t",
                                             {"university": "U-1", "file_year": "2024-2025", "source_file": "a/f.xlsx"},

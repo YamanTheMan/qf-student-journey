@@ -22,6 +22,7 @@ Written by `.venv/bin/python -m pipeline.build` from the processed tables; don't
 | C09 pipeline vs Student Data | 0 | 8 | 24 |
 | C10 graduate_nationalities vs dated graduates | 0 | 5 | 1 |
 | C10 outcomes vs dated graduates | 0 | 2 | 2 |
+| C12 funding sponsor rows | 0 | 0 | 3 |
 
 ## Coverage and quality by measure
 
@@ -138,12 +139,12 @@ Every flag, with the findings behind it, is in `data/processed/quality_flags.csv
 | University | 19–20 | 20–21 | 21–22 | 22–23 | 23–24 | 24–25 |
 |---|---|---|---|---|---|---|
 | CMU-Q | – | – |  | ✓ | ✓ | ✓ |
-| GU-Q | – | – | – | ✗ | ✓ | ✓ |
+| GU-Q | – | – | – | ✗ | ◐ | ✓ |
 | HBKU |  |  |  | ✓ | ✗ |  |
 | HEC-Q | – | – | – | ≈ | ✓ | ✓ |
 | NU-Q | – | – | – | ✓ | ✓ | ✓ |
 | TAMU-Q | – | – | – | ✓ | ✓ | ✓ |
-| VCU-Q | – | – | – | ✗ | ✓ | ✓ |
+| VCU-Q | – | – | – | ✗ | ◐ | ✓ |
 | WCM-Q | – | – | – | ✓ | ✓ | ✓ |
 
 **Studying: internships**
@@ -336,14 +337,15 @@ Example: Class 2017-2018: 1 graduates but no entrants reported, so no rate can b
 | C03 breakdown adds up | partly_withheld | some parts blank and the filled ones add up to less than the total | 6 | VCU-Q |
 | C03 breakdown adds up | withheld | a total is given but its breakdown is blank (often small numbers withheld for privacy) | 36 | VCU-Q |
 | C05 graduation within class | 150_includes_100 | 'graduated within 150%' includes the within-100% graduates at this university (P-24) | 12 | TAMU-Q |
-| C07 registered vs QF | qf_leaves_out_blank_groups |  | 6 | HBKU, NU-Q, TAMU-Q, VCU-Q |
-| C08 ages vs Student Data | close |  | 5 | GU-Q, NU-Q, TAMU-Q |
-| C08 ages vs Student Data | fills_gap |  | 1 | VCU-Q |
-| C08 nationalities vs Student Data | close |  | 4 | GU-Q, NU-Q |
-| C08 registered_detailed vs Student Data | close |  | 2 | GU-Q, TAMU-Q |
-| C08 registered_detailed vs Student Data | fills_gap |  | 1 | VCU-Q |
-| C09 pipeline vs Student Data | close |  | 19 | CMU-Q, NU-Q, TAMU-Q, VCU-Q |
-| C09 pipeline vs Student Data | fills_gap |  | 1 | VCU-Q |
-| C09 pipeline vs Student Data | internal_promotions |  | 4 | WCM-Q |
-| C10 graduate_nationalities vs dated graduates | close |  | 1 | HEC-Q |
-| C10 outcomes vs dated graduates | close |  | 2 | GU-Q, VCU-Q |
+| C07 registered vs QF | qf_leaves_out_blank_groups | differs from QF only because QF leaves out groups with a blank part (P-15) | 6 | HBKU, NU-Q, TAMU-Q, VCU-Q |
+| C08 ages vs Student Data | close | differs from its reference by less than the tolerance | 5 | GU-Q, NU-Q, TAMU-Q |
+| C08 ages vs Student Data | fills_gap | the reference is 0 (a formula over missing data); this sheet supplies the number | 1 | VCU-Q |
+| C08 nationalities vs Student Data | close | differs from its reference by less than the tolerance | 4 | GU-Q, NU-Q |
+| C08 registered_detailed vs Student Data | close | differs from its reference by less than the tolerance | 2 | GU-Q, TAMU-Q |
+| C08 registered_detailed vs Student Data | fills_gap | the reference is 0 (a formula over missing data); this sheet supplies the number | 1 | VCU-Q |
+| C09 pipeline vs Student Data | close | differs from its reference by less than the tolerance | 19 | CMU-Q, NU-Q, TAMU-Q, VCU-Q |
+| C09 pipeline vs Student Data | fills_gap | the reference is 0 (a formula over missing data); this sheet supplies the number | 1 | VCU-Q |
+| C09 pipeline vs Student Data | internal_promotions | WCM-Q counts promoted students as admitted; the Pipeline doesn't | 4 | WCM-Q |
+| C10 graduate_nationalities vs dated graduates | close | differs from its reference by less than the tolerance | 1 | HEC-Q |
+| C10 outcomes vs dated graduates | close | differs from its reference by less than the tolerance | 2 | GU-Q, VCU-Q |
+| C12 funding sponsor rows | sponsor_rows | funding split into sponsor rows kept out of totals (D-023); funding flagged partial | 3 | GU-Q, VCU-Q |

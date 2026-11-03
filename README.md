@@ -2,7 +2,7 @@
 
 A live dashboard that tells the story of Education City students, from application to career, using Qatar Foundation's yearly Student Data Collection submissions (AY2011–2025).
 
-> **Status:** Phase 2 (extraction) complete: all 60 files become 10 checked tables with one command. See [docs/ROADMAP.md](docs/ROADMAP.md) and [docs/data_dictionary.md](docs/data_dictionary.md).
+> **Status:** Phase 3 (validation) complete: all 60 files become 10 checked tables with one command, every build runs 12 quality checks, and every measure × university × year carries a quality flag. See [docs/ROADMAP.md](docs/ROADMAP.md), [docs/data_dictionary.md](docs/data_dictionary.md) and the [quality report](docs/quality_report.md).
 
 ## The story
 

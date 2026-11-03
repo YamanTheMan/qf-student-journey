@@ -45,3 +45,16 @@ def test_flags_on_real_data():
     assert flags[("student_pipeline", "TAMU-Q", "2021-2022")] == "not_comparable"       # P-22, 3.5x
     assert flags[("funding", "CMU-Q", "2019-2020")] == "not_in_form"
     assert flags[("registered", "CMU-Q", "2024-2025")] == "complete"
+    assert flags[("funding", "GU-Q", "2023-2024")] == "partial"                 # D-023: sponsor rows kept out
+    assert flags[("graduate_nationalities", "HEC-Q", "2021-2022")] == "not_comparable"  # D-024
+
+
+def test_every_flag_says_how_the_dashboard_uses_it():
+    flags = pd.read_csv(FLAGS, keep_default_na=False)
+    expected = {"complete": "show", "breakdown_partial": "show", "differs": "show_with_note", "partial": "show_marked",
+                "not_comparable": "leave_out", "not_reported": "leave_out", "not_in_form": "not_applicable"}
+    assert (flags["use"] == flags["status"].map(expected)).all()   # D-025
+
+
+def test_sponsor_rows_make_funding_partial():
+    assert status_of(f("sponsor_rows", severity="info")) == "partial"

@@ -12,7 +12,8 @@ the other tables. The year is the submission's academic year. The flag comes fro
   not_reported       the form had the sheet, but no numbers (or only formula zeros)
   not_in_form        that year's form didn't have the sheet
 
-The dashboard uses the flag to show, mark or leave out each number.
+The `use` column says what the dashboard does with each flag (D-025): show, show with a note,
+show marked 'partial', or leave out as a visible gap.
 """
 import pandas as pd
 
@@ -39,6 +40,9 @@ COUNTED_ROWS = ("program", "all_programs")
 STATUS_ORDER = ["not_comparable", "partial", "differs", "breakdown_partial", "complete"]
 SYMBOL = {"complete": "✓", "breakdown_partial": "◑", "differs": "≈", "partial": "◐",
           "not_comparable": "≠", "not_reported": "✗", "not_in_form": "–"}
+# How the dashboard uses each flag (D-025)
+USE = {"complete": "show", "breakdown_partial": "show", "differs": "show_with_note", "partial": "show_marked",
+       "not_comparable": "leave_out", "not_reported": "leave_out", "not_in_form": "not_applicable"}
 
 
 def status_of(finding):
@@ -48,7 +52,7 @@ def status_of(finding):
         return "not_comparable"
     if status == "higher":
         return "not_comparable" if finding["found"] >= 1.5 * finding["expected"] else "differs"
-    if status in ("lower", "no_entrants", "class_size_missing"):
+    if status in ("lower", "no_entrants", "class_size_missing", "sponsor_rows"):
         return "partial"
     if status in ("mismatch", "more_outcomes_than_graduates", "more_graduates_than_entrants", "class_larger"):
         return "differs"
@@ -102,7 +106,7 @@ def quality_flags(tables, findings):
                 status = next((s for s in STATUS_ORDER if s in found), "complete")
             rows.append({
                 "measure": measure, "university": file["university"], "file_year": file["file_year"],
-                "status": status, "symbol": SYMBOL[status],
+                "status": status, "symbol": SYMBOL[status], "use": USE[status],
                 "notes": "; ".join(sorted({f"{f['check']}: {f['status'].replace('_', ' ')}" for _, f in notes})),
             })
     return pd.DataFrame(rows)

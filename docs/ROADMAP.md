@@ -9,7 +9,7 @@ How we work each phase: explain the goal → build it in small steps → check t
 | 0. Setup | Project folder, Git, private GitHub repo, Python environment | ✅ |
 | 1. Data map | Document every sheet: columns, years, universities, quirks | ✅ |
 | 2. Extraction | Read every yearly template version into one tidy format | ✅ |
-| 3. Validation | Automatic checks that run on every upload | 🔄 |
+| 3. Validation | Automatic checks that run on every upload | ✅ |
 | 4. Metrics | Define and compute the story numbers | ⬜ |
 | 5. Dashboard | The story in chapters, running locally | ⬜ |
 | 6. Go live | GitHub Action + Streamlit Cloud, push-to-update | ⬜ |
@@ -63,7 +63,7 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [x] Reader for VCU-Q's 2021–22 alternative form (`pipeline/vcu_2021_22.py`, D-019): matches QF exactly in every nationality × gender group
 - [x] One command builds every table: `.venv/bin/python -m pipeline.build` (10 tables from all 60 files in about 30 seconds; writes nothing if a person is needed; runs the tests)
 
-## Phase 3 — Validation 🔄
+## Phase 3 — Validation ✅
 
 **Step 1: checks inside each table ✅**
 - [x] Checks module (`pipeline/checks.py`) run by every build; an error stops the build without writing
@@ -78,17 +78,20 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [x] Secondary sheets vs Student Data (C08), Pipeline vs Student Data (C09), class sizes vs dated graduates (C10), entering classes vs newly enrolled (C11)
 - [x] A quality flag for every measure × university × year (`pipeline/flags.py`, `data/processed/quality_flags.csv`), shown as grids in the quality report
 
-**Step 3: decisions on the deferred problems**
-- [ ] Pipeline vs Student Data differences (P-22): which source wins in each
-- [ ] Outcomes class sizes of 0 and outcomes exceeding class size (P-27)
-- [ ] Secondary sheets that are partial (P-33)
-- [ ] Funding sponsor-detail rows (P-34) and graduate-nationality lists that aren't one class (P-36)
+**Step 3: decisions on the deferred problems ✅**
+- [x] Pipeline vs Student Data (P-22): totals from Student Data, Pipeline for the school-type mix only (D-020)
+- [x] Outcomes with a class size of 0 (P-27): fallback class size for rates (D-021)
+- [x] Partial secondary sheets (P-33): shown as shares, never headcounts (D-022)
+- [x] Funding sponsor rows (P-34): never summed; those years flagged partial by check C12 (D-023)
+- [x] Graduate-nationality lists that aren't one class (P-36): left out (D-024)
+- [x] How the dashboard uses each flag: show / show with note / show marked / leave out (D-025, `use` column)
 
 ## Phase 4 — Metrics ⬜
 
 - [ ] Metric definitions written down (acceptance rate, yield, Qatari share, on-time graduation, employment in Qatar, ...)
 - [ ] `pipeline/metrics.py` computes them
 - [ ] Small-count suppression rule decided and applied
+- [ ] Apply the Phase 3 rules: Pipeline as school-type shares only (D-020); fallback class size for outcome rates (D-021); secondary sheets as shares (D-022); every metric carries its quality flag and `use` (D-025)
 - [ ] Leave `non_degree` rows out of all student totals (D-016)
 - [ ] Group countries into regions (e.g. GCC, other Arab states, South Asia) for the "where students come from" view
 - [ ] Show funding types separately, never stacked (P-35); sort older internship employers into types (P-37)

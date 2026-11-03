@@ -401,6 +401,23 @@ def class_size_vs_newly_enrolled(tables):
             for (u, y), v in both[both["class"] > both["newly"]].iterrows()]
 
 
+@check
+def funding_sponsor_rows(tables):
+    """C12: funding split into sponsor rows that are never added to totals (D-023), so that
+    university-year's funding is partial."""
+    fu = tables["funding"]
+    sponsors = fu[(fu["row_type"] == "sponsor_detail") & (fu["measure"] == "students")]
+    detail_cols = [c for c in fu.columns if c.endswith("_details")]
+    out = []
+    for (uni, year), group in sponsors.groupby(["university", "file_year"]):
+        names = pd.unique(group[detail_cols].stack().dropna())
+        rows = group["source_cell"].str.extract(r"(\d+)$")[0].nunique()
+        out.append(finding("C12 funding sponsor rows", "info", "sponsor_rows", "funding", group.iloc[0].to_dict(),
+                           f"{rows} sponsor row(s) kept out of funding totals (D-023), e.g. "
+                           + "; ".join(str(n)[:40] for n in names[:3]), found=int(group["count"].sum())))
+    return out
+
+
 # ---------------------------------------------------------------------------------------------
 
 def run_checks(tables):
@@ -415,6 +432,11 @@ STATUS_MEANING = {
     "partly_withheld": "some parts blank and the filled ones add up to less than the total",
     "text": "a count cell holds text ('N/A', 'less than 5', '#REF!'); kept as text, never a number",
     "150_includes_100": "'graduated within 150%' includes the within-100% graduates at this university (P-24)",
+    "close": "differs from its reference by less than the tolerance",
+    "fills_gap": "the reference is 0 (a formula over missing data); this sheet supplies the number",
+    "qf_leaves_out_blank_groups": "differs from QF only because QF leaves out groups with a blank part (P-15)",
+    "internal_promotions": "WCM-Q counts promoted students as admitted; the Pipeline doesn't",
+    "sponsor_rows": "funding split into sponsor rows kept out of totals (D-023); funding flagged partial",
 }
 
 

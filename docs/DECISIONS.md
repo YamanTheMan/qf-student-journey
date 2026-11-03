@@ -125,3 +125,42 @@ A spelling not in the table stops the build and is listed, so nothing unmapped r
 - The Alumni sheet, "Gradautes - 2021-2022", is the class of 2021–22.
 
 **Why:** Fall is the census date the form asks for (data as of September 30), and it's the snapshot QF's consolidated file used. Our numbers match QF's exactly in all four nationality × gender groups (190 / 5 / 96 / 11). The 68 graduates match the 69 that the next year's Outcomes sheet tracks for that class.
+
+### D-020 · Pipeline is used for the school-type mix; totals come from Student Data (data dictionary P-22)
+**Date:** 2026-11-03
+**Decision:** Applied, admitted and newly-enrolled **totals** always come from Student Data. The Student Pipeline sheet is used only for the **mix of school types** (each type's share of the pipeline's own total, e.g. "private schools: 36% of applicants"), so its totals never compete with Student Data's. University-years flagged ≠ not comparable are left out, e.g. TAMU-Q 2021–22, whose pipeline "enrolled" (495) exceeds its own admitted and is 3.5× Student Data's 140.
+**Why:** Pipeline and Student Data disagree by more than 10% in 8 university-years (quality check C09). Student Data is the primary, more complete form. Shares stay meaningful even when a pipeline total is off.
+
+### D-021 · Outcome rates use a fallback class size (P-27)
+**Date:** 2026-11-03
+**Decision:** The denominator of an outcome rate (e.g. % employed) is, in order: the class size in the Outcomes sheet → the graduates dated in Student Data for that class → the sum of the reported outcomes, marked ◐ partial. Each rate records which denominator it used.
+**Why:** CMU-Q's class of 2022–23 (103 outcomes) and VCU-Q's (48) report a class size of 0. CMU-Q's dated graduates (103) fill the first; VCU-Q has no dated graduates for that class, so its reported outcomes are the best available base.
+
+### D-022 · Secondary sheets are shown as shares, never as headcounts (P-33)
+**Date:** 2026-11-03
+**Decision:** Nationalities, Registered Students Detailed, Ages, Funding and Graduate Nationalities are shown as **percentages of the students they cover** (e.g. "42% from GCC countries"). Headcounts always come from Student Data. Years where a sheet covers fewer students than Student Data are marked ◐ partial.
+**Why:** These sheets sometimes cover fewer students than Student Data (quality check C08: e.g. TAMU-Q 2023–24 Nationalities 609 of 672; HEC-Q 2019–20 Ages 34%). Shares stay honest when coverage is incomplete; headcounts would understate.
+
+### D-023 · Funding sponsor rows stay out of totals; those years are partial (P-34)
+**Date:** 2026-11-03
+**Decision:** Rows that break funding down by named sponsor without a program (`row_type = sponsor_detail`) are never added to funding totals. They're used only as a list of named sponsors. A new quality check (C12) marks Funding for those university-years ◐ partial: GU-Q 2023–24 and VCU-Q 2023–24. VCU-Q 2022–23 reported its funding *only* in sponsor rows (544 students, equal to its sheet total; its program rows are empty), so its program-level funding is ✗ not reported.
+**Why:** It differs by university whether these rows repeat the main line or add to it (for GU-Q they look additional; for VCU-Q they don't add up to its main line, 11 vs 126). Adding them could double-count. Leaving them out without a mark would understate.
+
+### D-024 · Graduate-nationality lists that aren't one class are left out (P-36)
+**Date:** 2026-11-03
+**Decision:** NU-Q 2023–24's list (720, against 112 graduates, likely cumulative) and HEC-Q 2021–22's (128, against 53) are left out of the graduates-by-nationality view. Quality check C10 flags any list more than double its class as ≠ not comparable, so a future one is caught the same way.
+**Why:** A list that isn't one graduating class can't be compared with the others, and its shares would describe a different group.
+
+### D-025 · How the dashboard uses the quality flags
+**Date:** 2026-11-03
+**Decision:** Each flag in `data/processed/quality_flags.csv` carries a `use`:
+
+| Flag | `use` | On the dashboard |
+|---|---|---|
+| ✓ complete, ◑ breakdown partial | `show` | shown normally |
+| ≈ differs | `show_with_note` | shown, with a note on what it differs from |
+| ◐ partial | `show_marked` | shown with a "partial" mark |
+| ≠ not comparable, ✗ not reported | `leave_out` | a visible gap, with the reason on hover |
+| – not in form | `not_applicable` | no gap shown; that year's form didn't ask |
+
+**Why:** Showing only complete data would hide VCU-Q's redacted years, HBKU's graduates and every partial year. This rule keeps all usable data visible while being honest about its limits.
