@@ -52,7 +52,9 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [x] Timing rules decided: graduates (D-011), graduation rate (D-012), outcomes (D-013)
 - [x] Apply the graduates rule (D-011): graduating class + evidence for every graduated number (`pipeline/graduates.py`, `data/reference/graduate_timing.csv`); confirmed against the next year's Outcomes sheets
 - [x] Program mapping table (`data/reference/programs.csv`, `pipeline/programs.py`): 145 spellings → 80 programs in 73 stable groups, with level, qualification and field; fixes P-18 and P-19 (D-015, D-016). A new spelling stops the build.
-- [ ] Readers: Student Pipeline, Graduation Rate (D-012), Outcomes (D-013), Nationalities, Ages, Registered Students Detailed, Funding, Internships, Graduate Nationalities
+- [x] Shared sheet reader (`pipeline/tables.py`): each sheet only needs its own header reader. Proven identical on Student Data. Excel errors are never names, and a nameless row holding numbers stops the build.
+- [x] Student Pipeline reader (`pipeline/student_pipeline.py`): 5,064 numbers from 28 files; matches Student Data exactly in 37 of 65 checks, within 10% in 56 (D-017)
+- [ ] Readers: Graduation Rate (D-012), Outcomes (D-013), Nationalities, Ages, Registered Students Detailed, Funding, Internships, Graduate Nationalities
 - [ ] Reader for VCU-Q's 2021–22 alternative form (P-04)
 - [ ] One command builds every table (`pipeline/build.py`)
 
@@ -61,6 +63,7 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [ ] Breakdowns add up to the reported totals
 - [ ] No negative or non-numeric counts; blanks stay "unknown", never zero
 - [ ] Registered counts match the QF consolidated files
+- [ ] Investigate the 9 Pipeline vs Student Data differences (P-22) and decide which source wins in each
 - [ ] Quality report listing every issue found
 - [ ] Automated tests in `tests/`
 

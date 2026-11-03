@@ -33,6 +33,50 @@ class Measure:
                  if value != "All"]
         return "_".join(parts) or "total"
 
+    def columns(self):
+        """The output columns this header describes."""
+        return {"stage": self.stage, "nationality": self.nationality, "residency": self.residency,
+                "gender": self.gender, "breakdown": self.breakdown, "period_label": self.period}
+
+
+def student_data_header(header):
+    """Header reader for the Student Data sheet (used by pipeline.tables)."""
+    m = parse_measure(header)
+    return m.columns() if m else None
+
+
+# Student Pipeline: '# <stage> from <school type>'. 'Recommended for ABP Year' must be checked first:
+# it names ABP but describes students from the school type after 'from'.
+PIPELINE_STAGES = [
+    ("recommended_abp", r"\brecommended for abp\b"),
+    ("applied", r"\bapplied\b"),
+    ("admitted", r"\b(admitted|accepted)\b"),
+    ("newly_enrolled", r"\benrolled\b"),
+    ("denied", r"\bdenied\b"),
+]
+SCHOOL_TYPES = [
+    ("Academic Bridge Program", r"^(abp|academic bridge)\b"),
+    ("QF schools", r"\bqf\b|qatar academy"),
+    ("Independent/public schools", r"\b(independent|public)\b"),
+    ("Private schools", r"\bprivate\b"),
+    ("International schools", r"\binternational\b"),
+]
+
+
+def student_pipeline_header(header):
+    """'# Admitted from International Schools outside of Qatar' -> {'stage': 'admitted', 'school_type': ...}."""
+    if not isinstance(header, str):
+        return None
+    text = re.sub(r"\s+", " ", header).strip().lower()
+    if not text.startswith("#") or " from " not in text:
+        return None
+    stage = next((name for name, pattern in PIPELINE_STAGES if re.search(pattern, text)), None)
+    source = text.rsplit(" from ", 1)[1]  # last 'from': one file says 'from from Private Schools'
+    school = next((name for name, pattern in SCHOOL_TYPES if re.search(pattern, source)), None)
+    if stage is None or school is None:
+        return None
+    return {"stage": stage, "school_type": school}
+
 
 def parse_measure(header):
     """Header text -> Measure, or None when the column isn't a student count."""

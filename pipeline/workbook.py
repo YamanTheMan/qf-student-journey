@@ -8,6 +8,7 @@ from openpyxl.utils import get_column_letter
 from pipeline.inventory import RAW_DIR, normalise_sheet_name
 
 MISSING_MARKERS = {"-", "n/a", "na", "none", "nil"}
+EXCEL_ERRORS = {"#REF!", "#N/A", "#VALUE!", "#DIV/0!", "#NAME?", "#NULL!", "#NUM!"}
 
 
 def read_sheet(rel_path, sheet_name):
@@ -50,6 +51,13 @@ def clean_text(value):
         return None
     text = re.sub(r"\s+", " ", value).strip()
     return text or None
+
+
+def clean_name(value):
+    """Text of a name cell (entity, degree, program). An Excel error such as '#REF!' is not a name:
+    it comes from a broken formula that was meant to copy the name from another tab."""
+    text = clean_text(value)
+    return None if text in EXCEL_ERRORS else text
 
 
 def to_count(value):

@@ -153,6 +153,19 @@ Built by `.venv/bin/python -m pipeline.student_data` from the 43 files using tem
 
 **Check against QF consolidated (registered students):** exact match for 34 of 40 university-years. QF's number for each of the other 6 is reproduced exactly (5) or within 13 (1) by applying QF's blanking rule (P-15).
 
+### `student_pipeline.csv`: where applicants come from
+
+Built by `.venv/bin/python -m pipeline.student_pipeline` from the 28 files with a Student Pipeline sheet (2021–22 onwards). Same columns as `student_data.csv`, except that `nationality`, `residency`, `gender`, `breakdown` and the graduate timing columns are replaced by:
+
+| Column | Meaning |
+|---|---|
+| `stage` | `applied` · `admitted` · `newly_enrolled` · `denied` · `recommended_abp` (recommended for the Academic Bridge Program; **already included in `denied`**) |
+| `school_type` | `QF schools` · `Independent/public schools` · `Private schools` · `International schools` (outside Qatar) · `Academic Bridge Program` |
+
+**Scope:** students entering from school, so **undergraduate and foundation entry only**. HBKU's pipeline covers only its one undergraduate program, and graduate-only HEC-Q has none.
+
+**Check against Student Data** (undergraduate and foundation programs; WCM-Q admitted excluded because Student Data includes internal promotions, per its remark): exact match in 37 of 65 university-year-stage comparisons, within 5% in 51, within 10% in 56. The 9 larger differences are listed in P-22 for Phase 3.
+
 ## 7. Known problems
 
 | ID | Problem | Evidence | Status |
@@ -176,3 +189,6 @@ Built by `.venv/bin/python -m pipeline.student_data` from the 43 files using tem
 | **P-17** | **One line for the whole university.** GU-Q 2023–24 reports no program split. | Its remark: students apply as one major | Solved: `row_type = all_programs` |
 | **P-18** | **Degree and program columns swapped:** TAMU-Q 2023–24 puts program names under Degree and "Undergraduate/Graduate" under Program. | QF Issues log | Solved: corrected in `programs.csv` (D-015) |
 | **P-19** | **Non-degree rows:** HBKU lists Non-Degree / Conditional Admit rows (24 students in 2022–23). The form says to include degree-seeking students only. | QF Issues log | Solved: `level = non_degree`, left out of totals (D-016) |
+| **P-20** | **`#REF!` instead of program names.** The Pipeline sheet copies names from the Student Data tab by formula; in GU-Q, HEC-Q, TAMU-Q and VCU-Q files those formulas broke. All such rows are empty. | 96 `#REF!` cells | Solved: Excel errors are never treated as names. A row without a name that holds non-zero numbers stops the build. |
+| **P-21** | **VCU-Q 2022–23 Pipeline: degree and program columns don't line up.** | VCU-Q's remark on admission routes; numbers compared with Student Data | Solved: mapped by degree (D-017) |
+| **P-22** | **Pipeline and Student Data disagree by more than 10% in 9 cases.** TAMU-Q 2021–22 newly enrolled 495 vs 140; NU-Q admitted 2023–24 268 vs 409 and 2024–25 307 vs 354; NU-Q newly enrolled 2021–22 110 vs 131 and 2024–25 123 vs 97; VCU-Q 2022–23 admitted 143 vs 165 and newly enrolled 73 vs 0 (Student Data's 0 is a formula over missing data); VCU-Q 2023–24 admitted 175 vs 157 and newly enrolled 120 vs 91. | Comparison in §6 | Phase 3: investigate and decide which source wins |

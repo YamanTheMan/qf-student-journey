@@ -104,3 +104,8 @@ A spelling not in the table stops the build and is listed, so nothing unmapped r
 **Date:** 2026-11-03
 **Decision:** Exchange students (NU-Q 2019–20: 4), certificates (NU-Q 2020–21: 0) and HBKU's "Non-Degree/Conditional Admits" (2022–23: 24) stay in the data with `level = non_degree`, but they're left out of student totals (applied in Phase 4).
 **Why:** The form asks for degree-seeking students only. QF's consolidated file keeps the HBKU rows, so our HBKU total for 2022–23 will be 24 lower than QF's, on purpose.
+
+### D-017 · VCU-Q 2022–23 Student Pipeline: program inferred from the degree column (data dictionary P-21)
+**Date:** 2026-11-03
+**Decision:** In this one sheet the program column doesn't line up with the degree column. The rows are mapped by degree: BA → Art History, MFA → Design (MFA), Foundation and Pre-BFA → Pre-Art Foundation. Each row's note in `programs.csv` says the program was inferred.
+**Why:** VCU-Q's own remark says it admits new students only into Art Foundation, BA Art History and MFA Design, and the degree column lists exactly those routes, while the program column lists BFA majors nobody can apply to. The numbers agree: the "BA" row has 42 applicants / 19 admitted against 53 / 26 for Art History in Student Data. The "Foundation" row has 0 applicants but 15 admitted, the same pattern Pre-Art Foundation shows in other years. This affects 153 numbers in one file.

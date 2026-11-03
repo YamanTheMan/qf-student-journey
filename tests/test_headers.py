@@ -1,4 +1,4 @@
-from pipeline.headers import parse_measure
+from pipeline.headers import parse_measure, student_pipeline_header
 
 
 def m(text):
@@ -32,6 +32,28 @@ def test_vcu_2023_24_marginal_splits():
 
 def test_female_is_not_read_as_male():
     assert m("# Registered Qatari Female")[3] == "Female"
+
+
+def p(text):
+    h = student_pipeline_header(text)
+    return None if h is None else (h["stage"], h["school_type"])
+
+
+def test_pipeline_headers():
+    assert p("# Admitted from International Schools outside of Qatar") == ("admitted", "International schools")
+    assert p("# Enrolled from Independent / Public Schools") == ("newly_enrolled", "Independent/public schools")
+    assert p("# Applied from ABP") == ("applied", "Academic Bridge Program")
+    assert p("# Denied from QF Schools") == ("denied", "QF schools")
+
+
+def test_recommended_for_abp_belongs_to_the_school_after_from():
+    assert p("# Recommended for ABP Year from QF Schools") == ("recommended_abp", "QF schools")
+    assert p("# Recommended for ABP Year from from Private Schools") == ("recommended_abp", "Private schools")
+
+
+def test_pipeline_reader_ignores_other_headers():
+    for text in ("# Applied Qatari Male", "#REF!", "Program", None):
+        assert student_pipeline_header(text) is None
 
 
 def test_non_count_columns_are_ignored():
