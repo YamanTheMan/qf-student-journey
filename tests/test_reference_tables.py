@@ -36,6 +36,29 @@ def test_graduate_timing_table_is_valid():
     assert timing["evidence"].str.len().gt(10).all()
 
 
+LEVELS = {"foundation", "undergraduate", "graduate", "non_degree"}
+QUALIFICATIONS = {"Foundation", "Bachelor's", "Master's", "Doctorate", "Doctor of Medicine (MD)",
+                  "Juris Doctor (JD)", "Certificate", "Non-degree"}
+FIELDS = {"Art & Design", "Business & Management", "Computing & Data", "Energy & Environment", "Engineering",
+          "General & Foundation", "Humanities & Social Sciences", "International Affairs", "Islamic Studies", "Law",
+          "Media & Communication", "Medicine & Health", "Sciences"}
+
+
+def test_program_table_is_valid():
+    programs = pd.read_csv(REFERENCE / "programs.csv", dtype=str, keep_default_na=False)
+    codes = set(pd.read_csv(REFERENCE / "universities.csv")["code"])
+    assert set(programs["university"]) <= codes
+    assert not programs.duplicated(["university", "degree_raw", "program_raw"]).any(), "a spelling is listed twice"
+    for col in ("program", "program_group", "level", "qualification", "field"):
+        assert (programs[col] != "").all(), f"blank {col}"
+    assert set(programs["level"]) <= LEVELS
+    assert set(programs["qualification"]) <= QUALIFICATIONS
+    assert set(programs["field"]) <= FIELDS
+    # one group never mixes levels, except where a program spans them on purpose (D-015)
+    mixed = programs[programs["level"] != "non_degree"].groupby(["university", "program_group"])["level"].nunique()
+    assert set(mixed[mixed > 1].index) <= {("WCM-Q", "Medicine")}
+
+
 def test_university_aliases_are_unique():
     universities = pd.read_csv(REFERENCE / "universities.csv")
     aliases = [a.upper() for row in universities["aliases"] for a in row.split("|")]

@@ -12,6 +12,7 @@ import pandas as pd
 from pipeline.graduates import assign_graduating_class
 from pipeline.headers import parse_measure
 from pipeline.inventory import ROOT
+from pipeline.programs import apply_program_map
 from pipeline.sources import submissions
 from pipeline.workbook import cell, cell_ref, clean_text, read_sheet, to_count
 
@@ -134,7 +135,10 @@ def extract_all():
             problems.append(f"{src.path}: {err}")
     table = pd.DataFrame(records)
     table["count"] = table["count"].astype("Int64")
-    return assign_graduating_class(table), problems
+    table, unmapped = apply_program_map(assign_graduating_class(table))
+    problems += [f"program spelling not in data/reference/programs.csv: {u} | {d or '(blank)'} | {p or '(blank)'}"
+                 for u, d, p in unmapped]
+    return table, problems
 
 
 def main():
@@ -151,10 +155,14 @@ def main():
     grad = table[table["stage"] == "graduated"]
     print("Graduated numbers by status:", grad["graduates_status"].value_counts().to_dict())
     print("...and by timing evidence:", grad["timing_evidence"].value_counts().to_dict())
+    reg = table[(table["stage"] == "registered") & (table["breakdown"] == "total") & table["level"].notna()]
+    print("\nRegistered students by level (reported totals):")
+    print(reg.pivot_table(index="file_year", columns="level", values="count", aggfunc="sum").to_string())
     if problems:
-        print(f"\nFiles that could not be read ({len(problems)}):")
+        print(f"\nProblems that need a person ({len(problems)}):")
         for p in problems:
             print("  ", p)
+        raise SystemExit(1)  # stop the build: nothing unmapped or unreadable reaches the dashboard
 
 
 if __name__ == "__main__":

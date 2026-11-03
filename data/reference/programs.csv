@@ -1,0 +1,146 @@
+university,degree_raw,program_raw,program,program_group,level,qualification,field,note
+CMU-Q,BS,Biological Sciences,Biological Sciences,Biological Sciences,undergraduate,Bachelor's,Sciences,
+CMU-Q,BS,Business Administration,Business Administration,Business Administration,undergraduate,Bachelor's,Business & Management,
+CMU-Q,BS,Computational Biology,Computational Biology,Computational Biology,undergraduate,Bachelor's,Sciences,
+CMU-Q,BS,Computer Science,Computer Science,Computer Science,undergraduate,Bachelor's,Computing & Data,
+CMU-Q,BS,General Studies,General Studies,General Studies,undergraduate,Bachelor's,General & Foundation,
+CMU-Q,BS,Information Systems,Information Systems,Information Systems,undergraduate,Bachelor's,Computing & Data,
+GU-Q,BS,Culture and Politics,Culture and Politics,Culture and Politics,undergraduate,Bachelor's,International Affairs,
+GU-Q,BS,International Economics,International Economics,International Economics,undergraduate,Bachelor's,International Affairs,
+GU-Q,BS,International History,International History,International History,undergraduate,Bachelor's,International Affairs,
+GU-Q,BS,International Politics,International Politics,International Politics,undergraduate,Bachelor's,International Affairs,
+GU-Q,BS,Undeclared Major,International Affairs (undeclared),International Affairs (undeclared),undergraduate,Bachelor's,International Affairs,Students who have not yet declared a major. GU-Q: all students apply as International Affairs (INAF) majors; named 'International Affairs' in 2024-25.
+GU-Q,BSFS,,All programs,All programs,undergraduate,Bachelor's,International Affairs,GU-Q 2023-24 reported one line for the whole university (P-17).
+GU-Q,BSFS,Culture and Politics,Culture and Politics,Culture and Politics,undergraduate,Bachelor's,International Affairs,
+GU-Q,BSFS,International Affairs,International Affairs (undeclared),International Affairs (undeclared),undergraduate,Bachelor's,International Affairs,Students who have not yet declared a major. GU-Q: all students apply as International Affairs (INAF) majors; named 'International Affairs' in 2024-25.
+GU-Q,BSFS,International Economics,International Economics,International Economics,undergraduate,Bachelor's,International Affairs,
+GU-Q,BSFS,International History,International History,International History,undergraduate,Bachelor's,International Affairs,
+GU-Q,BSFS,International Politics,International Politics,International Politics,undergraduate,Bachelor's,International Affairs,
+GU-Q,BSFS,Undeclared (International Affairs),International Affairs (undeclared),International Affairs (undeclared),undergraduate,Bachelor's,International Affairs,Students who have not yet declared a major. GU-Q: all students apply as International Affairs (INAF) majors; named 'International Affairs' in 2024-25.
+GU-Q,BSFS,Undeclared Major,International Affairs (undeclared),International Affairs (undeclared),undergraduate,Bachelor's,International Affairs,Students who have not yet declared a major. GU-Q: all students apply as International Affairs (INAF) majors; named 'International Affairs' in 2024-25.
+GU-Q,Undeclared,Undeclared Major,International Affairs (undeclared),International Affairs (undeclared),undergraduate,Bachelor's,International Affairs,Students who have not yet declared a major. GU-Q: all students apply as International Affairs (INAF) majors; named 'International Affairs' in 2024-25.
+HBKU,,Non-Degree/Conditional Admits,Non-degree / conditional admits,Non-degree / conditional admits,non_degree,Non-degree,General & Foundation,Not degree-seeking; outside the form's scope (P-19).
+HBKU,BS,Computer Engineering,Computer Engineering,Computer Engineering,undergraduate,Bachelor's,Engineering,
+HBKU,JD,Law,Law (JD),Law (JD),graduate,Juris Doctor (JD),Law,"Professional law degree, not a research doctorate."
+HBKU,LL.M.,International Economic and Business Law,International Economic and Business Law,International Economic and Business Law,graduate,Master's,Law,
+HBKU,LL.M.,International Law and Foreign Affairs,International Law and Foreign Affairs,International Law and Foreign Affairs,graduate,Master's,Law,
+HBKU,M,Public Policy,Public Policy,Public Policy,graduate,Master's,Humanities & Social Sciences,
+HBKU,M,Social Policy and Program Evaluation,Social Policy and Program Evaluation,Social Policy and Program Evaluation,graduate,Master's,Humanities & Social Sciences,
+HBKU,MA,Applied Islamic Ethics,Applied Islamic Ethics,Applied Islamic Ethics,graduate,Master's,Islamic Studies,
+HBKU,MA,Audiovisual Translation,Audiovisual Translation,Audiovisual Translation,graduate,Master's,Humanities & Social Sciences,
+HBKU,MA,Contemporary Islamic Studies,Contemporary Islamic Studies,Contemporary Islamic Studies,graduate,Master's,Islamic Studies,
+HBKU,MA,Digital Humanities & Societies,Digital Humanities and Societies,Digital Humanities and Societies,graduate,Master's,Humanities & Social Sciences,
+HBKU,MA,Intercultural Communication,Intercultural Communication,Intercultural Communication,graduate,Master's,Humanities & Social Sciences,
+HBKU,MA,Islam and Global Affairs,Islam and Global Affairs,Islam and Global Affairs,graduate,Master's,Islamic Studies,
+HBKU,MA,Islamic Studies,Islamic Studies (master's),Islamic Studies (master's),graduate,Master's,Islamic Studies,
+HBKU,MA,M.A. in Counseling Psychology,Counseling Psychology,Counseling Psychology,graduate,Master's,Humanities & Social Sciences,
+HBKU,MA,Translation Studies,Translation Studies,Translation Studies,graduate,Master's,Humanities & Social Sciences,
+HBKU,MA,"Women, Society & Development","Women, Society and Development","Women, Society and Development",graduate,Master's,Humanities & Social Sciences,
+HBKU,MA,"Women, Society&Development","Women, Society and Development","Women, Society and Development",graduate,Master's,Humanities & Social Sciences,
+HBKU,MDA,Health Management,Health Management (MDA),Health Management (MDA),graduate,Master's,Medicine & Health,
+HBKU,MIS,Health Management,Health Management (MIS),Health Management (MIS),graduate,Master's,Medicine & Health,
+HBKU,MPP,Public Policy,Public Policy,Public Policy,graduate,Master's,Humanities & Social Sciences,
+HBKU,MS,Biological and Biomedical Sciences,Biological and Biomedical Sciences (master's),Biological and Biomedical Sciences (master's),graduate,Master's,Sciences,
+HBKU,MS,Cyber Security,Cybersecurity,Cybersecurity,graduate,Master's,Computing & Data,
+HBKU,MS,Cybersecurity,Cybersecurity,Cybersecurity,graduate,Master's,Computing & Data,
+HBKU,MS,Data Science and Engineering,Data Science and Engineering,Data Science and Engineering,graduate,Master's,Computing & Data,
+HBKU,MS,Exercise Science,Exercise Science,Exercise Science,graduate,Master's,Medicine & Health,
+HBKU,MS,Genomics and Precision Medicine,Genomics and Precision Medicine (master's),Genomics and Precision Medicine (master's),graduate,Master's,Sciences,
+HBKU,MS,Is. Art Architecture &Urbanism,"Islamic Art, Architecture and Urbanism","Islamic Art, Architecture and Urbanism",graduate,Master's,Islamic Studies,
+HBKU,MS,"Islamic Art, Architecture and Urbanism","Islamic Art, Architecture and Urbanism","Islamic Art, Architecture and Urbanism",graduate,Master's,Islamic Studies,
+HBKU,MS,Islamic Finance,Islamic Finance,Islamic Finance,graduate,Master's,Business & Management,
+HBKU,MS,Logistics & Supply Chain Mgmt,Logistics and Supply Chain Management (master's),Logistics and Supply Chain Management (master's),graduate,Master's,Business & Management,
+HBKU,MS,Logistics and Supply Chain Management,Logistics and Supply Chain Management (master's),Logistics and Supply Chain Management (master's),graduate,Master's,Business & Management,
+HBKU,MS,Sports and Entertainment Management,Sports and Entertainment Management,Sports and Entertainment Management,graduate,Master's,Business & Management,
+HBKU,MS,Sustainable Energy,Sustainable Energy (master's),Sustainable Energy (master's),graduate,Master's,Energy & Environment,
+HBKU,MS,Sustainable Environment,Sustainable Environment (master's),Sustainable Environment (master's),graduate,Master's,Energy & Environment,
+HBKU,MSPPE,Social Policy and Program Eval,Social Policy and Program Evaluation,Social Policy and Program Evaluation,graduate,Master's,Humanities & Social Sciences,
+HBKU,Ph.D.,Computer Science and Engineering,Computer Science and Engineering (PhD),Computer Science and Engineering (PhD),graduate,Doctorate,Computing & Data,
+HBKU,Ph.D.,Logistics and Supply Chain Management,Logistics and Supply Chain Management (PhD),Logistics and Supply Chain Management (PhD),graduate,Doctorate,Business & Management,
+HBKU,Ph.D.,Sustainable Energy,Sustainable Energy (PhD),Sustainable Energy (PhD),graduate,Doctorate,Energy & Environment,
+HBKU,Ph.D.,Sustainable Environment,Sustainable Environment (PhD),Sustainable Environment (PhD),graduate,Doctorate,Energy & Environment,
+HBKU,PhD,Biological and Biomedical Sciences,Biological and Biomedical Sciences (PhD),Biological and Biomedical Sciences (PhD),graduate,Doctorate,Sciences,
+HBKU,PhD,Biopsychology and Neuroscience,Biopsychology and Neuroscience (PhD),Biopsychology and Neuroscience (PhD),graduate,Doctorate,Sciences,
+HBKU,PhD,Computer Science & Engineering,Computer Science and Engineering (PhD),Computer Science and Engineering (PhD),graduate,Doctorate,Computing & Data,
+HBKU,PhD,Genomics and Precision Medicine,Genomics and Precision Medicine (PhD),Genomics and Precision Medicine (PhD),graduate,Doctorate,Sciences,
+HBKU,PhD,Humanities and Social Science,Humanities and Social Sciences (PhD),Humanities and Social Sciences (PhD),graduate,Doctorate,Humanities & Social Sciences,
+HBKU,PhD,Islamic Finance and Economy,Islamic Finance and Economy (PhD),Islamic Finance and Economy (PhD),graduate,Doctorate,Business & Management,
+HBKU,PhD,Islamic Studies,Islamic Studies (PhD),Islamic Studies (PhD),graduate,Doctorate,Islamic Studies,
+HBKU,PhD,Logistics and Supply Chain Management,Logistics and Supply Chain Management (PhD),Logistics and Supply Chain Management (PhD),graduate,Doctorate,Business & Management,
+HBKU,PhD,Sustainable Energy,Sustainable Energy (PhD),Sustainable Energy (PhD),graduate,Doctorate,Energy & Environment,
+HBKU,PhD,Sustainable Environment,Sustainable Environment (PhD),Sustainable Environment (PhD),graduate,Doctorate,Energy & Environment,
+HBKU,Phd,Biological and Biomedical Sciences,Biological and Biomedical Sciences (PhD),Biological and Biomedical Sciences (PhD),graduate,Doctorate,Sciences,
+HBKU,Phd,Genomics and Precision Medicine,Genomics and Precision Medicine (PhD),Genomics and Precision Medicine (PhD),graduate,Doctorate,Sciences,
+HBKU,Phd,Humanities and Social Sciences,Humanities and Social Sciences (PhD),Humanities and Social Sciences (PhD),graduate,Doctorate,Humanities & Social Sciences,
+HBKU,Phd,Islamic Finance and Economy,Islamic Finance and Economy (PhD),Islamic Finance and Economy (PhD),graduate,Doctorate,Business & Management,
+HBKU,S.J.D.,Juridical Science,Juridical Science,Juridical Science,graduate,Doctorate,Law,
+HBKU,SJD,Doctor of Juridical Science,Juridical Science,Juridical Science,graduate,Doctorate,Law,
+HBKU,UG,Computer Engineering,Computer Engineering,Computer Engineering,undergraduate,Bachelor's,Engineering,Degree written as 'UG' in 2022-23.
+HEC-Q,ELT Oct 2024,Emerging Leaders Track Executive MBA - Oct 2024 Start,Executive MBA,Executive MBA,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+HEC-Q,EMBA,Executive MBA,Executive MBA,Executive MBA,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+HEC-Q,EMBA,Executive MBA 2019 (2018),Executive MBA,Executive MBA,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+HEC-Q,EMBA,Executive MBA 2020 (Feb 2019),Executive MBA,Executive MBA,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+HEC-Q,EMBA,Executive MBA New Cohort,Executive MBA,Executive MBA,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+HEC-Q,EMBA 2022,Executive MBA - Apr 2021 Start,Executive MBA,Executive MBA,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+HEC-Q,EMBA 2022 Feb Cohort 1,Executive MBA - Feb 2022 Start,Executive MBA,Executive MBA,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+HEC-Q,EMBA 2022 Feb Cohort 2,Executive MBA - Feb 2022 Start in KSA,Executive MBA,Executive MBA,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+HEC-Q,EMBA 2023,Executive MBA - Feb 2022 Start,Executive MBA,Executive MBA,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+HEC-Q,EMBA 2024,Executive MBA - Feb 2023 Start,Executive MBA,Executive MBA,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+HEC-Q,EMBA 2025,Executive MBA - Feb 2024 Start,Executive MBA,Executive MBA,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+HEC-Q,EMBA 2025 (2025 Start),Executive MBA - 2025 Start,Executive MBA,Executive MBA,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+HEC-Q,GEMM 2026,Global Executive Master in Management,Global Executive Master in Management,Global Executive Master in Management,graduate,Master's,Business & Management,
+HEC-Q,GEMM-AWQAF,Global Executive Master in Management,Global Executive Master in Management,Global Executive Master in Management,graduate,Master's,Business & Management,
+HEC-Q,SBUM,SBUM 2019 Cohort 1 (2018),Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+HEC-Q,SBUM,SBUM 2020 Cohort 1 (Jan 2019),Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+HEC-Q,SBUM,Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+HEC-Q,SBUM,Specialized Master in Strategic Business Unit Management New Cohort,Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+HEC-Q,SBUM 2022,Specialized Master in Strategic Business Unit Management - Jan 2021 start,Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+HEC-Q,SBUM 2023,Specialized Master in Strategic Business Unit Management - Nov 2021 start,Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+HEC-Q,SBUM 2024,Specialized Master in Strategic Business Unit Management - Oct 2022 start,Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+HEC-Q,SBUM 2025,Specialized Master in Strategic Business Unit Management - Oct 2023 start,Specialized Master in Strategic Business Unit Management,Specialized Master in Strategic Business Unit Management,graduate,Master's,Business & Management,One row per cohort; the raw name keeps the cohort.
+NU-Q,BS,Communication,Communication,Communication,undergraduate,Bachelor's,Media & Communication,
+NU-Q,BS,Journalism,Journalism,Journalism,undergraduate,Bachelor's,Media & Communication,
+NU-Q,BS,Undeclared Major,Undeclared,Undeclared,undergraduate,Bachelor's,Media & Communication,Students who have not yet chosen Communication or Journalism.
+NU-Q,BS,Undeclared major,Undeclared,Undeclared,undergraduate,Bachelor's,Media & Communication,Students who have not yet chosen Communication or Journalism.
+NU-Q,MA,Graduate Degree Program,Sports Administration,Sports Administration,graduate,Master's,Business & Management,"2019-20 label for NU-Q's only graduate program (MA Sports Administration, named from 2020-21)."
+NU-Q,MA,Sports Administration,Sports Administration,Sports Administration,graduate,Master's,Business & Management,
+NU-Q,Other,Exchange student from home campus,Exchange students,Exchange students,non_degree,Non-degree,General & Foundation,Exchange students are not degree-seeking at NU-Q.
+NU-Q,PG Certificate,Sports Administration,Sports Administration (certificate),Sports Administration,non_degree,Certificate,Business & Management,Certificates are outside the form's scope (degree-seeking students only).
+NU-Q,Undeclared,Undeclared Major,Undeclared,Undeclared,undergraduate,Bachelor's,Media & Communication,Students who have not yet chosen Communication or Journalism.
+TAMU-Q,Aggie Gateway Program,Undergraduate,Gateway Program,Gateway Program,foundation,Foundation,General & Foundation,Foundation year before admission (NDS = non-degree-seeking). Columns swapped in 2023-24 (P-18).
+TAMU-Q,BS,Chemical Engineering,Chemical Engineering,Chemical Engineering,undergraduate,Bachelor's,Engineering,
+TAMU-Q,BS,Electrical Engineering,Electrical Engineering,Electrical Engineering,undergraduate,Bachelor's,Engineering,
+TAMU-Q,BS,Mechanical Engineering,Mechanical Engineering,Mechanical Engineering,undergraduate,Bachelor's,Engineering,
+TAMU-Q,BS,Petroleum Engineering,Petroleum Engineering,Petroleum Engineering,undergraduate,Bachelor's,Engineering,
+TAMU-Q,Chemical Engineering,Undergraduate,Chemical Engineering,Chemical Engineering,undergraduate,Bachelor's,Engineering,Degree and Program columns swapped in 2023-24 (P-18).
+TAMU-Q,Electrical Engineering,Undergraduate,Electrical Engineering,Electrical Engineering,undergraduate,Bachelor's,Engineering,Degree and Program columns swapped in 2023-24 (P-18).
+TAMU-Q,Foundation,Gateway Program,Gateway Program,Gateway Program,foundation,Foundation,General & Foundation,Foundation year before admission.
+TAMU-Q,MS-CHEN,Graduate,Chemical Engineering (graduate),Chemical Engineering (graduate),graduate,Master's,Engineering,Degree and Program columns swapped in 2023-24 (P-18); MS-CHEN = MS in Chemical Engineering.
+TAMU-Q,MS/ME,Chemical Engineering,Chemical Engineering (graduate),Chemical Engineering (graduate),graduate,Master's,Engineering,
+TAMU-Q,MS/MEng,Chemical Engineering,Chemical Engineering (graduate),Chemical Engineering (graduate),graduate,Master's,Engineering,
+TAMU-Q,Mechanical Engineering,Undergraduate,Mechanical Engineering,Mechanical Engineering,undergraduate,Bachelor's,Engineering,Degree and Program columns swapped in 2023-24 (P-18).
+TAMU-Q,NDS,Gateway Progam,Gateway Program,Gateway Program,foundation,Foundation,General & Foundation,Foundation year before admission (NDS = non-degree-seeking). Columns swapped in 2023-24 (P-18).
+TAMU-Q,Petroleum Engineering,Undergraduate,Petroleum Engineering,Petroleum Engineering,undergraduate,Bachelor's,Engineering,Degree and Program columns swapped in 2023-24 (P-18).
+VCU-Q,,Art Foundation,Art Foundation,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,First year of the BFA; students choose their major afterwards.
+VCU-Q,,Art Foundation-FYI,Art Foundation,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,First year of the BFA; students choose their major afterwards.
+VCU-Q,N/A,"Bachelor of Fine Arts (Pre-Art Foundation, for Qatari students only)",Pre-Art Foundation,Pre-Art Foundation,foundation,Foundation,Art & Design,Preparation year for Qatari students before the BFA.
+VCU-Q,(Foundation),"Bachelor of Fine Arts (Pre-Art Foundation, for Qatari students only)",Pre-Art Foundation,Pre-Art Foundation,foundation,Foundation,Art & Design,Preparation year for Qatari students before the BFA.
+VCU-Q,BA,Art History,Art History,Art History,undergraduate,Bachelor's,Art & Design,
+VCU-Q,BFA,Art Foundation,Art Foundation,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,First year of the BFA; students choose their major afterwards.
+VCU-Q,BFA,Art Foundation / Graphic Design / Interior Design / Fashion Design / Painting & Printmaking,Fine Arts (all majors combined),Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,All BFA majors reported as one line.
+VCU-Q,BFA,Fashion Design,Fashion Design,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,
+VCU-Q,BFA,Graphic Design,Graphic Design,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,
+VCU-Q,BFA,Interior Design,Interior Design,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,
+VCU-Q,BFA,Painting & Printmaking,Painting & Printmaking,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,
+VCU-Q,BFA,Painting and Printmaking,Painting & Printmaking,Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,
+VCU-Q,Bachelor,Bachelor of Arts,Art History,Art History,undergraduate,Bachelor's,Art & Design,VCU-Q's only BA is Art History (2023-24 label).
+VCU-Q,Bachelor,Bachelor of Fine Arts,Fine Arts (all majors combined),Fine Arts (BFA),undergraduate,Bachelor's,Art & Design,All BFA majors reported as one line (2023-24).
+VCU-Q,Foundation,Pre-Art Foundation,Pre-Art Foundation,Pre-Art Foundation,foundation,Foundation,Art & Design,Preparation year for Qatari students before the BFA.
+VCU-Q,MFA,Design,Design (MFA),Design (MFA),graduate,Master's,Art & Design,
+VCU-Q,Masters,Master of Design,Design (MFA),Design (MFA),graduate,Master's,Art & Design,VCU-Q's only master's program (2023-24 label).
+WCM-Q,N/A,Foundation Program,Foundation Program,Foundation Program,foundation,Foundation,Medicine & Health,
+WCM-Q,(Foundation),Foundation Program,Foundation Program,Foundation Program,foundation,Foundation,Medicine & Health,
+WCM-Q,Foundation,Foundation Program,Foundation Program,Foundation Program,foundation,Foundation,Medicine & Health,
+WCM-Q,MD,Four-Year Medical Curriculum,Four-Year Medical Curriculum,Medicine,graduate,Doctor of Medicine (MD),Medicine & Health,Medical school years (M1-M4).
+WCM-Q,MD,Four-Year Medical Curriculum of Medical Program,Four-Year Medical Curriculum,Medicine,graduate,Doctor of Medicine (MD),Medicine & Health,Medical school years (M1-M4).
+WCM-Q,MD,Six-Year Medical Program,Six-Year Medical Program (pre-medical),Medicine,undergraduate,Doctor of Medicine (MD),Medicine & Health,Pre-medical years (PM1-PM2) of the six-year program; students are promoted into the Four-Year Medical Curriculum.

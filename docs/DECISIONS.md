@@ -86,3 +86,21 @@ A university-wide total of 0 graduates means **not reported**, not zero. If two 
 **Date:** 2026-11-03
 **Decision:** Each nationality × residency × gender cell is stored separately, and university totals use the universities' own reported totals. A blank part stays blank, but it does **not** blank the rest of its group.
 **Why:** QF's consolidated file blanks a whole Non-Qatari group when one part (resident or international) is missing. We reproduced QF's numbers exactly with that rule (5 of 6 cases), and it undercounts: NU-Q 2023–24 shows 260 instead of the 474 the university reported. Our totals match QF exactly in the 34 university-years where no part is missing.
+
+### D-015 · Program mapping: standard names, stable groups, levels (data dictionary P-18)
+**Date:** 2026-11-03
+**Decision:** `data/reference/programs.csv` has one row for every program spelling found in the files and gives it a standard `program`, a `program_group` that stays stable across all years, a `level` (foundation / undergraduate / graduate / non_degree), a `qualification` and a broad `field` (13 fields). Choices that needed judgment:
+- **WCM-Q:** the Six-Year Medical Program (pre-medical years) is **undergraduate**; the Four-Year Medical Curriculum (medical school) is **graduate**. Both belong to the group "Medicine".
+- **GU-Q:** "Undeclared" rows and 2024–25's "International Affairs" are one group, "International Affairs (undeclared)": students who haven't yet declared a major.
+- **VCU-Q:** all BFA majors, and the years where they were reported as one line, roll up to the group "Fine Arts (BFA)".
+- **NU-Q:** 2019–20's "Graduate Degree Program" is the MA in Sports Administration, NU-Q's only graduate program.
+- **HEC-Q:** each cohort row maps to its program (Executive MBA, SBUM, GEMM); the raw name keeps the cohort.
+- **TAMU-Q 2023–24:** the swapped Degree and Program columns are corrected through the mapping.
+
+A spelling not in the table stops the build and is listed, so nothing unmapped reaches the dashboard.
+**Why:** Universities rename and split programs from year to year, so trends need one stable name. Keeping every raw spelling as its own row makes each choice visible and easy to change.
+
+### D-016 · Non-degree rows are labelled and left out of student totals (P-19)
+**Date:** 2026-11-03
+**Decision:** Exchange students (NU-Q 2019–20: 4), certificates (NU-Q 2020–21: 0) and HBKU's "Non-Degree/Conditional Admits" (2022–23: 24) stay in the data with `level = non_degree`, but they're left out of student totals (applied in Phase 4).
+**Why:** The form asks for degree-seeking students only. QF's consolidated file keeps the HBKU rows, so our HBKU total for 2022–23 will be 24 lower than QF's, on purpose.
