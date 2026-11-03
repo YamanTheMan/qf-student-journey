@@ -32,6 +32,8 @@ def test_breakdown_statuses():
     assert statuses(checks.breakdown_findings("t", one_row([None, None], 0), KEY)) == ["formula_zero"]
     mismatch = checks.breakdown_findings("t", one_row([3, 5], 7), KEY)
     assert statuses(mismatch) == ["mismatch"] and mismatch[0]["severity"] == "warning"
+    # parts that are all 0 under a positive total: formulas over withheld numbers (VCU-Q 2023-24 footer)
+    assert statuses(checks.breakdown_findings("t", one_row([0, 0], 311), KEY)) == ["withheld"]
 
 
 def test_computed_totals_are_not_checked_against_themselves():
@@ -91,3 +93,5 @@ def test_report_has_summary_warnings_and_information():
     text = checks.report(findings)
     assert "## Summary" in text and "## Warnings" in text and "## Information" in text
     assert "f.xlsx F8" in text
+    flags = pd.DataFrame({"measure": ["registered"], "university": ["U-1"], "file_year": ["2024-2025"], "symbol": ["◐"]})
+    assert "| U-1 | ◐ |" in checks.report(findings, flags)

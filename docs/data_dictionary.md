@@ -239,6 +239,29 @@ Written by every build (`pipeline/checks.py`). Each finding has `check`, `severi
 | C04 funnel narrows | Per university and year (not per program: some universities admit to "Undeclared"): admitted ≤ applied, newly enrolled ≤ admitted, also per school type |
 | C05 graduation within class | Graduates ≤ entrants; flags classes with graduates but no entrants (P-25) and the "150% includes 100%" convention (P-24) |
 | C06 outcomes within class | Outcomes ≤ class size; flags outcomes with a class size of 0 (P-27) |
+| C07 registered vs QF | Registered students equal QF's consolidated file; a gap that QF's blanking rule reproduces is info (P-15) |
+| C08 … vs Student Data | Nationalities, Registered Students Detailed and Ages add up to Student Data's registered students (P-33) |
+| C09 pipeline vs Student Data | Applied / admitted / enrolled by school type, at undergraduate + foundation entry, within 10% (P-22); WCM-Q's internal promotions are info |
+| C10 … vs dated graduates | A class's size in Outcomes and Graduate Nationalities equals its dated graduates; more than double means "not one class" (P-36) |
+| C11 class size vs newly enrolled | An entering class is never larger than that year's newly enrolled |
+
+A reference of 0 (a formula over missing data) gives an info finding "fills_gap": the other sheet supplies the missing number (e.g. VCU-Q 2022–23).
+
+### `quality_flags.csv`: one quality flag per measure × university × year
+
+Written with the findings (`pipeline/flags.py`). A **measure** is one thing the dashboard shows: a Student Data stage (`applied`, `admitted`, `newly_enrolled`, `registered`, `graduated`) or another table. The year is the submission's academic year. Columns: `measure`, `university`, `file_year`, `status`, `symbol`, `notes` (the findings behind the flag).
+
+| Status | Symbol | Meaning |
+|---|:-:|---|
+| `complete` | ✓ | numbers present and consistent |
+| `breakdown_partial` | ◑ | totals fine, some nationality / gender parts withheld or blank |
+| `differs` | ≈ | higher than a reference, or parts that don't add up, but plausibly so |
+| `partial` | ◐ | fewer than a reference, or a key part missing (e.g. entrants for a rate) |
+| `not_comparable` | ≠ | means something else (a cumulative list, a funnel that widens, 1.5× off) |
+| `not_reported` | ✗ | the form had the sheet, but no numbers (or only formula zeros) |
+| `not_in_form` | – | that year's form didn't have the sheet |
+
+The report shows each measure as a university × year grid of these symbols.
 
 ## 7. Known problems
 

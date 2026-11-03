@@ -73,10 +73,10 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [x] Quality report (`docs/quality_report.md`) and findings table (`data/processed/quality_findings.csv`)
 - [x] Automated tests for every check
 
-**Step 2: checks across tables and sources**
-- [ ] Registered counts match the QF consolidated files (automatic, with QF's blanking rule explained)
-- [ ] Secondary sheets vs Student Data (Nationalities, Detailed, Ages, Graduate Nationalities, Pipeline, Outcomes class sizes)
-- [ ] A quality flag for every table × university × year: complete / partial / not reported / not comparable
+**Step 2: checks across tables and sources ✅**
+- [x] Registered counts match the QF consolidated files (C07): every gap explained by QF's blanking rule, no warnings
+- [x] Secondary sheets vs Student Data (C08), Pipeline vs Student Data (C09), class sizes vs dated graduates (C10), entering classes vs newly enrolled (C11)
+- [x] A quality flag for every measure × university × year (`pipeline/flags.py`, `data/processed/quality_flags.csv`), shown as grids in the quality report
 
 **Step 3: decisions on the deferred problems**
 - [ ] Pipeline vs Student Data differences (P-22): which source wins in each

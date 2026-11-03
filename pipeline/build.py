@@ -11,7 +11,8 @@
 4. If anything needs a person (an unreadable file, an unknown program spelling, numbers
    without a name, a quality error, ...), print it all and stop WITHOUT writing:
    data/processed/ never holds a half-built mix of old and new tables.
-5. Otherwise write every table, the findings and docs/quality_report.md, then run the tests.
+5. Otherwise write every table, the findings, the quality flags and docs/quality_report.md,
+   then run the tests.
 
 This is the command GitHub will run on every upload (Phase 6).
 """
@@ -94,8 +95,7 @@ def main():
     for name, table in tables.items():
         table.to_csv(PROCESSED / f"{name}.csv", index=False)
         print(f"   {name + '.csv':28} {len(table):>7,} numbers from {table['source_file'].nunique():>2} files")
-    findings.to_csv(checks.FINDINGS, index=False)
-    checks.REPORT.write_text(checks.report(findings))
+    checks.write_outputs(tables, findings)
 
     if "--no-tests" not in sys.argv:
         print("5. Tests")

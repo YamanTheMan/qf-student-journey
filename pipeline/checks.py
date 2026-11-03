@@ -114,6 +114,11 @@ def breakdown_findings(table_name, t, key):
                     out.append(finding("C03 breakdown adds up", "info", "withheld", table_name, row,
                                        f"Total {total} given but all {where} are blank (breakdown withheld)",
                                        expected=total))
+            elif found == 0 and total > 0:
+                # e.g. VCU-Q 2023-24's footer: parts are formulas over cells withheld for privacy
+                out.append(finding("C03 breakdown adds up", "info", "withheld", table_name, row,
+                                   f"Total {total} but every {where} is 0: formulas over withheld numbers",
+                                   found=0, expected=total))
             elif found == total:
                 if blank:
                     out.append(finding("C03 breakdown adds up", "info", "blanks_are_zero", table_name, row,
@@ -235,6 +240,168 @@ def outcomes_within_class(tables):
 
 
 # ---------------------------------------------------------------------------------------------
+# Across tables and sources
+
+QF_CONSOLIDATED = ROOT / "data" / "raw" / "QF_Consolidated_All_Years_AY2011-2025.xlsx"
+COUNTED_ROWS = ("program", "all_programs")
+
+
+def student_totals(tables, stage, levels=None):
+    """Student Data's reported totals of one stage, per university and year."""
+    sd = tables["student_data"]
+    t = sd[(sd["stage"] == stage) & (sd["breakdown"] == "total") & sd["row_type"].isin(COUNTED_ROWS)]
+    if levels:
+        t = t[t["level"].isin(levels)]
+    return t.groupby(["university", "file_year"])["count"].sum(min_count=1)
+
+
+def compare(check_id, table, ours, reference, label, close=0.02, explain=None, stage=None):
+    """Findings for every university-year where `ours` differs from `reference`.
+
+    Equal: nothing. Within `close`: info. Otherwise a warning, unless `explain` returns a reason.
+    """
+    out = []
+    both = pd.DataFrame({"ours": ours, "reference": reference}).dropna()
+    for (uni, year), v in both.iterrows():
+        found, expected = int(v["ours"]), int(v["reference"])
+        if found == expected:
+            continue
+        row = {"university": uni, "file_year": year, "stage": stage}
+        gap = abs(found - expected) / expected if expected else float("inf")
+        reason = explain(uni, year, found, expected) if explain else None
+        if reason:
+            status, severity, message = reason
+        elif expected == 0:
+            status, severity, message = ("fills_gap", "info", f"{found} here, but {label} shows 0 "
+                                         f"(a formula over missing data): this sheet fills the gap")
+        elif gap <= close:
+            status, severity, message = "close", "info", f"{found} vs {expected} in {label} (within {close:.0%})"
+        elif found < expected:
+            status, severity, message = "lower", "warning", f"{found} vs {expected} in {label}: only {found / expected:.0%}"
+        else:
+            status, severity, message = "higher", "warning", f"{found} vs {expected} in {label}: {found / expected:.1f}x"
+        out.append(finding(check_id, severity, status, table, row, message, found=found, expected=expected))
+    return out
+
+
+def qf_registered():
+    qf = pd.read_excel(QF_CONSOLIDATED, sheet_name="Consolidated")
+    qf = qf[qf["Year"] >= "2019-2020"]
+    return qf.groupby(["University", "Year"])["Registered"].sum(min_count=1).rename_axis(["university", "file_year"])
+
+
+@check
+def registered_vs_qf(tables):
+    """C07: registered students equal QF's consolidated file, or the gap is QF's blanking rule (P-15)."""
+    sd = tables["student_data"]
+    parts = sd[(sd["stage"] == "registered") & (sd["breakdown"] == "nationality_gender") & sd["row_type"].isin(COUNTED_ROWS)]
+    # QF's rule: a nationality x gender group counts only if every part of it is filled
+    groups = parts.groupby(["university", "file_year", "source_file", "program_raw", "degree_raw", "nationality", "gender"],
+                           dropna=False)["count"]
+    qf_rule = groups.apply(lambda s: s.sum() if s.notna().all() else None).dropna() \
+        .groupby(["university", "file_year"]).sum()
+    reference = qf_registered()
+
+    def explain(uni, year, found, expected):
+        rebuilt = qf_rule.get((uni, year))
+        if rebuilt is not None and abs(rebuilt - expected) <= max(15, 0.02 * expected):
+            return ("qf_leaves_out_blank_groups", "info",
+                    f"{found} (ours) vs {expected} (QF): QF leaves out any group with a blank part; "
+                    f"applying that rule to our numbers gives {int(rebuilt)} (P-15)")
+        return None
+    return compare("C07 registered vs QF", "student_data", student_totals(tables, "registered"), reference,
+                   "QF's consolidated file", close=0, explain=explain, stage="registered")
+
+
+@check
+def secondary_sheets_vs_student_data(tables):
+    """C08: sheets that list registered students another way add up to Student Data's registered total."""
+    registered = student_totals(tables, "registered")
+    nat = tables["nationalities"]
+    nat = nat[(nat["stage"] == "registered") & (nat["breakdown"] == "total") & (nat["row_status"] == "used")]
+    ages = tables["ages"]
+    ages = ages[(ages["stage"] == "registered") & (ages["breakdown"] == "gender")]
+    out = []
+    for table, t in (("nationalities", nat), ("registered_detailed", tables["registered_detailed"]), ("ages", ages)):
+        ours = t.groupby(["university", "file_year"])["count"].sum()
+        out += compare(f"C08 {table} vs Student Data", table, ours[ours > 0], registered,
+                       "Student Data's registered students", stage="registered")
+    return out
+
+
+@check
+def pipeline_vs_student_data(tables):
+    """C09: applicants, admitted and enrolled by school type add up to Student Data's (school-leaver entry only)."""
+    pl = tables["student_pipeline"]
+    entry = ["undergraduate", "foundation"]
+    pl = pl[pl["row_type"].isin(COUNTED_ROWS) & pl["level"].isin(entry)]
+    out = []
+    for stage in ("applied", "admitted", "newly_enrolled"):
+        ours = pl[pl["stage"] == stage].groupby(["university", "file_year"])["count"].sum(min_count=1)
+
+        def explain(uni, year, found, expected, stage=stage):
+            if uni == "WCM-Q" and stage == "admitted":
+                return ("internal_promotions", "info", f"{found} vs {expected}: WCM-Q's Student Data counts students "
+                        "promoted from Foundation and pre-medical years as admitted")
+            return None
+        out += compare("C09 pipeline vs Student Data", "student_pipeline", ours[ours > 0],
+                       student_totals(tables, stage, entry), f"Student Data ({stage.replace('_', ' ')})",
+                       close=0.10, explain=explain, stage=stage)
+    return out
+
+
+def dated_graduates(tables):
+    sd = tables["student_data"]
+    g = sd[(sd["stage"] == "graduated") & (sd["graduates_status"] == "used") & (sd["breakdown"] == "total")
+           & sd["row_type"].isin(COUNTED_ROWS)]
+    return g.groupby(["university", "graduating_year"])["count"].sum(min_count=1)
+
+
+@check
+def classes_vs_dated_graduates(tables):
+    """C10: a graduating class's size in Outcomes and Graduate Nationalities equals the graduates dated in Student Data."""
+    graduates = dated_graduates(tables)
+    oc = tables["outcomes"]
+    oc = oc[(oc["report_status"] == "used") & (oc["stage"] == "graduates") & (oc["breakdown"] == "total")
+            & oc["row_type"].isin(COUNTED_ROWS)]
+    gn = tables["graduate_nationalities"]
+    gn = gn[gn["row_status"] == "used"]
+    out = []
+    for table, t in (("outcomes", oc), ("graduate_nationalities", gn)):
+        sizes = t.groupby(["university", "graduating_year"])["count"].sum()
+        sizes = sizes[sizes > 0]
+        file_year = t.groupby(["university", "graduating_year"])["file_year"].max()
+
+        def explain(uni, year, found, expected, table=table):
+            if found > 2 * expected:
+                return ("not_one_class", "warning", f"{found} vs {expected} graduates in the class of {year}: "
+                        f"more than double, so this list is not one class (P-36)")
+            return None
+        for f in compare(f"C10 {table} vs dated graduates", table, sizes, graduates,
+                         "the graduates dated in Student Data", close=0.05, explain=explain, stage="graduated"):
+            f["message"] = f"Class {f['file_year']}: " + f["message"]
+            f["file_year"] = file_year.get((f["university"], f["file_year"]))  # report the submission year
+            out.append(f)
+    return out
+
+
+@check
+def class_size_vs_newly_enrolled(tables):
+    """C11: an entering class (first-time students) can't be larger than that year's newly enrolled students."""
+    gr = tables["graduation_rate"]
+    gr = gr[(gr["report_status"] == "used") & (gr["stage"] == "entered") & (gr["breakdown"] == "total")]
+    sizes = gr.groupby(["university", "cohort"])["count"].sum().rename_axis(["university", "file_year"])
+    sizes = sizes[sizes > 0]
+    newly = student_totals(tables, "newly_enrolled")
+    both = pd.DataFrame({"class": sizes, "newly": newly}).dropna()
+    return [finding("C11 class size vs newly enrolled", "warning", "class_larger", "graduation_rate",
+                    {"university": u, "file_year": y, "stage": "entered"},
+                    f"Entering class {y}: {int(v['class'])} first-time students but only {int(v['newly'])} newly enrolled",
+                    found=int(v["class"]), expected=int(v["newly"]))
+            for (u, y), v in both[both["class"] > both["newly"]].iterrows()]
+
+
+# ---------------------------------------------------------------------------------------------
 
 def run_checks(tables):
     findings = [f for check_func in CHECKS for f in check_func(tables)]
@@ -251,7 +418,35 @@ STATUS_MEANING = {
 }
 
 
-def report(findings):
+MEASURE_NAMES = {  # story order
+    "applied": "Getting in: applied", "admitted": "Getting in: admitted", "newly_enrolled": "Getting in: newly enrolled",
+    "student_pipeline": "Getting in: applicants by school type", "registered": "Studying: registered students",
+    "nationalities": "Studying: nationalities", "registered_detailed": "Studying: registered students in detail",
+    "ages": "Studying: ages", "funding": "Studying: funding", "internships": "Studying: internships",
+    "graduated": "Graduating: graduates", "graduation_rate": "Graduating: graduation rate by entering class",
+    "graduate_nationalities": "Graduating: graduate nationalities", "outcomes": "After: outcomes one year on",
+}
+LEGEND = ("✓ complete · ◑ breakdown partial (totals fine, some nationality/gender parts withheld) · "
+          "≈ differs (from a reference, plausibly) · ◐ partial (fewer than a reference, or a key part missing) · "
+          "≠ not comparable · ✗ not reported (sheet left empty) · – not in that year's form · "
+          "blank: no file from that university that year")
+
+
+def coverage_section(flags):
+    from pipeline.flags import matrix
+    lines = ["## Coverage and quality by measure", "", LEGEND, "",
+             "Every flag, with the findings behind it, is in `data/processed/quality_flags.csv`.", ""]
+    years = sorted(flags["file_year"].unique())
+    universities = sorted(flags["university"].unique())
+    for measure, name in MEASURE_NAMES.items():
+        grid = matrix(flags, measure).reindex(index=universities, columns=years).astype(object).fillna("")
+        lines += [f"**{name}**", "", "| University | " + " | ".join(y[2:4] + "–" + y[7:] for y in years) + " |",
+                  "|---|" + "---|" * len(years),
+                  *[f"| {u} | " + " | ".join(grid.loc[u]) + " |" for u in universities], ""]
+    return lines
+
+
+def report(findings, flags=None):
     """The readable quality report (markdown), regenerated by every build."""
     counts = findings.groupby(["check", "severity"]).size().unstack(fill_value=0)
     for severity in ("error", "warning", "info"):
@@ -273,6 +468,7 @@ def report(findings):
         "|---|--:|--:|--:|",
         *[f"| {c} | {r['error']} | {r['warning']} | {r['info']} |" for c, r in counts.iterrows()],
         "",
+        *(coverage_section(flags) if flags is not None else []),
         "## Warnings",
         "",
     ]
@@ -310,14 +506,25 @@ def load_tables():
 
 REPORT = ROOT / "docs" / "quality_report.md"
 FINDINGS = PROCESSED / "quality_findings.csv"
+FLAGS = PROCESSED / "quality_flags.csv"
+
+
+def write_outputs(tables, findings):
+    """Findings, flags and the readable report, written together by every build."""
+    from pipeline.flags import quality_flags
+    flags = quality_flags(tables, findings)
+    findings.to_csv(FINDINGS, index=False)
+    flags.to_csv(FLAGS, index=False)
+    REPORT.write_text(report(findings, flags))
+    return flags
 
 
 def main():
-    findings = run_checks(load_tables())
-    findings.to_csv(FINDINGS, index=False)
-    REPORT.write_text(report(findings))
+    tables = load_tables()
+    findings = run_checks(tables)
+    write_outputs(tables, findings)
     print(findings.groupby(["check", "severity", "status"]).size().to_string())
-    print(f"\nWrote {FINDINGS.relative_to(ROOT)} and {REPORT.relative_to(ROOT)}")
+    print(f"\nWrote {FINDINGS.relative_to(ROOT)}, {FLAGS.relative_to(ROOT)} and {REPORT.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":
