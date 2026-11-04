@@ -164,3 +164,23 @@ A spelling not in the table stops the build and is listed, so nothing unmapped r
 | – not in form | `not_applicable` | no gap shown; that year's form didn't ask |
 
 **Why:** Showing only complete data would hide VCU-Q's redacted years, HBKU's graduates and every partial year. This rule keeps all usable data visible while being honest about its limits.
+
+### D-026 · Small numbers are hidden: counts below 5, rates on fewer than 10
+**Date:** 2026-11-04
+**Decision:** In any breakdown (by nationality, gender, program, country, age, …), a count of 1–4 is shown as "<5", never as the number. A share or rate based on fewer than 10 students isn't shown. University totals and Education City totals are always shown. `pipeline/metrics.py` applies this before anything reaches the dashboard: a hidden value is stored as blank with the label "<5".
+**Why:** Tiny groups (e.g. 1 Qatari male in a program) could identify a person. The universities themselves withheld small numbers: VCU-Q blanked everything below 10, and several graduate lists say "less than 5".
+
+### D-027 · The 150% graduation rate counts everyone who graduated by 150% of normal time (P-24)
+**Date:** 2026-11-04
+**Decision:** "Graduated by 150%" = on-time graduates + later graduates up to 150%. TAMU-Q's "within 150%" already counts everyone, so it's used as is. For the other universities the within-100% and extra-within-150% numbers are added. The convention is detected per entering class (quality check C05: 150% graduates exceeding the class only make sense if they include the on-time ones) and recorded with each rate.
+**Why:** Raw, the same column means two different things, which would make TAMU-Q look far better than it is. Converted, every university's rate answers the same question.
+
+### D-028 · Missing graduating classes are filled from the next year's Outcomes sheet
+**Date:** 2026-11-04
+**Decision:** Where Student Data has no graduate count for a class, the class size in the following year's Outcomes sheet is used, labelled `source = outcomes`: NU-Q 2021–22 (108), TAMU-Q 2021–22 (110) and 2022–23 (113), WCM-Q 2020–21 (41). It gives the total and the Qatari / Non-Qatari split, but no gender or program detail.
+**Why:** The Outcomes class size is the same graduating class counted a year later, and where both exist they match (CMU-Q 87 = 87, 103 = 103, 120 = 120; NU-Q 112 = 112; WCM-Q 41/42/50). Filling the gaps gives a continuous graduates series.
+
+### D-029 · Growth uses QF's consolidated file before 2019–20 and our Student Data after
+**Date:** 2026-11-04
+**Decision:** Registered students for 2011–12 to 2018–19 come from QF's consolidated file, the only source for those years, at university × level × Qatari / Non-Qatari (gender only where QF has it). From 2019–20 they come from our Student Data. Years in which a university has no data are marked through Education City's `coverage`.
+**Why:** It gives a 14-year trend. Where QF's numbers are complete they equal ours exactly (34 of 40 university-years). Where QF left out groups with a blank part, ours are more complete (D-014, P-15). Level mapping for QF years: Bachelor's / Undergraduate → undergraduate; Foundation → foundation; Master's, Doctorate, Diploma, Graduate, JD and MD → graduate; Non-degree and Exchange → non-degree. WCM-Q's medical students therefore count as graduate before 2019–20, while from 2019–20 its pre-medical years count as undergraduate (D-015). That's a known break in WCM-Q's level split, though not in its total.

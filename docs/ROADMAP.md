@@ -10,7 +10,7 @@ How we work each phase: explain the goal → build it in small steps → check t
 | 1. Data map | Document every sheet: columns, years, universities, quirks | ✅ |
 | 2. Extraction | Read every yearly template version into one tidy format | ✅ |
 | 3. Validation | Automatic checks that run on every upload | ✅ |
-| 4. Metrics | Define and compute the story numbers | ⬜ |
+| 4. Metrics | Define and compute the story numbers | 🔄 |
 | 5. Dashboard | The story in chapters, running locally | ⬜ |
 | 6. Go live | GitHub Action + Streamlit Cloud, push-to-update | ⬜ |
 | 7. Insights & delivery | Findings, polish, documentation, final presentation | ⬜ |
@@ -86,21 +86,25 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [x] Graduate-nationality lists that aren't one class (P-36): left out (D-024)
 - [x] How the dashboard uses each flag: show / show with note / show marked / leave out (D-025, `use` column)
 
-## Phase 4 — Metrics ⬜
+## Phase 4 — Metrics 🔄
 
-- [ ] Metric definitions written down (acceptance rate, yield, Qatari share, on-time graduation, employment in Qatar, ...)
-- [ ] `pipeline/metrics.py` computes them
-- [ ] Small-count suppression rule decided and applied
+- [x] Metric definitions written down: 25 metrics in [docs/metrics.md](metrics.md)
+- [x] `pipeline/metrics.py` framework (bases → formulas, Education City with coverage), run by every build
+- [x] Growth and Getting-in metrics M01–M10; the 2011–2019 history equals QF's totals (D-029)
+- [ ] Studying metrics M11–M15 (country regions, ages, full-time / scholarship / class year, funding, internships)
+- [ ] Graduating and After metrics M16–M25 (D-021, D-027, D-028)
+- [x] Small-count rule decided and applied: counts below 5 and rates on fewer than 10 hidden (D-026)
 - [ ] Apply the Phase 3 rules: Pipeline as school-type shares only (D-020); fallback class size for outcome rates (D-021); secondary sheets as shares (D-022); every metric carries its quality flag and `use` (D-025)
 - [ ] Leave `non_degree` rows out of all student totals (D-016)
 - [ ] Group countries into regions (e.g. GCC, other Arab states, South Asia) for the "where students come from" view
 - [ ] Show funding types separately, never stacked (P-35); sort older internship employers into types (P-37)
-- [ ] Decide how to compute a comparable "graduated within 150%" rate, given TAMU-Q's different convention (P-24); show HBKU graduates without a rate (P-25)
-- [ ] Decide whether to fill missing graduating classes from the next year's Outcomes sheet (class size only): NU-Q 2021–22 (108), TAMU-Q 2021–22 (110) and 2022–23 (113), WCM-Q 2020–21 (41)
+- [x] Decided: comparable "by 150%" rate (D-027); classes without entrants give counts, not rates (P-25)
+- [x] Decided: missing graduating classes filled from the next year's Outcomes sheet (D-028)
 
 ## Phase 5 — Dashboard ⬜
 
 - [ ] Chapter layout and navigation
+- [ ] Education City totals offer a "same universities every year" view: HBKU's presence only in 2022–24 lowers the Qatari share from 49% to 40% (45% without HBKU)
 - [ ] One chapter at a time: Growth → Getting in → Studying → Graduating → After
 - [ ] Filters (university, program, nationality, gender, year)
 - [ ] Auto-written summary sentences per chapter

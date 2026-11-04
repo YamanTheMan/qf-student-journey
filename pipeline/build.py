@@ -11,8 +11,8 @@
 4. If anything needs a person (an unreadable file, an unknown program spelling, numbers
    without a name, a quality error, ...), print it all and stop WITHOUT writing:
    data/processed/ never holds a half-built mix of old and new tables.
-5. Otherwise write every table, the findings, the quality flags and docs/quality_report.md,
-   then run the tests.
+5. Otherwise write every table, the findings, the quality flags, docs/quality_report.md and
+   the metrics (pipeline.metrics), then run the tests.
 
 This is the command GitHub will run on every upload (Phase 6).
 """
@@ -21,7 +21,7 @@ import sys
 
 import pandas as pd
 
-from pipeline import (checks, graduation_rate, inventory, nationalities, outcomes, registered_detailed,
+from pipeline import (checks, graduation_rate, inventory, metrics, nationalities, outcomes, registered_detailed,
                       student_data, student_life, student_pipeline)
 from pipeline.inventory import REFERENCE_DIR, ROOT
 
@@ -95,7 +95,10 @@ def main():
     for name, table in tables.items():
         table.to_csv(PROCESSED / f"{name}.csv", index=False)
         print(f"   {name + '.csv':28} {len(table):>7,} numbers from {table['source_file'].nunique():>2} files")
-    checks.write_outputs(tables, findings)
+    flags = checks.write_outputs(tables, findings)
+    values = metrics.compute(tables, flags)
+    values.to_csv(metrics.OUTPUT, index=False)
+    print(f"   {'metrics.csv':28} {len(values):>7,} values")
 
     if "--no-tests" not in sys.argv:
         print("5. Tests")

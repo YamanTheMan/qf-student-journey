@@ -264,6 +264,12 @@ Written with the findings (`pipeline/flags.py`). A **measure** is one thing the 
 
 The report shows each measure as a university × year grid of these symbols.
 
+### `metrics.csv`: the story numbers
+
+Written by every build (`pipeline/metrics.py`); every metric is defined in [docs/metrics.md](metrics.md). One row per value: `metric` (M01…), `name`, `chapter`, `university` (`All` = Education City), `year`, `year_kind`, `level`, `program_group`, `nationality`, `gender`, `category` (e.g. a school type), `value`, `display` ("<5" or "fewer than 10 students" when hidden, D-026), `numerator`, `denominator`, `unit` (count / share / rate), `source`, `quality` and `use` (D-025), `coverage` (universities included in an Education City value), `note`.
+
+**Check:** Education City's registered students equal QF's own totals for every year 2011–12 to 2018–19, minus the non-degree students we leave out (D-016). HBKU's 2015–16 "QFIS | All Programs" line has no degree category in QF's file, so it's counted at level `unknown` (in the all-levels total only).
+
 ## 7. Known problems
 
 | ID | Problem | Evidence | Status |
