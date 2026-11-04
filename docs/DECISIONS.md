@@ -195,3 +195,13 @@ Two refinements to the duplicate rule came with it. The form lists some countrie
 **Date:** 2026-11-04
 **Decision:** The "QF scholarship" funding type is left out of the funding metric (M14) as a visible gap, with the note "Not measured here: universities leave QF scholarships to QF Financial Services".
 **Why:** Every university reports 0 QF-scholarship students in every year (2022–23 to 2024–25), while QF certainly funds Education City students, and the form's notes say these figures are "to be provided by QF financial services". Showing 0% would state something false.
+
+### D-032 · Graduation rates count once their time has passed; unreported drop-outs and impossible splits aren't used (P-38, P-39)
+**Date:** 2026-11-04
+**Decision:** (1) An on-time rate is computed only when the class's normal time has ended by the end of the report's academic year, and a "by 150%" rate only when 1.5 × normal time has. Normal time is 4 years for every bachelor's class (the form's default; NU-Q's "normal time" column holds years since entry instead) and the program's reported normal time for graduate classes; a graduate class without one gets no rate. (2) A report with 0 drop-outs in every class gives no drop-out rate. (3) A class whose Qatari or Non-Qatari part has more graduates than entrants keeps its totals but not its nationality split; quality check C05 now tests the parts and flags those university-years ◑.
+**Why:** (1) Universities also report classes still within their window: CMU-Q's three classes and TAMU-Q's 2020–21 class show 0 "within 150%" only because that time hadn't come, which would read as a collapse (TAMU-Q 88% → 52%). (2) TAMU-Q reports 0 drop-outs in every class but 11–21 non-completers, so its true drop-out rate is unknown, not 0%. (3) HEC-Q's splits gave Education City a Qatari on-time rate of 205%.
+
+### D-033 · D-028 is applied as a rule, which fills six graduating classes
+**Date:** 2026-11-04
+**Decision:** Every graduating class with no Student Data graduate count takes the next year's Outcomes class size, as D-028 says. Besides the four classes named there, this fills HBKU 2021–22 (151) and NU-Q 2023–24 (127; NU-Q's 2024–25 file gives 118 graduates, dated by the form to 2024–25). The filled classes keep the Outcomes sheet's program and level detail (it uses the same program mapping); they have no gender split. Quality check C10 compares a Graduate Nationalities list of such a class with that class size, so TAMU-Q's 2022–23 list (40 of 113) is now marked ◐ partial.
+**Why:** The rule is what D-028 decided; the list of four was what it found at the time. Applying it the same way everywhere avoids hand-picked exceptions, and `source = outcomes` keeps every filled class visible.

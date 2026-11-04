@@ -43,7 +43,8 @@ def test_worst_use_wins():
 
 def read():
     return pd.read_csv(PROCESSED / "metrics.csv", keep_default_na=False,
-                       na_values={c: [""] for c in ("value", "numerator", "denominator", "coverage")})
+                       na_values={c: [""] for c in ("value", "numerator", "denominator", "coverage",
+                                                              "years_after_graduation")})
 
 
 def total(m, metric, university, year):
@@ -104,3 +105,70 @@ def test_studying_metrics_on_real_data():
     assert internships == 512
     qf = m[m.category == "funding: qf scholarship"]
     assert len(qf) and (qf.use == "leave_out").all()   # D-031: not measured in this sheet
+
+
+def test_a_window_counts_once_it_has_closed():
+    # CMU-Q's class entering 2018-19, reported in 2022-23: 4 years done, 150% (6 years) not yet
+    assert metrics.window_closed("2018-2019", "2022-2023", 4)
+    assert not metrics.window_closed("2018-2019", "2022-2023", 6)
+    assert metrics.window_closed("2019-2020", "2024-2025", 6)
+
+
+def graduation_rows(university, entered, g100, g150, dropouts=0):
+    stages = ["entered", "graduated_100", "graduated_150", "dropouts"]
+    return pd.DataFrame({"university": university, "file_year": "2024-2025", "cohort": "2017-2018",
+                         "report_status": "used", "row_type": "program", "level": "undergraduate", "normal_years": "4",
+                         "source_file": university, "source_cell": [f"{c}8" for c in "EFGH"], "nationality": "All",
+                         "stage": stages, "count": [entered, g100, g150, dropouts]})
+
+
+def test_by_150_is_made_comparable():
+    # A reports the extra graduates after normal time; B's 150% already includes the on-time ones (D-027)
+    t = pd.concat([graduation_rows("A", 40, 20, 10, dropouts=2), graduation_rows("B", 80, 40, 60)])
+    flags = pd.DataFrame(columns=["measure", "university", "file_year", "use"])
+    classes = metrics.graduation_classes({"graduation_rate": t}, flags).set_index(["university", "level"])
+    assert classes.loc[("A", "All"), "by_150"] == 30 and classes.loc[("B", "All"), "by_150"] == 60
+    by_150 = metrics.class_rate(classes.reset_index(), "M19", "n", "by_150", "closed_150")
+    by_150 = by_150[by_150.level == "All"].set_index("university")
+    assert by_150.loc["All", "numerator"] == 90 and by_150.loc["All", "denominator"] == 120
+    dropouts = metrics.class_rate(classes.reset_index(), "M20", "n", "dropouts", "dropouts_known")
+    assert set(dropouts["university"]) == {"A", "All"}   # B's report has no drop-outs at all: not reported
+
+
+def by_class(m, metric, university, year, nationality="All", unit=None):
+    rows = m[(m.metric == metric) & (m.university == university) & (m.year == year) & (m.level == "All")
+             & (m.program_group == "All") & (m.nationality == nationality) & (m.gender == "All")]
+    return rows[rows.unit == unit] if unit else rows
+
+
+def test_graduates_series_with_classes_filled_from_outcomes():
+    m = read()
+    cmu = [by_class(m, "M16", "CMU-Q", f"{y}-{y + 1}").iloc[0]["value"] for y in range(2019, 2025)]
+    assert cmu == [77, 95, 87, 103, 120, 110]
+    for university, year, size in (("NU-Q", "2021-2022", 108), ("TAMU-Q", "2021-2022", 110),
+                                   ("TAMU-Q", "2022-2023", 113), ("WCM-Q", "2020-2021", 41)):
+        row = by_class(m, "M16", university, year).iloc[0]
+        assert (row["value"], row["source"]) == (size, "outcomes")   # D-028
+
+
+def test_graduation_rates_on_real_data():
+    m = read()
+    on_time = by_class(m, "M18", "CMU-Q", "2018-2019").iloc[0]
+    assert (on_time["numerator"], on_time["denominator"]) == (79, 96)
+    assert by_class(m, "M19", "CMU-Q", "2018-2019").empty            # its 150% window hadn't closed (D-032)
+    assert by_class(m, "M19", "TAMU-Q", "2017-2018").iloc[0]["numerator"] == 64   # 150% used as is (D-027)
+    assert by_class(m, "M19", "WCM-Q", "2016-2017").iloc[0]["numerator"] == 23 + 13
+    assert by_class(m, "M20", "TAMU-Q", "2017-2018").empty           # drop-outs not reported
+    assert by_class(m, "M18", "HEC-Q", "2022-2023", "Qatari").empty  # 86 Qatari graduates of 42 entrants (C05)
+    assert by_class(m, "M18", "GU-Q", "2010-2011", unit="count").iloc[0]["value"] == 39   # no entrants (P-25)
+    rates = m[m.metric.isin(["M17", "M18", "M19", "M20", "M21", "M22", "M23", "M24", "M25"]) & (m.unit != "count")]
+    assert (rates["value"].dropna() <= 1).all()
+
+
+def test_outcome_rates_use_the_fallback_class_size():
+    m = read()
+    cmu = by_class(m, "M22", "CMU-Q", "2022-2023").iloc[0]
+    assert (cmu["numerator"], cmu["denominator"]) == (73, 103) and "Student Data" in cmu["note"]   # D-021
+    vcu = by_class(m, "M22", "VCU-Q", "2022-2023").iloc[0]
+    assert (vcu["numerator"], vcu["denominator"], vcu["use"]) == (28, 48, "show_marked")
+    assert by_class(m, "M25", "WCM-Q", "2023-2024").iloc[0]["years_after_graduation"] == 1

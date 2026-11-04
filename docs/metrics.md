@@ -7,7 +7,7 @@ Every number the dashboard shows, defined once: what it measures, how it's compu
 | Rule | |
 |---|---|
 | **Who counts** | Degree-seeking students only. `non_degree` rows are left out (D-016). Only `program` and `all_programs` rows are used; subtotals, footers and sponsor rows never are. |
-| **Year** | The submission's academic year, except **graduates and outcomes** (by graduating class, D-011, D-013) and **graduation rates** (by entering class, D-012). |
+| **Year** | The submission's academic year, except **graduates and outcomes** (by graduating class, D-011, D-013) and **graduation rates** (by entering class, D-012). `year_kind` says which (`academic`, `graduating_class`, `entering_class`), and `report_year` gives the report a by-class value came from. |
 | **Levels** | Every metric is given for all levels together and for `undergraduate`, `graduate` and `foundation` separately (D-010). |
 | **Headcounts** | Always from Student Data. The other sheets give **shares** only (D-020, D-022). |
 | **Quality** | Each value carries the quality flag of the data it's built from (the worst flag of its numerator and denominator), and that flag's `use`: show, show with a note, show marked "partial", or leave out (D-025). |
@@ -52,14 +52,19 @@ Every number the dashboard shows, defined once: what it measures, how it's compu
 
 | ID | Metric | Formula | Unit | Source |
 |---|---|---|---|---|
-| M16 | Graduates | graduates of a graduating class | count | Student Data (dated, D-011); gaps filled per D-028 |
+| M16 | Graduates | graduates of a graduating class | count | Student Data (dated, D-011); gaps filled per D-028 and D-033 |
 | M17 | Qatari share of graduates | Qatari graduates ÷ graduates | share | Student Data |
 | M18 | On-time graduation rate | graduated within 100% of normal time ÷ entered | rate | Graduation Rate (by entering class) |
 | M19 | Graduation rate within 150% | graduated within 150% ÷ entered, made comparable per D-027 | rate | Graduation Rate |
 | M20 | Drop-out rate | drop-outs ÷ entered | rate | Graduation Rate |
-| M21 | Graduate nationality mix | graduates of a country ÷ graduates in the sheet | share | Graduate Nationalities (D-022, D-024) |
+| M21 | Graduate nationality mix | graduates of a region or country ÷ graduates in the list | share | Graduate Nationalities (D-022, D-024) |
 
-Entering classes with graduates but no entrants (P-25) give counts but no rates.
+How the graduation rates (M18–M20) are read (D-032):
+- **A rate counts only once its time has passed.** On-time needs the class's normal time to have ended by the end of the report's year; "by 150%" needs 1.5 × normal time. Normal time is 4 years for every bachelor's class (the form's default) and the program's own reported normal time for graduate classes; a graduate class without one gets no rate. So CMU-Q, which reports each class just after its fourth year, has on-time rates but no "by 150%" rates yet.
+- **Drop-outs:** a report with 0 drop-outs in every class hasn't reported them (TAMU-Q counts all its leavers as non-completers), so it gives no drop-out rate.
+- **Qatari / Non-Qatari split:** a class with more graduates than entrants in one nationality (quality check C05) keeps its totals but not its split (HEC-Q 2021–22 and 2022–23, WCM-Q 2018–19).
+- Entering classes with graduates but no entrants (P-25) give counts (`unit = count`) but no rates.
+- `report_year` says which report each rate comes from (the latest one, D-012).
 
 ### 5. After graduation
 
@@ -70,4 +75,4 @@ Entering classes with graduates but no entrants (P-25) give counts but no rates.
 | M24 | Still searching | still searching ÷ class size | rate | Outcomes |
 | M25 | Working in Qatar | employed in Qatar ÷ employed (incl. self-employed) | share | Outcomes |
 
-Each is also given for Qatari and Non-Qatari graduates separately. `years_after_graduation` is kept with each value.
+Each is also given for Qatari and Non-Qatari graduates separately. `years_after_graduation` is kept with each value, and Education City only adds up classes measured the same number of years after graduation. The class size (D-021) is the Outcomes sheet's own; where that's 0, the graduates dated in Student Data (CMU-Q 2022–23: 103); where neither exists, the sum of the reported outcomes, marked partial (VCU-Q 2022–23: 48). The `note` says which. Rates use the class size as their base, so graduates with unknown outcomes count as neither employed nor studying.

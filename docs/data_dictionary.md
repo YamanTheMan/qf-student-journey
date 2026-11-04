@@ -237,12 +237,12 @@ Written by every build (`pipeline/checks.py`). Each finding has `check`, `severi
 | C02 text in a count cell | 'N/A', 'less than 5', '#REF!' are kept as text (info) |
 | C03 breakdown adds up | Every reported total equals its nationality / gender / location parts. A total of 0 over blank parts is a formula over missing data, so **unknown, not zero** (P-13). |
 | C04 funnel narrows | Per university and year (not per program: some universities admit to "Undeclared"): admitted ≤ applied, newly enrolled ≤ admitted, also per school type |
-| C05 graduation within class | Graduates ≤ entrants; flags classes with graduates but no entrants (P-25) and the "150% includes 100%" convention (P-24) |
+| C05 graduation within class | Graduates ≤ entrants, for the totals and for the Qatari / Non-Qatari parts (a part that fails flags its split ◑, P-38); flags classes with graduates but no entrants (P-25) and the "150% includes 100%" convention (P-24) |
 | C06 outcomes within class | Outcomes ≤ class size; flags outcomes with a class size of 0 (P-27) |
 | C07 registered vs QF | Registered students equal QF's consolidated file; a gap that QF's blanking rule reproduces is info (P-15) |
 | C08 … vs Student Data | Nationalities, Registered Students Detailed and Ages add up to Student Data's registered students (P-33) |
 | C09 pipeline vs Student Data | Applied / admitted / enrolled by school type, at undergraduate + foundation entry, within 10% (P-22); WCM-Q's internal promotions are info |
-| C10 … vs dated graduates | A class's size in Outcomes and Graduate Nationalities equals its dated graduates; more than double means "not one class" (P-36) |
+| C10 … vs dated graduates | A class's size in Outcomes and Graduate Nationalities equals its dated graduates (for a Graduate Nationalities list, the Outcomes class size where Student Data has none, D-028); more than double means "not one class" (P-36) |
 | C11 class size vs newly enrolled | An entering class is never larger than that year's newly enrolled |
 | C12 funding sponsor rows | Funding split into sponsor rows that are never added (D-023): that university-year's Funding is ◐ partial |
 
@@ -266,7 +266,7 @@ The report shows each measure as a university × year grid of these symbols.
 
 ### `metrics.csv`: the story numbers
 
-Written by every build (`pipeline/metrics.py`); every metric is defined in [docs/metrics.md](metrics.md). One row per value: `metric` (M01…), `name`, `chapter`, `university` (`All` = Education City), `year`, `year_kind`, `level`, `program_group`, `nationality`, `gender`, `category` (e.g. a school type), `value`, `display` ("<5" or "fewer than 10 students" when hidden, D-026), `numerator`, `denominator`, `unit` (count / share / rate), `source`, `quality` and `use` (D-025), `coverage` (universities included in an Education City value), `note`.
+Written by every build (`pipeline/metrics.py`); every metric is defined in [docs/metrics.md](metrics.md). One row per value: `metric` (M01…), `name`, `chapter`, `university` (`All` = Education City), `year`, `year_kind`, `level`, `program_group`, `nationality`, `gender`, `category` (e.g. a school type), `value`, `display` ("<5" or "fewer than 10 students" when hidden, D-026), `numerator`, `denominator`, `unit` (count / share / rate), `source`, `quality` and `use` (D-025), `coverage` (universities included in an Education City value), `report_year` (the report a by-class value came from), `years_after_graduation` (outcomes), `note`. `year_kind` is `academic`, `graduating_class` (M16, M17, M21–M25) or `entering_class` (M18–M20).
 
 **Check:** Education City's registered students equal QF's own totals for every year 2011–12 to 2018–19, minus the non-degree students we leave out (D-016). HBKU's 2015–16 "QFIS | All Programs" line has no degree category in QF's file, so it's counted at level `unknown` (in the all-levels total only).
 
@@ -311,3 +311,5 @@ Written by every build (`pipeline/metrics.py`); every metric is defined in [docs
 | **P-35** | **Funding types overlap.** Adding them up gives more students than are registered (e.g. TAMU-Q 2023–24: 797 vs 672), even though a "multiple funding sources" type exists. | Funding check in §6 | Phase 4: show each funding type separately, never stacked |
 | **P-36** | **Some graduate-nationality lists are not one class.** NU-Q 2023–24 has 720 (Qatar 332 + Non-Qatari 388) against 112 graduates, likely cumulative. HEC-Q graduates by cohort, so its lists don't match academic years (2021–22: 128 vs 53). | Check in §6 | Decided: D-024. Left out (flagged ≠ by check C10) |
 | **P-37** | **Older internship lists name the employer** (Qatar Museums, QAPCO, Brookings Doha Center, …) instead of its type: 390 internships in 2019–21. | Internship sheets | Kept as "Named employer". Phase 4: sort the employers into types. |
+| **P-38** | **Some nationality splits of a graduation-rate class are impossible:** HEC-Q's class of 2021–22 has 32 Non-Qatari graduates from 6 Non-Qatari entrants in one program, its class of 2022–23 62 Qatari graduates from 7; WCM-Q's class of 2018–19 34 Non-Qatari graduates from 33. The totals add up. | Quality check C05 | Decided: D-032. Totals used, split not (flagged ◑) |
+| **P-39** | **TAMU-Q reports 0 drop-outs in every class** while counting 11–21 non-completers, who together with its graduates make up the class. The form doesn't define the two terms. | Graduation Rate sheets | Decided: D-032. No drop-out rate from a report without any drop-outs |

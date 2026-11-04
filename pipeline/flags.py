@@ -56,7 +56,7 @@ def status_of(finding):
         return "partial"
     if status in ("mismatch", "more_outcomes_than_graduates", "more_graduates_than_entrants", "class_larger"):
         return "differs"
-    if status in ("withheld", "partly_withheld") and severity == "info":
+    if status in ("withheld", "partly_withheld") and severity == "info" or status == "split_exceeds_class":
         return "breakdown_partial"
     return None
 

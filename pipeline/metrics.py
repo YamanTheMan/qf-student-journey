@@ -31,20 +31,32 @@ QF_LEVELS = {"Bachelor's": "undergraduate", "Undergraduate": "undergraduate", "F
              "Non-degree": "non_degree", "Exchange": "non_degree"}  # D-029
 COLUMNS = ["metric", "name", "chapter", "university", "year", "year_kind", "level", "program_group",
            "nationality", "gender", "category", "value", "display", "numerator", "denominator", "unit",
-           "source", "quality", "use", "coverage", "note"]
+           "source", "quality", "use", "coverage", "report_year", "years_after_graduation", "note"]
 
 
 # ---------------------------------------------------------------------------------------------
 # 1. Bases
 
 def student_rows(tables, stage):
-    """Student Data rows of one stage: degree-seeking program rows only (D-016)."""
+    """Student Data rows of one stage: degree-seeking program rows only (D-016).
+
+    Graduates are dated to their graduating class (D-011), so their `year` is the class and
+    `file_year` (kept for the quality flag) the file they came from."""
     sd = tables["student_data"]
     t = sd[(sd["stage"] == stage) & sd["row_type"].isin(COUNTED_ROWS) & sd["level"].notna()
            & (sd["level"] != "non_degree")]
-    t = t.assign(year=t["file_year"], row_key=t["source_file"] + "|" + t["source_cell"].str.extract(r"(\d+)$")[0]
+    if stage == "graduated":
+        t = t[t["graduates_status"] == "used"]
+    t = t.assign(year=t["graduating_year"] if stage == "graduated" else t["file_year"],
+                 row_key=t["source_file"] + "|" + t["source_cell"].str.extract(r"(\d+)$")[0]
                  .fillna(t["source_cell"]) + "|" + t["period_label"].fillna("") + "|" + t["band_label"].fillna(""))
     return t
+
+
+def file_year_of(t, out):
+    """The file each (university, year) came from; one file per class (D-011, D-013)."""
+    files = t.groupby(["university", "year"])["file_year"].first()
+    return [files.get((u, y)) for u, y in zip(out["university"], out["year"])]
 
 
 def split_parts(t, dim):
@@ -69,7 +81,22 @@ def base_from_student_data(tables, stage):
     by_gender = split_parts(t, "gender")
     out = pd.concat([totals.assign(nationality=ALL, gender=ALL),
                      by_nat.assign(gender=ALL), by_gender.assign(nationality=ALL)], ignore_index=True)
-    return out.assign(stage=stage, source="student_data", measure=stage)
+    return out.assign(stage=stage, source="student_data", measure=stage, file_year=file_year_of(t, out))
+
+
+def base_from_outcomes(tables, have):
+    """D-028: a graduating class Student Data lacks takes its class size from the next year's
+    Outcomes sheet (total and Qatari / Non-Qatari; no gender)."""
+    oc = tables["outcomes"]
+    oc = oc[(oc["report_status"] == "used") & (oc["stage"] == "graduates") & oc["row_type"].isin(COUNTED_ROWS)
+            & oc["level"].notna() & (oc["level"] != "non_degree")].assign(year=lambda d: d["graduating_year"])
+    size = oc[oc["breakdown"] == "total"].groupby(["university", "year"])["count"].sum()
+    missing = size[size > 0].index.difference(have)
+    oc = oc[oc.set_index(["university", "year"]).index.isin(missing)]
+    totals = oc[oc["breakdown"] == "total"].groupby(KEYS)["count"].sum(min_count=1).reset_index()
+    by_nat = oc[oc["breakdown"] == "nationality"].groupby(KEYS + ["nationality"])["count"].sum(min_count=1).reset_index()
+    out = pd.concat([totals.assign(nationality=ALL, gender=ALL), by_nat.assign(gender=ALL)], ignore_index=True)
+    return out.assign(stage="graduated", source="outcomes", measure="outcomes", file_year=file_year_of(oc, out))
 
 
 def base_from_qf_history():
@@ -89,12 +116,12 @@ def base_from_qf_history():
     full = qf.groupby(["university", "year"])["gender"].apply(lambda s: s.notna().all())
     by_gender = by_gender[by_gender.set_index(["university", "year"]).index.map(full.get).fillna(False).astype(bool)]
     out = pd.concat([totals, by_nat, by_gender], ignore_index=True)
-    return out.assign(stage="registered", source="qf_consolidated", measure=None)
+    return out.assign(stage="registered", source="qf_consolidated", measure=None, file_year=out["year"])
 
 
 def roll_up(base):
     """Add level = All and program_group = All rows (sums of the detailed ones)."""
-    dims = ["stage", "source", "measure", "nationality", "gender"]
+    dims = ["stage", "source", "measure", "file_year", "nationality", "gender"]
     detail = base[base["program_group"] != ALL]
     by_level = detail.groupby(["university", "year", "level"] + dims, dropna=False)["count"].sum(min_count=1) \
         .reset_index().assign(program_group=ALL)
@@ -106,32 +133,36 @@ def roll_up(base):
 
 
 def with_quality(base, flags):
-    """Attach each base row's flag (Student Data stages) or 'complete' (QF history)."""
+    """Attach each base row's flag (Student Data stages, Outcomes) or 'complete' (QF history)."""
     f = flags.set_index(["measure", "university", "file_year"])[["status", "use"]]
-    keys = list(zip(base["measure"], base["university"], base["year"]))
+    keys = list(zip(base["measure"], base["university"], base["file_year"]))
     found = f.reindex(pd.MultiIndex.from_tuples(keys)).reset_index(drop=True)
     out = base.reset_index(drop=True).assign(quality=found["status"].fillna("complete"), use=found["use"].fillna("show"))
     return out
 
 
 def education_city(base):
-    """'All' universities: sum of the university-years that aren't left out, with coverage."""
+    """'All' universities: sum of the university-years that aren't left out, with coverage.
+    A class can mix sources (graduates from Student Data and, where it lacks one, Outcomes)."""
     kept = base[(base["use"] != "leave_out") & (base["program_group"] == ALL)]
-    dims = ["year", "level", "program_group", "stage", "source", "nationality", "gender"]
+    dims = ["year", "level", "program_group", "stage", "nationality", "gender"]
     agg = kept.groupby(dims, dropna=False).agg(
         count=("count", lambda s: s.sum(min_count=1)),
         coverage=("university", "nunique"),
         use=("use", lambda s: min(s, key=USE_ORDER.index)),
+        source=("source", lambda s: "+".join(sorted(set(s)))),
     ).reset_index()
     agg["quality"] = agg["use"].map(STATUS_FOR_USE)
-    return agg.assign(university=ALL, measure=None)
+    return agg.assign(university=ALL, measure=None, file_year=None)
 
 
 def build_bases(tables, flags):
-    stages = ["registered", "applied", "admitted", "newly_enrolled"]
+    stages = ["registered", "applied", "admitted", "newly_enrolled", "graduated"]
     sd = pd.concat([base_from_student_data(tables, s) for s in stages], ignore_index=True)
+    graduated = sd[sd["stage"] == "graduated"]
+    filled = base_from_outcomes(tables, pd.MultiIndex.from_frame(graduated[["university", "year"]].drop_duplicates()))
     history = base_from_qf_history()
-    base = with_quality(roll_up(pd.concat([sd, history], ignore_index=True)), flags)
+    base = with_quality(roll_up(pd.concat([sd, filled, history], ignore_index=True)), flags)
     base["coverage"] = 1
     return pd.concat([base, education_city(base)], ignore_index=True)
 
@@ -237,7 +268,8 @@ def mix(rows, metric, name, chapter, use_of, denominators=None):
     (university, year, level) to divide by instead of the categories' own total.
     """
     rows = rows[rows["count"].notna()].copy()
-    rows["use"] = use_of(rows["university"], rows["year"])
+    if use_of is not None:  # otherwise the rows bring their own `use`
+        rows["use"] = use_of(rows["university"], rows["year"])
     group = ["university", "year", "level"]
     per_uni = rows.groupby(group + ["category"]).agg(numerator=("count", "sum"), use=("use", "first")).reset_index()
     if denominators is None:
@@ -344,6 +376,180 @@ def studying(tables, flags, base):
 
 
 # ---------------------------------------------------------------------------------------------
+# 4. Graduating and after: by graduating class, or by entering class for graduation rates
+
+BACHELOR_YEARS = 4  # the form's default normal time to completion; used for every undergraduate class (D-032)
+
+
+def window_closed(cohort, file_year, years):
+    """True when a class that entered in `cohort` has had `years` academic years by the end of `file_year`."""
+    return int(cohort[:4]) + years - 1 <= int(file_year[:4])
+
+
+def graduation_classes(tables, flags):
+    """Graduation Rate reports (latest per class, D-012) as one row per university x class x level x nationality.
+
+    'Graduated by 150%' counts everyone who graduated by 150% of normal time (D-027): where a program
+    row's 150% number already includes the on-time graduates (C05's test) it's used as is, otherwise
+    the on-time and extra graduates are added. Each window (normal time, 150%) only counts once it has
+    closed by the end of the report's year (D-032)."""
+    gr = tables["graduation_rate"]
+    gr = gr[(gr["report_status"] == "used") & gr["row_type"].isin(COUNTED_ROWS) & gr["level"].notna()
+            & (gr["level"] != "non_degree")]
+    gr = gr.assign(row_key=gr["source_file"] + "|" + gr["source_cell"].str.extract(r"(\d+)$")[0],
+                   normal_years=gr["normal_years"].astype("string").fillna(""))  # a blank key would drop the row
+    keys = ["row_key", "university", "file_year", "cohort", "level", "normal_years"]
+    wide = gr.pivot_table(index=keys + ["nationality"], columns="stage", values="count", aggfunc="sum").fillna(0)
+    wide = wide.reset_index()
+    total = wide[wide["nationality"] == ALL].set_index("row_key")
+    cumulative = (total["graduated_100"] + total["graduated_150"] > total["entered"]) \
+        & (total["graduated_150"] <= total["entered"]) & (total["graduated_150"] >= total["graduated_100"])
+    wide["cumulative"] = wide["row_key"].map(cumulative).fillna(False).astype(bool)
+    wide["by_150"] = wide["graduated_150"].where(wide["cumulative"], wide["graduated_100"] + wide["graduated_150"])
+    years = pd.to_numeric(wide["normal_years"], errors="coerce").astype(float) \
+        .where(wide["level"] != "undergraduate", BACHELOR_YEARS)
+    wide["closed_100"] = [y == y and window_closed(c, f, int(y)) for c, f, y in zip(wide["cohort"], wide["file_year"], years)]
+    wide["closed_150"] = [y == y and window_closed(c, f, -(-int(y) * 3 // 2))
+                          for c, f, y in zip(wide["cohort"], wide["file_year"], years)]
+    # A report with 0 drop-outs in every class hasn't reported them (TAMU-Q counts its leavers as non-completers)
+    reported = wide[wide["nationality"] == ALL].groupby(["university", "file_year"])["dropouts"].sum() > 0
+    wide["dropouts_known"] = wide["closed_100"] & pd.Series(
+        [bool(reported.get(k, False)) for k in zip(wide["university"], wide["file_year"])], index=wide.index)
+    wide["use"] = flag_use(flags, "graduation_rate")(wide["university"], wide["file_year"])
+    wide = wide.assign(year=wide["cohort"])
+    agg = dict(entered=("entered", "sum"), graduated_100=("graduated_100", "sum"), by_150=("by_150", "sum"),
+               dropouts=("dropouts", "sum"), closed_100=("closed_100", "all"), closed_150=("closed_150", "all"),
+               dropouts_known=("dropouts_known", "all"),
+               cumulative=("cumulative", "any"), report_year=("file_year", "max"),
+               use=("use", lambda s: min(s, key=USE_ORDER.index)))
+    per_level = wide.groupby(["university", "year", "level", "nationality"]).agg(**agg).reset_index()
+    all_levels = wide.groupby(["university", "year", "nationality"]).agg(**agg).reset_index().assign(level=ALL)
+    classes = pd.concat([per_level, all_levels], ignore_index=True)
+    # More Qatari (or Non-Qatari) graduates than entrants in a program row (C05): the class keeps its
+    # totals but not its nationality split
+    entered = wide["row_key"].map(total["entered"])
+    impossible = (wide["nationality"] != ALL) & (entered > 0) \
+        & ((wide["graduated_100"] > wide["entered"]) | (wide["by_150"] > wide["entered"]))
+    bad = set(zip(wide.loc[impossible, "university"], wide.loc[impossible, "year"]))
+    split = classes["nationality"] != ALL
+    return classes[~(split & pd.Series([k in bad for k in zip(classes["university"], classes["year"])], index=classes.index))]
+
+
+def class_rate(classes, metric, name, top, closed):
+    """top / entered for each class whose window has closed. Classes with entrants get a rate and
+    count towards Education City; classes with graduates but no entrants get a count only (P-25)."""
+    c = classes[classes[closed]]
+    rated = c[c["entered"] > 0].assign(numerator=lambda d: d[top], denominator=lambda d: d["entered"], coverage=1)
+    kept = rated[rated["use"] != "leave_out"]
+    ec = kept.groupby(["year", "level", "nationality"]).agg(
+        numerator=("numerator", "sum"), denominator=("denominator", "sum"), coverage=("university", "nunique"),
+        cumulative=("cumulative", "any"), report_year=("report_year", "max"),
+        use=("use", lambda s: min(s, key=USE_ORDER.index))).reset_index().assign(university=ALL)
+    rates = pd.concat([rated, ec], ignore_index=True)
+    rates = rates.assign(value=rates["numerator"] / rates["denominator"], unit="rate")
+    unrated = c[(c["entered"] == 0) & (c[top] > 0)]
+    unrated = unrated.assign(value=unrated[top], numerator=None, denominator=None, unit="count", coverage=1,
+                             note="Graduates of this class without its entrants, so no rate (P-25)")
+    out = pd.concat([rates, unrated], ignore_index=True)
+    if top == "by_150":
+        converted = out["cumulative"].fillna(False).astype(bool) & (out["unit"] == "rate") & (out["university"] != ALL)
+        out.loc[converted, "note"] = "This report's '150%' number already included the on-time graduates (D-027)"
+    return out.assign(metric=metric, name=name, chapter="Graduating", year_kind="entering_class",
+                      program_group=ALL, gender=ALL, category=None, source="graduation_rate",
+                      quality=out["use"].map(STATUS_FOR_USE))
+
+
+OUTCOMES = ["employed", "self_employed", "grad_school", "still_searching", "not_seeking"]
+
+
+def outcome_classes(tables, flags, base):
+    """Outcomes reports (earliest real report per class, D-013) as one row per university x class x
+    level x nationality, with the class size chosen per D-021."""
+    oc = tables["outcomes"]
+    oc = oc[(oc["report_status"] == "used") & oc["row_type"].isin(COUNTED_ROWS) & oc["level"].notna()
+            & (oc["level"] != "non_degree")].assign(year=lambda d: d["graduating_year"])
+    keys = ["university", "year", "file_year", "years_after_graduation", "level", "nationality"]
+    total = oc[oc["breakdown"] == "total"]
+    parts = oc[oc["breakdown"].isin(["nationality", "nationality_location"])]
+    located = oc[(oc["breakdown"] == "nationality_location") & oc["stage"].isin(["employed", "self_employed"])]
+    in_qatar = located[located["location"] == "In Qatar"]
+    frames = [total.pivot_table(index=keys, columns="stage", values="count", aggfunc="sum"),
+              parts.pivot_table(index=keys, columns="stage", values="count", aggfunc="sum")]
+    wide = pd.concat(frames).fillna(0)
+    for name, rows in (("employed_located", located), ("employed_in_qatar", in_qatar)):
+        by_nat = rows.groupby(keys)["count"].sum()
+        whole = rows.assign(nationality=ALL).groupby(keys)["count"].sum()
+        wide[name] = pd.concat([by_nat, whole]).reindex(wide.index).fillna(0)
+    wide = wide.reset_index()
+    sums = ["graduates"] + OUTCOMES + ["employed_located", "employed_in_qatar"]
+    all_levels = wide.groupby([k for k in keys if k != "level"])[sums].sum().reset_index().assign(level=ALL)
+    c = pd.concat([wide, all_levels], ignore_index=True)
+
+    # Class size (D-021): Outcomes' own -> graduates dated in Student Data -> sum of the outcomes (partial)
+    graduated = base[(base["stage"] == "graduated") & (base["source"] == "student_data") & (base["gender"] == ALL)
+                     & (base["program_group"] == ALL)].set_index(["university", "year", "level", "nationality"])["count"]
+    found = (graduated.get(k) for k in zip(c["university"], c["year"], c["level"], c["nationality"]))
+    dated = pd.Series([float(n) if pd.notna(n) else 0.0 for n in found], index=c.index)
+    reported = c[OUTCOMES].sum(axis=1)
+    c["class_size"] = c["graduates"].where(c["graduates"] > 0, dated.where(dated > 0, reported))
+    c["note"] = None
+    c.loc[c["graduates"] <= 0, "note"] = "Class size from the graduates dated in Student Data (D-021)"
+    c.loc[(c["graduates"] <= 0) & (dated <= 0), "note"] = "Class size unknown: the reported outcomes are used (D-021)"
+    c["use"] = flag_use(flags, "outcomes")(c["university"], c["file_year"])
+    partial = (c["graduates"] <= 0) & (dated <= 0)
+    c.loc[partial, "use"] = [worst_use(u, "show_marked") for u in c.loc[partial, "use"]]
+    return c.assign(employed_total=c["employed"] + c["self_employed"]).rename(columns={"file_year": "report_year"})
+
+
+def outcome_rate(classes, metric, name, top, bottom, unit):
+    keys = ["year", "level", "nationality", "years_after_graduation"]
+    c = classes.assign(numerator=classes[top], denominator=classes[bottom], coverage=1)
+    c = c[c["denominator"] > 0]
+    kept = c[c["use"] != "leave_out"]
+    ec = kept.groupby(keys).agg(numerator=("numerator", "sum"), denominator=("denominator", "sum"),
+                                coverage=("university", "nunique"), report_year=("report_year", "max"),
+                                use=("use", lambda s: min(s, key=USE_ORDER.index))).reset_index()
+    out = pd.concat([c, ec.assign(university=ALL)], ignore_index=True)
+    if bottom != "class_size":
+        out["note"] = None  # the class-size note doesn't apply to a share of the employed
+    return out.assign(metric=metric, name=name, chapter="After graduation", year_kind="graduating_class",
+                      value=out["numerator"] / out["denominator"], unit=unit, program_group=ALL, gender=ALL,
+                      category=None, source="outcomes", quality=out["use"].map(STATUS_FOR_USE))
+
+
+def graduating_and_after(tables, flags, base):
+    by_class = dict(year_kind="graduating_class")
+    graduates = counts(base, "M16", "Graduates", "Graduating", "graduated")
+    out = [graduates.assign(report_year=graduates["file_year"], **by_class),
+           share(base, "M17", "Qatari share of graduates", "Graduating", "graduated", "nationality", "Qatari")
+           .assign(**by_class)]
+    out[0].loc[out[0]["source"].str.contains("outcomes"), "note"] = \
+        "Class size from the next year's Outcomes sheet where Student Data has none (D-028)"
+
+    classes = graduation_classes(tables, flags)
+    out += [class_rate(classes, "M18", "On-time graduation rate", "graduated_100", "closed_100"),
+            class_rate(classes, "M19", "Graduation rate within 150%", "by_150", "closed_150"),
+            class_rate(classes, "M20", "Drop-out rate", "dropouts", "dropouts_known")]
+    out[-1] = out[-1][out[-1]["unit"] == "rate"]  # a drop-out count without its class says nothing
+
+    # M21 graduate nationality mix by region and country; lists that aren't one class are left out (D-024)
+    gn = tables["graduate_nationalities"]
+    gn = gn[gn["row_status"] == "used"].assign(year=lambda d: d["graduating_year"], level=ALL)
+    gn = gn.assign(use=flag_use(flags, "graduate_nationalities")(gn["university"], gn["file_year"]))
+    countries = gn[gn["count"] > 0]
+    for rows in (gn.assign(category="region: " + gn["region"]), countries.assign(category="country: " + countries["country"])):
+        out.append(mix(rows, "M21", "Graduate nationality mix", "Graduating", None)
+                   .assign(source="graduate_nationalities", **by_class))
+
+    outcomes = outcome_classes(tables, flags, base)
+    out += [outcome_rate(outcomes, "M22", "Employment rate", "employed_total", "class_size", "rate"),
+            outcome_rate(outcomes, "M23", "Further study rate", "grad_school", "class_size", "rate"),
+            outcome_rate(outcomes, "M24", "Still searching", "still_searching", "class_size", "rate"),
+            outcome_rate(outcomes, "M25", "Working in Qatar", "employed_in_qatar", "employed_located", "share")]
+    return out
+
+
+# ---------------------------------------------------------------------------------------------
 # Small numbers (D-026)
 
 def hide_small_numbers(m):
@@ -365,10 +571,10 @@ def hide_small_numbers(m):
 
 def compute(tables, flags):
     base = build_bases(tables, flags)
-    metrics = pd.concat(growth_and_getting_in(base, tables, flags) + studying(tables, flags, base), ignore_index=True)
-    metrics["year_kind"] = "academic"
-    if "note" not in metrics:
-        metrics["note"] = None
+    metrics = pd.concat(growth_and_getting_in(base, tables, flags) + studying(tables, flags, base)
+                        + graduating_and_after(tables, flags, base), ignore_index=True)
+    metrics["year_kind"] = metrics["year_kind"].fillna("academic")
+    metrics["years_after_graduation"] = metrics["years_after_graduation"].astype("Int64")
     metrics.loc[metrics["source"] == "qf_consolidated", "note"] = "From QF's consolidated file (D-029)"
     metrics = hide_small_numbers(metrics)
     return metrics.reindex(columns=COLUMNS)
@@ -378,7 +584,8 @@ def load():
     read = dict(keep_default_na=False, na_values={c: [""] for c in ("count", "level", "program", "program_group",
                                                                    "period_label", "band_label", "graduating_year")},
                 dtype={"degree_raw": str, "program_raw": str})
-    names = ("student_data", "student_pipeline", "nationalities", "ages", "registered_detailed", "funding", "internships")
+    names = ("student_data", "student_pipeline", "nationalities", "ages", "registered_detailed", "funding", "internships",
+             "graduation_rate", "outcomes", "graduate_nationalities")
     read["dtype"] |= {"age": str, "year_class": str}
     tables = {n: pd.read_csv(PROCESSED / f"{n}.csv", **read) for n in names}
     flags = pd.read_csv(PROCESSED / "quality_flags.csv", keep_default_na=False)

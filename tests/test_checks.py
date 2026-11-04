@@ -63,17 +63,34 @@ def test_funnel_is_checked_per_university_not_per_program():
         ["newly_enrolled_above_admitted"]
 
 
-def graduation(entered, g100, g150):
+def graduation(entered, g100, g150, qatari=None):
+    """One program row's totals and, optionally, its Qatari part (entered, within 100%, within 150%)."""
     stages = ["entered", "graduated_100", "graduated_150"]
-    return rows(source_file=["f"] * 3, source_cell=["E8", "F8", "G8"], cohort=["2018-2019"] * 3,
-                stage=stages, count=[entered, g100, g150], breakdown=["total"] * 3, report_status=["used"] * 3,
-                university=["U-1"] * 3, file_year=["2024-2025"] * 3)
+    common = dict(source_file=["f"] * 3, cohort=["2018-2019"] * 3, stage=stages, report_status=["used"] * 3,
+                  university=["U-1"] * 3, file_year=["2024-2025"] * 3)
+    t = rows(source_cell=["E8", "F8", "G8"], count=[entered, g100, g150], breakdown=["total"] * 3,
+             nationality=["All"] * 3, **common)
+    if qatari:
+        t = pd.concat([t, rows(source_cell=["H8", "I8", "J8"], count=list(qatari), breakdown=["nationality_gender"] * 3,
+                               nationality=["Qatari"] * 3, **common)], ignore_index=True)
+    return t
 
 
 def test_graduation_within_class():
     assert checks.graduation_within_class({"graduation_rate": graduation(40, 30, 5)}) == []
     assert statuses(checks.graduation_within_class({"graduation_rate": graduation(0, 30, 0)})) == ["no_entrants"]
     assert statuses(checks.graduation_within_class({"graduation_rate": graduation(40, 30, 35)})) == ["150_includes_100"]
+
+
+def test_a_nationality_part_cannot_outnumber_its_entrants():
+    fine = graduation(40, 30, 5, qatari=(10, 8, 2))
+    assert checks.graduation_within_class({"graduation_rate": fine}) == []
+    # HEC-Q 2022-23: 86 Qatari on-time graduates from 42 Qatari entrants, while the totals add up
+    wrong = graduation(40, 30, 5, qatari=(10, 12, 0))
+    assert statuses(checks.graduation_within_class({"graduation_rate": wrong})) == ["split_exceeds_class"]
+    # at a university whose '150%' already includes the on-time graduates, 150% is compared as is
+    cumulative = graduation(40, 30, 35, qatari=(10, 8, 10))
+    assert statuses(checks.graduation_within_class({"graduation_rate": cumulative})) == ["150_includes_100"]
 
 
 def test_outcomes_within_class():

@@ -13,14 +13,14 @@ Written by `.venv/bin/python -m pipeline.build` from the processed tables; don't
 | C02 text in a count cell | 0 | 0 | 13 |
 | C03 breakdown adds up | 0 | 2 | 1959 |
 | C04 funnel narrows | 0 | 4 | 0 |
-| C05 graduation within class | 0 | 102 | 12 |
+| C05 graduation within class | 0 | 105 | 12 |
 | C06 outcomes within class | 0 | 3 | 0 |
 | C07 registered vs QF | 0 | 0 | 6 |
 | C08 ages vs Student Data | 0 | 4 | 6 |
 | C08 nationalities vs Student Data | 0 | 2 | 4 |
 | C08 registered_detailed vs Student Data | 0 | 2 | 3 |
 | C09 pipeline vs Student Data | 0 | 8 | 24 |
-| C10 graduate_nationalities vs dated graduates | 0 | 5 | 1 |
+| C10 graduate_nationalities vs dated graduates | 0 | 6 | 1 |
 | C10 outcomes vs dated graduates | 0 | 2 | 2 |
 | C12 funding sponsor rows | 0 | 0 | 3 |
 
@@ -180,11 +180,11 @@ Every flag, with the findings behind it, is in `data/processed/quality_flags.csv
 | CMU-Q | – | – |  | ✓ | ✓ | ✓ |
 | GU-Q | – | – | – | ✗ | ◐ | ✗ |
 | HBKU |  |  |  | ◐ | ◐ |  |
-| HEC-Q | – | – | – | ✓ | ✓ | ✓ |
+| HEC-Q | – | – | – | ✓ | ◑ | ◑ |
 | NU-Q | – | – | – | ✗ | ✗ | ◐ |
 | TAMU-Q | – | – | – | ✓ | ✓ | ✓ |
 | VCU-Q | – | – | – | ✗ | ✗ | ✗ |
-| WCM-Q | – | – | – | ✓ | ✓ | ✓ |
+| WCM-Q | – | – | – | ✓ | ✓ | ◑ |
 
 **Graduating: graduate nationalities**
 
@@ -195,7 +195,7 @@ Every flag, with the findings behind it, is in `data/processed/quality_flags.csv
 | HBKU |  |  |  | ✓ | ✓ |  |
 | HEC-Q | – | – | ≠ | ✗ | ≈ | ✓ |
 | NU-Q | – | – | ✗ | ✗ | ≠ | ✓ |
-| TAMU-Q | – | – | ✗ | ✓ | ◐ | ✓ |
+| TAMU-Q | – | – | ✗ | ◐ | ◐ | ✓ |
 | VCU-Q | – | – | – | ✗ | ◐ | ✗ |
 | WCM-Q | – | – | ✓ | ✓ | ✓ | ✓ |
 
@@ -240,6 +240,14 @@ Every flag, with the findings behind it, is in `data/processed/quality_flags.csv
 | NU-Q | 2024-2025 | 7 |
 
 Example: Class 2017-2018: 1 graduates but no entrants reported, so no rate can be computed (P-25)
+
+### C05 graduation within class: split exceeds class (3)
+
+| University | Year | Table | Finding | Source |
+|---|---|---|---|---|
+| HEC-Q | 2023-2024 | graduation_rate | Class 2021-2022: 32 Non-Qatari graduates from 6 Non-Qatari entrants, so this class's nationality split isn't used (the totals are) | AY23-24 Fall_Student Data Collection_HEC M11 |
+| HEC-Q | 2024-2025 | graduation_rate | Class 2022-2023: 62 Qatari graduates from 7 Qatari entrants, so this class's nationality split isn't used (the totals are) | AY24-25 HEC-Doha Student Data - Spring 2 M11 |
+| WCM-Q | 2024-2025 | graduation_rate | Class 2018-2019: 34 Non-Qatari graduates from 33 Non-Qatari entrants, so this class's nationality split isn't used (the totals are) | AY24-25 WCM-Q Student Data - Spring 2025 M10 |
 
 ### C06 outcomes within class: class size missing (2)
 
@@ -299,14 +307,15 @@ Example: Class 2017-2018: 1 graduates but no entrants reported, so no rate can b
 
 | University | Year | Table | Finding | Source |
 |---|---|---|---|---|
-| HEC-Q | 2023-2024 | graduate_nationalities | Class 2023-2024: 96 vs 82 in the graduates dated in Student Data: 1.2x | nan |
+| HEC-Q | 2023-2024 | graduate_nationalities | Class 2023-2024: 96 vs 82 in the graduates dated in Student Data (or its Outcomes class size, D-028): 1.2x | nan |
 
-### C10 graduate_nationalities vs dated graduates: lower (2)
+### C10 graduate_nationalities vs dated graduates: lower (3)
 
 | University | Year | Table | Finding | Source |
 |---|---|---|---|---|
-| TAMU-Q | 2023-2024 | graduate_nationalities | Class 2023-2024: 109 vs 143 in the graduates dated in Student Data: only 76% | nan |
-| VCU-Q | 2023-2024 | graduate_nationalities | Class 2023-2024: 46 vs 72 in the graduates dated in Student Data: only 64% | nan |
+| TAMU-Q | 2022-2023 | graduate_nationalities | Class 2022-2023: 40 vs 113 in the graduates dated in Student Data (or its Outcomes class size, D-028): only 35% | nan |
+| TAMU-Q | 2023-2024 | graduate_nationalities | Class 2023-2024: 109 vs 143 in the graduates dated in Student Data (or its Outcomes class size, D-028): only 76% | nan |
+| VCU-Q | 2023-2024 | graduate_nationalities | Class 2023-2024: 46 vs 72 in the graduates dated in Student Data (or its Outcomes class size, D-028): only 64% | nan |
 
 ### C10 graduate_nationalities vs dated graduates: not one class (2)
 

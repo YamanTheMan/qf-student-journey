@@ -212,6 +212,25 @@ def graduation_within_class(tables):
             out.append(finding("C05 graduation within class", "warning", "more_graduates_than_entrants", "graduation_rate", row,
                                f"Class {row['cohort']}: {int(graduates)} graduates from {int(entered)} entrants",
                                found=int(graduates), expected=int(entered)))
+
+    # The same test on the Qatari / Non-Qatari parts of classes whose totals have entrants
+    parts = with_row_number(tables["graduation_rate"])
+    parts = parts[(parts["report_status"] == "used") & (parts["breakdown"] == "nationality_gender")]
+    by_nat = parts.pivot_table(index=key + ["nationality"], columns="stage", values="count", aggfunc="sum").fillna(0)
+    for (*idx, nationality), v in by_nat.iterrows():
+        idx = tuple(idx)
+        if idx not in wide.index or wide.loc[idx].get("entered", 0) == 0:
+            continue
+        total = wide.loc[idx]
+        includes_100 = total.get("graduated_100", 0) + total.get("graduated_150", 0) > total.get("entered", 0) \
+            and total.get("graduated_100", 0) <= total.get("graduated_150", 0) <= total.get("entered", 0)
+        graduates = v.get("graduated_150", 0) if includes_100 else v.get("graduated_100", 0) + v.get("graduated_150", 0)
+        if graduates > v.get("entered", 0):
+            row = first.loc[idx].to_dict() | dict(zip(key, idx))
+            out.append(finding("C05 graduation within class", "warning", "split_exceeds_class", "graduation_rate", row,
+                               f"Class {row['cohort']}: {int(graduates)} {nationality} graduates from "
+                               f"{int(v.get('entered', 0))} {nationality} entrants, so this class's nationality "
+                               f"split isn't used (the totals are)", found=int(graduates), expected=int(v.get("entered", 0))))
     return out
 
 
@@ -359,15 +378,18 @@ def dated_graduates(tables):
 
 @check
 def classes_vs_dated_graduates(tables):
-    """C10: a graduating class's size in Outcomes and Graduate Nationalities equals the graduates dated in Student Data."""
+    """C10: a graduating class's size in Outcomes and Graduate Nationalities equals the graduates dated in Student Data.
+    A Graduate Nationalities list of a class Student Data lacks is compared with its Outcomes class size (D-028)."""
     graduates = dated_graduates(tables)
     oc = tables["outcomes"]
     oc = oc[(oc["report_status"] == "used") & (oc["stage"] == "graduates") & (oc["breakdown"] == "total")
             & oc["row_type"].isin(COUNTED_ROWS)]
+    class_size = oc.groupby(["university", "graduating_year"])["count"].sum()
+    filled = graduates.combine_first(class_size[class_size > 0])
     gn = tables["graduate_nationalities"]
     gn = gn[gn["row_status"] == "used"]
     out = []
-    for table, t in (("outcomes", oc), ("graduate_nationalities", gn)):
+    for table, t, graduates in (("outcomes", oc, graduates), ("graduate_nationalities", gn, filled)):
         sizes = t.groupby(["university", "graduating_year"])["count"].sum()
         sizes = sizes[sizes > 0]
         file_year = t.groupby(["university", "graduating_year"])["file_year"].max()
@@ -377,8 +399,9 @@ def classes_vs_dated_graduates(tables):
                 return ("not_one_class", "warning", f"{found} vs {expected} graduates in the class of {year}: "
                         f"more than double, so this list is not one class (P-36)")
             return None
+        reference = "the graduates dated in Student Data" + (" (or its Outcomes class size, D-028)" if t is gn else "")
         for f in compare(f"C10 {table} vs dated graduates", table, sizes, graduates,
-                         "the graduates dated in Student Data", close=0.05, explain=explain, stage="graduated"):
+                         reference, close=0.05, explain=explain, stage="graduated"):
             f["message"] = f"Class {f['file_year']}: " + f["message"]
             f["file_year"] = file_year.get((f["university"], f["file_year"]))  # report the submission year
             out.append(f)
@@ -432,6 +455,7 @@ STATUS_MEANING = {
     "partly_withheld": "some parts blank and the filled ones add up to less than the total",
     "text": "a count cell holds text ('N/A', 'less than 5', '#REF!'); kept as text, never a number",
     "150_includes_100": "'graduated within 150%' includes the within-100% graduates at this university (P-24)",
+    "split_exceeds_class": "more Qatari (or Non-Qatari) graduates than entrants: the class's totals are used, its nationality split isn't",
     "close": "differs from its reference by less than the tolerance",
     "fills_gap": "the reference is 0 (a formula over missing data); this sheet supplies the number",
     "qf_leaves_out_blank_groups": "differs from QF only because QF leaves out groups with a blank part (P-15)",

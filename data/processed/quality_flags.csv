@@ -287,7 +287,7 @@ graduation_rate,WCM-Q,2022-2023,complete,✓,show,
 graduation_rate,HBKU,2022-2023,partial,◐,show_marked,C05 graduation within class: no entrants
 graduation_rate,CMU-Q,2023-2024,complete,✓,show,
 graduation_rate,NU-Q,2023-2024,not_reported,✗,leave_out,
-graduation_rate,HEC-Q,2023-2024,complete,✓,show,
+graduation_rate,HEC-Q,2023-2024,breakdown_partial,◑,show,C05 graduation within class: split exceeds class
 graduation_rate,TAMU-Q,2023-2024,complete,✓,show,
 graduation_rate,GU-Q,2023-2024,partial,◐,show_marked,C05 graduation within class: no entrants
 graduation_rate,HBKU,2023-2024,partial,◐,show_marked,C05 graduation within class: no entrants
@@ -295,11 +295,11 @@ graduation_rate,VCU-Q,2023-2024,not_reported,✗,leave_out,
 graduation_rate,WCM-Q,2023-2024,complete,✓,show,
 graduation_rate,CMU-Q,2024-2025,complete,✓,show,
 graduation_rate,GU-Q,2024-2025,not_reported,✗,leave_out,
-graduation_rate,HEC-Q,2024-2025,complete,✓,show,
+graduation_rate,HEC-Q,2024-2025,breakdown_partial,◑,show,C05 graduation within class: split exceeds class
 graduation_rate,NU-Q,2024-2025,partial,◐,show_marked,C05 graduation within class: no entrants
 graduation_rate,TAMU-Q,2024-2025,complete,✓,show,
 graduation_rate,VCU-Q,2024-2025,not_reported,✗,leave_out,
-graduation_rate,WCM-Q,2024-2025,complete,✓,show,
+graduation_rate,WCM-Q,2024-2025,breakdown_partial,◑,show,C05 graduation within class: split exceeds class
 outcomes,CMU-Q,2019-2020,not_in_form,–,not_applicable,
 outcomes,NU-Q,2019-2020,not_in_form,–,not_applicable,
 outcomes,GU-Q,2019-2020,not_in_form,–,not_applicable,
@@ -496,7 +496,7 @@ graduate_nationalities,CMU-Q,2022-2023,complete,✓,show,
 graduate_nationalities,GU-Q,2022-2023,not_reported,✗,leave_out,
 graduate_nationalities,HEC-Q,2022-2023,not_reported,✗,leave_out,
 graduate_nationalities,NU-Q,2022-2023,not_reported,✗,leave_out,
-graduate_nationalities,TAMU-Q,2022-2023,complete,✓,show,
+graduate_nationalities,TAMU-Q,2022-2023,partial,◐,show_marked,C10 graduate_nationalities vs dated graduates: lower
 graduate_nationalities,VCU-Q,2022-2023,not_reported,✗,leave_out,
 graduate_nationalities,WCM-Q,2022-2023,complete,✓,show,
 graduate_nationalities,HBKU,2022-2023,complete,✓,show,
