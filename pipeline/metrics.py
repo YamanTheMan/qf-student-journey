@@ -223,6 +223,127 @@ def growth_and_getting_in(base, tables, flags):
 
 
 # ---------------------------------------------------------------------------------------------
+# 3. Studying (shares within the sheet that holds them, D-022)
+
+def flag_use(flags, measure):
+    f = flags[flags["measure"] == measure].set_index(["university", "file_year"])["use"]
+    return lambda universities, years: [f.get((u, y), "show") for u, y in zip(universities, years)]
+
+
+def mix(rows, metric, name, chapter, use_of, denominators=None):
+    """Shares of each category within (university, year, level), for each university and Education City.
+
+    rows: university, year, level, category, count. denominators (optional): a Series indexed by
+    (university, year, level) to divide by instead of the categories' own total.
+    """
+    rows = rows[rows["count"].notna()].copy()
+    rows["use"] = use_of(rows["university"], rows["year"])
+    group = ["university", "year", "level"]
+    per_uni = rows.groupby(group + ["category"]).agg(numerator=("count", "sum"), use=("use", "first")).reset_index()
+    if denominators is None:
+        per_uni["denominator"] = per_uni.groupby(group)["numerator"].transform("sum")
+    else:
+        per_uni = per_uni.merge(denominators.rename("denominator").reset_index(), on=group, how="left")
+    per_uni["coverage"] = 1
+    kept = per_uni[per_uni["use"] != "leave_out"]
+    ec = kept.groupby(["year", "level", "category"]).agg(
+        numerator=("numerator", "sum"), use=("use", lambda s: min(s, key=USE_ORDER.index)),
+        coverage=("university", "nunique")).reset_index()
+    ec_den = kept.drop_duplicates(group).groupby(["year", "level"])["denominator"].sum()
+    ec["denominator"] = [ec_den.get((y, lv)) for y, lv in zip(ec["year"], ec["level"])] if denominators is not None \
+        else ec.groupby(["year", "level"])["numerator"].transform("sum")
+    out = pd.concat([per_uni, ec.assign(university=ALL)], ignore_index=True)
+    out = out[out["denominator"].fillna(0) > 0]
+    return out.assign(metric=metric, name=name, chapter=chapter, value=out["numerator"] / out["denominator"],
+                      unit="share", program_group=ALL, nationality=ALL, gender=ALL,
+                      quality=out["use"].map(STATUS_FOR_USE), source=None)
+
+
+def with_all_levels(rows):
+    """Add level = All (sum over levels) to rows that have a level."""
+    all_levels = rows.groupby([c for c in rows.columns if c not in ("level", "count")], dropna=False)["count"] \
+        .sum().reset_index().assign(level=ALL)
+    return pd.concat([rows, all_levels], ignore_index=True)
+
+
+AGE_BANDS = [(17, "under 18"), (20, "18-20"), (23, "21-23"), (29, "24-29")]
+
+
+def age_band(age):
+    text = str(age).strip().lower()
+    if text.startswith("<"):
+        return "under 18"
+    if text.startswith(">") or "-" in text:
+        return "30 and over"
+    if text.isdigit():
+        return next((band for top, band in AGE_BANDS if int(text) <= top), "30 and over")
+    return "not given"
+
+
+def studying(tables, flags, base):
+    out = []
+    # M11 nationality mix: regions and countries, registered students
+    nat = tables["nationalities"]
+    nat = nat[(nat["stage"] == "registered") & (nat["breakdown"] == "total") & (nat["row_status"] == "used")]
+    nat = nat.rename(columns={"file_year": "year"}).assign(level=ALL)
+    use_nat = flag_use(flags, "nationalities")
+    out.append(mix(nat.assign(category="region: " + nat["region"]), "M11", "Nationality mix", "Studying", use_nat))
+    countries = nat[nat["count"] > 0]
+    out.append(mix(countries.assign(category="country: " + countries["country"]), "M11", "Nationality mix",
+                   "Studying", use_nat))
+
+    # M12 age mix, all students and new entrants
+    ages = tables["ages"]
+    ages = ages[ages["breakdown"] == "gender"].rename(columns={"file_year": "year"}).assign(level=ALL)
+    ages = ages.assign(category=ages["stage"].str.replace("_", " ") + ": " + ages["age"].map(age_band))
+    for stage in ("registered", "new_entrants"):
+        part = ages[ages["stage"] == stage]
+        out.append(mix(part, "M12", "Age mix", "Studying", flag_use(flags, "ages")))
+
+    # M13 attendance, scholarship and class year, by level
+    rd = tables["registered_detailed"]
+    rd = rd[rd["row_type"].isin(COUNTED_ROWS) & rd["level"].notna() & (rd["level"] != "non_degree")]
+    rd = rd.rename(columns={"file_year": "year"})
+    use_rd = flag_use(flags, "registered_detailed")
+    for column, label, name in (("attendance_std", "attendance", "Attendance mix"),
+                                ("scholarship_std", "scholarship", "Scholarship share"),
+                                ("year_class", "class year", "Class-year mix")):
+        values = rd[column].replace("", pd.NA).fillna("not given").astype(str).str.strip().str.capitalize()
+        rows = with_all_levels(rd.assign(category=label + ": " + values)[["university", "year", "level", "category", "count"]])
+        out.append(mix(rows, "M13", name, "Studying", use_rd))
+
+    # M14 funding types, each against registered students (types overlap, never stacked: P-35)
+    fu = tables["funding"]
+    fu = fu[fu["row_type"].isin(COUNTED_ROWS) & (fu["measure"] == "students") & (fu["breakdown"] == "total")
+            & fu["level"].notna() & (fu["level"] != "non_degree")].rename(columns={"file_year": "year"})
+    rows = with_all_levels(fu.assign(category="funding: " + fu["stage"].str.replace("_", " "))
+                           [["university", "year", "level", "category", "count"]])
+    reg = base[(base["stage"] == "registered") & (base["nationality"] == ALL) & (base["gender"] == ALL)
+               & (base["program_group"] == ALL) & (base["university"] != ALL)]
+    denominators = reg.set_index(["university", "year", "level"])["count"]
+    funding = mix(rows, "M14", "Funding by type", "Studying", flag_use(flags, "funding"), denominators)
+    reg_use = reg.set_index(["university", "year"])["use"].to_dict()
+    funding["use"] = [worst_use(u, reg_use.get((uni, y))) if uni != ALL else u
+                      for u, uni, y in zip(funding["use"], funding["university"], funding["year"])]
+    # Every university reports 0 QF-scholarship students in every year: QF records those itself
+    # ('to be provided by QF financial services'), so this sheet can't measure them (D-031)
+    qf = funding["category"] == "funding: qf scholarship"
+    funding.loc[qf, "use"] = "leave_out"
+    funding.loc[qf, "note"] = "Not measured here: universities leave QF scholarships to QF Financial Services (D-031)"
+    funding["quality"] = funding["use"].map(STATUS_FOR_USE)
+    out.append(funding)
+
+    # M15 internships by employer type: counts and shares of all internships
+    it = tables["internships"].rename(columns={"file_year": "year"}).assign(level=ALL)
+    it = it.assign(category="employer: " + it["employer_type"])
+    internships = mix(it, "M15", "Internships by employer type", "Studying", flag_use(flags, "internships"))
+    counts_ = internships.assign(value=internships["numerator"], unit="count", denominator=None,
+                                 name="Internships by employer type (count)")
+    out += [internships, counts_]
+    return out
+
+
+# ---------------------------------------------------------------------------------------------
 # Small numbers (D-026)
 
 def hide_small_numbers(m):
@@ -230,8 +351,10 @@ def hide_small_numbers(m):
     Totals (no nationality, gender, program or category split) are always shown."""
     m = m.copy()
     split = (m["nationality"] != ALL) | (m["gender"] != ALL) | (m["program_group"] != ALL) | m["category"].notna()
-    small_count = (m["unit"] == "count") & split & m["value"].between(1, 4)
-    small_base = m["unit"].isin(["share", "rate"]) & (m["denominator"] < 10)
+    # a share of 1-4 students in a breakdown would reveal the count (share x total), so it's hidden too
+    small_count = split & (((m["unit"] == "count") & m["value"].between(1, 4))
+                           | (m["unit"].isin(["share", "rate"]) & m["numerator"].between(1, 4)))
+    small_base = m["unit"].isin(["share", "rate"]) & (m["denominator"] < 10) & ~small_count
     m["display"] = None
     m.loc[small_count, "display"] = "<5"
     m.loc[small_base, "display"] = "fewer than 10 students"
@@ -242,9 +365,10 @@ def hide_small_numbers(m):
 
 def compute(tables, flags):
     base = build_bases(tables, flags)
-    metrics = pd.concat(growth_and_getting_in(base, tables, flags), ignore_index=True)
+    metrics = pd.concat(growth_and_getting_in(base, tables, flags) + studying(tables, flags, base), ignore_index=True)
     metrics["year_kind"] = "academic"
-    metrics["note"] = metrics.get("note")
+    if "note" not in metrics:
+        metrics["note"] = None
     metrics.loc[metrics["source"] == "qf_consolidated", "note"] = "From QF's consolidated file (D-029)"
     metrics = hide_small_numbers(metrics)
     return metrics.reindex(columns=COLUMNS)
@@ -254,7 +378,9 @@ def load():
     read = dict(keep_default_na=False, na_values={c: [""] for c in ("count", "level", "program", "program_group",
                                                                    "period_label", "band_label", "graduating_year")},
                 dtype={"degree_raw": str, "program_raw": str})
-    tables = {n: pd.read_csv(PROCESSED / f"{n}.csv", **read) for n in ("student_data", "student_pipeline")}
+    names = ("student_data", "student_pipeline", "nationalities", "ages", "registered_detailed", "funding", "internships")
+    read["dtype"] |= {"age": str, "year_class": str}
+    tables = {n: pd.read_csv(PROCESSED / f"{n}.csv", **read) for n in names}
     flags = pd.read_csv(PROCESSED / "quality_flags.csv", keep_default_na=False)
     return tables, flags
 

@@ -76,3 +76,16 @@ def test_university_aliases_are_unique():
     aliases = [a.upper() for row in universities["aliases"] for a in row.split("|")]
     assert len(aliases) == len(set(aliases)), "the same spelling is assigned to two universities"
     assert universities["code"].is_unique
+
+
+REGIONS = {"Qatar", "Other GCC", "Other Arab countries", "South Asia", "East & Southeast Asia & Pacific",
+           "Iran, Turkey, Caucasus & Central Asia", "Sub-Saharan Africa", "Europe", "North America",
+           "Latin America & Caribbean", "Other", "Not given"}
+
+
+def test_country_table_is_valid():
+    countries = pd.read_csv(REFERENCE / "countries.csv", keep_default_na=False)
+    assert not countries["spelling"].str.strip().str.lower().duplicated().any(), "a spelling is listed twice"
+    assert set(countries["region"]) <= REGIONS
+    assert (countries.groupby("country")["region"].nunique() == 1).all(), "a country sits in two regions"
+    assert (countries[countries["country"] == "Qatar"]["region"] == "Qatar").all()

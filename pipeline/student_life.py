@@ -74,7 +74,9 @@ def graduate_nationalities(student_data=None):
     dated =[graduating_class(r, f, y, classes) for r, f, y in zip(table["remarks"], table["source_file"], table["file_year"])]
     table.insert(table.columns.get_loc("remarks") + 1, "graduating_year", [d[0] for d in dated])
     table.insert(table.columns.get_loc("graduating_year") + 1, "timing_evidence", [d[1] for d in dated])
-    table, duplicate_problems = mark_duplicates(standardise_countries(table), extra_keys=("graduating_year",))
+    table, country_problems = standardise_countries(table)
+    problems += country_problems
+    table, duplicate_problems = mark_duplicates(table, extra_keys=("graduating_year",))
     return table, problems + duplicate_problems
 
 

@@ -91,13 +91,14 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [x] Metric definitions written down: 25 metrics in [docs/metrics.md](metrics.md)
 - [x] `pipeline/metrics.py` framework (bases → formulas, Education City with coverage), run by every build
 - [x] Growth and Getting-in metrics M01–M10; the 2011–2019 history equals QF's totals (D-029)
-- [ ] Studying metrics M11–M15 (country regions, ages, full-time / scholarship / class year, funding, internships)
+- [x] Studying metrics M11–M15: regions and countries, age bands, attendance / scholarship / class year, funding types, internships
 - [ ] Graduating and After metrics M16–M25 (D-021, D-027, D-028)
 - [x] Small-count rule decided and applied: counts below 5 and rates on fewer than 10 hidden (D-026)
 - [ ] Apply the Phase 3 rules: Pipeline as school-type shares only (D-020); fallback class size for outcome rates (D-021); secondary sheets as shares (D-022); every metric carries its quality flag and `use` (D-025)
 - [ ] Leave `non_degree` rows out of all student totals (D-016)
-- [ ] Group countries into regions (e.g. GCC, other Arab states, South Asia) for the "where students come from" view
-- [ ] Show funding types separately, never stacked (P-35); sort older internship employers into types (P-37)
+- [x] Countries grouped into 12 regions (`data/reference/countries.csv`, D-030)
+- [x] Funding types shown separately, never stacked (P-35); QF scholarships left out as not measured (D-031)
+- [ ] Sort older internship employers into types (P-37)
 - [x] Decided: comparable "by 150%" rate (D-027); classes without entrants give counts, not rates (P-25)
 - [x] Decided: missing graduating classes filled from the next year's Outcomes sheet (D-028)
 

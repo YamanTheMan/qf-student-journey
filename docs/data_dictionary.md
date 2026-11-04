@@ -7,7 +7,7 @@ What is in `data/raw/`, what each number means, and what's wrong with it. This i
 - **Which files to use:** [`data/reference/file_decisions.csv`](../data/reference/file_decisions.csv) lists the exceptions. Every other file is used as-is. `use` is one of: `no` (skip the file), `only` (use only the listed `programs` × `stages`), `except` (use everything but the listed `programs` × `stages`), or `yes`. `academic_year` overrides the year implied by the folder.
 - **Program names:** [`data/reference/programs.csv`](../data/reference/programs.csv) has one row per program spelling found in the files (145 so far), giving its standard name, stable group, level, qualification and field (D-015). A new spelling in a future upload stops the build until a row is added.
 - **Sheets to skip:** [`data/reference/sheet_exclusions.csv`](../data/reference/sheet_exclusions.csv) lists single sheets that aren't read, each with its decision (D-018).
-- **Country names:** [`data/reference/country_aliases.csv`](../data/reference/country_aliases.csv) maps variant spellings to one country name.
+- **Country names:** [`data/reference/countries.csv`](../data/reference/countries.csv) gives every country spelling seen in the files (252 so far, including typos like "Palisrine") one standard country (209) and one of 12 regions (D-030). A new spelling stops the build until a row is added.
 - **When graduates graduated:** [`data/reference/graduate_timing.csv`](../data/reference/graduate_timing.csv) lists, per university and file, which class its graduates belong to when a remark or the Outcomes sheet shows it, each with its evidence (D-011). Files without an entry use labels in the sheet, or else the form's definition.
 
 ---
@@ -205,7 +205,7 @@ Built by `.venv/bin/python -m pipeline.outcomes` from the 28 files with a Studen
 
 Built by `.venv/bin/python -m pipeline.nationalities` from 42 files (all years from 2019–20). Columns: `country_raw` (as written), `country` (standardised), `stage`, `gender`, `breakdown`, `count`, `row_status`, plus year, university, template and source columns. 2019–22 files give registered students only; from 2022–23 also applied, admitted and newly enrolled.
 
-- **Country names:** capitals are ignored ("QATAR" = "Qatar"), and `data/reference/country_aliases.csv` handles real variants ("Viet Nam" → "Vietnam"). "Non-Qatari" is not a country: it becomes "Non-Qatari (country not given)" (P-30).
+- **Country names:** `country` and `region` come from `data/reference/countries.csv` (capitals and spaces ignored; "Burma" = "Myanmar", "Palisrine" = "Palestine"). "Non-Qatari" is not a country: it becomes "Non-Qatari (country not given)", region "Not given" (P-30).
 - **`row_status`:** `used` or `duplicate` (the same country listed twice in one file with identical numbers, P-31). Different numbers for the same country stop the build.
 - **Blank cells are left out:** every country is printed in the template, so a blank says nothing a missing row doesn't.
 - **Check:** registered totals equal Student Data in 34 of 41 university-years (38 within 2%), and the "Qatar" row equals Qatari students in 32 of 39. Gaps: P-33.

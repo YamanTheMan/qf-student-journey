@@ -4,9 +4,10 @@ Writes data/processed/nationalities.csv with one row per number: country (as wri
 standardised), stage, gender, and the exact source cell. 2019-22 files give registered students
 only; from 2022-23 the sheet also gives applied, admitted and newly enrolled students.
 
-Country names are standardised by ignoring capitals ('QATAR' = 'Qatar') and by the alias table
-data/reference/country_aliases.csv ('Viet Nam' -> 'Vietnam'). A country listed twice in one file
-with identical numbers is used once; with different numbers it stops the build.
+Country names are standardised with data/reference/countries.csv, which gives every spelling
+seen ('Burma', 'Myanmar (Burma)', 'QATAR', a typo like 'Palisrine') one standard country and a
+region (D-030). A spelling not in it stops the build. A country listed twice in one file with
+identical numbers is used once; with different numbers it stops the build.
 
 Run from the project folder:
     .venv/bin/python -m pipeline.nationalities
@@ -24,28 +25,44 @@ TEMPLATES = ("v2019", "v2020", "v2021", "v2022")
 KEYS = {"country_raw": lambda text: text == "nationality"}
 
 
-def standardise_countries(table, aliases=None):
-    """Add 'country': alias table first, otherwise the spelling most often used for that name."""
-    if aliases is None:
-        aliases = pd.read_csv(REFERENCE_DIR / "country_aliases.csv", keep_default_na=False)
-    by_alias = dict(zip(aliases["alias"].str.lower(), aliases["country"]))
+def load_countries(path=REFERENCE_DIR / "countries.csv"):
+    return pd.read_csv(path, keep_default_na=False)
+
+
+def standardise_countries(table, countries=None):
+    """Add 'country' and 'region' from countries.csv, matching spellings ignoring capitals and spaces.
+
+    Returns (table, problems): an unknown spelling is a problem for a person.
+    """
+    countries = load_countries() if countries is None else countries
+    key = countries["spelling"].str.strip().str.lower()
+    country, region = dict(zip(key, countries["country"])), dict(zip(key, countries["region"]))
     lower = table["country_raw"].str.strip().str.lower()
-    usual = table["country_raw"].groupby(lower).agg(lambda s: s.value_counts().index[0])
     out = table.copy()
-    out.insert(out.columns.get_loc("country_raw") + 1, "country", lower.map(by_alias).fillna(lower.map(usual)))
-    return out
+    at = out.columns.get_loc("country_raw") + 1
+    out.insert(at, "country", lower.map(country))
+    out.insert(at + 1, "region", lower.map(region))
+    unknown = sorted(out.loc[out["country"].isna(), "country_raw"].unique())
+    problems = [f"country spelling not in data/reference/countries.csv: '{u}'" for u in unknown]
+    return out, problems
 
 
 def mark_duplicates(table, extra_keys=()):
-    """A country listed twice in one file: identical numbers -> one copy is a 'duplicate';
-    different numbers -> a problem for a person (returned as text). extra_keys separates
-    lists that legitimately repeat countries, e.g. two graduating classes in one sheet."""
+    """A country listed twice in one file (after standardising its name):
+      - at most one row has students: the form lists the country under two names ('Burma' and
+        'Myanmar'); both rows are used, which adds nothing but the real number
+      - identical non-zero numbers: a repeated summary row (NU-Q 2019-20); one copy is a 'duplicate'
+      - different non-zero numbers: a problem for a person (returned as text)
+    extra_keys separates lists that legitimately repeat countries, e.g. two graduating classes."""
     out = table.copy()
     key = ["source_file", "country", "stage", *[c for c in ("gender",) if c in out.columns], *extra_keys]
-    groups = out.groupby(key)["count"]
-    conflicting = groups.transform(lambda s: s.nunique(dropna=False) > 1)
+    nonzero = out["count"].fillna(0) > 0
+    with_students = nonzero.groupby([out[k] for k in key]).transform("sum")
+    distinct = out["count"].groupby([out[k] for k in key]).transform(lambda s: s.nunique(dropna=False))
+    repeated_summary = (with_students > 1) & (distinct == 1)
+    conflicting = (with_students > 1) & (distinct > 1)
     out["row_status"] = "used"
-    out.loc[out.duplicated(key, keep="first") & ~conflicting, "row_status"] = "duplicate"
+    out.loc[repeated_summary & out.duplicated(key, keep="first"), "row_status"] = "duplicate"
     problems = [f"{f}: '{c}' is listed twice with different numbers"
                 for f, c in out.loc[conflicting, ["source_file", "country"]].drop_duplicates().values]
     return out, problems
@@ -55,7 +72,9 @@ def extract_all():
     table, problems = extract_list_sheet("student nationalities", KEYS, nationalities_header, TEMPLATES)
     table = pd.concat([table, pd.DataFrame(vcu_2021_22.nationality_records())], ignore_index=True)
     table["count"] = table["count"].astype("Int64")
-    table, duplicate_problems = mark_duplicates(standardise_countries(table))
+    table, country_problems = standardise_countries(table)
+    problems += country_problems
+    table, duplicate_problems = mark_duplicates(table)
     return table, problems + duplicate_problems
 
 

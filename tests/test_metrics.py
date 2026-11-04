@@ -69,3 +69,38 @@ def test_education_city_leaves_out_unreported_universities():
     m = read()
     # VCU-Q 2022-23 registered is 'not reported' (formula zeros): left out, so 7 universities, not 8
     assert total(m, "M01", "All", "2022-2023")["coverage"] == 7
+
+
+def test_age_bands():
+    assert [metrics.age_band(a) for a in ("<15", "17", "18", "20", "21", "23", "24", "29", "30", "35-39", ">59", "Age unknown")] == \
+        ["under 18", "under 18", "18-20", "18-20", "21-23", "21-23", "24-29", "24-29", "30 and over", "30 and over",
+         "30 and over", "not given"]
+
+
+def test_mix_shares_and_education_city():
+    rows = pd.DataFrame({"university": ["A", "A", "B", "B", "C"], "year": ["y"] * 5, "level": ["All"] * 5,
+                         "category": ["x", "z", "x", "z", "x"], "count": [30, 10, 20, 40, 99]})
+    use = {"A": "show", "B": "show_marked", "C": "leave_out"}
+    m = metrics.mix(rows, "M", "n", "c", lambda us, ys: [use[u] for u in us])
+    a = m[(m.university == "A")].set_index("category")["value"]
+    assert a.to_dict() == {"x": 0.75, "z": 0.25}
+    ec = m[m.university == "All"].set_index("category")
+    assert ec.loc["x", "numerator"] == 50 and ec.loc["x", "denominator"] == 100   # C is left out (D-025)
+    assert ec.loc["x", "coverage"] == 2 and ec.loc["x", "use"] == "show_marked"
+
+
+def test_a_small_share_in_a_breakdown_is_hidden():
+    m = metrics.hide_small_numbers(frame(unit=["share"], value=[0.01], numerator=[3], denominator=[300],
+                                         category=["country: Iceland"]))
+    assert m["display"].iloc[0] == "<5" and pd.isna(m["value"].iloc[0])   # 1% of 300 would reveal 3 students
+
+
+def test_studying_metrics_on_real_data():
+    m = read()
+    ec = m[(m.university == "All") & (m.year == "2024-2025") & (m.level == "All")]
+    regions = ec[(ec.metric == "M11") & ec.category.str.startswith("region:")]
+    assert abs(regions["value"].sum() - 1) < 0.01
+    internships = ec[(ec.metric == "M15") & (ec.unit == "count")]["value"].sum()
+    assert internships == 512
+    qf = m[m.category == "funding: qf scholarship"]
+    assert len(qf) and (qf.use == "leave_out").all()   # D-031: not measured in this sheet
