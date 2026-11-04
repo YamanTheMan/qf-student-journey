@@ -205,3 +205,15 @@ Two refinements to the duplicate rule came with it. The form lists some countrie
 **Date:** 2026-11-04
 **Decision:** Every graduating class with no Student Data graduate count takes the next year's Outcomes class size, as D-028 says. Besides the four classes named there, this fills HBKU 2021–22 (151) and NU-Q 2023–24 (127; NU-Q's 2024–25 file gives 118 graduates, dated by the form to 2024–25). The filled classes keep the Outcomes sheet's program and level detail (it uses the same program mapping); they have no gender split. Quality check C10 compares a Graduate Nationalities list of such a class with that class size, so TAMU-Q's 2022–23 list (40 of 113) is now marked ◐ partial.
 **Why:** The rule is what D-028 decided; the list of four was what it found at the time. Applying it the same way everywhere avoids hand-picked exceptions, and `source = outcomes` keeps every filled class visible.
+
+### D-034 · Older internship employers are sorted into the form's five types (P-37)
+**Date:** 2026-11-04
+**Decision:** The employers that the 2019–20 and 2020–21 forms name (180 spellings, 425 internships) get one of the five types the form asks for from 2021–22, through `data/reference/employers.csv`:
+- **QF**: Qatar Foundation and its members (Sidra, QCRI / HBKU, WISE, Doha Debates, QCDC, Qatar Green Building Council, Al Shaqab) and Education City universities.
+- **Public**: Qatari government bodies and companies the state owns (ministries, Qatar Museums, Hamad Medical, Supreme Committee, the QFC authorities, Qatar Airways, QAPCO, Al Jazeera, beIN).
+- **Private**: companies in Qatar, including firms whose name doesn't say where they are (assumed to be in Qatar).
+- **Abroad**: any employer based outside Qatar, whatever its sector, including Qatar's own embassies.
+- **Other**: non-profits, think tanks and foreign embassies in Qatar (Brookings Doha Center, Education Above All, US Embassy Doha), and the few names that couldn't be identified.
+
+Each row says whether its type is clear from the `name` (48 spellings, 104 internships), `known` (77, 227) or a `guess` (55, 94), with the reason. A new name stops the build until a row is added.
+**Why:** It makes the internship story comparable across all six years instead of starting in 2021–22. The guesses are mostly small firms (1–2 internships each) and are marked, so they can be corrected one row at a time. Caveat: 2019–21 lists come from four universities, and many 2020 internships were likely remote, so "Abroad" there means a foreign employer, not necessarily travel.

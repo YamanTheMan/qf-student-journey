@@ -172,3 +172,10 @@ def test_outcome_rates_use_the_fallback_class_size():
     vcu = by_class(m, "M22", "VCU-Q", "2022-2023").iloc[0]
     assert (vcu["numerator"], vcu["denominator"], vcu["use"]) == (28, 48, "show_marked")
     assert by_class(m, "M25", "WCM-Q", "2023-2024").iloc[0]["years_after_graduation"] == 1
+
+
+def test_older_internships_are_sorted_into_types():
+    m = read()
+    internships = m[(m.metric == "M15") & (m.unit == "count") & (m.university == "All") & (m.year == "2019-2020")]
+    assert set(internships["category"]) <= {f"employer: {t}" for t in ("QF", "Public", "Private", "Abroad", "Other")}
+    assert internships["value"].sum() == 188   # every named employer has a type (D-034)

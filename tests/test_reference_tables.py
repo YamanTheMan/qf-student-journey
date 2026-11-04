@@ -89,3 +89,12 @@ def test_country_table_is_valid():
     assert set(countries["region"]) <= REGIONS
     assert (countries.groupby("country")["region"].nunique() == 1).all(), "a country sits in two regions"
     assert (countries[countries["country"] == "Qatar"]["region"] == "Qatar").all()
+
+
+def test_employer_table_is_valid():
+    employers = pd.read_csv(REFERENCE / "employers.csv", keep_default_na=False)
+    assert not employers["spelling"].str.strip().str.lower().duplicated().any(), "a spelling is listed twice"
+    assert set(employers["employer_type"]) <= {"QF", "Public", "Private", "Abroad", "Other"}
+    assert set(employers["basis"]) <= {"name", "known", "guess"}
+    assert (employers.groupby("employer")["employer_type"].nunique() == 1).all(), "an employer has two types"
+    assert (employers.loc[employers["basis"] == "guess", "note"].str.len() > 10).all(), "a guess needs its reason"

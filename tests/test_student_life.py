@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from pipeline.student_life import employer_type, graduating_class
+from pipeline.student_life import employer_types, graduating_class
 from pipeline.workbook import cell_text
 
 PROCESSED = Path(__file__).resolve().parent.parent / "data" / "processed"
@@ -25,9 +25,22 @@ def test_graduate_nationalities_are_dated_like_the_files_graduates():
     assert graduating_class(None, "two-classes.xlsx", "2024-2025", classes) == ("2024-2025", "form_default")
 
 
+EMPLOYERS = pd.DataFrame({"spelling": ["Qatar Museums", "Barker Langham (London, UK)"],
+                          "employer": ["Qatar Museums", "Barker Langham"], "employer_type": ["Public", "Abroad"]})
+
+
 def test_employer_types():
-    assert [employer_type(t) for t in ("QF", "Public", "Private", "Abroad", "Other", "Qatar Museums")] == \
-        ["QF", "Public", "Private", "Abroad", "Other", "Named employer"]
+    # the form's own types (2021-22 on), then older named employers from data/reference/employers.csv (D-034)
+    t = pd.DataFrame({"employer_raw": ["QF", "public", "Private", "Abroad", "Other", " QATAR museums", "Barker Langham (London, UK)"]})
+    out, problems = employer_types(t, EMPLOYERS)
+    assert list(out.employer_type) == ["QF", "Public", "Private", "Abroad", "Other", "Public", "Abroad"]
+    assert list(out.employer.fillna("")) == ["", "", "", "", "", "Qatar Museums", "Barker Langham"]
+    assert problems == []
+
+
+def test_an_unknown_employer_stops_the_build():
+    _, problems = employer_types(pd.DataFrame({"employer_raw": ["Acme Doha"]}), EMPLOYERS)
+    assert problems == ["employer not in data/reference/employers.csv: 'Acme Doha'"]
 
 
 def test_cmuq_graduate_nationalities_match_its_graduates():

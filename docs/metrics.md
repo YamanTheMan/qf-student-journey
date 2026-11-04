@@ -46,7 +46,7 @@ Every number the dashboard shows, defined once: what it measures, how it's compu
 | M12 | Age mix | students of an age band (under 18, 18–20, 21–23, 24–29, 30 and over) ÷ students in the sheet; for all students and for first-time entrants | share | Ages (D-022) |
 | M13 | Full-time share, scholarship share, class-year mix | group ÷ students in the sheet | share | Registered Students Detailed (D-022) |
 | M14 | Funding by type | students with a funding type ÷ registered students. Types overlap, so they're **never stacked** (P-35). QF scholarships aren't measured by this sheet (D-031). | share | Funding + Student Data |
-| M15 | Internships by employer type | internships of a type ÷ all internships | share and count | Internships |
+| M15 | Internships by employer type | internships of a type ÷ all internships | share and count | Internships; employers named in 2019–21 sorted into types (D-034) |
 
 ### 4. Graduating
 

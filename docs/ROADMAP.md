@@ -10,7 +10,7 @@ How we work each phase: explain the goal → build it in small steps → check t
 | 1. Data map | Document every sheet: columns, years, universities, quirks | ✅ |
 | 2. Extraction | Read every yearly template version into one tidy format | ✅ |
 | 3. Validation | Automatic checks that run on every upload | ✅ |
-| 4. Metrics | Define and compute the story numbers | 🔄 |
+| 4. Metrics | Define and compute the story numbers | ✅ |
 | 5. Dashboard | The story in chapters, running locally | ⬜ |
 | 6. Go live | GitHub Action + Streamlit Cloud, push-to-update | ⬜ |
 | 7. Insights & delivery | Findings, polish, documentation, final presentation | ⬜ |
@@ -86,7 +86,7 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [x] Graduate-nationality lists that aren't one class (P-36): left out (D-024)
 - [x] How the dashboard uses each flag: show / show with note / show marked / leave out (D-025, `use` column)
 
-## Phase 4 — Metrics 🔄
+## Phase 4 — Metrics ✅
 
 - [x] Metric definitions written down: 25 metrics in [docs/metrics.md](metrics.md)
 - [x] `pipeline/metrics.py` framework (bases → formulas, Education City with coverage), run by every build
@@ -98,7 +98,7 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [x] Leave `non_degree` rows out of all student totals (D-016)
 - [x] Countries grouped into 12 regions (`data/reference/countries.csv`, D-030)
 - [x] Funding types shown separately, never stacked (P-35); QF scholarships left out as not measured (D-031)
-- [ ] Sort older internship employers into types (P-37)
+- [x] Sort older internship employers into types (P-37, D-034: `data/reference/employers.csv`)
 - [x] Decided: comparable "by 150%" rate (D-027); classes without entrants give counts, not rates (P-25)
 - [x] Decided: missing graduating classes filled from the next year's Outcomes sheet (D-028)
 

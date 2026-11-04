@@ -15,7 +15,7 @@ import pandas as pd
 from pipeline import vcu_2021_22
 from pipeline.graduates import year_from_label
 from pipeline.headers import MONTHS, ages_header, funding_header, single_count_header
-from pipeline.inventory import ROOT
+from pipeline.inventory import REFERENCE_DIR, ROOT
 from pipeline.lists import extract_list_sheet
 from pipeline.nationalities import mark_duplicates, standardise_countries
 from pipeline.tables import extract_sheet, map_programs, report_problems
@@ -23,8 +23,7 @@ from pipeline.tables import extract_sheet, map_programs, report_problems
 PROCESSED = ROOT / "data" / "processed"
 MONTH_NAMES = MONTHS.split("|")
 ALL_TEMPLATES = ("v2019", "v2020", "v2021", "v2022")
-EMPLOYER_TYPES = [("QF", r"^qf\b|qatar foundation"), ("Public", r"^public|government|ministry"),
-                  ("Private", r"^private"), ("Abroad", r"^abroad|outside qatar"), ("Other", r"^other\b")]
+EMPLOYER_TYPES = ("QF", "Public", "Private", "Abroad", "Other")  # the form's own types from 2021-22
 
 
 def ages():
@@ -80,12 +79,27 @@ def graduate_nationalities(student_data=None):
     return table, problems + duplicate_problems
 
 
-def employer_type(raw):
-    """The five types used from 2021-22. Older files name each employer instead ('Qatar Museums',
-    'Brookings Doha Center'): those are kept as 'Named employer' (sorting them into types is a
-    Phase 4 task)."""
-    text = (raw or "").strip().lower()
-    return next((name for name, pattern in EMPLOYER_TYPES if re.search(pattern, text)), "Named employer")
+def load_employers(path=REFERENCE_DIR / "employers.csv"):
+    return pd.read_csv(path, keep_default_na=False)
+
+
+def employer_types(table, employers=None):
+    """Add 'employer' and 'employer_type'. From 2021-22 the form asks for the type itself; older files
+    name each employer ('Qatar Museums', 'Brookings Doha Center'), which data/reference/employers.csv
+    sorts into the same five types (D-034), matching spellings ignoring capitals and spaces.
+
+    Returns (table, problems): a name in neither is a problem for a person."""
+    employers = load_employers() if employers is None else employers
+    key = employers["spelling"].str.strip().str.lower()
+    name, kind = dict(zip(key, employers["employer"])), dict(zip(key, employers["employer_type"]))
+    lower = table["employer_raw"].str.strip().str.lower()
+    types = {t.lower(): t for t in EMPLOYER_TYPES}
+    out = table.copy()
+    at = out.columns.get_loc("employer_raw") + 1
+    out.insert(at, "employer", lower.map(name))
+    out.insert(at + 1, "employer_type", lower.map(types).fillna(lower.map(kind)))
+    unknown = sorted(out.loc[out["employer_type"].isna(), "employer_raw"].unique())
+    return out, [f"employer not in data/reference/employers.csv: '{u}'" for u in unknown]
 
 
 def internships():
@@ -93,9 +107,8 @@ def internships():
     parse = single_count_header(r"(#|total) internships", "internships")
     old, p1 = extract_list_sheet("internship - employers", keys, parse, ("v2019", "v2020"))
     new, p2 = extract_list_sheet("internships", keys, parse, ("v2021", "v2022"))
-    table = pd.concat([old, new], ignore_index=True)
-    table.insert(table.columns.get_loc("employer_raw") + 1, "employer_type", table["employer_raw"].map(employer_type))
-    return table, p1 + p2
+    table, p3 = employer_types(pd.concat([old, new], ignore_index=True))
+    return table, p1 + p2 + p3
 
 
 FUNDING_DETAILS = {
