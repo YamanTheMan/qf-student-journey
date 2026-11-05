@@ -32,7 +32,9 @@ Once live (Phase 6), adding a new year's Excel files to `data/raw/` on GitHub tr
 
 ```
 qf-student-journey/
-├── app.py               Dashboard entry point
+├── app.py               Dashboard entry point: navigation and the sidebar filters
+├── chapters/           One page per story chapter (plus Home)
+├── dashboard/          What the pages share: reading metrics.csv, charts, summary sentences
 ├── pipeline/            Excel → clean tables (extract, validate, metrics)
 ├── data/
 │   ├── raw/             Original Excel submissions, one folder per academic year

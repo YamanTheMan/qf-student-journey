@@ -2976,8 +2976,8 @@ M02,Qatari share of students,Growth,VCU-Q,2023-2024,academic,undergraduate,Art H
 M02,Qatari share of students,Growth,VCU-Q,2023-2024,academic,undergraduate,Fine Arts (BFA),All,All,,,,,,share,student_data,breakdown_partial,show,1,,,
 M02,Qatari share of students,Growth,VCU-Q,2024-2025,academic,foundation,Pre-Art Foundation,All,All,,,,,,share,student_data,breakdown_partial,show,1,,,
 M02,Qatari share of students,Growth,VCU-Q,2024-2025,academic,graduate,Design (MFA),All,All,,,,,,share,student_data,breakdown_partial,show,1,,,
-M02,Qatari share of students,Growth,VCU-Q,2024-2025,academic,undergraduate,Art History,All,All,,1.0,,36.0,36.0,share,student_data,breakdown_partial,show,1,,,
-M02,Qatari share of students,Growth,VCU-Q,2024-2025,academic,undergraduate,Fine Arts (BFA),All,All,,0.6153846153846154,,144.0,234.0,share,student_data,breakdown_partial,show,1,,,
+M02,Qatari share of students,Growth,VCU-Q,2024-2025,academic,undergraduate,Art History,All,All,,1.0,,36.0,36.0,share,student_data,breakdown_partial,leave_out,1,,,"Nationality known for 36 of 41 students, so the share could be anywhere from 88% to 100% (D-037)"
+M02,Qatari share of students,Growth,VCU-Q,2024-2025,academic,undergraduate,Fine Arts (BFA),All,All,,0.6153846153846154,,144.0,234.0,share,student_data,breakdown_partial,show_marked,1,,,"Nationality known for 234 of 259 students, so the share could be anywhere from 56% to 65% (D-037)"
 M02,Qatari share of students,Growth,WCM-Q,2019-2020,academic,foundation,Foundation Program,All,All,,1.0,,24.0,24.0,share,student_data,complete,show,1,,,
 M02,Qatari share of students,Growth,WCM-Q,2019-2020,academic,graduate,Medicine,All,All,,0.31746031746031744,,60.0,189.0,share,student_data,complete,show,1,,,
 M02,Qatari share of students,Growth,WCM-Q,2019-2020,academic,undergraduate,Medicine,All,All,,0.35,,35.0,100.0,share,student_data,complete,show,1,,,
@@ -3057,7 +3057,7 @@ M02,Qatari share of students,Growth,VCU-Q,2023-2024,academic,graduate,All,All,Al
 M02,Qatari share of students,Growth,VCU-Q,2023-2024,academic,undergraduate,All,All,All,,,,,,share,student_data,breakdown_partial,show,1,,,
 M02,Qatari share of students,Growth,VCU-Q,2024-2025,academic,foundation,All,All,All,,,,,,share,student_data,breakdown_partial,show,1,,,
 M02,Qatari share of students,Growth,VCU-Q,2024-2025,academic,graduate,All,All,All,,,,,,share,student_data,breakdown_partial,show,1,,,
-M02,Qatari share of students,Growth,VCU-Q,2024-2025,academic,undergraduate,All,All,All,,0.6666666666666666,,180.0,270.0,share,student_data,breakdown_partial,show,1,,,
+M02,Qatari share of students,Growth,VCU-Q,2024-2025,academic,undergraduate,All,All,All,,0.6666666666666666,,180.0,270.0,share,student_data,breakdown_partial,show_marked,1,,,"Nationality known for 270 of 300 students, so the share could be anywhere from 60% to 70% (D-037)"
 M02,Qatari share of students,Growth,WCM-Q,2019-2020,academic,foundation,All,All,All,,1.0,,24.0,24.0,share,student_data,complete,show,1,,,
 M02,Qatari share of students,Growth,WCM-Q,2019-2020,academic,graduate,All,All,All,,0.31746031746031744,,60.0,189.0,share,student_data,complete,show,1,,,
 M02,Qatari share of students,Growth,WCM-Q,2019-2020,academic,undergraduate,All,All,All,,0.35,,35.0,100.0,share,student_data,complete,show,1,,,
@@ -3288,7 +3288,7 @@ M02,Qatari share of students,Growth,VCU-Q,2020-2021,academic,All,All,All,All,,0.
 M02,Qatari share of students,Growth,VCU-Q,2021-2022,academic,All,All,All,All,,0.6456953642384106,,195.0,302.0,share,student_data,complete,show,1,,,
 M02,Qatari share of students,Growth,VCU-Q,2022-2023,academic,All,All,All,All,,,,,,share,student_data,not_reported,leave_out,1,,,
 M02,Qatari share of students,Growth,VCU-Q,2023-2024,academic,All,All,All,All,,,,,,share,student_data,breakdown_partial,show,1,,,
-M02,Qatari share of students,Growth,VCU-Q,2024-2025,academic,All,All,All,All,,0.6666666666666666,,180.0,270.0,share,student_data,breakdown_partial,show,1,,,
+M02,Qatari share of students,Growth,VCU-Q,2024-2025,academic,All,All,All,All,,0.6666666666666666,,180.0,270.0,share,student_data,breakdown_partial,leave_out,1,,,"Nationality known for 270 of 323 students, so the share could be anywhere from 56% to 72% (D-037)"
 M02,Qatari share of students,Growth,WCM-Q,2011-2012,academic,All,All,All,All,,0.19330855018587362,,52.0,269.0,share,qf_consolidated,complete,show,1,,,From QF's consolidated file (D-029)
 M02,Qatari share of students,Growth,WCM-Q,2012-2013,academic,All,All,All,All,,0.23809523809523808,,65.0,273.0,share,qf_consolidated,complete,show,1,,,From QF's consolidated file (D-029)
 M02,Qatari share of students,Growth,WCM-Q,2013-2014,academic,All,All,All,All,,0.2711267605633803,,77.0,284.0,share,qf_consolidated,complete,show,1,,,From QF's consolidated file (D-029)
@@ -3352,12 +3352,12 @@ M02,Qatari share of students,Growth,All,2022-2023,academic,All,All,All,All,,0.4,
 M02,Qatari share of students,Growth,All,2022-2023,academic,foundation,All,All,All,,0.9024390243902439,,37.0,41.0,share,student_data,complete,show,2,,,
 M02,Qatari share of students,Growth,All,2022-2023,academic,graduate,All,All,All,,0.3019305019305019,,391.0,1295.0,share,student_data,complete,show,4,,,
 M02,Qatari share of students,Growth,All,2022-2023,academic,undergraduate,All,All,All,,0.4491682070240296,,972.0,2164.0,share,student_data,complete,show,6,,,
-M02,Qatari share of students,Growth,All,2023-2024,academic,All,All,All,All,,0.4139275766016713,,1486.0,3590.0,share,student_data,complete,show,8,,,
+M02,Qatari share of students,Growth,All,2023-2024,academic,All,All,All,All,,0.4139275766016713,,1486.0,3590.0,share,student_data,breakdown_partial,show_marked,8,,,"Nationality known for 3,590 of 3,901 students, so the share could be anywhere from 38% to 46% (D-037)"
 M02,Qatari share of students,Growth,All,2023-2024,academic,foundation,All,All,All,,0.9512195121951219,,39.0,41.0,share,student_data,complete,show,2,,,
 M02,Qatari share of students,Growth,All,2023-2024,academic,graduate,All,All,All,,0.3003717472118959,,404.0,1345.0,share,student_data,complete,show,5,,,
-M02,Qatari share of students,Growth,All,2023-2024,academic,undergraduate,All,All,All,,0.4732304900181488,,1043.0,2204.0,share,student_data,complete,show,7,,,
+M02,Qatari share of students,Growth,All,2023-2024,academic,undergraduate,All,All,All,,0.4732304900181488,,1043.0,2204.0,share,student_data,breakdown_partial,leave_out,7,,,"Nationality known for 2,204 of 2,502 students, so the share could be anywhere from 42% to 54% (D-037)"
 M02,Qatari share of students,Growth,All,2024-2025,academic,All,All,All,All,,0.4672670592310357,,1349.0,2887.0,share,student_data,complete,show,7,,,
-M02,Qatari share of students,Growth,All,2024-2025,academic,foundation,All,All,All,,0.9,,18.0,20.0,share,student_data,complete,show,2,,,
+M02,Qatari share of students,Growth,All,2024-2025,academic,foundation,All,All,All,,0.9,,18.0,20.0,share,student_data,breakdown_partial,leave_out,2,,,"Nationality known for 20 of 29 students, so the share could be anywhere from 62% to 93% (D-037)"
 M02,Qatari share of students,Growth,All,2024-2025,academic,graduate,All,All,All,,0.296998420221169,,188.0,633.0,share,student_data,complete,show,4,,,
 M02,Qatari share of students,Growth,All,2024-2025,academic,undergraduate,All,All,All,,0.5116383169203222,,1143.0,2234.0,share,student_data,complete,show,6,,,
 M03,Female share of students,Growth,CMU-Q,2019-2020,academic,undergraduate,Biological Sciences,All,All,,0.7464788732394366,,53.0,71.0,share,student_data,complete,show,1,,,
@@ -3572,8 +3572,8 @@ M03,Female share of students,Growth,VCU-Q,2022-2023,academic,undergraduate,Art H
 M03,Female share of students,Growth,VCU-Q,2022-2023,academic,undergraduate,Fine Arts (BFA),All,All,,,,,,share,student_data,not_reported,leave_out,1,,,
 M03,Female share of students,Growth,VCU-Q,2024-2025,academic,foundation,Pre-Art Foundation,All,All,,,,,,share,student_data,breakdown_partial,show,1,,,
 M03,Female share of students,Growth,VCU-Q,2024-2025,academic,graduate,Design (MFA),All,All,,,,,,share,student_data,breakdown_partial,show,1,,,
-M03,Female share of students,Growth,VCU-Q,2024-2025,academic,undergraduate,Art History,All,All,,1.0,,36.0,36.0,share,student_data,breakdown_partial,show,1,,,
-M03,Female share of students,Growth,VCU-Q,2024-2025,academic,undergraduate,Fine Arts (BFA),All,All,,1.0,,234.0,234.0,share,student_data,breakdown_partial,show,1,,,
+M03,Female share of students,Growth,VCU-Q,2024-2025,academic,undergraduate,Art History,All,All,,1.0,,36.0,36.0,share,student_data,breakdown_partial,leave_out,1,,,"Gender known for 36 of 41 students, so the share could be anywhere from 88% to 100% (D-037)"
+M03,Female share of students,Growth,VCU-Q,2024-2025,academic,undergraduate,Fine Arts (BFA),All,All,,1.0,,234.0,234.0,share,student_data,breakdown_partial,show_marked,1,,,"Gender known for 234 of 259 students, so the share could be anywhere from 90% to 100% (D-037)"
 M03,Female share of students,Growth,WCM-Q,2019-2020,academic,foundation,Foundation Program,All,All,,0.7083333333333334,,17.0,24.0,share,student_data,complete,show,1,,,
 M03,Female share of students,Growth,WCM-Q,2019-2020,academic,graduate,Medicine,All,All,,0.5661375661375662,,107.0,189.0,share,student_data,complete,show,1,,,
 M03,Female share of students,Growth,WCM-Q,2019-2020,academic,undergraduate,Medicine,All,All,,0.58,,58.0,100.0,share,student_data,complete,show,1,,,
@@ -3651,7 +3651,7 @@ M03,Female share of students,Growth,VCU-Q,2022-2023,academic,graduate,All,All,Al
 M03,Female share of students,Growth,VCU-Q,2022-2023,academic,undergraduate,All,All,All,,,,,,share,student_data,not_reported,leave_out,1,,,
 M03,Female share of students,Growth,VCU-Q,2024-2025,academic,foundation,All,All,All,,,,,,share,student_data,breakdown_partial,show,1,,,
 M03,Female share of students,Growth,VCU-Q,2024-2025,academic,graduate,All,All,All,,,,,,share,student_data,breakdown_partial,show,1,,,
-M03,Female share of students,Growth,VCU-Q,2024-2025,academic,undergraduate,All,All,All,,1.0,,270.0,270.0,share,student_data,breakdown_partial,show,1,,,
+M03,Female share of students,Growth,VCU-Q,2024-2025,academic,undergraduate,All,All,All,,1.0,,270.0,270.0,share,student_data,breakdown_partial,show_marked,1,,,"Gender known for 270 of 300 students, so the share could be anywhere from 90% to 100% (D-037)"
 M03,Female share of students,Growth,WCM-Q,2019-2020,academic,foundation,All,All,All,,0.7083333333333334,,17.0,24.0,share,student_data,complete,show,1,,,
 M03,Female share of students,Growth,WCM-Q,2019-2020,academic,graduate,All,All,All,,0.5661375661375662,,107.0,189.0,share,student_data,complete,show,1,,,
 M03,Female share of students,Growth,WCM-Q,2019-2020,academic,undergraduate,All,All,All,,0.58,,58.0,100.0,share,student_data,complete,show,1,,,
@@ -3792,7 +3792,7 @@ M03,Female share of students,Growth,VCU-Q,2019-2020,academic,All,All,All,All,,0.
 M03,Female share of students,Growth,VCU-Q,2020-2021,academic,All,All,All,All,,0.948948948948949,,316.0,333.0,share,student_data,complete,show,1,,,
 M03,Female share of students,Growth,VCU-Q,2021-2022,academic,All,All,All,All,,0.9470198675496688,,286.0,302.0,share,student_data,complete,show,1,,,
 M03,Female share of students,Growth,VCU-Q,2022-2023,academic,All,All,All,All,,,,,,share,student_data,not_reported,leave_out,1,,,
-M03,Female share of students,Growth,VCU-Q,2024-2025,academic,All,All,All,All,,1.0,,270.0,270.0,share,student_data,breakdown_partial,show,1,,,
+M03,Female share of students,Growth,VCU-Q,2024-2025,academic,All,All,All,All,,1.0,,270.0,270.0,share,student_data,breakdown_partial,leave_out,1,,,"Gender known for 270 of 323 students, so the share could be anywhere from 84% to 100% (D-037)"
 M03,Female share of students,Growth,WCM-Q,2014-2015,academic,All,All,All,All,,0.5520833333333334,,159.0,288.0,share,qf_consolidated,complete,show,1,,,From QF's consolidated file (D-029)
 M03,Female share of students,Growth,WCM-Q,2016-2017,academic,All,All,All,All,,0.5675675675675675,,168.0,296.0,share,qf_consolidated,complete,show,1,,,From QF's consolidated file (D-029)
 M03,Female share of students,Growth,WCM-Q,2017-2018,academic,All,All,All,All,,0.580327868852459,,177.0,305.0,share,qf_consolidated,complete,show,1,,,From QF's consolidated file (D-029)
@@ -3805,7 +3805,7 @@ M03,Female share of students,Growth,WCM-Q,2023-2024,academic,All,All,All,All,,0.
 M03,Female share of students,Growth,WCM-Q,2024-2025,academic,All,All,All,All,,0.5813953488372093,,200.0,344.0,share,student_data,complete,show,1,,,
 M03,Female share of students,Growth,All,2014-2015,academic,All,All,All,All,,0.5648518815052042,,1411.0,2498.0,share,qf_consolidated,complete,show,8,,,From QF's consolidated file (D-029)
 M03,Female share of students,Growth,All,2014-2015,academic,foundation,All,All,All,,0.7352941176470589,,150.0,204.0,share,qf_consolidated,complete,show,3,,,From QF's consolidated file (D-029)
-M03,Female share of students,Growth,All,2014-2015,academic,graduate,All,All,All,,0.4670967741935484,,362.0,775.0,share,qf_consolidated,complete,show,5,,,From QF's consolidated file (D-029)
+M03,Female share of students,Growth,All,2014-2015,academic,graduate,All,All,All,,0.4670967741935484,,362.0,775.0,share,qf_consolidated,breakdown_partial,show_marked,5,,,"Gender known for 775 of 831 students, so the share could be anywhere from 44% to 50% (D-037) · From QF's consolidated file (D-029)"
 M03,Female share of students,Growth,All,2014-2015,academic,undergraduate,All,All,All,,0.5918367346938775,,899.0,1519.0,share,qf_consolidated,complete,show,6,,,From QF's consolidated file (D-029)
 M03,Female share of students,Growth,All,2016-2017,academic,All,All,All,All,,0.5859030837004405,,1596.0,2724.0,share,qf_consolidated,complete,show,9,,,From QF's consolidated file (D-029)
 M03,Female share of students,Growth,All,2016-2017,academic,foundation,All,All,All,,0.8,,20.0,25.0,share,qf_consolidated,complete,show,2,,,From QF's consolidated file (D-029)
@@ -3835,12 +3835,12 @@ M03,Female share of students,Growth,All,2022-2023,academic,All,All,All,All,,0.58
 M03,Female share of students,Growth,All,2022-2023,academic,foundation,All,All,All,,0.6829268292682927,,28.0,41.0,share,student_data,complete,show,2,,,
 M03,Female share of students,Growth,All,2022-2023,academic,graduate,All,All,All,,0.5590733590733591,,724.0,1295.0,share,student_data,complete,show,4,,,
 M03,Female share of students,Growth,All,2022-2023,academic,undergraduate,All,All,All,,0.6021256931608133,,1303.0,2164.0,share,student_data,complete,show,6,,,
-M03,Female share of students,Growth,All,2023-2024,academic,All,All,All,All,,0.5894150417827299,,2116.0,3590.0,share,student_data,complete,show,7,,,
+M03,Female share of students,Growth,All,2023-2024,academic,All,All,All,All,,0.5894150417827299,,2116.0,3590.0,share,student_data,breakdown_partial,show_marked,7,,,"Gender known for 3,590 of 3,901 students, so the share could be anywhere from 54% to 62% (D-037)"
 M03,Female share of students,Growth,All,2023-2024,academic,foundation,All,All,All,,0.6829268292682927,,28.0,41.0,share,student_data,complete,show,2,,,
 M03,Female share of students,Growth,All,2023-2024,academic,graduate,All,All,All,,0.5591078066914498,,752.0,1345.0,share,student_data,complete,show,4,,,
-M03,Female share of students,Growth,All,2023-2024,academic,undergraduate,All,All,All,,0.6061705989110708,,1336.0,2204.0,share,student_data,complete,show,6,,,
+M03,Female share of students,Growth,All,2023-2024,academic,undergraduate,All,All,All,,0.6061705989110708,,1336.0,2204.0,share,student_data,breakdown_partial,leave_out,6,,,"Gender known for 2,204 of 2,502 students, so the share could be anywhere from 53% to 65% (D-037)"
 M03,Female share of students,Growth,All,2024-2025,academic,All,All,All,All,,0.6169033598891583,,1781.0,2887.0,share,student_data,complete,show,7,,,
-M03,Female share of students,Growth,All,2024-2025,academic,foundation,All,All,All,,0.5,,10.0,20.0,share,student_data,complete,show,2,,,
+M03,Female share of students,Growth,All,2024-2025,academic,foundation,All,All,All,,0.5,,10.0,20.0,share,student_data,breakdown_partial,leave_out,2,,,"Gender known for 20 of 29 students, so the share could be anywhere from 34% to 66% (D-037)"
 M03,Female share of students,Growth,All,2024-2025,academic,graduate,All,All,All,,0.43601895734597157,,276.0,633.0,share,student_data,complete,show,4,,,
 M03,Female share of students,Growth,All,2024-2025,academic,undergraduate,All,All,All,,0.6692032229185317,,1495.0,2234.0,share,student_data,complete,show,6,,,
 M04,Applicants,Getting in,CMU-Q,2019-2020,academic,undergraduate,Biological Sciences,All,All,,176.0,,,,count,student_data,complete,show,1,,,
@@ -10423,14 +10423,14 @@ M09,Qatari share,Getting in,All,2022-2023,academic,All,All,All,All,admitted,0.37
 M09,Qatari share,Getting in,All,2022-2023,academic,foundation,All,All,All,admitted,0.8958333333333334,,43.0,48.0,share,student_data,complete,show,2,,,
 M09,Qatari share,Getting in,All,2022-2023,academic,graduate,All,All,All,admitted,0.2776470588235294,,236.0,850.0,share,student_data,complete,show,5,,,
 M09,Qatari share,Getting in,All,2022-2023,academic,undergraduate,All,All,All,admitted,0.4180327868852459,,510.0,1220.0,share,student_data,complete,show,7,,,
-M09,Qatari share,Getting in,All,2023-2024,academic,All,All,All,All,admitted,0.3233147273507943,,753.0,2329.0,share,student_data,complete,show,8,,,
+M09,Qatari share,Getting in,All,2023-2024,academic,All,All,All,All,admitted,0.3233147273507943,,753.0,2329.0,share,student_data,breakdown_partial,show_marked,8,,,"Nationality known for 2,329 of 2,496 students, so the share could be anywhere from 30% to 37% (D-037)"
 M09,Qatari share,Getting in,All,2023-2024,academic,foundation,All,All,All,admitted,0.9636363636363636,,53.0,55.0,share,student_data,complete,show,2,,,
 M09,Qatari share,Getting in,All,2023-2024,academic,graduate,All,All,All,admitted,0.2504970178926441,,252.0,1006.0,share,student_data,complete,show,5,,,
-M09,Qatari share,Getting in,All,2023-2024,academic,undergraduate,All,All,All,admitted,0.35331230283911674,,448.0,1268.0,share,student_data,complete,show,7,,,
-M09,Qatari share,Getting in,All,2024-2025,academic,All,All,All,All,admitted,0.3504492939666239,,546.0,1558.0,share,student_data,complete,show,7,,,
-M09,Qatari share,Getting in,All,2024-2025,academic,foundation,All,All,All,admitted,0.9047619047619048,,19.0,21.0,share,student_data,complete,show,2,,,
+M09,Qatari share,Getting in,All,2023-2024,academic,undergraduate,All,All,All,admitted,0.35331230283911674,,448.0,1268.0,share,student_data,breakdown_partial,leave_out,7,,,"Nationality known for 1,268 of 1,425 students, so the share could be anywhere from 31% to 42% (D-037)"
+M09,Qatari share,Getting in,All,2024-2025,academic,All,All,All,All,admitted,0.3504492939666239,,546.0,1558.0,share,student_data,breakdown_partial,leave_out,7,,,"Nationality known for 1,558 of 1,744 students, so the share could be anywhere from 31% to 42% (D-037)"
+M09,Qatari share,Getting in,All,2024-2025,academic,foundation,All,All,All,admitted,0.9047619047619048,,19.0,21.0,share,student_data,breakdown_partial,leave_out,2,,,"Nationality known for 21 of 39 students, so the share could be anywhere from 49% to 95% (D-037)"
 M09,Qatari share,Getting in,All,2024-2025,academic,graduate,All,All,All,admitted,0.22038980509745126,,147.0,667.0,share,student_data,complete,show,4,,,
-M09,Qatari share,Getting in,All,2024-2025,academic,undergraduate,All,All,All,admitted,0.4367816091954023,,380.0,870.0,share,student_data,complete,show,6,,,
+M09,Qatari share,Getting in,All,2024-2025,academic,undergraduate,All,All,All,admitted,0.4367816091954023,,380.0,870.0,share,student_data,breakdown_partial,leave_out,6,,,"Nationality known for 870 of 1,028 students, so the share could be anywhere from 37% to 52% (D-037)"
 M09,Qatari share,Getting in,CMU-Q,2019-2020,academic,undergraduate,Biological Sciences,All,All,newly_enrolled,0.3333333333333333,,7.0,21.0,share,student_data,complete,show,1,,,
 M09,Qatari share,Getting in,CMU-Q,2019-2020,academic,undergraduate,Business Administration,All,All,newly_enrolled,0.2702702702702703,,10.0,37.0,share,student_data,complete,show,1,,,
 M09,Qatari share,Getting in,CMU-Q,2019-2020,academic,undergraduate,Computational Biology,All,All,newly_enrolled,,<5,,,share,student_data,complete,show,1,,,
@@ -10644,7 +10644,7 @@ M09,Qatari share,Getting in,VCU-Q,2023-2024,academic,undergraduate,Fine Arts (BF
 M09,Qatari share,Getting in,VCU-Q,2024-2025,academic,foundation,Pre-Art Foundation,All,All,newly_enrolled,,,,,share,student_data,breakdown_partial,show,1,,,
 M09,Qatari share,Getting in,VCU-Q,2024-2025,academic,graduate,Design (MFA),All,All,newly_enrolled,,,,,share,student_data,breakdown_partial,show,1,,,
 M09,Qatari share,Getting in,VCU-Q,2024-2025,academic,undergraduate,Art History,All,All,newly_enrolled,,,,,share,student_data,breakdown_partial,show,1,,,
-M09,Qatari share,Getting in,VCU-Q,2024-2025,academic,undergraduate,Fine Arts (BFA),All,All,newly_enrolled,0.5625,,36.0,64.0,share,student_data,breakdown_partial,show,1,,,
+M09,Qatari share,Getting in,VCU-Q,2024-2025,academic,undergraduate,Fine Arts (BFA),All,All,newly_enrolled,0.5625,,36.0,64.0,share,student_data,breakdown_partial,leave_out,1,,,"Nationality known for 64 of 73 students, so the share could be anywhere from 49% to 62% (D-037)"
 M09,Qatari share,Getting in,WCM-Q,2019-2020,academic,foundation,Foundation Program,All,All,newly_enrolled,1.0,,21.0,21.0,share,student_data,complete,show,1,,,
 M09,Qatari share,Getting in,WCM-Q,2019-2020,academic,graduate,Medicine,All,All,newly_enrolled,,fewer than 10 students,,,share,student_data,complete,show,1,,,
 M09,Qatari share,Getting in,WCM-Q,2019-2020,academic,undergraduate,Medicine,All,All,newly_enrolled,,<5,,,share,student_data,complete,show,1,,,
@@ -10722,7 +10722,7 @@ M09,Qatari share,Getting in,VCU-Q,2023-2024,academic,graduate,All,All,All,newly_
 M09,Qatari share,Getting in,VCU-Q,2023-2024,academic,undergraduate,All,All,All,newly_enrolled,,,,,share,student_data,breakdown_partial,show,1,,,
 M09,Qatari share,Getting in,VCU-Q,2024-2025,academic,foundation,All,All,All,newly_enrolled,,,,,share,student_data,breakdown_partial,show,1,,,
 M09,Qatari share,Getting in,VCU-Q,2024-2025,academic,graduate,All,All,All,newly_enrolled,,,,,share,student_data,breakdown_partial,show,1,,,
-M09,Qatari share,Getting in,VCU-Q,2024-2025,academic,undergraduate,All,All,All,newly_enrolled,0.5625,,36.0,64.0,share,student_data,breakdown_partial,show,1,,,
+M09,Qatari share,Getting in,VCU-Q,2024-2025,academic,undergraduate,All,All,All,newly_enrolled,0.5625,,36.0,64.0,share,student_data,breakdown_partial,leave_out,1,,,"Nationality known for 64 of 82 students, so the share could be anywhere from 44% to 66% (D-037)"
 M09,Qatari share,Getting in,WCM-Q,2019-2020,academic,foundation,All,All,All,newly_enrolled,1.0,,21.0,21.0,share,student_data,complete,show,1,,,
 M09,Qatari share,Getting in,WCM-Q,2019-2020,academic,graduate,All,All,All,newly_enrolled,,fewer than 10 students,,,share,student_data,complete,show,1,,,
 M09,Qatari share,Getting in,WCM-Q,2019-2020,academic,undergraduate,All,All,All,newly_enrolled,,<5,,,share,student_data,complete,show,1,,,
@@ -10776,7 +10776,7 @@ M09,Qatari share,Getting in,VCU-Q,2019-2020,academic,All,All,All,All,newly_enrol
 M09,Qatari share,Getting in,VCU-Q,2020-2021,academic,All,All,All,All,newly_enrolled,0.6666666666666666,,56.0,84.0,share,student_data,complete,show,1,,,
 M09,Qatari share,Getting in,VCU-Q,2022-2023,academic,All,All,All,All,newly_enrolled,,,,,share,student_data,not_reported,leave_out,1,,,
 M09,Qatari share,Getting in,VCU-Q,2023-2024,academic,All,All,All,All,newly_enrolled,,,,,share,student_data,breakdown_partial,show,1,,,
-M09,Qatari share,Getting in,VCU-Q,2024-2025,academic,All,All,All,All,newly_enrolled,0.5625,,36.0,64.0,share,student_data,breakdown_partial,show,1,,,
+M09,Qatari share,Getting in,VCU-Q,2024-2025,academic,All,All,All,All,newly_enrolled,0.5625,,36.0,64.0,share,student_data,breakdown_partial,leave_out,1,,,"Nationality known for 64 of 97 students, so the share could be anywhere from 37% to 71% (D-037)"
 M09,Qatari share,Getting in,WCM-Q,2019-2020,academic,All,All,All,All,newly_enrolled,0.4339622641509434,,23.0,53.0,share,student_data,complete,show,1,,,
 M09,Qatari share,Getting in,WCM-Q,2020-2021,academic,All,All,All,All,newly_enrolled,0.5,,25.0,50.0,share,student_data,complete,show,1,,,
 M09,Qatari share,Getting in,WCM-Q,2021-2022,academic,All,All,All,All,newly_enrolled,0.4444444444444444,,20.0,45.0,share,student_data,complete,show,1,,,
@@ -10799,12 +10799,12 @@ M09,Qatari share,Getting in,All,2022-2023,academic,All,All,All,All,newly_enrolle
 M09,Qatari share,Getting in,All,2022-2023,academic,foundation,All,All,All,newly_enrolled,0.8974358974358975,,35.0,39.0,share,student_data,complete,show,2,,,
 M09,Qatari share,Getting in,All,2022-2023,academic,graduate,All,All,All,newly_enrolled,0.3029259896729776,,176.0,581.0,share,student_data,complete,show,4,,,
 M09,Qatari share,Getting in,All,2022-2023,academic,undergraduate,All,All,All,newly_enrolled,0.47101449275362317,,260.0,552.0,share,student_data,complete,show,6,,,
-M09,Qatari share,Getting in,All,2023-2024,academic,All,All,All,All,newly_enrolled,0.3600616808018504,,467.0,1297.0,share,student_data,complete,show,8,,,
+M09,Qatari share,Getting in,All,2023-2024,academic,All,All,All,All,newly_enrolled,0.3600616808018504,,467.0,1297.0,share,student_data,breakdown_partial,show_marked,8,,,"Nationality known for 1,297 of 1,395 students, so the share could be anywhere from 33% to 41% (D-037)"
 M09,Qatari share,Getting in,All,2023-2024,academic,foundation,All,All,All,newly_enrolled,0.95,,38.0,40.0,share,student_data,complete,show,2,,,
 M09,Qatari share,Getting in,All,2023-2024,academic,graduate,All,All,All,newly_enrolled,0.2702312138728324,,187.0,692.0,share,student_data,complete,show,5,,,
-M09,Qatari share,Getting in,All,2023-2024,academic,undergraduate,All,All,All,newly_enrolled,0.4283185840707965,,242.0,565.0,share,student_data,complete,show,7,,,
+M09,Qatari share,Getting in,All,2023-2024,academic,undergraduate,All,All,All,newly_enrolled,0.4283185840707965,,242.0,565.0,share,student_data,breakdown_partial,leave_out,7,,,"Nationality known for 565 of 656 students, so the share could be anywhere from 37% to 51% (D-037)"
 M09,Qatari share,Getting in,All,2024-2025,academic,All,All,All,All,newly_enrolled,0.35795454545454547,,315.0,880.0,share,student_data,complete,show,7,,,
-M09,Qatari share,Getting in,All,2024-2025,academic,foundation,All,All,All,newly_enrolled,0.8947368421052632,,17.0,19.0,share,student_data,complete,show,2,,,
+M09,Qatari share,Getting in,All,2024-2025,academic,foundation,All,All,All,newly_enrolled,0.8947368421052632,,17.0,19.0,share,student_data,breakdown_partial,leave_out,2,,,"Nationality known for 19 of 28 students, so the share could be anywhere from 61% to 93% (D-037)"
 M09,Qatari share,Getting in,All,2024-2025,academic,graduate,All,All,All,newly_enrolled,0.24519230769230768,,102.0,416.0,share,student_data,complete,show,4,,,
 M09,Qatari share,Getting in,All,2024-2025,academic,undergraduate,All,All,All,newly_enrolled,0.4404494382022472,,196.0,445.0,share,student_data,complete,show,6,,,
 M10,School-type mix,Getting in,CMU-Q,2022-2023,academic,undergraduate+foundation,All,All,All,admitted: Academic Bridge Program,0.043478260869565216,,9,207,share,student_pipeline,complete,show,1,,,
@@ -17617,10 +17617,10 @@ M17,Qatari share of graduates,Graduating,All,2022-2023,graduating_class,All,All,
 M17,Qatari share of graduates,Graduating,All,2022-2023,graduating_class,foundation,All,All,All,,,,,,share,student_data,complete,show,1,,,
 M17,Qatari share of graduates,Graduating,All,2022-2023,graduating_class,graduate,All,All,All,,0.2682291666666667,,103.0,384.0,share,outcomes+student_data,complete,show,4,,,
 M17,Qatari share of graduates,Graduating,All,2022-2023,graduating_class,undergraduate,All,All,All,,0.371824480369515,,161.0,433.0,share,outcomes+student_data,complete,show,6,,,
-M17,Qatari share of graduates,Graduating,All,2023-2024,graduating_class,All,All,All,All,,0.374020156774916,,334.0,893.0,share,outcomes+student_data,complete,show,8,,,
+M17,Qatari share of graduates,Graduating,All,2023-2024,graduating_class,All,All,All,All,,0.374020156774916,,334.0,893.0,share,outcomes+student_data,breakdown_partial,show_marked,8,,,"Nationality known for 893 of 965 students, so the share could be anywhere from 35% to 42% (D-037)"
 M17,Qatari share of graduates,Graduating,All,2023-2024,graduating_class,foundation,All,All,All,,,,,,share,student_data,complete,show,2,,,
 M17,Qatari share of graduates,Graduating,All,2023-2024,graduating_class,graduate,All,All,All,,0.2987012987012987,,115.0,385.0,share,student_data,complete,show,5,,,
-M17,Qatari share of graduates,Graduating,All,2023-2024,graduating_class,undergraduate,All,All,All,,0.4311023622047244,,219.0,508.0,share,outcomes+student_data,complete,show,7,,,
+M17,Qatari share of graduates,Graduating,All,2023-2024,graduating_class,undergraduate,All,All,All,,0.4311023622047244,,219.0,508.0,share,outcomes+student_data,breakdown_partial,leave_out,7,,,"Nationality known for 508 of 574 students, so the share could be anywhere from 38% to 50% (D-037)"
 M17,Qatari share of graduates,Graduating,All,2024-2025,graduating_class,All,All,All,All,,0.4422809457579972,,318.0,719.0,share,student_data,complete,show,7,,,
 M17,Qatari share of graduates,Graduating,All,2024-2025,graduating_class,foundation,All,All,All,,,,,,share,student_data,complete,show,2,,,
 M17,Qatari share of graduates,Graduating,All,2024-2025,graduating_class,graduate,All,All,All,,0.32124352331606215,,62.0,193.0,share,student_data,complete,show,4,,,

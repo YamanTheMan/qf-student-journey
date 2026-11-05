@@ -11,7 +11,7 @@ How we work each phase: explain the goal → build it in small steps → check t
 | 2. Extraction | Read every yearly template version into one tidy format | ✅ |
 | 3. Validation | Automatic checks that run on every upload | ✅ |
 | 4. Metrics | Define and compute the story numbers | ✅ |
-| 5. Dashboard | The story in chapters, running locally | ⬜ |
+| 5. Dashboard | The story in chapters, running locally | 🔄 |
 | 6. Go live | GitHub Action + Streamlit Cloud, push-to-update | ⬜ |
 | 7. Insights & delivery | Findings, polish, documentation, final presentation | ⬜ |
 
@@ -102,13 +102,25 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [x] Decided: comparable "by 150%" rate (D-027); classes without entrants give counts, not rates (P-25)
 - [x] Decided: missing graduating classes filled from the next year's Outcomes sheet (D-028)
 
-## Phase 5 — Dashboard ⬜
+## Phase 5 — Dashboard 🔄
 
-- [ ] Chapter layout and navigation
-- [ ] Education City totals offer a "same universities every year" view: HBKU's presence only in 2022–24 lowers the Qatari share from 49% to 40% (45% without HBKU)
-- [ ] One chapter at a time: Growth → Getting in → Studying → Graduating → After
-- [ ] Filters (university, program, nationality, gender, year)
-- [ ] Auto-written summary sentences per chapter
+Goal: the story in five chapters, honest about every gap. Run it with `.venv/bin/python -m streamlit run app.py`.
+
+**Step 1: frame and Growth chapter ✅**
+- [x] Chapter layout and navigation: Home + one page per chapter (`app.py`, `chapters/`), shared pieces in `dashboard/` (D-035)
+- [x] Filters in the sidebar, kept in the page address: university, level, student group (D-035)
+- [x] One way of drawing quality on every chart: solid / lighter or open / × with the reason on hover; a table under every chart (D-035)
+- [x] Education City "same universities every year" view: HBKU's presence lowers the Qatari share from 49% to 40%; the same five universities stay at 46–47% (D-036)
+- [x] Growth chapter: registered students, one small chart per university, Qatari and female shares (M01–M03)
+- [x] Auto-written summary sentence for Growth (`dashboard/story.py`)
+- [x] Found while checking: a blank part of a split made VCU-Q look 100% female; shares now need their split to cover the students (P-40, D-037)
+
+**Next steps**
+- [ ] Step 2: Getting in (M04–M10)
+- [ ] Step 3: Studying (M11–M15)
+- [ ] Step 4: Graduating (M16–M21)
+- [ ] Step 5: After graduation (M22–M25)
+- [ ] Step 6: Home page key numbers, an "About the data" page, program and year filters where a chapter needs them, final polish
 
 ## Phase 6 — Go live ⬜
 

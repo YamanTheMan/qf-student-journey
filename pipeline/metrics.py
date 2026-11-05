@@ -181,17 +181,38 @@ def counts(base, metric, name, chapter, stage):
                     unit="count", category=None)
 
 
+KNOWN_FOR_SHARE = (0.95, 0.90)  # D-037: a split covering under 95% of the students is marked, under 90% left out
+
+
 def share(base, metric, name, chapter, stage, dim, part):
-    """part's share of a stage, within the students whose `dim` is known (Qatari / female)."""
+    """part's share of a stage, within the students whose `dim` is known (Qatari / female).
+
+    How much of the stage's total the split covers decides how the share is used (D-037): a blank part
+    (VCU-Q 2024-25 left its male count blank) would otherwise make the known part look like everyone."""
     b = base[(base["stage"] == stage)]
     other_dim = "gender" if dim == "nationality" else "nationality"
+    totals = b[(b[dim] == ALL) & (b[other_dim] == ALL)].groupby(KEYS, dropna=False)["count"].sum(min_count=1)
     b = b[(b[dim] != ALL) & (b[other_dim] == ALL)]
     keys = KEYS + ["source", "quality", "use", "coverage"]
     whole = b.groupby(keys, dropna=False)["count"].sum(min_count=1).rename("denominator")
     num = b[b[dim] == part].set_index(keys)["count"].rename("numerator")
     out = pd.concat([num, whole], axis=1).reset_index()
-    return out.assign(metric=metric, name=name, chapter=chapter, value=out["numerator"] / out["denominator"],
-                      unit="share", nationality=ALL, gender=ALL, category=None)
+    out = out.merge(totals.rename("total").reset_index(), on=KEYS, how="left")
+    known = (out["denominator"] / out["total"]).astype(float)
+    short = known < KNOWN_FOR_SHARE[0]
+    out["note"] = None
+    if short.any():
+        s = out[short]
+        low, high = s["numerator"] / s["total"], (s["numerator"] + s["total"] - s["denominator"]) / s["total"]
+        out.loc[short, "note"] = [
+            f"{dim.capitalize()} known for {d:,.0f} of {t:,.0f} students, so the share could be anywhere from "
+            f"{lo:.0%} to {hi:.0%} (D-037)" for d, t, lo, hi in zip(s["denominator"], s["total"], low, high)]
+        out.loc[short, "use"] = [worst_use(u, "show_marked") for u in out.loc[short, "use"]]
+        out.loc[known < KNOWN_FOR_SHARE[1], "use"] = "leave_out"
+        out.loc[short, "quality"] = "breakdown_partial"
+    return out.drop(columns="total").assign(
+        metric=metric, name=name, chapter=chapter, value=out["numerator"] / out["denominator"], unit="share",
+        nationality=ALL, gender=ALL, category=None)
 
 
 def rate(base, metric, name, chapter, top, bottom):
@@ -575,7 +596,9 @@ def compute(tables, flags):
                         + graduating_and_after(tables, flags, base), ignore_index=True)
     metrics["year_kind"] = metrics["year_kind"].fillna("academic")
     metrics["years_after_graduation"] = metrics["years_after_graduation"].astype("Int64")
-    metrics.loc[metrics["source"] == "qf_consolidated", "note"] = "From QF's consolidated file (D-029)"
+    qf = metrics["source"] == "qf_consolidated"
+    metrics.loc[qf, "note"] = [f"{n} · From QF's consolidated file (D-029)" if isinstance(n, str) and n
+                               else "From QF's consolidated file (D-029)" for n in metrics.loc[qf, "note"]]
     metrics = hide_small_numbers(metrics)
     return metrics.reindex(columns=COLUMNS)
 

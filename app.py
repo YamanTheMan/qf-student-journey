@@ -1,45 +1,25 @@
 """QF Student Journey dashboard (Streamlit entry point).
 
-Phase 0 skeleton: confirms the app runs and can see the raw data folder.
-The story chapters are built in Phase 5.
-"""
-from pathlib import Path
+Run from the project folder:
+    .venv/bin/python -m streamlit run app.py
 
-import pandas as pd
+Each chapter is a page in chapters/. The sidebar filters are drawn here, so they stay the same on every page.
+"""
 import streamlit as st
 
-RAW_DIR = Path(__file__).parent / "data" / "raw"
-
-CHAPTERS = [
-    ("1. Growth", "How Education City enrolment changed from 2011 to 2025"),
-    ("2. Getting in", "Applied → admitted → enrolled, and where students come from"),
-    ("3. Studying", "Who the students are: nationality, gender, age, funding, internships"),
-    ("4. Graduating", "How many finish, and how long it takes"),
-    ("5. After", "Where graduates are one year later: work, further study, still searching"),
-]
+from dashboard import filters
 
 st.set_page_config(page_title="QF Student Journey", page_icon="🎓", layout="wide")
 
-st.title("QF Student Journey")
-st.caption("From application to career: the Education City student story, AY2011–2025")
-
-st.info("**Phase 0: project skeleton.** The environment works. The charts arrive in Phase 5.")
-
-st.subheader("Planned story")
-for title, question in CHAPTERS:
-    st.markdown(f"**{title}**: {question}")
-
-st.subheader("Raw data check")
-files = [p for p in RAW_DIR.rglob("*") if p.suffix in (".xlsx", ".xlsm") and not p.name.startswith("~$")]
-if not files:
-    st.error(f"No Excel files found in {RAW_DIR}")
-else:
-    inventory = (
-        pd.DataFrame({"Academic year": [p.parent.name if p.parent != RAW_DIR else "All years" for p in files]})
-        .value_counts()
-        .rename("Files")
-        .reset_index()
-        .sort_values("Academic year")
-    )
-    st.metric("Excel files found", len(files))
-    st.dataframe(inventory, hide_index=True, width="content")
+page = st.navigation({
+    "": [st.Page("chapters/home.py", title="Home", icon=":material/home:", default=True)],
+    "The story": [
+        st.Page("chapters/growth.py", title="1 · Growth", icon=":material/trending_up:"),
+        st.Page("chapters/getting_in.py", title="2 · Getting in", icon=":material/how_to_reg:"),
+        st.Page("chapters/studying.py", title="3 · Studying", icon=":material/menu_book:"),
+        st.Page("chapters/graduating.py", title="4 · Graduating", icon=":material/school:"),
+        st.Page("chapters/after.py", title="5 · After graduation", icon=":material/work:"),
+    ],
+})
+st.session_state["filters"] = filters.sidebar()
+page.run()

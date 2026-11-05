@@ -41,6 +41,27 @@ def test_worst_use_wins():
     assert metrics.worst_use("show_with_note", "leave_out") == "leave_out"
 
 
+def test_a_share_needs_its_split_to_cover_the_students():
+    # D-037: the split's coverage of the total decides the share's use (VCU-Q 2024-25 left its male count blank)
+    rows = []
+    for uni, female, male in (("U1", 60, 40), ("U2", 60, 33), ("U3", 85, None)):
+        for gender, n in (("All", 100), ("Female", female), ("Male", male)):
+            rows.append(dict(university=uni, year="y", level="All", program_group="All", stage="registered",
+                             nationality="All", gender=gender, count=n, source="student_data", quality="complete",
+                             use="show", coverage=1))
+    base = pd.DataFrame(rows).astype({"count": "Float64"})
+    out = metrics.share(base, "M03", "Female share", "Growth", "registered", "gender", "Female").set_index("university")
+    assert out["use"].to_dict() == {"U1": "show", "U2": "show_marked", "U3": "leave_out"}
+    assert out.loc["U2", "note"] == "Gender known for 93 of 100 students, so the share could be anywhere from 60% to 67% (D-037)"
+    assert out.loc["U1", "note"] is None
+
+
+def test_vcuq_2024_25_female_share_is_left_out():
+    m = read()
+    row = total(m, "M03", "VCU-Q", "2024-2025")
+    assert row["use"] == "leave_out" and row["note"].startswith("Gender known for 270 of 323 students")
+
+
 def read():
     return pd.read_csv(PROCESSED / "metrics.csv", keep_default_na=False,
                        na_values={c: [""] for c in ("value", "numerator", "denominator", "coverage",

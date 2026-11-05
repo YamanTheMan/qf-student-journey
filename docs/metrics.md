@@ -12,6 +12,7 @@ Every number the dashboard shows, defined once: what it measures, how it's compu
 | **Headcounts** | Always from Student Data. The other sheets give **shares** only (D-020, D-022). |
 | **Quality** | Each value carries the quality flag of the data it's built from (the worst flag of its numerator and denominator), and that flag's `use`: show, show with a note, show marked "partial", or leave out (D-025). |
 | **Education City totals** | "All universities" adds up only university-years that aren't left out, and records how many universities it covers (`coverage`). A year missing a university is marked. |
+| **Shares of a split** | A Qatari or female share counts only the students whose nationality (or gender) is known. If that split covers less than 95% of the students, the share is marked partial with its possible range in the `note`; below 90% it's left out (D-037). |
 | **Small numbers** | In any breakdown, counts of 1–4 show as "<5"; shares and rates on fewer than 10 students aren't shown. Totals always show (D-026). |
 
 ## The metrics
