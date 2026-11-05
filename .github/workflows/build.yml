@@ -64,6 +64,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Save the rebuilt tables
+        if: github.ref == 'refs/heads/main'   # a run on another branch only checks
         run: |
           git add data/processed docs/quality_report.md data/reference/file_inventory.csv
           if git diff --cached --quiet; then

@@ -2,6 +2,7 @@
 import streamlit as st
 
 from dashboard import data as d, story, ui
+from pipeline.inventory import REFERENCE_DIR
 
 m = ui.metrics()
 years = d.years_of(m, "M01")
@@ -47,3 +48,9 @@ st.markdown(
     "- **Show the numbers**, under each chart, opens the table behind it.")
 st.page_link("chapters/about.py", label="**About the data**: where the numbers come from, and how good they are",
              icon=":material/fact_check:")
+
+inventory = ui.table(REFERENCE_DIR / "file_inventory.csv")
+file_years = sorted(set(inventory["academic_year"]) - {"all"})
+st.divider()
+st.caption(f"Built from {len(inventory)} Excel files ({d.year_span(file_years)}). Every push to GitHub is rebuilt, "
+           "checked and tested before it reaches this page (D-044).")

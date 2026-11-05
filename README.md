@@ -75,4 +75,4 @@ python3 -m venv .venv
 
 - **Source:** Student Data Collection templates submitted yearly by each Education City university, plus Qatar Foundation consolidated registration files.
 - **Content:** Aggregated counts only (no individual student records).
-- **Confidentiality:** Institutional data. This repository must remain **private**.
+- **Confidentiality:** Institutional data. The repository and the dashboard are **public for now**, by the owner's choice (D-045). The dashboard hides small groups (D-026); the raw files in this repository don't.

@@ -1,4 +1,5 @@
 """Phase 5: page pieces every chapter shares."""
+import pandas as pd
 import streamlit as st
 
 from dashboard import charts, data as d
@@ -12,6 +13,16 @@ def _metrics(changed):
 def metrics():
     """metrics.csv, read once and read again whenever the file changes (a new build, or a push in Phase 6)."""
     return _metrics(d.METRICS.stat().st_mtime)
+
+
+@st.cache_data(show_spinner=False)
+def _table(path, changed):
+    return pd.read_csv(path, keep_default_na=False)
+
+
+def table(path):
+    """A small CSV (the file inventory, the quality flags), read again whenever the file changes."""
+    return _table(path, path.stat().st_mtime)
 
 
 def chart(fig, numbers=None):

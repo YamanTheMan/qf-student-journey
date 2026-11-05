@@ -302,3 +302,10 @@ QF's own schools are first in the school-type bars, in Sidra Green. Text on a da
 - Tested before the first push: a fresh copy of the repository builds and passes all 155 tests without changing any file, and every file name in the reference tables matches its Excel file exactly (GitHub's Linux machines treat capitals as different).
 **Why:** It's the "push the data, the dashboard updates" flow the project was built for (D-001, D-002). The same command a person runs locally decides, so GitHub can't publish anything the checks would have stopped.
 **Consequence:** After a push of new data, GitHub adds a commit to `main`. Run `git pull` before working locally again.
+
+### D-045 · The repository and the dashboard are public for now (replaces D-001's privacy rule)
+**Date:** 2026-11-05
+**Decision:** The project owner chose to keep the GitHub repository and the Streamlit app public for now. The app is at https://qfstudentjourney.streamlit.app and opens for anyone, without signing in. Their visibility is changed only by the owner.
+**What's public as a result:** the dashboard, which hides small groups (D-026), and the repository, which doesn't: the 60 raw Excel files and the full tables in `data/processed/` include every count, small groups too.
+**Option on file:** make only the repository private and set the app to public in its sharing settings. The dashboard stays open to everyone and the raw files don't. It needs Streamlit's access to private repositories (Settings → Linked accounts → Source control).
+**Why:** the owner's call while the project is in progress. D-001's other parts stand: raw and processed data stay in the repository, so the push-to-update flow works.

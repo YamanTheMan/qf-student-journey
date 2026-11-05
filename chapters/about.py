@@ -1,5 +1,4 @@
 """About the data: which files exist, how good each number is, what's left out, and the rules every chart follows."""
-import pandas as pd
 import streamlit as st
 
 from dashboard import data as d, ui
@@ -10,17 +9,8 @@ m = ui.metrics()
 names = d.universities()
 
 
-@st.cache_data(show_spinner=False)
-def _read(path, changed):
-    return pd.read_csv(path, keep_default_na=False)
-
-
-def read(path):
-    return _read(path, path.stat().st_mtime)
-
-
-inventory = read(REFERENCE_DIR / "file_inventory.csv")
-flags = read(ROOT / "data" / "processed" / "quality_flags.csv")
+inventory = ui.table(REFERENCE_DIR / "file_inventory.csv")
+flags = ui.table(ROOT / "data" / "processed" / "quality_flags.csv")
 submissions = inventory[inventory["file_kind"] == "submission"]
 years = sorted(submissions["academic_year"].unique())
 

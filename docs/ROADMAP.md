@@ -158,17 +158,19 @@ Goal: the story in five chapters, honest about every gap. Run it with `.venv/bin
 
 ## Phase 6 — Go live 🔄
 
-Goal: push a year's Excel files to GitHub, and the private online dashboard updates by itself.
+Goal: push a year's Excel files to GitHub, and the online dashboard updates by itself.
 
 **Step 1: GitHub rebuilds and checks every push (D-044)**
 - [x] Workflow `.github/workflows/build.yml`: install pinned libraries → build → checks → tests → save the rebuilt tables
 - [x] A stopped build fails with the reason on the run's page and saves nothing
 - [x] Tested from a fresh copy of the repository: all tests pass, no file changes
-- [ ] First run on GitHub passes (after the push)
+- [x] First run on GitHub passed (4½ minutes, 155 tests); its rebuilt tables were identical to the committed ones, so it saved nothing
 
-**Step 2: the dashboard online as a private app** (needs the owner's Streamlit account)
-- [ ] Deploy on Streamlit Community Cloud from `main`, Python 3.11
-- [ ] Private: only invited viewers can open it (D-001)
+**Step 2: the dashboard online ✅**
+- [x] Deployed on Streamlit Community Cloud from `main`, Python 3.11: https://qfstudentjourney.streamlit.app
+- [x] GitHub tells Streamlit about every push (webhook), so the app follows `main`
+- [x] Every page checked online: Home, the five chapters, About the data
+- [x] Public for now, by the owner's choice (D-045); the option of a private repository with a public app is on file
 
 **Step 3: end-to-end test**
 - [ ] Add a year's files, push, and watch GitHub rebuild and the dashboard update
