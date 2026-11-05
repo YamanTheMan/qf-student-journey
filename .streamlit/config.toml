@@ -1,6 +1,6 @@
 [theme]
 base = "light"
-primaryColor = "#8A1538"
+primaryColor = "#034638"  # Sidra Green (D-043)
 font = "sans serif"
 
 [browser]

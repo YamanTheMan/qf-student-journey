@@ -20,6 +20,7 @@ page = st.navigation({
         st.Page("chapters/graduating.py", title="4 · Graduating", icon=":material/school:"),
         st.Page("chapters/after.py", title="5 · After graduation", icon=":material/work:"),
     ],
+    "About": [st.Page("chapters/about.py", title="About the data", icon=":material/fact_check:")],
 })
 st.session_state["filters"] = filters.sidebar()
 page.run()

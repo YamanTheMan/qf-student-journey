@@ -293,3 +293,44 @@ def after(m, university=d.EDUCATION_CITY, level=d.ALL, group="All students"):
                      f"{d.year_label(years[0])} ({', '.join(keep)}), employment went from "
                      f"{d.share_text(same['value'].iloc[0])} to {d.share_text(same['value'].iloc[-1])}.")
     return text
+
+
+def key_numbers(m):
+    """One headline number per chapter for the Home page, for Education City as reported, each with the year it
+    belongs to and how many universities it covers. Written from the data, like the chapter sentences."""
+    def latest(metric, **kw):
+        pts = d.points(m, metric, d.years_of(m, metric, category=kw.get("category", "")), **kw)
+        pts = pts[pts["value"].notna()]
+        return pts.iloc[-1] if len(pts) else None
+
+    def coverage(metric, year):
+        h = d.headline(m, metric)
+        return int(h.loc[(h["university"] == d.ALL) & (h["year"] == year), "coverage"].iloc[0])
+
+    out = []
+    reg = latest("M01")
+    if reg is not None:
+        out.append(dict(page="chapters/growth.py", label="Students", value=d.count_text(reg.value),
+                        detail=f"registered in {d.year_label(reg.year)} · {coverage('M01', reg.year)} universities"))
+    acc = latest("M07")
+    if acc is not None:
+        out.append(dict(page="chapters/getting_in.py", label="Admitted", value=d.share_text(acc.value),
+                        detail=f"of applicants in {d.year_label(acc.year)} · {coverage('M07', acc.year)} universities"))
+    region = latest("M11", category="region: Qatar")
+    if region is not None:
+        out.append(dict(page="chapters/studying.py", label="Countries",
+                        value=str(countries(m, d.EDUCATION_CITY, region.year)),
+                        detail=f"students came from in {d.year_label(region.year)} · {d.share_text(region.value)} "
+                               "from Qatar"))
+    grads = latest("M16")
+    if grads is not None:
+        out.append(dict(page="chapters/graduating.py", label="Graduates", value=d.count_text(grads.value),
+                        detail=f"class of {d.year_label(grads.year)} · {coverage('M16', grads.year)} universities"))
+    years = outcome_classes(m)
+    emp = d.points(m, "M22", years)
+    emp = emp[emp["value"].notna()]
+    if len(emp):
+        out.append(dict(page="chapters/after.py", label="Employed", value=d.share_text(emp["value"].iloc[-1]),
+                        detail=f"a year after graduating, class of {d.year_label(emp['year'].iloc[-1])} · "
+                               f"{coverage('M22', emp['year'].iloc[-1])} universities"))
+    return out

@@ -11,7 +11,7 @@ How we work each phase: explain the goal → build it in small steps → check t
 | 2. Extraction | Read every yearly template version into one tidy format | ✅ |
 | 3. Validation | Automatic checks that run on every upload | ✅ |
 | 4. Metrics | Define and compute the story numbers | ✅ |
-| 5. Dashboard | The story in chapters, running locally | 🔄 |
+| 5. Dashboard | The story in chapters, running locally | ✅ |
 | 6. Go live | GitHub Action + Streamlit Cloud, push-to-update | ⬜ |
 | 7. Insights & delivery | Findings, polish, documentation, final presentation | ⬜ |
 
@@ -102,7 +102,7 @@ Goal: every raw sheet becomes rows in one long, consistent table.
 - [x] Decided: comparable "by 150%" rate (D-027); classes without entrants give counts, not rates (P-25)
 - [x] Decided: missing graduating classes filled from the next year's Outcomes sheet (D-028)
 
-## Phase 5 — Dashboard 🔄
+## Phase 5 — Dashboard ✅
 
 Goal: the story in five chapters, honest about every gap. Run it with `.venv/bin/python -m streamlit run app.py`.
 
@@ -148,8 +148,13 @@ Goal: the story in five chapters, honest about every gap. Run it with `.venv/bin
 - [x] Education City starts with the first class more than one university reported (D-042)
 - [x] Auto-written summary sentence; end labels of close lines no longer overlap
 
-**Next steps**
-- [ ] Step 6: Home page key numbers, an "About the data" page, program and year filters where a chapter needs them, final polish
+**Step 6: finishing ✅**
+- [x] Qatar Foundation's primary colours, checked for colour-blind readers (D-043)
+- [x] Home page: one key number per chapter, written from the data
+- [x] About the data page: which university-years exist, the quality grid for every measure, everything left out and why, the rules every chart follows
+- [x] Year pickers where a chapter shows one year or one class (Getting in, Studying, Graduating, After)
+- [x] Checked at phone width: the sidebar folds away, text and charts stay readable
+- [ ] Moved to Phase 7: a program filter for single universities (programs differ by university, so it only makes sense once one is chosen)
 
 ## Phase 6 — Go live ⬜
 
@@ -159,6 +164,7 @@ Goal: the story in five chapters, honest about every gap. Run it with `.venv/bin
 
 ## Phase 7 — Insights & delivery ⬜
 
+- [ ] Optional: program filter for single universities (from Phase 5)
 - [ ] Key findings write-up
 - [ ] Final documentation
 - [ ] Presentation

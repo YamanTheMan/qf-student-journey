@@ -99,8 +99,8 @@ if everyone:
 
 # --- Which schools new students come from -------------------------------------------------------
 st.subheader(f"Which schools students come from, {d.year_label(year)}")
-SCHOOLS = ["Independent/public schools", "QF schools", "Private schools", "International schools",
-           "Academic Bridge Program"]
+SCHOOLS = ["QF schools", "Independent/public schools", "Private schools", "International schools",
+           "Academic Bridge Program"]  # QF's own schools first, in Sidra Green
 mix_years = d.years_of(m, "M10", category="applied: QF schools")
 if not everyone or f.level == "graduate":
     st.caption("Reported for undergraduate and foundation students only, and not by nationality or gender. "

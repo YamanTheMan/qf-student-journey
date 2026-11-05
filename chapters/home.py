@@ -1,7 +1,7 @@
-"""Home: what the dashboard is, the five chapters, and how to read the charts."""
+"""Home: what the dashboard is, one key number per chapter, the five chapters, and how to read the charts."""
 import streamlit as st
 
-from dashboard import data as d, ui
+from dashboard import data as d, story, ui
 
 m = ui.metrics()
 years = d.years_of(m, "M01")
@@ -12,6 +12,15 @@ st.markdown(
     "Every number here comes from the yearly **Student Data Collection** files that Education City universities "
     "send Qatar Foundation. A pipeline reads every file, checks it, and records how good each number is. "
     "This dashboard shows the result, including where the data is incomplete.")
+
+st.subheader("At a glance")
+st.caption("Education City as reported, in the latest year each measure has. Open a chapter for the full story.")
+numbers = story.key_numbers(m)
+for column, n in zip(st.columns(len(numbers)), numbers):
+    with column:
+        st.metric(n["label"], n["value"], border=True)
+        st.caption(n["detail"])
+        st.page_link(n["page"], label="Read the chapter", icon=":material/arrow_forward:")
 
 st.subheader("The story in five chapters")
 CHAPTERS = [
@@ -36,3 +45,5 @@ st.markdown(
     "*Same every year* counts only universities with data in every year, so years compare like for like. "
     "Change it in the sidebar.\n"
     "- **Show the numbers**, under each chart, opens the table behind it.")
+st.page_link("chapters/about.py", label="**About the data**: where the numbers come from, and how good they are",
+             icon=":material/fact_check:")

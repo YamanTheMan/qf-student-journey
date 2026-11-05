@@ -277,3 +277,18 @@ Each row says whether its type is clear from the `name` (48 spellings, 104 inter
 - **Education City starts with the first class that at least two universities reported.** The class of 2020–21 has only WCM-Q's outcomes, so an "Education City" value would be WCM-Q's (100% employed). The page says so; choosing WCM-Q still shows its 2020–21 class. The "same universities" view uses one set for all four outcome measures (D-039): CMU-Q, NU-Q, TAMU-Q, VCU-Q and WCM-Q.
 - The page explains that rates are shares of the whole class, so graduates with an unknown outcome count as neither employed nor studying, and those not seeking work aren't shown (D-021).
 **Why:** A single university's number labelled "Education City" would start the trend at 100% and make the next class look like a collapse. WCM-Q's graduates are doctors who go on to residencies, mostly abroad, which the page notes next to the university comparison.
+
+### D-043 · Qatar Foundation's primary colours (replaces the colours in D-035)
+**Date:** 2026-11-05
+**Decision:** The dashboard uses QF's primary colour system. Sidra Green (#034638, the logo's colour) leads: the app's accent colour, single-series bars, the first line. Qatar Adhm (#8A1538) and Cool Gray 11 / Cool Gray 3 support. No QF Yellow and no secondary colours (the owner's preference). The brand's own tints (40% and 60% of a colour) give the other steps:
+
+| Role | Colours |
+|---|---|
+| One series; incomplete values | Sidra Green; Green 40% (#9AB5AF) |
+| Two or three lines, side-by-side bars | Sidra Green, Adhm 60% (#B97388), Green 40% |
+| Five-part 100% bars (school types, employer types) | Sidra Green, Green 40%, Adhm, Adhm 40% (#D0A1AF), Cool Gray 11 |
+| Ordered bands (ages) | five steps of Sidra Green, light to dark |
+| "Not given"; axes | Cool Gray 3 |
+
+QF's own schools are first in the school-type bars, in Sidra Green. Text on a dark fill is white, on a light fill near-black.
+**Why:** QF prefers Sidra Green, and the dashboard should look like a QF product. Every combination was run through a colour-blindness check. Full Sidra Green and full Adhm fail it (they look nearly the same without red–green vision: ΔE 3.9 against a target of 8), so they never appear as two series together; one of the pair is always a lighter tint (Green vs Adhm 60%: ΔE 22.8). The light tints are under 3:1 against white, so the charts that use them label their values and have a table underneath.

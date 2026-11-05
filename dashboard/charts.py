@@ -4,8 +4,10 @@
   incomplete   lighter bar or open dot: a university missing that year, or partial data (hover says which)
   missing      a gap, marked with a grey x on the baseline (hover says why)
 
-Colours: the validated categorical slots in their fixed order (never cycled), and one lighter step of slot 1
-for 'incomplete'. Lines use at most three; the school-type mix uses five.
+Colours: Qatar Foundation's primary palette (D-043). Sidra Green leads; Qatar Adhm and the Cool Grays support;
+no yellow and no secondary colours. Each combination was checked for colour-blind readers: full Sidra Green
+and full Adhm look alike without red-green vision, so they never appear as two series together; one of them is
+always a lighter tint. Charts that use a light tint (under 3:1 against white) also label their values.
 """
 import textwrap
 
@@ -15,16 +17,26 @@ from plotly.subplots import make_subplots
 
 from dashboard.data import count_text, share_text, year_label
 
-SERIES = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4"]  # blue, orange, aqua, yellow, magenta
-BLUE, ORANGE = SERIES[:2]
-LIGHT_BLUE = "#86b6ef"
-ORDINAL = ["#86b6ef", "#5598e7", "#2a78d6", "#1c5cab", "#104281"]  # blue steps 250-650: ordered bands (ages)
-NOT_GIVEN = "#c3c2b7"  # a neutral grey for 'not given', never a series colour
-SEQUENTIAL = [[0, "#f3f8fe"], [0.15, "#cde2fb"], [0.4, "#86b6ef"], [0.7, "#2a78d6"], [1, "#104281"]]
-INK, INK_2, MUTED, GRID, AXIS = "#0b0b0b", "#52514e", "#898781", "#e1e0d9", "#c3c2b7"
+SIDRA_GREEN, QATAR_ADHM, COOL_GRAY_11, COOL_GRAY_3 = "#034638", "#8A1538", "#53565A", "#C8C9C7"
+GREEN_40, ADHM_60, ADHM_40 = "#9AB5AF", "#B97388", "#D0A1AF"  # the brand's own tints (40% and 60% of full)
+MAIN = SIDRA_GREEN
+LIGHT = GREEN_40  # an incomplete value: the same hue, lighter
+SERIES = [SIDRA_GREEN, ADHM_60, GREEN_40]  # lines and side-by-side bars; checked as all pairs
+CATEGORIES = [SIDRA_GREEN, GREEN_40, QATAR_ADHM, ADHM_40, COOL_GRAY_11]  # five-part 100% bars; checked side by side
+ORDINAL = ["#9AB5AF", "#729990", "#4A7D72", "#245F53", "#034638"]  # Sidra Green, light to dark: ordered bands (ages)
+NOT_GIVEN = COOL_GRAY_3  # 'not given' is grey, never a series colour
+SEQUENTIAL = [[0, "#ffffff"], [0.15, "#CDDAD7"], [0.4, "#9AB5AF"], [0.7, "#4A7D72"], [1, "#034638"]]
+INK, INK_2, MUTED, GRID, AXIS = "#0b0b0b", COOL_GRAY_11, "#75787B", "#E9E9E9", COOL_GRAY_3
 FONT = '"Source Sans 3", "Source Sans Pro", system-ui, sans-serif'
 CONFIG = {"displayModeBar": False}
 HIDDEN = {"<5": "fewer than 5 students (hidden)", "fewer than 10 students": "fewer than 10 students (hidden)"}
+
+
+def ink_on(colour):
+    """White text on a dark fill, near-black on a light one (by the fill's relative luminance)."""
+    r, g, b = (int(colour[i:i + 2], 16) / 255 for i in (1, 3, 5))
+    lin = [c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4 for c in (r, g, b)]
+    return "white" if 0.2126 * lin[0] + 0.7152 * lin[1] + 0.0722 * lin[2] < 0.18 else INK
 
 
 def value_text(value, unit, noun=""):
@@ -70,7 +82,7 @@ def _bars(fig, pts, labels, noun, legend, row=None, col=None):
     x = [year_label(y) for y in pts["year"]]
     hover = hover_lines(pts, noun)
     template = "<b>%{x}</b><br>%{customdata}<extra></extra>"
-    for state, colour in (("complete", BLUE), ("incomplete", LIGHT_BLUE)):
+    for state, colour in (("complete", MAIN), ("incomplete", LIGHT)):
         keep = (pts["state"] == state).tolist()
         fig.add_trace(go.Bar(
             x=[v for v, k in zip(x, keep) if k], y=pts.loc[keep, "value"], marker_color=colour,
@@ -211,7 +223,7 @@ def table(series, noun=""):
 
 def _hbar_states(fig, labels, values, states, hover, text):
     """Horizontal bars coloured by state, with an x at zero for a missing one."""
-    for state, colour in (("complete", BLUE), ("incomplete", LIGHT_BLUE)):
+    for state, colour in (("complete", MAIN), ("incomplete", LIGHT)):
         keep = [st == state for st in states]
         fig.add_trace(go.Bar(
             y=[l for l, k in zip(labels, keep) if k], x=[v for v, k in zip(values, keep) if k], orientation="h",
@@ -267,7 +279,7 @@ def stacked_shares(groups, categories, colours=None):
     colours: one per category (default: the categorical slots in order)."""
     fig = go.Figure()
     labels = list(groups)
-    colours = colours or SERIES[:len(categories)]
+    colours = colours or CATEGORIES[:len(categories)]
     for i, category in enumerate(categories):
         rows = [groups[g].get(category) for g in labels]
         values = [r["value"] if r is not None else None for r in rows]
@@ -277,7 +289,7 @@ def stacked_shares(groups, categories, colours=None):
             marker=dict(color=colours[i], line=dict(color="white", width=2)),
             text=[share_text(v) if v is not None and pd.notna(v) and v >= 0.08 else "" for v in values],
             textposition="inside", insidetextanchor="middle",
-            textfont=dict(color="white" if colours[i] in ORDINAL[2:] else INK, size=12),
+            textfont=dict(color=ink_on(colours[i]), size=12),
             hovertemplate=f"<b>%{{y}}</b> · {category}<br>%{{customdata}}<extra></extra>"))
     style(fig, height=64 * len(labels) + 70, percent=True)
     fig.update_layout(barmode="stack", bargap=0.35, legend=dict(traceorder="normal"))

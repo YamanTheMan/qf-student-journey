@@ -156,8 +156,26 @@ def test_after_graduation_sentence():
     assert story.after(M, group="Female") == "Outcomes after graduation aren't reported by gender."
 
 
+def test_home_has_one_key_number_per_chapter():
+    numbers = story.key_numbers(M)
+    assert [n["page"] for n in numbers] == ["chapters/growth.py", "chapters/getting_in.py", "chapters/studying.py",
+                                            "chapters/graduating.py", "chapters/after.py"]
+    assert (numbers[0]["value"], numbers[0]["detail"]) == ("2,940", "registered in 2024–25 · 7 universities")
+    assert numbers[4]["value"] == "73%"
+
+
+def test_charts_use_qf_primary_colours_only():
+    # D-043: Sidra Green leads; no QF Yellow and no secondary colours; full green and full Adhm never two series
+    used = {*charts.SERIES, *charts.CATEGORIES, *charts.ORDINAL, charts.MAIN, charts.LIGHT, charts.NOT_GIVEN}
+    assert charts.MAIN == "#034638" and "#F3E500" not in used
+    assert not {"#FF671F", "#78BE20", "#F04E98", "#6ECEB2", "#00BCE7"} & used
+    assert charts.QATAR_ADHM not in charts.SERIES
+    assert charts.ink_on("#034638") == "white" and charts.ink_on("#D0A1AF") == charts.INK
+
+
 @pytest.mark.parametrize("page", ["chapters/home.py", "chapters/growth.py", "chapters/getting_in.py",
-                                  "chapters/studying.py", "chapters/graduating.py", "chapters/after.py"])
+                                  "chapters/studying.py", "chapters/graduating.py", "chapters/after.py",
+                                  "chapters/about.py"])
 def test_pages_run_with_every_filter(page):
     at = AppTest.from_file(str(ROOT / "app.py"), default_timeout=60).run()
     at.switch_page(page).run()
@@ -165,6 +183,8 @@ def test_pages_run_with_every_filter(page):
              ("view", "same"), ("level", "All levels"), ("group", "All students")]
     if page.endswith(("getting_in.py", "studying.py")):
         steps += [("year", "2021-2022"), ("view", "reported"), ("year", "2019-2020")]
+    if page.endswith("about.py"):
+        steps += [("measure", "graduation_rate"), ("measure", "funding")]
     if page.endswith(("graduating.py", "after.py")):
         steps += [("class", "2022-2023"), ("view", "reported"), ("university", "GU-Q")]
     for key, value in steps:
