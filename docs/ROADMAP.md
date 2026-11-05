@@ -12,7 +12,7 @@ How we work each phase: explain the goal → build it in small steps → check t
 | 3. Validation | Automatic checks that run on every upload | ✅ |
 | 4. Metrics | Define and compute the story numbers | ✅ |
 | 5. Dashboard | The story in chapters, running locally | ✅ |
-| 6. Go live | GitHub Action + Streamlit Cloud, push-to-update | 🔄 |
+| 6. Go live | GitHub Action + Streamlit Cloud, push-to-update | ✅ |
 | 7. Insights & delivery | Findings, polish, documentation, final presentation | ⬜ |
 
 ---
@@ -156,7 +156,7 @@ Goal: the story in five chapters, honest about every gap. Run it with `.venv/bin
 - [x] Checked at phone width: the sidebar folds away, text and charts stay readable
 - [ ] Moved to Phase 7: a program filter for single universities (programs differ by university, so it only makes sense once one is chosen)
 
-## Phase 6 — Go live 🔄
+## Phase 6 — Go live ✅
 
 Goal: push a year's Excel files to GitHub, and the online dashboard updates by itself.
 
@@ -172,8 +172,10 @@ Goal: push a year's Excel files to GitHub, and the online dashboard updates by i
 - [x] Every page checked online: Home, the five chapters, About the data
 - [x] Public for now, by the owner's choice (D-045); the option of a private repository with a public app is on file
 
-**Step 3: end-to-end test**
-- [ ] Add a year's files, push, and watch GitHub rebuild and the dashboard update
+**Step 3: end-to-end test ✅** (2026-11-05)
+- [x] Test A, a push that changes a table: `data/processed/ages.csv` deleted on purpose (5038fff). GitHub's run passed, rebuilt the table and saved it in its own commit (db2f14c), identical to the original. Streamlit redeployed by itself: the live Home page showed the new "Built from 60 Excel files" line.
+- [x] Test B, a build that must stop: on a throwaway branch, one employer removed from `employers.csv`, workflow started by hand. Red ❌ with "employer not in data/reference/employers.csv: 'Qatar Museums'"; nothing saved, `main` and the dashboard untouched. Branch deleted.
+- [ ] The real test: the next year's Excel files (2025–26), when they arrive
 
 ## Phase 7 — Insights & delivery ⬜
 
