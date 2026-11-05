@@ -34,11 +34,13 @@ REQUIRED = ("program", "nationality", "gender")
 ATTENDANCE = {"ft": "Full-time", "full time": "Full-time", "full-time": "Full-time",
               "pt": "Part-time", "part time": "Part-time", "part-time": "Part-time"}
 YES_NO = {"y": "Yes", "yes": "Yes", "n": "No", "no": "No"}
+NO_ANSWER = {"n/a", "na", "not applicable", "-"}  # say nothing, like a blank (VCU-Q 2021-22 wrote 'n/a')
 
 
 def standard_value(raw, mapping):
-    std = raw.str.strip().str.lower().map(mapping)
-    return std.where(raw.isna() | std.notna(), "Mixed")
+    clean = raw.str.strip().str.lower()
+    blank = raw.isna() | clean.isin(NO_ANSWER)
+    return clean.map(mapping).where(blank | clean.map(mapping).notna(), "Mixed").where(~blank)
 
 
 def extract_all():

@@ -124,8 +124,16 @@ Goal: the story in five chapters, honest about every gap. Run it with `.venv/bin
 - [x] Auto-written summary sentence; one "same universities" set for the whole funnel (D-039)
 - [x] Found while checking: TAMU-Q's Spring 2025 file reports its graduate program only; new check C13 leaves such a year out (P-41, D-038)
 
+**Step 3: Studying chapter ✅**
+- [x] Where students come from: regions and the 15 largest countries for a year, regions over the years as a coloured table (M11)
+- [x] Ages of all students and of new students, in an ordered colour scale (M12)
+- [x] Full- or part-time study and scholarships by year; class year left out as not comparable (M13, D-040)
+- [x] How students pay: each funding type separately (M14, P-35, D-031)
+- [x] Internships by type of employer, with the universities that reported each year (M15, D-034)
+- [x] Auto-written summary sentence; "same universities" for a mix counts every university's whole (D-040)
+- [x] Found while checking: VCU-Q's "n/a" answers were read as "Mixed"; now not given (D-040)
+
 **Next steps**
-- [ ] Step 3: Studying (M11–M15)
 - [ ] Step 4: Graduating (M16–M21)
 - [ ] Step 5: After graduation (M22–M25)
 - [ ] Step 6: Home page key numbers, an "About the data" page, program and year filters where a chapter needs them, final polish

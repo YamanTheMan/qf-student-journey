@@ -213,7 +213,7 @@ Built by `.venv/bin/python -m pipeline.nationalities` from 42 files (all years f
 
 ### `registered_detailed.csv`: registered students in detail
 
-Built by `.venv/bin/python -m pipeline.registered_detailed` from 24 files (2021–22 onwards; two 2021–22 files don't have the sheet, and GU-Q 2022–23 is skipped by D-018). One count per program × `nationality` × `gender` × `attendance` × `scholarship` × `sponsorship` × `language` × `year_class`, plus `attendance_std`, `scholarship_std`, `sponsorship_std` (Full-time / Part-time / Yes / No / Mixed) and the standard program columns.
+Built by `.venv/bin/python -m pipeline.registered_detailed` from 24 files (2021–22 onwards; two 2021–22 files don't have the sheet, and GU-Q 2022–23 is skipped by D-018). One count per program × `nationality` × `gender` × `attendance` × `scholarship` × `sponsorship` × `language` × `year_class`, plus `attendance_std`, `scholarship_std`, `sponsorship_std` (Full-time / Part-time / Yes / No / Mixed; blank or "n/a" = not given, D-040) and the standard program columns.
 
 **Check:** totals equal Student Data's registered students in 19 of 24 university-years (21 within 2%). VCU-Q 2022–23 gives 294 students where Student Data left registered blank (P-05). Gaps: P-33.
 

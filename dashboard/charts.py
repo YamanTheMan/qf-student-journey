@@ -18,6 +18,9 @@ from dashboard.data import count_text, share_text, year_label
 SERIES = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4"]  # blue, orange, aqua, yellow, magenta
 BLUE, ORANGE = SERIES[:2]
 LIGHT_BLUE = "#86b6ef"
+ORDINAL = ["#86b6ef", "#5598e7", "#2a78d6", "#1c5cab", "#104281"]  # blue steps 250-650: ordered bands (ages)
+NOT_GIVEN = "#c3c2b7"  # a neutral grey for 'not given', never a series colour
+SEQUENTIAL = [[0, "#f3f8fe"], [0.15, "#cde2fb"], [0.4, "#86b6ef"], [0.7, "#2a78d6"], [1, "#104281"]]
 INK, INK_2, MUTED, GRID, AXIS = "#0b0b0b", "#52514e", "#898781", "#e1e0d9", "#c3c2b7"
 FONT = '"Source Sans 3", "Source Sans Pro", system-ui, sans-serif'
 CONFIG = {"displayModeBar": False}
@@ -212,13 +215,13 @@ def _hbar_states(fig, labels, values, states, hover, text):
         name=LABELS["missing"], showlegend=False))
 
 
-def _hbar_layout(fig, labels, height, percent=False):
+def _hbar_layout(fig, labels, height, percent=False, top=None):
     style(fig, height=height, percent=percent)
     fig.update_layout(barmode="overlay", bargap=0.3, margin=dict(l=4, r=60, t=8, b=4))
     fig.update_yaxes(categoryorder="array", categoryarray=labels[::-1], range=None, gridcolor="rgba(0,0,0,0)",
                      tickfont=dict(color=INK, size=13))
     fig.update_xaxes(showgrid=False, showticklabels=False, linecolor="rgba(0,0,0,0)",
-                     range=[0, 1.12] if percent else None)  # every bar carries its own number
+                     range=[0, top * 1.18] if top else None)  # every bar carries its own number
     return fig
 
 
@@ -231,32 +234,39 @@ def funnel(stages, noun="students"):
     return _hbar_layout(fig, labels, height=60 * len(labels) + 30)
 
 
-def ranked(per_university, noun=""):
-    """One measure for each university in one year, highest first; universities without data at the bottom."""
-    rows = sorted(per_university.items(), key=lambda kv: (pd.isna(kv[1]["value"]), -(kv[1]["value"] or 0)))
+def ranked(per_university, noun="", last=("Not given",)):
+    """One measure for each university (or region, country, funding type) in one year, highest first; those
+    without data, and 'Not given', at the bottom."""
+    rows = sorted(per_university.items(),
+                  key=lambda kv: (kv[0] in last, pd.isna(kv[1]["value"]), -(kv[1]["value"] or 0)))
     labels = [u for u, _ in rows]
     pts = pd.DataFrame([r for _, r in rows])
     percent = bool(pts["unit"].isin(["share", "rate"]).any())
     fig = go.Figure()
     _hbar_states(fig, labels, pts["value"].tolist(), pts["state"].tolist(), hover_lines(pts, noun),
                  [value_text(v, u, noun) for v, u in zip(pts["value"], pts["unit"])])
-    return _hbar_layout(fig, labels, height=34 * len(labels) + 20, percent=percent)
+    top = pts["value"].max()
+    return _hbar_layout(fig, labels, height=34 * len(labels) + 20, percent=percent,
+                        top=top if pd.notna(top) and top > 0 else None)
 
 
-def stacked_shares(groups, categories):
-    """100% bars, one per group (a stage), split into categories in a fixed order and colour.
-    groups: {label: {category: one points row}}. A segment is labelled only where its number fits."""
+def stacked_shares(groups, categories, colours=None):
+    """100% bars, one per group (a stage, a year), split into categories in a fixed order and colour.
+    groups: {label: {category: one points row}}. A segment is labelled only where its number fits.
+    colours: one per category (default: the categorical slots in order)."""
     fig = go.Figure()
     labels = list(groups)
+    colours = colours or SERIES[:len(categories)]
     for i, category in enumerate(categories):
         rows = [groups[g].get(category) for g in labels]
         values = [r["value"] if r is not None else None for r in rows]
         hover = [hover_lines(pd.DataFrame([r]))[0] if r is not None else "No data" for r in rows]
         fig.add_trace(go.Bar(
             y=labels, x=values, orientation="h", name=category, customdata=hover,
-            marker=dict(color=SERIES[i], line=dict(color="white", width=2)),
+            marker=dict(color=colours[i], line=dict(color="white", width=2)),
             text=[share_text(v) if v is not None and pd.notna(v) and v >= 0.08 else "" for v in values],
-            textposition="inside", insidetextanchor="middle", textfont=dict(color=INK, size=12),
+            textposition="inside", insidetextanchor="middle",
+            textfont=dict(color="white" if colours[i] in ORDINAL[2:] else INK, size=12),
             hovertemplate=f"<b>%{{y}}</b> · {category}<br>%{{customdata}}<extra></extra>"))
     style(fig, height=64 * len(labels) + 70, percent=True)
     fig.update_layout(barmode="stack", bargap=0.35, legend=dict(traceorder="normal"))
@@ -266,10 +276,33 @@ def stacked_shares(groups, categories):
     return fig
 
 
-def ranked_table(per_university, name, noun=""):
-    """The numbers behind a ranking: one row per university."""
+def ranked_table(per_university, name, noun="", label="University"):
+    """The numbers behind a ranking or a one-year mix: one row per university (or category)."""
     rows = per_university.items()
     return pd.DataFrame({
-        "University": [u for u, _ in rows],
+        label: [u for u, _ in rows],
         name: [value_text(r["value"], r["unit"], noun) or HIDDEN.get(r["why"], "–") for _, r in rows],
         "Notes": [" · ".join(x for x in ((r["why"]), r["notes"]) if x) for _, r in rows]})
+
+def heatmap(rows, noun=""):
+    """A table of shares coloured by size (one blue, light to dark): one row per category, one column per year.
+    rows: {label: points over years}. Hidden or missing cells stay white with a dash; hover says why."""
+    labels = list(rows)
+    years = [year_label(y) for y in next(iter(rows.values()))["year"]]
+    z = [[v if pd.notna(v) else None for v in pts["value"]] for pts in rows.values()]
+    hover = [hover_lines(pts, noun) for pts in rows.values()]
+    top = max((v for row in z for v in row if v is not None), default=1) or 1
+    fig = go.Figure(go.Heatmap(
+        z=z, x=years, y=labels, colorscale=SEQUENTIAL, zmin=0, zmax=top, showscale=False, xgap=2, ygap=2,
+        customdata=hover, hovertemplate="<b>%{y}</b> · %{x}<br>%{customdata}<extra></extra>"))
+    for i, row in enumerate(z):
+        for j, v in enumerate(row):
+            fig.add_annotation(x=years[j], y=labels[i], showarrow=False, font=dict(
+                size=12, color="white" if v is not None and v > 0.55 * top else INK),
+                text=share_text(v) if v is not None else "–")
+    style(fig, height=30 * len(labels) + 50)
+    fig.update_yaxes(autorange="reversed", gridcolor="rgba(0,0,0,0)", tickfont=dict(color=INK, size=13),
+                     tickformat="", rangemode=None)
+    fig.update_xaxes(side="top", linecolor="rgba(0,0,0,0)")
+    fig.update_layout(margin=dict(l=4, r=4, t=30, b=4), plot_bgcolor="white")
+    return fig

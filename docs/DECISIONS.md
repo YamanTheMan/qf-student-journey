@@ -248,3 +248,16 @@ Each row says whether its type is clear from the `name` (48 spellings, 104 inter
 **Date:** 2026-11-05
 **Decision:** Where a chapter shows related measures together (applicants, admitted, new students, acceptance rate, yield), the "same universities every year" view uses the universities with data in every year for **all** of them, not a set per measure. For Getting in that's GU-Q, NU-Q, WCM-Q and HEC-Q (VCU-Q has no 2022–23 new students; TAMU-Q no 2024–25 admissions, D-038). The school-type mix has its own years (2021–22 on) and so its own set (GU-Q, NU-Q, WCM-Q). Each chart's caption names its set.
 **Why:** With a set per measure, the funnel could compare applicants from five universities with new students from four, and its percentages would mean nothing.
+
+### D-040 · The Studying chapter: what it shows, and "same universities" for a mix
+**Date:** 2026-11-05
+**Decision:**
+- **Nationality, ages and internships** are shown for all levels only (their sheets have no level). None of the chapter's sheets is split by nationality or gender, so the chapter always shows all students and says so when another group is chosen.
+- **Nationality**: regions ranked for the chosen year, the 15 largest countries (countries under 5 students aren't named), and a region × year table coloured by size. The country count in the summary includes countries hidden as "<5" (they still have students) but not "country not given".
+- **Ages**: one 100% bar for all students and one for new students, in an ordered blue scale; "not given" in grey.
+- **Attendance and scholarships**: one 100% bar per year. **Class year isn't shown**: each university labels it its own way (Freshman, Year #1, First year, Medical, …), so the categories can't be compared.
+- **Funding**: one bar per type, never stacked (P-35); QF scholarships shown as a gap with D-031's note.
+- **Internships**: one 100% bar per year by type of employer; the caption lists which universities reported each year.
+- **"Same universities" for a mix (refines D-036):** a university counts as present in a year if it has data for any category of the mix (any region), not one particular category. Each category's share adds the universities' students in it over the sum of all their students, including universities with no row for that category: a university with no students from Latin America has no row for it, but its students still belong in the whole. Where no university has a mix in every year (internships), the chart says so instead of drawing nothing.
+- **"n/a" is not an answer:** in Registered Students Detailed, "n/a" (VCU-Q 2021–22: 54 rows of scholarship and sponsorship) now counts as not given, not as "Mixed". Education City's 2021–22 scholarship split changes from 24% "Mixed" to "not given".
+**Why:** Each chart shows only what the sheet can support. Without the whole-of-every-university rule, a region's share in the "same universities" view would be divided only by the students of universities that happen to have someone from that region, inflating it.

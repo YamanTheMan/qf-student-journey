@@ -122,6 +122,31 @@ def every_year_of_all(m, measures, years):
     return [u for u in universities() if u in keep]
 
 
+def every_year_in(m, metric, years, family, name=None):
+    """every_year for a mix: a university counts in a year if it has usable data for any category of `family`
+    ('region: '). A university with no students from one region simply has no row for it, so a single category
+    can't be the test."""
+    rows = m[(m["metric"] == metric) & m["category"].str.startswith(family) & (m["program_group"] == ALL)
+             & (m["nationality"] == ALL) & (m["gender"] == ALL)]
+    if name is not None:
+        rows = rows[rows["name"] == name]
+    levels = set(rows["level"])
+    rows = rows[rows["level"] == (ALL if ALL in levels or not levels else next(iter(levels)))]
+    exists = set(rows.loc[rows["university"] == ALL, "year"])
+    seen = usable(rows[rows["university"] != ALL]).groupby("year")["university"].agg(set)
+    years = [y for y in years if y in exists]
+    keep = set.intersection(*[seen.get(y, set()) for y in years]) if years else set()
+    return [u for u in universities() if u in keep]
+
+
+def categories(m, metric, family, name=None):
+    """The categories of a mix without their family prefix: 'region: Qatar' -> 'Qatar'."""
+    rows = m[(m["metric"] == metric) & m["category"].str.startswith(family)]
+    if name is not None:
+        rows = rows[rows["name"] == name]
+    return sorted(c[len(family):] for c in rows["category"].unique())
+
+
 def absent(m, metric, years, level=ALL, group="All students", name=None, category=""):
     """{year: [(university, why)]}: universities that have this slice in some year but no usable data in this
     one. Judged on the metric's totals, so a university that simply has no students at a level isn't absent."""
@@ -200,6 +225,22 @@ def points(m, metric, years, university=EDUCATION_CITY, same=False, level=ALL, g
     return pd.DataFrame(out)
 
 
+def _family_denominators(m, metric, level, group, name, category, keep):
+    """For a share of one category in a mix ('region: Qatar'), each university's whole: the denominator its other
+    rows of the same family ('region: ...') carry. A university with no students in a category has no row for it,
+    but its students still count in the whole. None for metrics whose rows each carry their own denominator."""
+    if ": " not in category:
+        return None
+    family = category.split(": ")[0] + ": "
+    nationality, gender = GROUPS[group]
+    rows = m[(m["metric"] == metric) & (m["level"] == level) & (m["program_group"] == ALL)
+             & (m["nationality"] == nationality) & (m["gender"] == gender) & m["category"].str.startswith(family)
+             & m["university"].isin(keep)]
+    if name is not None:
+        rows = rows[rows["name"] == name]
+    return rows.groupby(["university", "year"])["denominator"].max().to_dict()
+
+
 def same_universities(m, metric, years, level=ALL, group="All students", name=None, category="", among=None):
     """Education City recomputed from only the universities with usable data in every one of `years` (D-036).
 
@@ -213,6 +254,7 @@ def same_universities(m, metric, years, level=ALL, group="All students", name=No
     keep = list(among) if among is not None else every_year(m, metric, years, name, category)
     rows = pick(m, metric, level, group, name, category=category)
     rows = rows[rows["university"].isin(keep)]
+    whole = _family_denominators(m, metric, level, group, name, category, keep)
     out = []
     for year in years:
         r = rows[rows["year"] == year]
@@ -227,8 +269,56 @@ def same_universities(m, metric, years, level=ALL, group="All students", name=No
         elif unit == "count":
             row["value"] = r["value"].sum()
         else:
-            row["numerator"], row["denominator"] = r["numerator"].sum(), r["denominator"].sum()
+            row["numerator"] = r["numerator"].sum()
+            if whole is None:
+                row["denominator"] = r["denominator"].sum()
+            else:  # every university's whole, including those with no row in this category
+                parts = [whole.get((u, year)) for u in keep]
+                row["denominator"] = sum(parts) if all(pd.notna(p) for p in parts) else float("nan")
             row["value"] = row["numerator"] / row["denominator"] if row["denominator"] else float("nan")
+            if pd.isna(row["value"]):
+                row["display"] = "not shown: includes a small or missing number"
         out.append(row)
     return keep, pd.DataFrame(out, columns=["year", "value", "numerator", "denominator", "unit", "use", "display",
                                             "coverage"])
+
+
+def mix_year(m, metric, family, year, university=EDUCATION_CITY, same=False, level=ALL, name=None, among=()):
+    """One year of a mix (every category of `family`, e.g. all countries) in one pass:
+    {category: row with value, unit, state, why, notes}, the same fields points() gives a chart.
+
+    For the 'same universities' view (D-036) each category adds the universities' numerators over the sum of
+    their wholes; a hidden part hides that category's sum, as in same_universities."""
+    rows = m[(m["metric"] == metric) & (m["year"] == year) & (m["level"] == level) & (m["program_group"] == ALL)
+             & (m["nationality"] == ALL) & (m["gender"] == ALL) & m["category"].str.startswith(family)]
+    if name is not None:
+        rows = rows[rows["name"] == name]
+    out = {}
+    if university == EDUCATION_CITY and same:
+        rows = rows[rows["university"].isin(among)]
+        whole = rows.groupby("university")["denominator"].max()
+        total = whole.sum() if len(whole) == len(among) and len(among) else float("nan")
+        for category, r in rows.groupby("category"):
+            hidden = r["value"].isna().any() or r["use"].eq("leave_out").any()
+            counts = r["unit"].eq("count").all()
+            value = float("nan") if hidden or not (total or counts) else \
+                (r["value"].sum() if counts else r["numerator"].sum() / total)
+            use = worst_use(r["use"])
+            out[category[len(family):]] = dict(
+                value=value, unit="count" if counts else "share", state="missing" if pd.isna(value) else
+                ("incomplete" if use in ("show_marked", "show_with_note") else "complete"),
+                why="not shown: includes a small or missing number" if pd.isna(value) else "", notes="")
+        return out
+    who = ALL if university == EDUCATION_CITY else university
+    for _, r in rows[rows["university"] == who].iterrows():
+        left_out = r["use"] == "leave_out"
+        missing = left_out or pd.isna(r["value"])
+        partial = r["use"] in ("show_marked", "show_with_note")
+        why = (r["display"] or (r["note"] or QUALITY.get(r["quality"], "")) if missing
+               else (QUALITY.get(r["quality"], "partial data") if partial else ""))
+        out[r["category"][len(family):]] = dict(
+            value=float("nan") if left_out else r["value"], unit=r["unit"],
+            state="missing" if missing else ("incomplete" if partial else "complete"),
+            why=why[:1].upper() + why[1:] if why and why not in ("<5", "fewer than 10 students") else why,
+            notes="" if missing else r["note"])
+    return out

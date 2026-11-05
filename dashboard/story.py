@@ -115,3 +115,60 @@ def getting_in(m, university=d.EDUCATION_CITY, level=d.ALL, group="All students"
         text += (f" Applicants are {_change(have['value'].iloc[0], have['value'].iloc[-1])} since "
                  f"{d.year_label(have['year'].iloc[0])} ({d.count_text(have['value'].iloc[0])}).")
     return text
+
+
+REGION_PHRASES = {
+    "Qatar": "from Qatar", "Other Arab countries": "from other Arab countries", "South Asia": "from South Asia",
+    "North America": "from North America", "Other GCC": "from other GCC countries", "Europe": "from Europe",
+    "East & Southeast Asia & Pacific": "from East and Southeast Asia and the Pacific",
+    "Iran, Turkey, Caucasus & Central Asia": "from Iran, Turkey, the Caucasus and Central Asia",
+    "Sub-Saharan Africa": "from Sub-Saharan Africa", "Latin America & Caribbean": "from Latin America and the Caribbean",
+}
+
+
+def countries(m, university, year):
+    """How many countries students came from: every country with students, including those hidden as '<5'."""
+    who = d.ALL if university == d.EDUCATION_CITY else university
+    rows = m[(m["metric"] == "M11") & (m["university"] == who) & (m["year"] == year)
+             & m["category"].str.startswith("country: ") & ~m["category"].str.lower().str.contains("not given")]
+    return int(((rows["value"] > 0) | (rows["display"] == "<5")).sum())
+
+
+def studying(m, university=d.EDUCATION_CITY, level=d.ALL):
+    """Markdown: where students come from (latest year), how many study full-time, and the like-for-like
+    change in the share from Qatar."""
+    years = d.years_of(m, "M11", category="region: Qatar")
+    who = d.EDUCATION_CITY if university == d.EDUCATION_CITY else university
+    text = ""
+    if level == d.ALL:
+        regions = {r: d.points(m, "M11", years, university, category=f"region: {r}")
+                   for r in d.categories(m, "M11", "region: ") if r in REGION_PHRASES}
+        have = regions["Qatar"][regions["Qatar"]["value"].notna()]
+        if have.empty:
+            return "No data for this selection."
+        year = have["year"].iloc[-1]
+        latest = {r: pts.set_index("year").loc[year, "value"] for r, pts in regions.items()}
+        top = sorted((r for r in latest if pd.notna(latest[r])), key=lambda r: -latest[r])[:3]
+        parts = [f"{d.share_text(latest[r])} {REGION_PHRASES[r]}" for r in top]
+        text = (f"In {d.year_label(year)}, {who}'s students came from **{countries(m, university, year)}** countries: "
+                f"{', '.join(parts[:-1])} and {parts[-1]}.")
+    full = d.points(m, "M13", d.years_of(m, "M13", "Attendance mix", "attendance: Full-time"), university,
+                    level=level, name="Attendance mix", category="attendance: Full-time")
+    full = full[full["value"].notna()]
+    if len(full):
+        year = full["year"].iloc[-1]
+        unknown = d.points(m, "M13", [year], university, level=level, name="Attendance mix",
+                           category="attendance: Not given")["value"].iloc[0]
+        students = _who(university, level, "All students")
+        text += (f" {d.share_text(full['value'].iloc[-1])} of {students} studied full-time in {d.year_label(year)}"
+                 + (f" ({d.share_text(unknown)} not given)." if pd.notna(unknown) and unknown >= 0.05 else "."))
+    if university == d.EDUCATION_CITY and level == d.ALL:
+        keep = d.every_year_in(m, "M11", years, "region: ")
+        _, same = d.same_universities(m, "M11", years, category="region: Qatar", among=keep)
+        same = same[same["value"].notna()]
+        if len(keep) > 1 and len(same) > 1 and _apart(same["year"]) >= MIN_YEARS:
+            text += (f" Among the {len(keep)} universities with nationality data in every year ({', '.join(keep)}), "
+                     f"the share from Qatar went from {d.share_text(same['value'].iloc[0])} in "
+                     f"{d.year_label(same['year'].iloc[0])} to {d.share_text(same['value'].iloc[-1])} in "
+                     f"{d.year_label(same['year'].iloc[-1])}.")
+    return text.strip() or "No data for this selection."

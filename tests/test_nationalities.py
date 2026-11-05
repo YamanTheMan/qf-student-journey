@@ -43,9 +43,9 @@ def test_nuq_2019_20_summary_rows_are_not_counted_twice():
 
 
 def test_detailed_values_are_standardised():
-    raw = pd.Series(["FT", "Full-Time", "part time", "Majority Full-Time", None])
+    raw = pd.Series(["FT", "Full-Time", "part time", "Majority Full-Time", None, "n/a"])
     assert list(standard_value(raw, ATTENDANCE).fillna("(blank)")) == \
-        ["Full-time", "Full-time", "Part-time", "Mixed", "(blank)"]
+        ["Full-time", "Full-time", "Part-time", "Mixed", "(blank)", "(blank)"]   # 'n/a' says nothing (D-040)
 
 
 def test_detailed_sheet_matches_student_data_and_skips_gu_q_summary():

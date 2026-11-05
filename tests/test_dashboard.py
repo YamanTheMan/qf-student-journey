@@ -91,13 +91,41 @@ def test_getting_in_sentence():
     assert story.getting_in(M, "TAMU-Q").startswith("In 2023–24, TAMU-Q had **1,317** applicants")
 
 
-@pytest.mark.parametrize("page", ["chapters/home.py", "chapters/growth.py", "chapters/getting_in.py"])
+def mix_rows():
+    """Two universities' region mix in one year. GU-Q has no students from Europe, so it has no Europe row."""
+    rows = [("CMU-Q", "region: Qatar", 50, 100), ("CMU-Q", "region: Europe", 10, 100), ("GU-Q", "region: Qatar", 30, 60)]
+    out = [dict(metric="M11", name="Nationality mix", university=u, year="2024-2025", level="All", program_group="All",
+                nationality="All", gender="All", category=c, value=n / t, numerator=n, denominator=t, unit="share",
+                use="show", quality="complete", display="", coverage=1, note="", source="") for u, c, n, t in rows]
+    out.append({**out[0], "university": "All", "value": 80 / 160, "numerator": 80, "denominator": 160, "coverage": 2})
+    return pd.DataFrame(out)
+
+
+def test_a_mix_counts_every_universitys_students_in_the_whole():
+    # D-036 for a mix: GU-Q's 60 students count in the whole of every region, even without a Europe row
+    m = mix_rows()
+    _, rows = d.same_universities(m, "M11", ["2024-2025"], category="region: Europe", among=["CMU-Q", "GU-Q"])
+    assert (rows["numerator"].iloc[0], rows["denominator"].iloc[0]) == (10, 160)
+    one = d.mix_year(m, "M11", "region: ", "2024-2025", same=True, among=["CMU-Q", "GU-Q"])
+    assert one["Europe"]["value"] == 10 / 160 and one["Qatar"]["value"] == 80 / 160
+    assert d.every_year_in(m, "M11", ["2024-2025"], "region: ") == ["CMU-Q", "GU-Q"]
+
+
+def test_studying_sentence():
+    text = story.studying(M)
+    assert text.startswith("In 2024–25, Education City's students came from **95** countries: 45% from Qatar")
+    assert "the share from Qatar went from 45% in 2019–20 to 51% in 2024–25" in text
+    assert story.studying(M, level="graduate").startswith("36% of graduate students studied full-time in 2024–25")
+
+
+@pytest.mark.parametrize("page", ["chapters/home.py", "chapters/growth.py", "chapters/getting_in.py",
+                                  "chapters/studying.py"])
 def test_pages_run_with_every_filter(page):
     at = AppTest.from_file(str(ROOT / "app.py"), default_timeout=60).run()
     at.switch_page(page).run()
     steps = [("university", "VCU-Q"), ("level", "Foundation"), ("group", "Female"), ("university", "Education City"),
              ("view", "same"), ("level", "All levels"), ("group", "All students")]
-    if page.endswith("getting_in.py"):
+    if page.endswith(("getting_in.py", "studying.py")):
         steps += [("year", "2021-2022"), ("view", "reported"), ("year", "2019-2020")]
     for key, value in steps:
         (at.segmented_control if key in ("view", "year") else at.selectbox)(key=key).set_value(value).run()
