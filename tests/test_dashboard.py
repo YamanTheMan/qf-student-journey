@@ -118,8 +118,32 @@ def test_studying_sentence():
     assert story.studying(M, level="graduate").startswith("36% of graduate students studied full-time in 2024–25")
 
 
+def test_a_university_without_a_split_is_missing_not_zero():
+    # graduating classes filled from Outcomes (D-028) have no gender: they're missing from the female total
+    years = d.years_of(M, "M16")
+    gone = dict(d.absent(M, "M16", years, group="Female")["2021-2022"])
+    assert gone["NU-Q"] == "no gender split" and gone["TAMU-Q"] == "no gender split"
+    assert d.points(M, "M16", ["2021-2022"], group="Female")["state"].iloc[0] == "incomplete"
+    # in the 'same universities' sum they'd count as zero, so that class isn't shown
+    _, rows = d.same_universities(M, "M16", years, group="Female")
+    assert rows.set_index("year").loc["2021-2022", "display"].startswith("not shown")
+    # a level a university doesn't teach is zero, not missing (CMU-Q has no graduate programs)
+    assert "CMU-Q" not in dict(d.absent(M, "M16", years, level="graduate")["2023-2024"])
+
+
+def test_graduation_rates_and_sentence():
+    rates = story.rates_only(M)
+    assert not ((rates["metric"] == "M18") & (rates["unit"] == "count")).any()   # P-25 counts aren't rates
+    text = story.graduating(M)
+    assert text.startswith("Education City's class of 2024–25 had **719** graduates (7 universities reported), 44% "
+                           "of them Qatari.")
+    assert "ranges from 52% (TAMU-Q, entered 2020–21) to 81% (CMU-Q, entered 2020–21)" in text
+    assert story.graduating(M, "TAMU-Q").endswith("of those who entered in 2019–20, 88% graduated within 150% of "
+                                                  "normal time.")
+
+
 @pytest.mark.parametrize("page", ["chapters/home.py", "chapters/growth.py", "chapters/getting_in.py",
-                                  "chapters/studying.py"])
+                                  "chapters/studying.py", "chapters/graduating.py"])
 def test_pages_run_with_every_filter(page):
     at = AppTest.from_file(str(ROOT / "app.py"), default_timeout=60).run()
     at.switch_page(page).run()
@@ -127,6 +151,8 @@ def test_pages_run_with_every_filter(page):
              ("view", "same"), ("level", "All levels"), ("group", "All students")]
     if page.endswith(("getting_in.py", "studying.py")):
         steps += [("year", "2021-2022"), ("view", "reported"), ("year", "2019-2020")]
+    if page.endswith("graduating.py"):
+        steps += [("class", "2022-2023"), ("view", "reported"), ("university", "GU-Q")]
     for key, value in steps:
-        (at.segmented_control if key in ("view", "year") else at.selectbox)(key=key).set_value(value).run()
+        (at.segmented_control if key in ("view", "year", "class") else at.selectbox)(key=key).set_value(value).run()
         assert not at.exception, (key, value)

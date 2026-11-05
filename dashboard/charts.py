@@ -306,3 +306,36 @@ def heatmap(rows, noun=""):
     fig.update_xaxes(side="top", linecolor="rgba(0,0,0,0)")
     fig.update_layout(margin=dict(l=4, r=4, t=30, b=4), plot_bgcolor="white")
     return fig
+
+
+def small_lines(panels, cols=3):
+    """One small line chart per university, each with the same series in the same colours on one 0-100% scale.
+    panels: {title: {series: points}}. Gaps stay gaps; open dots are incomplete."""
+    names = list(panels)
+    rows = -(-len(names) // cols)
+    fig = make_subplots(rows=rows, cols=cols, shared_yaxes=True, subplot_titles=names, horizontal_spacing=0.06,
+                        vertical_spacing=0.18)
+    order = list(dict.fromkeys(s for series in panels.values() for s in series))
+    colours = dict(zip(order, SERIES))
+    years, seen = [], set()
+    for i, series in enumerate(panels.values()):
+        for name, pts in series.items():
+            x = [year_label(y) for y in pts["year"]]
+            years = years or x
+            fig.add_trace(go.Scatter(
+                x=x, y=pts["value"], mode="lines+markers", name=name, legendgroup=name, showlegend=name not in seen,
+                connectgaps=False, line=dict(color=colours[name], width=2),
+                marker=dict(size=7, color=colours[name], line=dict(width=2, color=colours[name]),
+                            symbol=["circle-open" if s == "incomplete" else "circle" for s in pts["state"]]),
+                customdata=hover_lines(pts), hovertemplate=f"<b>%{{x}}</b> · {name}<br>%{{customdata}}<extra></extra>"),
+                row=i // cols + 1, col=i % cols + 1)
+            seen.add(name)
+    fig.update_annotations(font=dict(size=13, color=INK))
+    style(fig, height=210 * rows + 60, percent=True)
+    fig.update_yaxes(range=[0, 1.05])
+    fig.update_xaxes(categoryorder="array", categoryarray=years, tickvals=[years[0], years[-1]],
+                     tickfont=dict(size=11), showticklabels=False)
+    for r in range(1, rows + 1):
+        fig.update_xaxes(showticklabels=True, row=r, col=1)
+    fig.update_layout(margin=dict(t=70), legend=dict(y=1.0, yanchor="top", yref="container"))
+    return fig

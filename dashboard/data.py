@@ -51,6 +51,12 @@ def year_span(years):
     return ", ".join(runs)
 
 
+def and_list(items):
+    """['GU-Q', 'HBKU', 'NU-Q'] -> 'GU-Q, HBKU and NU-Q'."""
+    items = list(items)
+    return ", ".join(items[:-1]) + " and " + items[-1] if len(items) > 1 else "".join(items)
+
+
 def count_text(n):
     return f"{n:,.0f}"
 
@@ -147,9 +153,25 @@ def categories(m, metric, family, name=None):
     return sorted(c[len(family):] for c in rows["category"].unique())
 
 
+def no_split(m, metric, year, level, group, name=None, category=""):
+    """Universities with a total that year but no row for this nationality or gender group: they gave no split
+    (the graduating classes filled from the Outcomes sheet have no gender, D-028). Unlike a level a university
+    simply doesn't teach, a missing group isn't zero students. Empty for 'All students'."""
+    if group == "All students":
+        return set()
+    h = headline(m, metric, name, category)
+    h = h[(h["university"] != ALL) & (h["year"] == year) & (h["use"] != "leave_out") & h["value"].notna()]
+    if level != ALL:  # judged on the same level's total
+        h = pick(m, metric, level, name=name, category=category)
+        h = h[(h["university"] != ALL) & (h["year"] == year) & h["value"].notna()]
+    split = pick(m, metric, level, group, name, category=category)
+    return set(h["university"]) - set(split.loc[split["year"] == year, "university"])
+
+
 def absent(m, metric, years, level=ALL, group="All students", name=None, category=""):
     """{year: [(university, why)]}: universities that have this slice in some year but no usable data in this
-    one. Judged on the metric's totals, so a university that simply has no students at a level isn't absent."""
+    one. Judged on the metric's totals, so a university that simply has no students at a level isn't absent;
+    one that has a total but no split for the chosen group is (no_split)."""
     h = headline(m, metric, name, category)
     h = h[h["university"] != ALL]
     in_slice = set(pick(m, metric, level, group, name, category=category)["university"])
@@ -157,6 +179,7 @@ def absent(m, metric, years, level=ALL, group="All students", name=None, categor
     out = {}
     for year in years:
         rows = h[h["year"] == year].set_index("university")
+        unsplit = no_split(m, metric, year, level, group, name, category)
         missing = []
         for u in order:
             if u not in rows.index:
@@ -166,6 +189,8 @@ def absent(m, metric, years, level=ALL, group="All students", name=None, categor
                 missing.append((u, QUALITY.get(quality, quality.replace("_", " "))))
             elif rows.loc[[u], "value"].isna().all() and not rows.loc[[u], "display"].any():
                 missing.append((u, "no data"))  # a row without numbers (VCU-Q 2023-24 gave no nationality split)
+            elif u in unsplit:
+                missing.append((u, f"no {'gender' if group in ('Female', 'Male') else 'nationality'} split"))
         out[year] = missing
     return out
 
@@ -218,7 +243,10 @@ def points(m, metric, years, university=EDUCATION_CITY, same=False, level=ALL, g
             reason = QUALITY.get(r.get("quality", ""), "partial data")
             why.append(reason[:1].upper() + reason[1:])
         row["why"] = " · ".join(why)
+        report = r.get("report_year", "")
         notes = [f"Source: {SOURCES[r['source']]}" if r.get("source") in SOURCES else "",
+                 f"From the {year_label(report)} report" if isinstance(report, str) and report and
+                 r.get("year_kind") == "entering_class" else "",
                  *str(r.get("note", "")).split(" · ")]
         row["notes"] = " · ".join(n for n in notes if n and not n.startswith("From QF"))
         out.append(row)
@@ -264,7 +292,7 @@ def same_universities(m, metric, years, level=ALL, group="All students", name=No
                    value=float("nan"), numerator=float("nan"), denominator=float("nan"))
         if not keep or r.empty:
             row["display"] = "no data"
-        elif hidden.any():
+        elif hidden.any() or no_split(m, metric, year, level, group, name, category) & set(keep):
             row["display"] = "not shown: includes a small or missing number"
         elif unit == "count":
             row["value"] = r["value"].sum()

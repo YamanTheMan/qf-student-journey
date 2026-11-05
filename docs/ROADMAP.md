@@ -133,8 +133,15 @@ Goal: the story in five chapters, honest about every gap. Run it with `.venv/bin
 - [x] Auto-written summary sentence; "same universities" for a mix counts every university's whole (D-040)
 - [x] Found while checking: VCU-Q's "n/a" answers were read as "Mixed"; now not given (D-040)
 
+**Step 4: Graduating chapter ✅**
+- [x] An explanation of graduating vs entering classes at the top of the page
+- [x] Graduates per class, for Education City and for each university (M16); Qatari share of graduates (M17)
+- [x] Graduation rates by entering class: on time, within 150%, dropped out, one small chart per university (M18–M20, D-041)
+- [x] Where graduates come from, per graduating class (M21)
+- [x] Auto-written summary sentence, with each university's latest on-time rate
+- [x] Found while checking: a university with a total but no gender split was counted as zero; now shown as missing (D-041)
+
 **Next steps**
-- [ ] Step 4: Graduating (M16–M21)
 - [ ] Step 5: After graduation (M22–M25)
 - [ ] Step 6: Home page key numbers, an "About the data" page, program and year filters where a chapter needs them, final polish
 

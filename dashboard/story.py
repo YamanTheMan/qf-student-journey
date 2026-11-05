@@ -172,3 +172,69 @@ def studying(m, university=d.EDUCATION_CITY, level=d.ALL):
                      f"{d.year_label(same['year'].iloc[0])} to {d.share_text(same['value'].iloc[-1])} in "
                      f"{d.year_label(same['year'].iloc[-1])}.")
     return text.strip() or "No data for this selection."
+
+
+RATE_METRICS = ("M18", "M19", "M20")
+
+
+def rates_only(m):
+    """Graduation-rate rows that are rates: classes with graduates but no entrants give counts instead (P-25)."""
+    return m[~(m["metric"].isin(RATE_METRICS) & (m["unit"] == "count"))]
+
+
+def latest_rate(m, metric, university, level, group):
+    """(value, entering class) of a university's latest usable rate, or None."""
+    years = sorted(set(m.loc[m["metric"] == metric, "year"]))
+    pts = d.points(rates_only(m), metric, years, university, level=level, group=group)
+    pts = pts[pts["value"].notna()]
+    return (pts["value"].iloc[-1], pts["year"].iloc[-1]) if len(pts) else None
+
+
+def graduating(m, university=d.EDUCATION_CITY, level=d.ALL, group="All students"):
+    """Markdown: the latest graduating class, the like-for-like change, then on-time graduation rates."""
+    years = d.years_of(m, "M16")
+    pts = d.points(m, "M16", years, university, False, level, group)
+    have = pts[pts["value"].notna()]
+    if have.empty:
+        return "No data for this selection."
+    last = have.iloc[-1]
+    who = d.EDUCATION_CITY if university == d.EDUCATION_CITY else university
+    level_word = {"undergraduate": "undergraduate", "graduate": "graduate-level", "foundation": "foundation"}.get(level, "")
+    group_word = {"All students": "", "Female": "female", "Male": "male"}.get(group, group)
+    graduates = " ".join(w for w in (group_word, level_word, "graduates") if w)
+    text = f"{who}'s class of {d.year_label(last.year)} had **{d.count_text(last.value)}** {graduates}"
+    if university == d.EDUCATION_CITY:
+        h = d.headline(m, "M16")
+        n = int(h.loc[(h["university"] == d.ALL) & (h["year"] == last.year), "coverage"].iloc[0])
+        text += f" ({n} universities reported)"
+    if group == "All students":
+        q = d.points(m, "M17", [last.year], university, level=level).iloc[0]
+        text += f", {d.share_text(q['value'])} of them Qatari" if pd.notna(q["value"]) else ""
+    text += "."
+    if university == d.EDUCATION_CITY:
+        keep, same = d.same_universities(m, "M16", years, level, group)
+        same = same[same["value"].notna()]
+        if len(keep) > 1 and len(same) > 1 and same["value"].iloc[0] > 0 and _apart(same["year"]) >= MIN_YEARS:
+            text += (f" Counting only the {len(keep)} universities with graduates in every class "
+                     f"({', '.join(keep)}), {graduates} went from {d.count_text(same['value'].iloc[0])} in "
+                     f"{d.year_label(same['year'].iloc[0])} to {d.count_text(same['value'].iloc[-1])} in "
+                     f"{d.year_label(same['year'].iloc[-1])} ({_change(same['value'].iloc[0], same['value'].iloc[-1])}).")
+    if group in ("Female", "Male"):
+        return text  # graduation rates aren't split by gender
+    if university == d.EDUCATION_CITY:
+        latest = {u: latest_rate(m, "M18", u, level, group) for u in d.universities()}
+        latest = {u: r for u, r in latest.items() if r}
+        if len(latest) > 1:
+            low, high = (min(latest.items(), key=lambda kv: kv[1][0]), max(latest.items(), key=lambda kv: kv[1][0]))
+            text += (f" Where universities report graduation rates, the share of their latest entering class that "
+                     f"graduated on time ranges from {d.share_text(low[1][0])} ({low[0]}, entered "
+                     f"{d.year_label(low[1][1])}) to {d.share_text(high[1][0])} ({high[0]}, entered "
+                     f"{d.year_label(high[1][1])}).")
+    else:
+        on_time, by_150 = latest_rate(m, "M18", university, level, group), latest_rate(m, "M19", university, level, group)
+        if on_time:
+            text += (f" Of the students who entered in {d.year_label(on_time[1])}, {d.share_text(on_time[0])} "
+                     "graduated on time")
+            text += (f"; of those who entered in {d.year_label(by_150[1])}, {d.share_text(by_150[0])} graduated "
+                     "within 150% of normal time." if by_150 else ".")
+    return text
