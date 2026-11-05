@@ -135,6 +135,7 @@ def lines(series, height=320, percent=True, noun=""):
     colours = SERIES[:3]
     years = None
     gap_traces = []  # added after the lines, so the legend lists the lines first
+    ends = []  # (last value, its year, series name) for the labels at the line ends
     for (name, pts), colour in zip(series.items(), colours):
         x = [year_label(y) for y in pts["year"]]
         years = years or x
@@ -154,8 +155,18 @@ def lines(series, height=320, percent=True, noun=""):
                 showlegend=not gap_traces, hovertemplate=f"{name}: %{{customdata}}<extra></extra>"))
         last = pts[pts["value"].notna()].tail(1)
         if len(last):
-            fig.add_annotation(x=year_label(last["year"].iloc[0]), y=last["value"].iloc[0], text=name,
-                               xanchor="left", xshift=10, showarrow=False, font=dict(color=INK_2, size=12))
+            ends.append((last["value"].iloc[0], year_label(last["year"].iloc[0]), name))
+    # end labels: where two lines end close together, nudge their labels apart so they don't overlap
+    ends.sort()
+    shifts = [0] * len(ends)
+    top = max([v for v, _, _ in ends] + [1 if percent else 0]) or 1
+    for i in range(1, len(ends)):
+        if ends[i][1] == ends[i - 1][1] and ends[i][0] - ends[i - 1][0] < 0.06 * top:
+            shifts[i - 1] -= 7
+            shifts[i] += 7
+    for (value, x, name), shift in zip(ends, shifts):
+        fig.add_annotation(x=x, y=value, text=name, xanchor="left", xshift=10, yshift=shift, showarrow=False,
+                           font=dict(color=INK_2, size=12))
     fig.add_traces(gap_traces)
     if any((pts["state"] == "incomplete").any() for pts in series.values()):
         fig.add_trace(go.Scatter(x=[None], y=[None], mode="markers", name=LABELS["incomplete"],
@@ -338,4 +349,30 @@ def small_lines(panels, cols=3):
     for r in range(1, rows + 1):
         fig.update_xaxes(showticklabels=True, row=r, col=1)
     fig.update_layout(margin=dict(t=70), legend=dict(y=1.0, yanchor="top", yref="container"))
+    return fig
+
+
+def grouped(categories, series):
+    """Horizontal bars, one group per category (an outcome) and one bar per series (all graduates, Qatari,
+    Non-Qatari) in fixed colours. series: {name: {category: one points row}}. An incomplete bar is drawn lighter;
+    a missing one says why on its label."""
+    fig = go.Figure()
+    # plotly stacks a horizontal group's bars bottom-up, so add them in reverse to read top-down
+    for i, (name, rows) in reversed(list(enumerate(series.items()))):
+        got = [rows.get(c) for c in categories]
+        values = [r["value"] if r is not None and pd.notna(r["value"]) else 0 for r in got]
+        text = [value_text(r["value"], r["unit"]) if r is not None and pd.notna(r["value"])
+                else HIDDEN.get(r["why"], "no data") if r is not None else "no data" for r in got]
+        fig.add_trace(go.Bar(
+            y=categories, x=values, orientation="h", name=name, text=text, textposition="outside", cliponaxis=False,
+            textfont=dict(color=INK_2), marker=dict(color=SERIES[i], opacity=[
+                0.5 if r is not None and r["state"] == "incomplete" else 1 for r in got]),
+            customdata=[hover_lines(pd.DataFrame([r]))[0] if r is not None else "No data" for r in got],
+            hovertemplate=f"<b>%{{y}}</b> · {name}<br>%{{customdata}}<extra></extra>"))
+    style(fig, height=110 * len(categories) + 60, percent=True)
+    fig.update_layout(barmode="group", bargap=0.3, bargroupgap=0.08, margin=dict(l=4, r=70, t=36, b=4))
+    fig.update_yaxes(categoryorder="array", categoryarray=categories[::-1], range=None, gridcolor="rgba(0,0,0,0)",
+                     tickfont=dict(color=INK, size=13))
+    fig.update_xaxes(showgrid=False, showticklabels=False, linecolor="rgba(0,0,0,0)", range=[0, 1.15])
+    fig.update_layout(legend=dict(traceorder="reversed"))
     return fig

@@ -238,3 +238,58 @@ def graduating(m, university=d.EDUCATION_CITY, level=d.ALL, group="All students"
             text += (f"; of those who entered in {d.year_label(by_150[1])}, {d.share_text(by_150[0])} graduated "
                      "within 150% of normal time." if by_150 else ".")
     return text
+
+
+OUTCOMES = {"M22": "employed", "M23": "in further study", "M24": "still searching"}
+
+
+def outcome_classes(m, university=d.EDUCATION_CITY):
+    """The graduating classes to show. For Education City, from the first class that at least two universities
+    reported: the class of 2020-21 has only WCM-Q's outcomes, which aren't Education City's."""
+    years = d.years_of(m, "M22")
+    if university != d.EDUCATION_CITY:
+        return years
+    h = d.headline(m, "M22")
+    coverage = h[h["university"] == d.ALL].set_index("year")["coverage"]
+    first = next((y for y in years if coverage.get(y, 0) >= 2), years[0])
+    return [y for y in years if y >= first]
+
+
+def after(m, university=d.EDUCATION_CITY, level=d.ALL, group="All students"):
+    """Markdown: the latest class a year on, where the employed work, and the like-for-like change."""
+    if group in ("Female", "Male"):
+        return "Outcomes after graduation aren't reported by gender."
+    years = outcome_classes(m, university)
+    employed = d.points(m, "M22", years, university, level=level, group=group)
+    have = employed[employed["value"].notna()]
+    if have.empty:
+        return "No data for this selection."
+    year = have["year"].iloc[-1]
+    who = d.EDUCATION_CITY if university == d.EDUCATION_CITY else university
+    one = {k: d.points(m, k, [year], university, level=level, group=group).iloc[0] for k in [*OUTCOMES, "M25"]}
+    level_word = {"undergraduate": "undergraduate ", "graduate": "graduate-level ", "foundation": "foundation "}.get(level, "")
+    group_word = "" if group == "All students" else f"{group} "
+    parts = [f"{d.share_text(one[k]['value'])} {word}" for k, word in OUTCOMES.items() if pd.notna(one[k]["value"])]
+    text = (f"A year after graduating, **{parts[0].split()[0]}** of {who}'s {group_word}{level_word}class of "
+            f"{d.year_label(year)} were {' '.join(parts[0].split()[1:])}")
+    if university == d.EDUCATION_CITY:
+        h = d.headline(m, "M22")
+        text += f" ({int(h.loc[(h['university'] == d.ALL) & (h['year'] == year), 'coverage'].iloc[0])} universities reported)"
+    text += (", " + " and ".join(parts[1:]) if len(parts) > 1 else "") + "."
+    if pd.notna(one["M25"]["value"]):
+        text += f" Of those employed, {d.share_text(one['M25']['value'])} worked in Qatar"
+        if group == "All students":
+            by = {g: d.points(m, "M25", [year], university, level=level, group=g)["value"].iloc[0]
+                  for g in ("Qatari", "Non-Qatari")}
+            if all(pd.notna(v) for v in by.values()):
+                text += (f": {d.share_text(by['Qatari'])} of employed Qatari graduates and "
+                         f"{d.share_text(by['Non-Qatari'])} of Non-Qatari graduates")
+        text += "."
+    if university == d.EDUCATION_CITY:
+        keep, same = d.same_universities(m, "M22", years, level, group)
+        same = same[same["value"].notna()]
+        if len(keep) > 1 and len(same) > 1:
+            text += (f" Among the {len(keep)} universities with outcomes for every class since "
+                     f"{d.year_label(years[0])} ({', '.join(keep)}), employment went from "
+                     f"{d.share_text(same['value'].iloc[0])} to {d.share_text(same['value'].iloc[-1])}.")
+    return text

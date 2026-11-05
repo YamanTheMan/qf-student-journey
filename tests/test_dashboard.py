@@ -142,8 +142,22 @@ def test_graduation_rates_and_sentence():
                                                   "normal time.")
 
 
+def test_outcomes_start_with_a_class_more_than_one_university_reported():
+    # only WCM-Q reported the class of 2020-21: that's WCM-Q's number, not Education City's (D-042)
+    assert story.outcome_classes(M) == ["2021-2022", "2022-2023", "2023-2024"]
+    assert story.outcome_classes(M, "WCM-Q")[0] == "2020-2021"
+
+
+def test_after_graduation_sentence():
+    text = story.after(M)
+    assert text.startswith("A year after graduating, **73%** of Education City's class of 2023–24 were employed "
+                           "(6 universities reported), 11% in further study and 9% still searching.")
+    assert "100% of employed Qatari graduates and 81% of Non-Qatari graduates" in text
+    assert story.after(M, group="Female") == "Outcomes after graduation aren't reported by gender."
+
+
 @pytest.mark.parametrize("page", ["chapters/home.py", "chapters/growth.py", "chapters/getting_in.py",
-                                  "chapters/studying.py", "chapters/graduating.py"])
+                                  "chapters/studying.py", "chapters/graduating.py", "chapters/after.py"])
 def test_pages_run_with_every_filter(page):
     at = AppTest.from_file(str(ROOT / "app.py"), default_timeout=60).run()
     at.switch_page(page).run()
@@ -151,7 +165,7 @@ def test_pages_run_with_every_filter(page):
              ("view", "same"), ("level", "All levels"), ("group", "All students")]
     if page.endswith(("getting_in.py", "studying.py")):
         steps += [("year", "2021-2022"), ("view", "reported"), ("year", "2019-2020")]
-    if page.endswith("graduating.py"):
+    if page.endswith(("graduating.py", "after.py")):
         steps += [("class", "2022-2023"), ("view", "reported"), ("university", "GU-Q")]
     for key, value in steps:
         (at.segmented_control if key in ("view", "year", "class") else at.selectbox)(key=key).set_value(value).run()

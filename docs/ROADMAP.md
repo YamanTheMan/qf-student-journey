@@ -141,8 +141,14 @@ Goal: the story in five chapters, honest about every gap. Run it with `.venv/bin
 - [x] Auto-written summary sentence, with each university's latest on-time rate
 - [x] Found while checking: a university with a total but no gender split was counted as zero; now shown as missing (D-041)
 
+**Step 5: After graduation chapter ✅**
+- [x] A chosen class a year on: employed, further study, still searching, for all, Qatari and Non-Qatari graduates (M22–M24)
+- [x] The same rates class by class, and the share of the employed working in Qatar (M25)
+- [x] Each university's employment rate and share working in Qatar
+- [x] Education City starts with the first class more than one university reported (D-042)
+- [x] Auto-written summary sentence; end labels of close lines no longer overlap
+
 **Next steps**
-- [ ] Step 5: After graduation (M22–M25)
 - [ ] Step 6: Home page key numbers, an "About the data" page, program and year filters where a chapter needs them, final polish
 
 ## Phase 6 — Go live ⬜
