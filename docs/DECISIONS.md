@@ -292,3 +292,13 @@ Each row says whether its type is clear from the `name` (48 spellings, 104 inter
 
 QF's own schools are first in the school-type bars, in Sidra Green. Text on a dark fill is white, on a light fill near-black.
 **Why:** QF prefers Sidra Green, and the dashboard should look like a QF product. Every combination was run through a colour-blindness check. Full Sidra Green and full Adhm fail it (they look nearly the same without red–green vision: ΔE 3.9 against a target of 8), so they never appear as two series together; one of the pair is always a lighter tint (Green vs Adhm 60%: ΔE 22.8). The light tints are under 3:1 against white, so the charts that use them label their values and have a table underneath.
+
+### D-044 · GitHub rebuilds and checks everything on every push
+**Date:** 2026-11-05
+**Decision:** A GitHub Action (`.github/workflows/build.yml`, "Build and check") runs on every push to `main`, except pushes that change only documentation, and on demand from the Actions page. On GitHub's own computers it installs the pinned libraries and runs the one build command (`python -m pipeline.build`): inventory, tables, quality checks, metrics, then all the tests.
+- If the build needs a person (a new program spelling, an unknown employer, a new form, an impossible number) or a test fails, the run fails with a red ❌ and the build's message on the run's page. Nothing is saved, so the dashboard keeps showing the last good data.
+- If it passes and any table changed (new Excel files, or a pipeline change), the workflow saves the rebuilt tables in a commit of its own on `main` ("Rebuild tables after …"). The dashboard redeploys from that commit. If someone pushed again meanwhile, the newer run saves instead.
+- Runs go one at a time. The workflow pins GitHub's own actions by exact commit (checkout v7.0.1, setup-python v7.1.0), like the libraries (D-004).
+- Tested before the first push: a fresh copy of the repository builds and passes all 155 tests without changing any file, and every file name in the reference tables matches its Excel file exactly (GitHub's Linux machines treat capitals as different).
+**Why:** It's the "push the data, the dashboard updates" flow the project was built for (D-001, D-002). The same command a person runs locally decides, so GitHub can't publish anything the checks would have stopped.
+**Consequence:** After a push of new data, GitHub adds a commit to `main`. Run `git pull` before working locally again.

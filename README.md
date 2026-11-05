@@ -46,8 +46,17 @@ qf-student-journey/
 │   └── DECISIONS.md     Every important choice and why
 ├── requirements.txt     Exact library versions (app + pipeline)
 ├── requirements-dev.txt Adds test tools for local work and GitHub Actions
-└── .streamlit/          Dashboard theme
+├── .streamlit/          Dashboard theme (QF colours, D-043)
+└── .github/workflows/   Build and check: GitHub rebuilds and tests every push (D-044)
 ```
+
+## How new data reaches the dashboard
+
+1. Add the year's Excel files, exactly as received, to a new folder such as `data/raw/AY25-26/`, and push them to `main` (with `git push`, or by uploading them on GitHub).
+2. GitHub's **Build and check** workflow (`.github/workflows/build.yml`, D-044) rebuilds every table, runs the quality checks and the tests.
+   - ✅ Passed: it saves the rebuilt tables in a commit of its own, and the dashboard updates.
+   - ❌ Stopped: the run's page says what needs a person (usually one row in a table in `data/reference/`). Add it, push again. The dashboard keeps the last good data meanwhile.
+3. Before working locally again, run `git pull` to get GitHub's commit.
 
 ## Run it locally
 

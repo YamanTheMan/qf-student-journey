@@ -12,7 +12,7 @@ How we work each phase: explain the goal → build it in small steps → check t
 | 3. Validation | Automatic checks that run on every upload | ✅ |
 | 4. Metrics | Define and compute the story numbers | ✅ |
 | 5. Dashboard | The story in chapters, running locally | ✅ |
-| 6. Go live | GitHub Action + Streamlit Cloud, push-to-update | ⬜ |
+| 6. Go live | GitHub Action + Streamlit Cloud, push-to-update | 🔄 |
 | 7. Insights & delivery | Findings, polish, documentation, final presentation | ⬜ |
 
 ---
@@ -156,11 +156,22 @@ Goal: the story in five chapters, honest about every gap. Run it with `.venv/bin
 - [x] Checked at phone width: the sidebar folds away, text and charts stay readable
 - [ ] Moved to Phase 7: a program filter for single universities (programs differ by university, so it only makes sense once one is chosen)
 
-## Phase 6 — Go live ⬜
+## Phase 6 — Go live 🔄
 
-- [ ] GitHub Action: extract → validate → metrics on every push to `data/raw/`
-- [ ] Deploy on Streamlit Community Cloud as a private app
-- [ ] End-to-end test: add a year's files, confirm the dashboard updates
+Goal: push a year's Excel files to GitHub, and the private online dashboard updates by itself.
+
+**Step 1: GitHub rebuilds and checks every push (D-044)**
+- [x] Workflow `.github/workflows/build.yml`: install pinned libraries → build → checks → tests → save the rebuilt tables
+- [x] A stopped build fails with the reason on the run's page and saves nothing
+- [x] Tested from a fresh copy of the repository: all tests pass, no file changes
+- [ ] First run on GitHub passes (after the push)
+
+**Step 2: the dashboard online as a private app** (needs the owner's Streamlit account)
+- [ ] Deploy on Streamlit Community Cloud from `main`, Python 3.11
+- [ ] Private: only invited viewers can open it (D-001)
+
+**Step 3: end-to-end test**
+- [ ] Add a year's files, push, and watch GitHub rebuild and the dashboard update
 
 ## Phase 7 — Insights & delivery ⬜
 

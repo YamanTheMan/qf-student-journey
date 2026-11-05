@@ -1,0 +1,87 @@
+# Phase 6: every push to main rebuilds and checks everything on GitHub's computers (D-044).
+#
+#   1. Install the pinned libraries (requirements-dev.txt).
+#   2. Run the one build command: inventory -> tables -> quality checks -> metrics -> tests.
+#      If a person is needed (a new program spelling, an unknown employer, ...) or a test fails,
+#      the run stops with a red cross and the message on the run's page. Nothing is saved.
+#   3. If the build changed any table, save them in a new commit on main. Streamlit Community Cloud
+#      then redeploys the dashboard from that commit.
+#
+# A commit made by this workflow doesn't start the workflow again (GitHub's rule for its own token).
+
+name: Build and check
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:          # documentation alone can't change a number
+      - "docs/**"
+      - "**/*.md"
+  workflow_dispatch:       # a "Run workflow" button on the Actions page
+
+permissions:
+  contents: write          # to save the rebuilt tables
+
+concurrency:               # one build at a time; a newer push waits, it isn't lost
+  group: build-main
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PYTHONUNBUFFERED: "1"  # print the build's steps in order
+    steps:
+      - name: Get the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+
+      - name: Install the pinned libraries
+        run: python -m pip install -r requirements-dev.txt
+
+      - name: Build every table, run the quality checks and the tests
+        run: |
+          set -o pipefail
+          python -m pipeline.build 2>&1 | tee build.log
+
+      - name: Explain a stopped build
+        if: failure()
+        run: |
+          {
+            echo "## The build stopped"
+            echo "Nothing was saved, and the dashboard still shows the last good data."
+            echo "Fix what the lines below ask for (usually one row in a table in data/reference/), then push again."
+            echo '```'
+            tail -n 60 build.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Save the rebuilt tables
+        run: |
+          git add data/processed docs/quality_report.md data/reference/file_inventory.csv
+          if git diff --cached --quiet; then
+            echo "## Build passed: no table changed" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git fetch --quiet origin main
+          if [ "$(git rev-parse origin/main)" != "$GITHUB_SHA" ]; then
+            echo "## Build passed; main has moved on since, so the newer run saves the tables" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit --quiet -m "Rebuild tables after ${GITHUB_SHA::7}" -m "Made by the Build and check workflow."
+          git push --quiet origin HEAD:main
+          {
+            echo "## Build passed: tables rebuilt and saved"
+            echo '```'
+            git show --stat --format="%h %s" HEAD | tail -n 20
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
