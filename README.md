@@ -42,6 +42,7 @@ qf-student-journey/
 │   └── reference/       Hand-made lookup tables (university names, program mappings)
 ├── tests/               Automated checks
 ├── docs/
+│   ├── findings.md      Key findings: what the data says, and recommendations
 │   ├── ROADMAP.md       Phases and progress checklist
 │   └── DECISIONS.md     Every important choice and why
 ├── requirements.txt     Exact library versions (app + pipeline)

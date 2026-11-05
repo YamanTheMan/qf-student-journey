@@ -13,7 +13,7 @@ How we work each phase: explain the goal → build it in small steps → check t
 | 4. Metrics | Define and compute the story numbers | ✅ |
 | 5. Dashboard | The story in chapters, running locally | ✅ |
 | 6. Go live | GitHub Action + Streamlit Cloud, push-to-update | ✅ |
-| 7. Insights & delivery | Findings, polish, documentation, final presentation | ⬜ |
+| 7. Insights & delivery | Findings, polish, documentation, final presentation | 🔄 |
 
 ---
 
@@ -177,9 +177,15 @@ Goal: push a year's Excel files to GitHub, and the online dashboard updates by i
 - [x] Test B, a build that must stop: on a throwaway branch, one employer removed from `employers.csv`, workflow started by hand. Red ❌ with "employer not in data/reference/employers.csv: 'Qatar Museums'"; nothing saved, `main` and the dashboard untouched. Branch deleted.
 - [ ] The real test: the next year's Excel files (2025–26), when they arrive
 
-## Phase 7 — Insights & delivery ⬜
+## Phase 7 — Insights & delivery 🔄
 
+**Step 1: key findings ✅** — [docs/findings.md](findings.md)
+- [x] Eleven findings along the journey, each with its numbers, where to see it on the dashboard, and its caveats
+- [x] Comparisons over time like for like (the same universities every year), the set named each time
+- [x] Every number checked against the dashboard's own rounding
+- [x] What the data taught us about the data, eight recommendations for the Student Data Collection, and the limits of the findings
+
+**Next steps**
+- [ ] Step 2: final documentation (a guide for someone new: using the dashboard, adding a year, how the pipeline works)
+- [ ] Step 3: presentation, in QF colours
 - [ ] Optional: program filter for single universities (from Phase 5)
-- [ ] Key findings write-up
-- [ ] Final documentation
-- [ ] Presentation
