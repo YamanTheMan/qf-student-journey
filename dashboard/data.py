@@ -79,37 +79,55 @@ def usable(rows):
     return rows[(rows["use"] != "leave_out") & rows["value"].notna()]
 
 
-def headline(m, metric, name=None):
-    """A metric's totals for each university: no level, group, program or category split."""
-    return pick(m, metric, name=name)
+def headline(m, metric, name=None, category=""):
+    """A metric's totals for each university: no level, group or program split. A metric given for one
+    level only (M10: undergraduate+foundation) uses that level; a metric split into categories (M09's stages,
+    M10's school types) is judged per category."""
+    rows = pick(m, metric, name=name, category=category)
+    if rows.empty:
+        levels = m.loc[m["metric"] == metric, "level"].unique()
+        if len(levels) == 1:
+            rows = pick(m, metric, levels[0], name=name, category=category)
+    return rows
 
 
-def years_of(m, metric, name=None):
+def years_of(m, metric, name=None, category=""):
     """Every year in which Education City has a value for this metric."""
-    h = headline(m, metric, name)
+    h = headline(m, metric, name, category)
     return sorted(h.loc[h["university"] == ALL, "year"].unique())
 
 
-def present(m, metric, name=None):
+def present(m, metric, name=None, category=""):
     """{year: universities with usable data that year}, judged on the metric's totals."""
-    h = usable(headline(m, metric, name))
+    h = usable(headline(m, metric, name, category))
     h = h[h["university"] != ALL]
     return h.groupby("year")["university"].agg(set).to_dict()
 
 
-def every_year(m, metric, years, name=None):
-    """The universities with usable data in every one of `years`, in reference order."""
-    seen = present(m, metric, name)
+def every_year(m, metric, years, name=None, category=""):
+    """The universities with usable data in every one of `years` in which the metric exists at all
+    (gender starts in 2014-15: the years before don't narrow the set), in reference order."""
+    seen = present(m, metric, name, category)
+    exists = set(years_of(m, metric, name, category))
+    years = [y for y in years if y in exists]
     keep = set.intersection(*[seen.get(y, set()) for y in years]) if years else set()
     return [u for u in universities() if u in keep]
 
 
-def absent(m, metric, years, level=ALL, group="All students", name=None):
+def every_year_of_all(m, measures, years):
+    """The universities with data in every year for each of several measures, so that charts shown side by side
+    (applicants, admitted, new students) compare the same universities. measures: [(metric, name, category)]."""
+    keep = set.intersection(*[set(every_year(m, metric, years, name, category))
+                              for metric, name, category in measures])
+    return [u for u in universities() if u in keep]
+
+
+def absent(m, metric, years, level=ALL, group="All students", name=None, category=""):
     """{year: [(university, why)]}: universities that have this slice in some year but no usable data in this
     one. Judged on the metric's totals, so a university that simply has no students at a level isn't absent."""
-    h = headline(m, metric, name)
+    h = headline(m, metric, name, category)
     h = h[h["university"] != ALL]
-    in_slice = set(pick(m, metric, level, group, name)["university"])
+    in_slice = set(pick(m, metric, level, group, name, category=category)["university"])
     order = [u for u in universities() if u in in_slice]
     out = {}
     for year in years:
@@ -130,21 +148,23 @@ def absent(m, metric, years, level=ALL, group="All students", name=None):
 SOURCES = {"qf_consolidated": "QF's consolidated file", "student_data": "the universities' Student Data sheets"}
 
 
-def points(m, metric, years, university=EDUCATION_CITY, same=False, level=ALL, group="All students", name=None):
+def points(m, metric, years, university=EDUCATION_CITY, same=False, level=ALL, group="All students", name=None,
+           category="", among=None):
     """What one chart series draws: per year a value and a state (D-035).
 
     state: 'complete'; 'incomplete' (drawn lighter: a university is missing that year, or the data is partial);
     'missing' (a gap, with the reason on hover). `why` holds that reason, `notes` anything else to say.
+    among: for the 'same universities' view, a set shared with other charts (every_year_of_all).
     """
     if university == EDUCATION_CITY and same:
-        _, rows = same_universities(m, metric, years, level, group, name)
+        _, rows = same_universities(m, metric, years, level, group, name, category, among)
         rows = rows.assign(source="", note="")
         gone = {y: [] for y in years}
     else:
         who = ALL if university == EDUCATION_CITY else university
-        rows = pick(m, metric, level, group, name)
+        rows = pick(m, metric, level, group, name, category=category)
         rows = rows[rows["university"] == who]
-        everyone = absent(m, metric, years, level, group, name)
+        everyone = absent(m, metric, years, level, group, name, category)
         gone = everyone if who == ALL else {y: [g for g in everyone[y] if g[0] == who] for y in years}
     out = []
     for year in years:
@@ -180,18 +200,18 @@ def points(m, metric, years, university=EDUCATION_CITY, same=False, level=ALL, g
     return pd.DataFrame(out)
 
 
-def same_universities(m, metric, years, level=ALL, group="All students", name=None):
+def same_universities(m, metric, years, level=ALL, group="All students", name=None, category="", among=None):
     """Education City recomputed from only the universities with usable data in every one of `years` (D-036).
 
     Counts are added; shares and rates add their numerators and denominators. A university without a row in
     this slice adds nothing (it has no students at that level). If any part is hidden as a small number or
     left out, that year's sum isn't shown either, so the sum never reveals what D-026 hides.
     Years in which Education City has no value for this metric at all (e.g. gender before 2014-15) don't
-    narrow the set; they stay gaps.
+    narrow the set; they stay gaps. `among` gives the set instead (shared by charts shown together).
     Returns (universities, rows with year, value, numerator, denominator, unit, use, display, coverage).
     """
-    keep = every_year(m, metric, [y for y in years if y in set(years_of(m, metric, name))], name)
-    rows = pick(m, metric, level, group, name)
+    keep = list(among) if among is not None else every_year(m, metric, years, name, category)
+    rows = pick(m, metric, level, group, name, category=category)
     rows = rows[rows["university"].isin(keep)]
     out = []
     for year in years:

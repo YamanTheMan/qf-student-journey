@@ -109,6 +109,17 @@ def test_funding_sponsor_rows_are_reported():
     assert "2 sponsor row(s)" in found[0]["message"] and "GU-Q Grant" in found[0]["message"]
 
 
+def test_a_year_far_below_the_last_is_not_comparable():
+    # C13 (D-038): TAMU-Q's Spring 2025 file reported 30 applicants against 1,317; a real fall (HEC-Q 251 -> 134) isn't flagged
+    years = ["2023-2024", "2024-2025"]
+    t = rows(university=["U-1"] * 2 + ["U-2"] * 2, file_year=years * 2, stage=["applied"] * 4, breakdown=["total"] * 4,
+             row_type=["program"] * 4, count=[1317, 30, 251, 134], source_file=["f"] * 4, source_cell=["L8"] * 4)
+    found = checks.far_below_last_year({"student_data": t})
+    assert [(f["university"], f["file_year"], f["status"]) for f in found] == [("U-1", "2024-2025", "far_below_last_year")]
+    from pipeline.flags import status_of
+    assert status_of(found[0]) == "not_comparable"
+
+
 def test_report_has_summary_warnings_and_information():
     findings = pd.DataFrame([checks.finding("C03 breakdown adds up", "warning", "mismatch", "t",
                                             {"university": "U-1", "file_year": "2024-2025", "source_file": "a/f.xlsx"},

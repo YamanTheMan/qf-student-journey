@@ -93,6 +93,14 @@ def test_education_city_leaves_out_unreported_universities():
     assert total(m, "M01", "All", "2022-2023")["coverage"] == 7
 
 
+def test_tamuq_spring_2025_admissions_are_left_out():
+    # C13 (D-038): 30 applicants against 1,317 the year before; the graduate program alone isn't the year
+    m = read()
+    assert total(m, "M04", "TAMU-Q", "2024-2025")["use"] == "leave_out"
+    assert total(m, "M04", "All", "2024-2025")["coverage"] == 6
+    assert total(m, "M01", "TAMU-Q", "2024-2025")["use"] == "show"   # registered students are fine
+
+
 def test_age_bands():
     assert [metrics.age_band(a) for a in ("<15", "17", "18", "20", "21", "23", "24", "29", "30", "35-39", ">59", "Age unknown")] == \
         ["under 18", "under 18", "18-20", "18-20", "21-23", "21-23", "24-29", "24-29", "30 and over", "30 and over",

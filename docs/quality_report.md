@@ -23,6 +23,7 @@ Written by `.venv/bin/python -m pipeline.build` from the processed tables; don't
 | C10 graduate_nationalities vs dated graduates | 0 | 6 | 1 |
 | C10 outcomes vs dated graduates | 0 | 2 | 2 |
 | C12 funding sponsor rows | 0 | 0 | 3 |
+| C13 far below last year | 0 | 3 | 0 |
 
 ## Coverage and quality by measure
 
@@ -39,7 +40,7 @@ Every flag, with the findings behind it, is in `data/processed/quality_flags.csv
 | HBKU |  |  |  | ✓ | ✓ |  |
 | HEC-Q | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | NU-Q | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| TAMU-Q | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| TAMU-Q | ✓ | ✓ | ✓ | ✓ | ✓ | ≠ |
 | VCU-Q | ✓ | ✓ | ✓ | ✓ | ◑ | ◑ |
 | WCM-Q | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 
@@ -52,7 +53,7 @@ Every flag, with the findings behind it, is in `data/processed/quality_flags.csv
 | HBKU |  |  |  | ✓ | ✓ |  |
 | HEC-Q | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | NU-Q | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| TAMU-Q | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| TAMU-Q | ✓ | ✓ | ✓ | ✓ | ✓ | ≠ |
 | VCU-Q | ✓ | ✓ | ✓ | ✓ | ◑ | ◑ |
 | WCM-Q | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 
@@ -65,7 +66,7 @@ Every flag, with the findings behind it, is in `data/processed/quality_flags.csv
 | HBKU |  |  |  | ✓ | ✓ |  |
 | HEC-Q | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | NU-Q | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| TAMU-Q | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| TAMU-Q | ✓ | ✓ | ✓ | ✓ | ✓ | ≠ |
 | VCU-Q | ✓ | ✓ | ✗ | ✗ | ◑ | ◑ |
 | WCM-Q | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 
@@ -335,6 +336,14 @@ Example: Class 2017-2018: 1 graduates but no entrants reported, so no rate can b
 | University | Year | Table | Finding | Source |
 |---|---|---|---|---|
 | VCU-Q | 2024-2025 | outcomes | Class 2023-2024: 65 vs 72 in the graduates dated in Student Data: only 90% | nan |
+
+### C13 far below last year: far below last year (3)
+
+| University | Year | Table | Finding | Source |
+|---|---|---|---|---|
+| TAMU-Q | 2024-2025 | student_data | 30 applied against 1,317 the year before: most programs look unfilled, so the year isn't comparable | AY24-25 TAMU-Q Student Data Template - S |
+| TAMU-Q | 2024-2025 | student_data | 14 admitted against 340 the year before: most programs look unfilled, so the year isn't comparable | AY24-25 TAMU-Q Student Data Template - S |
+| TAMU-Q | 2024-2025 | student_data | 4 newly enrolled against 152 the year before: most programs look unfilled, so the year isn't comparable | AY24-25 TAMU-Q Student Data Template - S |
 
 ## Information
 

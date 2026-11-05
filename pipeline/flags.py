@@ -48,7 +48,7 @@ USE = {"complete": "show", "breakdown_partial": "show", "differs": "show_with_no
 def status_of(finding):
     """The flag a single finding points to, or None if it doesn't affect the flag."""
     status, severity = finding["status"], finding["severity"]
-    if status in ("not_one_class", "newly_enrolled_above_admitted", "admitted_above_applied"):
+    if status in ("not_one_class", "newly_enrolled_above_admitted", "admitted_above_applied", "far_below_last_year"):
         return "not_comparable"
     if status == "higher":
         return "not_comparable" if finding["found"] >= 1.5 * finding["expected"] else "differs"

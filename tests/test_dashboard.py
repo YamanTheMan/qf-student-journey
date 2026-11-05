@@ -74,11 +74,31 @@ def test_growth_sentence():
     assert story.growth(M, "HBKU", "foundation") == "No data for this selection."
 
 
-@pytest.mark.parametrize("page", ["chapters/home.py", "chapters/growth.py"])
+def test_getting_in_compares_the_same_universities_at_every_stage():
+    # applicants, admitted and new students share one set; VCU-Q (no 2022-23 new students) and
+    # TAMU-Q (2024-25 left out, D-038) aren't in it
+    admissions = [(k, None, "") for k in ("M04", "M05", "M06")]
+    assert d.every_year_of_all(M, admissions, d.years_of(M, "M04")) == ["GU-Q", "NU-Q", "WCM-Q", "HEC-Q"]
+    assert d.years_of(M, "M10", category="applied: QF schools") == ["2021-2022", "2022-2023", "2023-2024", "2024-2025"]
+
+
+def test_getting_in_sentence():
+    text = story.getting_in(M)
+    assert text.startswith("In 2024–25, Education City had **7,539** applicants (6 universities reported) and admitted "
+                           "**1,730** (23%).")
+    assert "applicants went from 1,825 in 2019–20 to 4,361 in 2024–25 (up 139%)" in text
+    # TAMU-Q's latest usable year is 2023-24
+    assert story.getting_in(M, "TAMU-Q").startswith("In 2023–24, TAMU-Q had **1,317** applicants")
+
+
+@pytest.mark.parametrize("page", ["chapters/home.py", "chapters/growth.py", "chapters/getting_in.py"])
 def test_pages_run_with_every_filter(page):
     at = AppTest.from_file(str(ROOT / "app.py"), default_timeout=60).run()
     at.switch_page(page).run()
-    for key, value in (("university", "VCU-Q"), ("level", "Foundation"), ("group", "Female"),
-                       ("university", "Education City"), ("view", "same")):
-        (at.segmented_control if key == "view" else at.selectbox)(key=key).set_value(value).run()
+    steps = [("university", "VCU-Q"), ("level", "Foundation"), ("group", "Female"), ("university", "Education City"),
+             ("view", "same"), ("level", "All levels"), ("group", "All students")]
+    if page.endswith("getting_in.py"):
+        steps += [("year", "2021-2022"), ("view", "reported"), ("year", "2019-2020")]
+    for key, value in steps:
+        (at.segmented_control if key in ("view", "year") else at.selectbox)(key=key).set_value(value).run()
         assert not at.exception, (key, value)

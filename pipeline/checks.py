@@ -441,6 +441,31 @@ def funding_sponsor_rows(tables):
     return out
 
 
+FAR_BELOW = 0.25  # D-038: under a quarter of the year before isn't a real year's total
+
+
+@check
+def far_below_last_year(tables):
+    """C13: a Student Data stage that falls to under a quarter of the university's previous year (D-038).
+    A year of zeros is already 'not reported'; this catches a file where most programs weren't filled in,
+    such as TAMU-Q's Spring 2025 file: only its graduate program reported applicants (P-41)."""
+    sd = tables["student_data"]
+    files = sd.groupby(["university", "file_year"])["source_file"].first()
+    out = []
+    for stage in ("applied", "admitted", "newly_enrolled", "registered"):
+        totals = student_totals(tables, stage)
+        for (uni, year), n in totals.items():
+            start = int(year[:4])
+            before = totals.get((uni, f"{start - 1}-{start}"))
+            if pd.notna(n) and n > 0 and pd.notna(before) and n < FAR_BELOW * before:
+                out.append(finding(
+                    "C13 far below last year", "warning", "far_below_last_year", "student_data",
+                    {"university": uni, "file_year": year, "stage": stage, "source_file": files.get((uni, year))},
+                    f"{int(n):,} {stage.replace('_', ' ')} against {int(before):,} the year before: most programs "
+                    "look unfilled, so the year isn't comparable", found=int(n), expected=int(before)))
+    return out
+
+
 # ---------------------------------------------------------------------------------------------
 
 def run_checks(tables):
@@ -461,6 +486,7 @@ STATUS_MEANING = {
     "qf_leaves_out_blank_groups": "differs from QF only because QF leaves out groups with a blank part (P-15)",
     "internal_promotions": "WCM-Q counts promoted students as admitted; the Pipeline doesn't",
     "sponsor_rows": "funding split into sponsor rows kept out of totals (D-023); funding flagged partial",
+    "far_below_last_year": "under a quarter of the year before: most programs unfilled, so not comparable (D-038)",
 }
 
 

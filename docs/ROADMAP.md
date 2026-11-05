@@ -115,8 +115,16 @@ Goal: the story in five chapters, honest about every gap. Run it with `.venv/bin
 - [x] Auto-written summary sentence for Growth (`dashboard/story.py`)
 - [x] Found while checking: a blank part of a split made VCU-Q look 100% female; shares now need their split to cover the students (P-40, D-037)
 
+**Step 2: Getting in chapter ✅**
+- [x] A year picker for the one-year charts (kept in the page address)
+- [x] Funnel for one year: applicants → admitted → new students, with the acceptance rate and yield
+- [x] Applicants, admitted and new students over the years (each with its own scale), acceptance rate and yield over time
+- [x] Each university's acceptance rate and yield, ranked
+- [x] Qatari share at each stage, and which schools students come from (M09, M10)
+- [x] Auto-written summary sentence; one "same universities" set for the whole funnel (D-039)
+- [x] Found while checking: TAMU-Q's Spring 2025 file reports its graduate program only; new check C13 leaves such a year out (P-41, D-038)
+
 **Next steps**
-- [ ] Step 2: Getting in (M04–M10)
 - [ ] Step 3: Studying (M11–M15)
 - [ ] Step 4: Graduating (M16–M21)
 - [ ] Step 5: After graduation (M22–M25)

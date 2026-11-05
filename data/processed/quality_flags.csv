@@ -39,7 +39,7 @@ applied,CMU-Q,2024-2025,complete,✓,show,
 applied,GU-Q,2024-2025,complete,✓,show,
 applied,HEC-Q,2024-2025,complete,✓,show,
 applied,NU-Q,2024-2025,complete,✓,show,
-applied,TAMU-Q,2024-2025,complete,✓,show,
+applied,TAMU-Q,2024-2025,not_comparable,≠,leave_out,C13 far below last year: far below last year
 applied,VCU-Q,2024-2025,breakdown_partial,◑,show,C03 breakdown adds up: withheld
 applied,WCM-Q,2024-2025,complete,✓,show,
 admitted,CMU-Q,2019-2020,complete,✓,show,
@@ -82,7 +82,7 @@ admitted,CMU-Q,2024-2025,complete,✓,show,
 admitted,GU-Q,2024-2025,complete,✓,show,
 admitted,HEC-Q,2024-2025,complete,✓,show,
 admitted,NU-Q,2024-2025,complete,✓,show,
-admitted,TAMU-Q,2024-2025,complete,✓,show,
+admitted,TAMU-Q,2024-2025,not_comparable,≠,leave_out,C13 far below last year: far below last year
 admitted,VCU-Q,2024-2025,breakdown_partial,◑,show,C03 breakdown adds up: withheld
 admitted,WCM-Q,2024-2025,complete,✓,show,
 newly_enrolled,CMU-Q,2019-2020,complete,✓,show,
@@ -125,7 +125,7 @@ newly_enrolled,CMU-Q,2024-2025,complete,✓,show,
 newly_enrolled,GU-Q,2024-2025,complete,✓,show,
 newly_enrolled,HEC-Q,2024-2025,complete,✓,show,
 newly_enrolled,NU-Q,2024-2025,complete,✓,show,
-newly_enrolled,TAMU-Q,2024-2025,complete,✓,show,
+newly_enrolled,TAMU-Q,2024-2025,not_comparable,≠,leave_out,C13 far below last year: far below last year
 newly_enrolled,VCU-Q,2024-2025,breakdown_partial,◑,show,C03 breakdown adds up: partly withheld; C03 breakdown adds up: withheld
 newly_enrolled,WCM-Q,2024-2025,complete,✓,show,
 registered,CMU-Q,2019-2020,complete,✓,show,
